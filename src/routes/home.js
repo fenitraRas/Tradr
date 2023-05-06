@@ -20,6 +20,7 @@ import {
   Text,
   View,
   useColorScheme,
+  Dimensions,
 } from 'react-native';
 
 import React from 'react';
@@ -50,13 +51,20 @@ function Section({children, title}) {
   );
 }
 
+function Navbar({children, title}) {
+  const isDarkMode = useColorScheme() === 'dark';
+  return (
+    <View style={styles.navbarContainer}>
+      <Text style={styles.navbarText}>{children}</Text>
+    </View>
+  );
+}
+
 function Home() {
   const isDarkMode = useColorScheme() === 'dark';
-
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
-
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
@@ -70,17 +78,31 @@ function Home() {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="WELCOME">Trading</Section>
+          <Navbar>Tradrboard</Navbar>
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 }
 
+let ScreenHeight = Dimensions.get('window').height - 58;
 const styles = StyleSheet.create({
+  navbarContainer: {
+    width: '100%',
+    height: 27,
+  },
+  navbarText: {
+    textAlign: 'center',
+    fontWeight: 500,
+    fontSize: 20,
+    lineHeight: 24,
+    fontFamily: 'Montserrat',
+    color: '#1A2442',
+  },
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
+    height: ScreenHeight,
   },
   sectionTitle: {
     fontSize: 24,
