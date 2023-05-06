@@ -16,7 +16,7 @@ function Home() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Image source={require('../assets/Home.png')} style={styles.image} />
+      <Image source={require('../assets/home.png')} style={styles.image} />
     </SafeAreaView>
   );
 }
