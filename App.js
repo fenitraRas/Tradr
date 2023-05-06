@@ -1,4 +1,5 @@
-import Home from './src/routes/home';
+import Home from './src/routes/Home';
+import Menu from './src/routes/Menu';
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -12,6 +13,11 @@ function App() {
         <Stack.Screen
           name="Home"
           component={Home}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Menu"
+          component={Menu}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
