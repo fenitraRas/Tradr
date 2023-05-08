@@ -6,13 +6,6 @@
  */
 
 import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import {
   Dimensions,
   SafeAreaView,
   ScrollView,
@@ -23,6 +16,7 @@ import {
   useColorScheme,
 } from 'react-native';
 
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import React from 'react';
 
 function Section({children, title}) {
