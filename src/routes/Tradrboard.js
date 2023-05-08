@@ -11,17 +11,19 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
   useColorScheme,
-  TouchableOpacity,
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import React from 'react';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
+import React from 'react';
 import WavingHand from '../assets/wavingHand.svg';
+import {useNavigation} from '@react-navigation/native';
 
 function Navbar({children, title}) {
+  const navigation = useNavigation();
   return (
     <View style={styles.navbarContainer}>
       <View style={styles.navbarIcon} />
@@ -29,7 +31,11 @@ function Navbar({children, title}) {
         <Text style={styles.navbarText}>{children}</Text>
       </View>
       <View style={styles.navbarIcon}>
-        <DotThreeVertical width={30} height={20} />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Menu')}>
+          <DotThreeVertical width={30} height={20} />
+        </TouchableOpacity>
       </View>
     </View>
   );
