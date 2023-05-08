@@ -54,7 +54,7 @@ function Navbar({children, title}) {
   );
 }
 
-function Menu() {
+function Tradrboard() {
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -112,4 +112,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Menu;
+export default Tradrboard;
