@@ -1,114 +1,85 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
+import React, {useState} from 'react';
 import {
-  Dimensions,
   SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
-  useColorScheme,
 } from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import React from 'react';
-
-function Section({children, title}) {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+import SwitchIconDark from '../assets/switchIconDark.svg';
+import SwitchIconLight from '../assets/switchIconLight.svg';
 
 function Navbar({children, title}) {
-  const isDarkMode = useColorScheme() === 'dark';
+  const dispatch = useDispatch();
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const [option, setOption] = useState(colorScheme);
+  console.log('state', option);
+
+  function changeTheme(opt) {
+    switch (opt) {
+      case 'light':
+        dispatch({type: 'SET_THEME', theme: 'dark'});
+        setOption('dark');
+        break;
+      case 'dark':
+        dispatch({type: 'SET_THEME', theme: 'light'});
+        setOption('light');
+        break;
+      default:
+        break;
+    }
+  }
+
   return (
     <View style={styles.navbarContainer}>
-      <Text style={styles.navbarText}>{children}</Text>
+      <View style={{flex: 1, minWidth: 71}}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            changeTheme(option);
+          }}>
+          {option === 'light' ? (
+            <SwitchIconLight width={71} height={36} />
+          ) : (
+            <SwitchIconDark width={71} height={36} />
+          )}
+        </TouchableOpacity>
+      </View>
+      <View style={{flex: 8}}>
+        <Text style={styles.navbarText}>{children}</Text>
+      </View>
+      <View style={{flex: 1, minWidth: 71}} />
     </View>
   );
 }
 
-function Menu() {
-  const isDarkMode = useColorScheme() === 'dark';
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+function Menu(props) {
   return (
     <SafeAreaView>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Navbar>Tradrboard</Navbar>
-        </View>
-      </ScrollView>
+      <Navbar>Menu</Navbar>
     </SafeAreaView>
   );
 }
 
-let ScreenHeight = Dimensions.get('window').height - 58;
 const styles = StyleSheet.create({
   navbarContainer: {
+    flexDirection: 'row',
     width: '100%',
-    height: 27,
+    height: '20%',
   },
   navbarText: {
     textAlign: 'center',
     fontWeight: 500,
     fontSize: 20,
     lineHeight: 24,
-    // fontFamily: 'Montserrat',
     color: '#1A2442',
+    marginTop: 10,
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-    height: ScreenHeight,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
+  button: {
+    marginLeft: 10,
+    marginTop: 5,
   },
 });
 
