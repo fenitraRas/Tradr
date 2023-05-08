@@ -78,7 +78,7 @@ function Menu() {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Navbar>Tradrboard</Navbar>
+          <Navbar>Tradrboard test</Navbar>
         </View>
       </ScrollView>
     </SafeAreaView>
