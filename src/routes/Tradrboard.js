@@ -6,7 +6,6 @@
  */
 
 import {
-  Dimensions,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -19,37 +18,15 @@ import {
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import React from 'react';
 
-function Section({children, title}) {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
 function Navbar({children, title}) {
-  const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.navbarContainer}>
-      <Text style={styles.navbarText}>{children}</Text>
+      <View style={styles.navbarIcon} />
+      <View style={styles.navbarTextContainer}>
+        <Text style={styles.navbarText}>{children}</Text>
+      </View>
+      <View style={styles.navbarIcon} />
+      {/* </View> */}
     </View>
   );
 }
@@ -65,13 +42,8 @@ function Tradrboard() {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
+      <ScrollView>
+        <View>
           <Navbar>Tradrboard</Navbar>
         </View>
       </ScrollView>
@@ -79,11 +51,20 @@ function Tradrboard() {
   );
 }
 
-let ScreenHeight = Dimensions.get('window').height - 58;
 const styles = StyleSheet.create({
   navbarContainer: {
     width: '100%',
     height: 27,
+    flexDirection: 'row',
+  },
+  navbarIcon: {
+    flex: 1,
+    // backgroundColor: 'green',
+    maxWidth: 24,
+    minWidth: 24,
+  },
+  navbarTextContainer: {
+    flex: 1,
   },
   navbarText: {
     textAlign: 'center',
@@ -92,23 +73,6 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     // fontFamily: 'Montserrat',
     color: '#1A2442',
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-    height: ScreenHeight,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
   },
 });
 
