@@ -19,9 +19,10 @@ import {
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import React from 'react';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
-import WavingHand from '../assets/wavingHand.svg';
+import WavingHand from '../assets/icons/wavingHand.svg';
+import Locked from '../assets/icons/locked.svg';
 
-function Navbar({children, title}) {
+function Navbar({children}) {
   return (
     <View style={styles.navbarContainer}>
       <View style={styles.navbarIcon} />
@@ -35,16 +36,18 @@ function Navbar({children, title}) {
   );
 }
 
-function TradrboardContent({children, title}) {
+function TradrboardContent({children}) {
   return (
     <View style={[styles.tradrboardContent, styles.shadowProp]}>
       <TouchableOpacity style={styles.connectButton}>
         <Text style={styles.connectButtonText}>{children}</Text>
       </TouchableOpacity>
-      <View style={styles.holaContainer}>
+      <View style={styles.horizontalFlex}>
         <Hola>Holà !</Hola>
         <WavingHand width={26} height={26} style={styles.holaImage} />
       </View>
+
+      <TradrBoardInfo title="Personnel" />
     </View>
   );
 }
@@ -53,6 +56,24 @@ function Hola({children, title}) {
   return (
     <View style={styles.holaContent}>
       <Text style={styles.holaText}>{children}</Text>
+    </View>
+  );
+}
+
+function TradrBoardInfo({title}) {
+  return (
+    <View style={styles.infoContent}>
+      <HeaderInfo>{title}</HeaderInfo>
+      {/* content */}
+    </View>
+  );
+}
+
+function HeaderInfo({children, title}) {
+  return (
+    <View style={[styles.horizontalFlex, styles.HeaderInfoContainer]}>
+      <Text style={styles.infoTitle}>{children}</Text>
+      <Locked width={18} height={18} style={{backgroundColor: 'blue', marginTop: 2}}/>
     </View>
   );
 }
@@ -105,16 +126,19 @@ const styles = StyleSheet.create({
     color: '#1A2442',
   },
   tradrboardContent: {
-    height: 742,
+    flex: 1,
+    flexDirection: 'column',
+    // height: 742,
     backgroundColor: '#FFFFFF',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
+    elevation: 20,
   },
   shadowProp: {
     shadowOffset: {width: -2, height: 4},
     shadowColor: 'rgba(9, 13, 109, 0.4)',
     shadowOpacity: 0.5,
-    shadowRadius: 3,
+    // shadowRadius: 3,
   },
   connectButton: {
     width: 100,
@@ -135,7 +159,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     textAlign: 'center',
   },
-  holaContainer: {
+  horizontalFlex: {
     flex: 1,
     flexDirection: 'row',
   },
@@ -154,6 +178,29 @@ const styles = StyleSheet.create({
   },
   holaImage: {
     marginTop: 22,
+  },
+  infoContent: {
+    width: 370,
+    // height: 193,
+    marginLeft: 15,
+    backgroundColor: 'red',
+  },
+  HeaderInfoContainer: {
+    width: 127,
+    height: 24,
+    marginTop: 21,
+    // marginLeft: 15,
+    backgroundColor: 'green',
+  },
+  infoTitle: {
+    // width: 103,
+    width: 98,
+    height: 24,
+    // fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 20,
+    lineHeight: 24,
   },
 });
 
