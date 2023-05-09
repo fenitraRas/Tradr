@@ -197,6 +197,7 @@ const styles = StyleSheet.create({
     width: 98,
     height: 24,
     // fontFamily: 'Montserrat',
+    fontFamily: 'Montserrat-Italic',
     fontStyle: 'normal',
     fontWeight: 500,
     fontSize: 20,
