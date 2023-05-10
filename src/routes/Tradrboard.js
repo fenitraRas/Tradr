@@ -48,6 +48,8 @@ function TradrboardContent({children}) {
       </View>
 
       <TradrBoardInfo title="Personnel" />
+      <TradrBoardObjective title="Objectifs à compléter" />
+      <TradrBoardVideo title="Episode en libre accès" />
     </View>
   );
 }
@@ -62,18 +64,55 @@ function Hola({children, title}) {
 
 function TradrBoardInfo({title}) {
   return (
-    <View style={styles.infoContent}>
-      <HeaderInfo>{title}</HeaderInfo>
-      {/* content */}
+    <View style={styles.tradrboardCardContainer}>
+      <View style={[styles.horizontalFlex, styles.cardTitleContainer]}>
+        <Text style={styles.cardTitle}>{title}</Text>
+        <Locked width={18} height={18} style={styles.lockedImage} />
+      </View>
+      <View style={styles.tradrboardCard}>
+        <View style={styles.infoItem}><Text>test</Text></View>
+        <View style={styles.infoItem}><Text>test</Text></View>
+        <View style={styles.infoItem}><Text>test</Text></View>
+        <View style={styles.infoItem}><Text>test</Text></View>
+      </View>
     </View>
   );
 }
 
-function HeaderInfo({children, title}) {
+function TradrBoardObjective({title}) {
   return (
-    <View style={[styles.horizontalFlex, styles.HeaderInfoContainer]}>
-      <Text style={styles.infoTitle}>{children}</Text>
-      <Locked width={18} height={18} style={{backgroundColor: 'blue', marginTop: 2}}/>
+    <View style={styles.tradrboardCardContainer}>
+      <View style={[styles.horizontalFlex, styles.cardTitleContainer]}>
+        <Text style={styles.cardTitle}>{title}</Text>
+        <Locked width={18} height={18} style={styles.lockedImage} />
+      </View>
+      <View style={styles.tradrboardCard}>
+        <View style={styles.verticalFlex}>
+          <View style={[styles.horizontalFlex, styles.infoItem]}>
+            <Locked width={18} height={18} style={styles.lockedImage} />
+            <Text>test</Text>
+          </View>
+          <View style={[styles.horizontalFlex, styles.infoItem]}>
+            <Locked width={18} height={18} style={styles.lockedImage} />
+            <Text>test</Text>
+          </View>
+          <View style={[styles.horizontalFlex, styles.infoItem]}>
+            <Locked width={18} height={18} style={styles.lockedImage} />
+            <Text>test</Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  );
+}
+
+function TradrBoardVideo({title}) {
+  return (
+    <View style={styles.tradrboardCardContainer}>
+      <View style={[styles.horizontalFlex, styles.cardTitleContainer]}>
+        <Text style={styles.cardTitle}>{title}</Text>
+        <Locked width={18} height={18} style={styles.lockedImage} />
+      </View>
     </View>
   );
 }
@@ -122,7 +161,7 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 20,
     // lineHeight: 24,
-    // fontFamily: 'Montserrat',
+    fontFamily: 'Montserrat',
     color: '#1A2442',
   },
   tradrboardContent: {
@@ -163,6 +202,10 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
   },
+  verticalFlex: {
+    flex: 1,
+    flexDirection: 'column',
+  },
   holaContent: {
     width: 96,
     height: 41,
@@ -179,29 +222,42 @@ const styles = StyleSheet.create({
   holaImage: {
     marginTop: 22,
   },
-  infoContent: {
+  tradrboardCardContainer: {
     width: 370,
     // height: 193,
     marginLeft: 15,
     backgroundColor: 'red',
   },
-  HeaderInfoContainer: {
+  cardTitleContainer: {
     width: 127,
     height: 24,
     marginTop: 21,
     // marginLeft: 15,
     backgroundColor: 'green',
   },
-  infoTitle: {
+  cardTitle: {
     // width: 103,
     width: 98,
     height: 24,
-    // fontFamily: 'Montserrat',
-    fontFamily: 'Montserrat-Italic',
+    fontFamily: 'Montserrat',
+    // fontFamily: 'Montserrat-Italic',
     fontStyle: 'normal',
     fontWeight: 500,
     fontSize: 20,
     lineHeight: 24,
+  },
+  lockedImage: {
+    backgroundColor: 'blue',
+    marginTop: 2,
+  },
+  tradrboardCard: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+  },
+  infoItem: {
+    width: '50%',
   },
 });
 
