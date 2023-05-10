@@ -19,6 +19,7 @@ import {
 
 import React from 'react';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import { ProgressBar, MD3Colors } from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import WavingHand from '../assets/icons/wavingHand.svg';
@@ -126,7 +127,11 @@ function TradrBoardObjective({title}) {
               <Text style={styles.navbarText}>0</Text>
             </View>
             <View style={styles.progressContent}>
-              <Text style={styles.navbarText}>children</Text>
+              <ProgressBar
+               style={styles.progress}
+               progress={0.33}
+               color="#9154FD"
+              />
             </View>
             <View style={styles.progressNumber}>
               <Text style={styles.navbarText}>3</Text>
@@ -399,8 +404,8 @@ const styles = StyleSheet.create({
   },
   progressNumber: {
     flex: 1,
-    maxWidth: 25,
-    minWidth: 25,
+    maxWidth: 27,
+    minWidth: 27,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 500,
@@ -412,7 +417,14 @@ const styles = StyleSheet.create({
     flex: 2,
   },
   progress: {
-    //progress style
+    backgroundColor: '#FFFFFF',
+    height: 13,
+    borderRadius: 6.5,
+    marginTop: 4,
+    elevation: 15,
+    shadowOffset: {width: 2, height: 4},
+    shadowColor: 'rgba(9, 13, 109, 0.5)',
+    shadowOpacity: 0.5,
   },
   radioContent: {
     marginLeft: 24,
