@@ -21,6 +21,9 @@ import React from 'react';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import WavingHand from '../assets/icons/wavingHand.svg';
 import Locked from '../assets/icons/locked.svg';
+import HighVoltage from '../assets/icons/highVoltage.svg';
+import Books from '../assets/icons/books.svg';
+import ArrowRigth from '../assets/icons/arrowRigth.svg';
 
 function Navbar({children}) {
   return (
@@ -66,14 +69,35 @@ function TradrBoardInfo({title}) {
   return (
     <View style={styles.tradrboardCardContainer}>
       <View style={[styles.horizontalFlex, styles.cardTitleContainer]}>
-        <Text style={styles.cardTitle}>{title}</Text>
-        <Locked width={18} height={18} style={styles.lockedImage} />
+        <Text style={[styles.cardTitle, styles.infoTitle]}>{title}</Text>
+        <Locked width={18} height={18} style={styles.imageTitle} />
       </View>
       <View style={styles.tradrboardCard}>
-        <View style={styles.infoItem}><Text>test</Text></View>
-        <View style={styles.infoItem}><Text>test</Text></View>
-        <View style={styles.infoItem}><Text>test</Text></View>
-        <View style={styles.infoItem}><Text>test</Text></View>
+        <View style={styles.infoItem}>
+          <Text style={[styles.textInfo, {marginLeft: 35}]}>Mon niveau</Text>
+          <TouchableOpacity style={[styles.infoButton, {width: 112, marginLeft: 35}]}>
+            <Text style={styles.infoButtonText}>Non-inscrit</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.infoItem}>
+          <Text style={[styles.textInfo, {marginLeft: 8}]}>Membre depuis</Text>
+          <TouchableOpacity style={[styles.infoButton, {width: 131, marginLeft: 8}]}>
+            <Text style={styles.infoButtonText}>Aujourd'hui?</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.infoItem}>
+          <Text style={[styles.textInfo, {marginLeft: 35}]}>Abonnement</Text>
+          <TouchableOpacity style={[styles.infoButton, {width: 73, marginLeft: 35}]}>
+            <Text style={styles.infoButtonText}>Aucun</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.infoItem}>
+          <Text style={[styles.textInfo, {marginLeft: 8}]}>Mes informations</Text>
+          <TouchableOpacity style={[styles.horizontalFlex, {marginLeft: 8}]}>
+            <Text style={styles.connectInfoButtonText}>Se connecter</Text>
+            <ArrowRigth width={13} height={16} style={styles.connectInfoButtonImg} />
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -83,21 +107,21 @@ function TradrBoardObjective({title}) {
   return (
     <View style={styles.tradrboardCardContainer}>
       <View style={[styles.horizontalFlex, styles.cardTitleContainer]}>
-        <Text style={styles.cardTitle}>{title}</Text>
-        <Locked width={18} height={18} style={styles.lockedImage} />
+        <Text style={[styles.cardTitle, styles.objectiveTitle]}>{title}</Text>
+        <HighVoltage width={18} height={18} style={styles.imageTitle} />
       </View>
       <View style={styles.tradrboardCard}>
         <View style={styles.verticalFlex}>
           <View style={[styles.horizontalFlex, styles.infoItem]}>
-            <Locked width={18} height={18} style={styles.lockedImage} />
+            <Locked width={18} height={18} style={styles.imageTitle} />
             <Text>test</Text>
           </View>
           <View style={[styles.horizontalFlex, styles.infoItem]}>
-            <Locked width={18} height={18} style={styles.lockedImage} />
+            <Locked width={18} height={18} style={styles.imageTitle} />
             <Text>test</Text>
           </View>
           <View style={[styles.horizontalFlex, styles.infoItem]}>
-            <Locked width={18} height={18} style={styles.lockedImage} />
+            <Locked width={18} height={18} style={styles.imageTitle} />
             <Text>test</Text>
           </View>
         </View>
@@ -110,8 +134,8 @@ function TradrBoardVideo({title}) {
   return (
     <View style={styles.tradrboardCardContainer}>
       <View style={[styles.horizontalFlex, styles.cardTitleContainer]}>
-        <Text style={styles.cardTitle}>{title}</Text>
-        <Locked width={18} height={18} style={styles.lockedImage} />
+        <Text style={[styles.cardTitle, styles.videoTitle]}>{title}</Text>
+        <Books width={18} height={18} style={styles.imageTitle} />
       </View>
     </View>
   );
@@ -143,12 +167,11 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 27,
     flexDirection: 'row',
-    marginTop: 12,
+    marginTop: 8,
     marginBottom: 10,
   },
   navbarIcon: {
     flex: 1,
-    // backgroundColor: 'green',
     paddingTop: 2,
     maxWidth: 32,
     minWidth: 32,
@@ -160,36 +183,38 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 500,
     fontSize: 20,
-    // lineHeight: 24,
+    lineHeight: 24,
     fontFamily: 'Montserrat',
     color: '#1A2442',
   },
   tradrboardContent: {
     flex: 1,
     flexDirection: 'column',
-    // height: 742,
     backgroundColor: '#FFFFFF',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     elevation: 20,
   },
   shadowProp: {
-    shadowOffset: {width: -2, height: 4},
+    shadowOffset: {width: 2, height: 4},
     shadowColor: 'rgba(9, 13, 109, 0.4)',
     shadowOpacity: 0.5,
-    // shadowRadius: 3,
   },
   connectButton: {
-    width: 100,
+    width: 102,
     height: 21,
     borderRadius: 4,
     paddingTop: 2,
-    // paddingRight: 4,
-    // paddingBottom: 2,
-    // paddingLeft: 4,
+    paddingRight: 4,
+    paddingBottom: 2,
+    paddingLeft: 4,
     backgroundColor: '#9154FD',
     marginTop: 15,
     marginLeft: 15,
+    elevation: 4,
+    shadowOffset: {width: 2, height: 4},
+    shadowColor: 'rgba(145, 84, 253, 0.8)',
+    shadowOpacity: 0.5,
   },
   connectButtonText: {
     fontWeight: 500,
@@ -197,6 +222,8 @@ const styles = StyleSheet.create({
     lineHeight: 17,
     color: '#FFFFFF',
     textAlign: 'center',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
   },
   horizontalFlex: {
     flex: 1,
@@ -216,48 +243,119 @@ const styles = StyleSheet.create({
     width: 96,
     height: 41,
     fontWeight: 600,
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
     fontSize: 34,
-    lineHeight: 42,
+    lineHeight: 41,
   },
   holaImage: {
     marginTop: 22,
   },
   tradrboardCardContainer: {
     width: 370,
-    // height: 193,
-    marginLeft: 15,
-    backgroundColor: 'red',
+    marginTop: 30,
+    // backgroundColor: 'red',
   },
   cardTitleContainer: {
-    width: 127,
     height: 24,
-    marginTop: 21,
-    // marginLeft: 15,
-    backgroundColor: 'green',
+    marginLeft: 15,
+    // backgroundColor: 'green',
   },
   cardTitle: {
-    // width: 103,
-    width: 98,
     height: 24,
     fontFamily: 'Montserrat',
-    // fontFamily: 'Montserrat-Italic',
     fontStyle: 'normal',
     fontWeight: 500,
     fontSize: 20,
     lineHeight: 24,
   },
-  lockedImage: {
-    backgroundColor: 'blue',
+  infoTitle: {
+    // width: 103,
+    width: 98,
+  },
+  objectiveTitle: {
+    // width: 219,
+    width: 200,
+  },
+  videoTitle: {
+    // width: 225,
+    width: 210,
+  },
+  imageTitle: {
     marginTop: 2,
   },
   tradrboardCard: {
+    marginLeft: 10,
+    width: 370,
+    height: 159,
+    marginTop: 10,
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'flex-start',
+    borderRadius: 20,
+    backgroundColor: '#E9EDFC',
+    elevation: 40,
+    shadowOffset: {width: 2, height: 4},
+    shadowColor: 'rgba(9, 13, 109, 0.4)',
+    shadowOpacity: 0.5,
   },
   infoItem: {
     width: '50%',
+  },
+  textInfo: {
+    // width: 87,
+    height: 18,
+    // marginLeft: 35,
+    marginTop: 15,
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 15,
+    lineHeight: 18,
+    color: '#1A2442',
+  },
+  infoButton: {
+    // width: 102,
+    height: 29,
+    borderRadius: 4,
+    paddingTop: 2,
+    paddingRight: 4,
+    paddingBottom: 2,
+    paddingLeft: 4,
+    backgroundColor: '#9154FD',
+    marginTop: 5,
+    // marginLeft: 35,
+    elevation: 4,
+    shadowOffset: {width: 2, height: 4},
+    shadowColor: 'rgba(145, 84, 253, 0.8)',
+    shadowOpacity: 0.5,
+  },
+  infoButtonText: {
+    fontWeight: 500,
+    fontSize: 17,
+    lineHeight: 21,
+    color: '#FFFFFF',
+    textAlign: 'center',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+  },
+  connectInfoButtonText: {
+    // width: 114,
+    width: 108,
+    fontStyle: 'normal',
+    height: 21,
+    color: '#9154FD',
+    fontWeight: 500,
+    fontSize: 17,
+    lineHeight: 21,
+    fontFamily: 'Montserrat',
+    marginTop: 12,
+  },
+  connectInfoButtonImg: {
+    color: '#9154FD',
+    marginTop: 16,
+    fontWeight: 500,
   },
 });
 
