@@ -2,14 +2,6 @@
   "migIndex": 1,
   "data": [
     {
-      "path": "src/assets/backgroundDark.png",
-      "sha1": "76d15bf3114d605cbaffb056918e404fb7992464"
-    },
-    {
-      "path": "src/assets/backgroundLight.png",
-      "sha1": "f6e73b4db2f9cc11d888097d5435db521a884c1e"
-    },
-    {
       "path": "src/assets/fonts/Montserrat-Black.ttf",
       "sha1": "f81e2ccfd59349731d96e4db0856e84f9491ae4b"
     },
@@ -80,6 +72,7 @@
     {
       "path": "src/assets/fonts/Montserrat-ThinItalic.ttf",
       "sha1": "c70c1a424f7288c1eb1665441e93369313c50a9b"
+<<<<<<< HEAD
     },
     {
       "path": "src/assets/icons/dots-three-vertical.svg",
