@@ -1,21 +1,25 @@
-import React, {useState} from 'react';
 import {
+  Platform,
   SafeAreaView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
+import OpenDark from '../assets/icons/openDark.svg';
+import OpenLight from '../assets/icons/openLight.svg';
 import SwitchIconDark from '../assets/switchIconDark.svg';
 import SwitchIconLight from '../assets/switchIconLight.svg';
+import {useNavigation} from '@react-navigation/native';
 
 function Navbar({children, title}) {
+  const navigation = useNavigation();
   const dispatch = useDispatch();
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
   const [option, setOption] = useState(colorScheme);
-  console.log('state', option);
 
   function changeTheme(opt) {
     switch (opt) {
@@ -34,23 +38,39 @@ function Navbar({children, title}) {
 
   return (
     <View style={styles.navbarContainer}>
-      <View style={{flex: 1, minWidth: 71}}>
+      <View>
         <TouchableOpacity
-          style={styles.button}
+          style={styles.buttonSwitcher}
           onPress={() => {
             changeTheme(option);
           }}>
           {option === 'light' ? (
-            <SwitchIconLight width={71} height={36} />
+            <SwitchIconLight width={71} height={36} position="absolute" />
           ) : (
-            <SwitchIconDark width={71} height={36} />
+            <SwitchIconDark width={71} height={36} position="absolute" />
           )}
         </TouchableOpacity>
       </View>
-      <View style={{flex: 8}}>
-        <Text style={styles.navbarText}>{children}</Text>
+
+      <View style={styles.navbarTextContainer}>
+        <Text
+          style={[
+            styles.navbarText,
+            {color: option === 'light' ? '#1A2442' : '#FFFFFF'},
+          ]}>
+          {children}
+        </Text>
       </View>
-      <View style={{flex: 1, minWidth: 71}} />
+
+      <TouchableOpacity
+        style={styles.buttonOpen}
+        onPress={() => navigation.navigate('Tradrboard')}>
+        {option === 'light' ? (
+          <OpenLight width={30} height={22} position="absolute" />
+        ) : (
+          <OpenDark width={30} height={22} position="absolute" />
+        )}
+      </TouchableOpacity>
     </View>
   );
 }
@@ -65,21 +85,44 @@ function Menu(props) {
 
 const styles = StyleSheet.create({
   navbarContainer: {
+    width: 360,
+    height: 27,
     flexDirection: 'row',
-    width: '100%',
-    height: '20%',
+    marginTop: Platform.OS === 'ios' ? 55 : 8,
+    marginLeft: 15,
+    marginRight: 15,
+    position: 'absolute',
   },
   navbarText: {
     textAlign: 'center',
     fontWeight: 500,
     fontSize: 20,
-    lineHeight: 24,
     color: '#1A2442',
-    marginTop: 10,
+    display: 'flex',
+    alignItems: 'center',
+    lineHeight: 24,
+    fontStyle: 'normal',
+    fontFamily: 'Montserrat',
+    marginTop: 8,
+    width: 59,
+    marginLeft: 88,
+    height: 24,
+    position: 'absolute',
   },
-  button: {
-    marginLeft: 10,
-    marginTop: 5,
+  buttonSwitcher: {
+    width: 71,
+    height: 36,
+    marginLeft: -5,
+    margintop: 51,
+  },
+  buttonOpen: {
+    height: 22,
+    width: 30,
+    border: 5,
+    marginTop: 3,
+  },
+  navbarTextContainer: {
+    flex: 1,
   },
 });
 
