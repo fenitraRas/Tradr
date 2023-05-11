@@ -14,17 +14,21 @@ import {
   TouchableOpacity,
   View,
   useColorScheme,
+  Image,
 } from 'react-native';
 
 import React from 'react';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import { ProgressBar, MD3Colors } from 'react-native-paper';
+import {useNavigation} from '@react-navigation/native';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import WavingHand from '../assets/icons/wavingHand.svg';
 import Locked from '../assets/icons/locked.svg';
 import HighVoltage from '../assets/icons/highVoltage.svg';
 import Books from '../assets/icons/books.svg';
 import ArrowRigth from '../assets/icons/arrowRigth.svg';
-import {useNavigation} from '@react-navigation/native';
+import UnseletedRadio from '../assets/icons/unselectedRadio.svg';
+import SeletedRadio from '../assets/icons/selectedRadio.svg';
 
 function Navbar({children, title}) {
   const navigation = useNavigation();
@@ -118,17 +122,32 @@ function TradrBoardObjective({title}) {
       </View>
       <View style={styles.tradrboardCard}>
         <View style={styles.verticalFlex}>
-          <View style={[styles.horizontalFlex, styles.infoItem]}>
-            <Locked width={18} height={18} style={styles.imageTitle} />
-            <Text>test</Text>
+          <View style={styles.progressContainer}>
+            <View style={styles.progressNumber}>
+              <Text style={styles.navbarText}>0</Text>
+            </View>
+            <View style={styles.progressContent}>
+              <ProgressBar
+               style={styles.progress}
+               progress={0.33}
+               color="#9154FD"
+              />
+            </View>
+            <View style={styles.progressNumber}>
+              <Text style={styles.navbarText}>3</Text>
+            </View>
           </View>
-          <View style={[styles.horizontalFlex, styles.infoItem]}>
-            <Locked width={18} height={18} style={styles.imageTitle} />
-            <Text>test</Text>
+          <View style={[styles.horizontalFlex, styles.radioContent]}>
+            <UnseletedRadio width={28} height={28} />
+            <Text style={styles.radioText}>S'inscrire</Text>
           </View>
-          <View style={[styles.horizontalFlex, styles.infoItem]}>
-            <Locked width={18} height={18} style={styles.imageTitle} />
-            <Text>test</Text>
+          <View style={[styles.horizontalFlex, styles.radioContent]}>
+            <SeletedRadio width={28} height={28} />
+            <Text style={styles.radioText}>Visionner l'épisode accessible</Text>
+          </View>
+          <View style={[styles.horizontalFlex, styles.radioContent]}>
+            <UnseletedRadio width={28} height={28} />
+            <Text style={styles.radioText}>Accomplir les deux objectifs précédents</Text>
           </View>
         </View>
       </View>
@@ -142,6 +161,9 @@ function TradrBoardVideo({title}) {
       <View style={[styles.horizontalFlex, styles.cardTitleContainer]}>
         <Text style={[styles.cardTitle, styles.videoTitle]}>{title}</Text>
         <Books width={18} height={18} style={styles.imageTitle} />
+      </View>
+      <View style={styles.videoContainer}>
+        <Image source={require('../assets/video.png')} style={styles.video} />
       </View>
     </View>
   );
@@ -287,6 +309,14 @@ const styles = StyleSheet.create({
     // width: 225,
     width: 210,
   },
+  videoContainer: {
+    margin: 10,
+    // width: 200,
+    height: 370,
+  },
+  video: {
+   //video style
+  },
   imageTitle: {
     marginTop: 2,
   },
@@ -362,6 +392,51 @@ const styles = StyleSheet.create({
     color: '#9154FD',
     marginTop: 16,
     fontWeight: 500,
+  },
+
+  progressContainer: {
+    width: 319,
+    height: 27,
+    flexDirection: 'row',
+    marginLeft: 25,
+    marginTop: 15,
+    marginBottom: 5,
+  },
+  progressNumber: {
+    flex: 1,
+    maxWidth: 27,
+    minWidth: 27,
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 22,
+    lineHeight: 27,
+    color: '#1A2442',
+  },
+  progressContent: {
+    flex: 2,
+  },
+  progress: {
+    backgroundColor: '#FFFFFF',
+    height: 13,
+    borderRadius: 6.5,
+    marginTop: 4,
+    elevation: 15,
+    shadowOffset: {width: 2, height: 4},
+    shadowColor: 'rgba(9, 13, 109, 0.5)',
+    shadowOpacity: 0.5,
+  },
+  radioContent: {
+    marginLeft: 24,
+  },
+  radioText: {
+    marginTop: 4,
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 15,
+    lineHeight: 18,
+    color: '#1A2442',
   },
 });
 
