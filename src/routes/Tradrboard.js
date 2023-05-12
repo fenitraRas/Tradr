@@ -50,9 +50,12 @@ function Navbar({children, title}) {
 }
 
 function TradrboardContent({children}) {
+  const navigation = useNavigation();
   return (
     <View style={[styles.tradrboardContent, styles.shadowProp]}>
-      <TouchableOpacity style={styles.connectButton}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Connection')}
+        style={styles.connectButton}>
         <Text style={styles.connectButtonText}>{children}</Text>
       </TouchableOpacity>
       <View style={styles.horizontalFlex}>

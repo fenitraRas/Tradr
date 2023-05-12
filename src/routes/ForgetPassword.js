@@ -66,6 +66,7 @@ function Form({title}) {
 }
 
 function ForgetPassword() {
+  const navigation = useNavigation();
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -89,7 +90,7 @@ function ForgetPassword() {
           <Form title="Un oubli ? Pas de problèmes." />
           <View style={styles.inscriptionContainer}>
             <Text style={styles.connectTitle}>Vous vous en rappeler ?</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Connection')}>
               <Text style={styles.connectText}>Connectez-vous</Text>
             </TouchableOpacity>
           </View>

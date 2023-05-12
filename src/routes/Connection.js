@@ -66,6 +66,7 @@ function ConnectForm({title}) {
 }
 
 function Connection() {
+  const navigation = useNavigation();
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -91,7 +92,8 @@ function Connection() {
             <Text style={styles.inscriptionTitle}>
               Rejoignez notre communauté !
             </Text>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Inscription')}>
               <Text style={styles.inscriptionText}>S'inscrire</Text>
             </TouchableOpacity>
           </View>

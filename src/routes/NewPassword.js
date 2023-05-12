@@ -66,6 +66,7 @@ function Form({title}) {
 }
 
 function NewPassword() {
+  const navigation = useNavigation();
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -89,7 +90,7 @@ function NewPassword() {
           <Form title="Un tout nouveau mot de passe !" />
           <View style={styles.inscriptionContainer}>
             <Text style={styles.connectTitle}>Vous vous en rappeler ?</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Connection')}>
               <Text style={styles.connectText}>Connectez-vous</Text>
             </TouchableOpacity>
           </View>
