@@ -8,6 +8,7 @@
 import {
   Dimensions,
   Image,
+  Platform,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -80,6 +81,7 @@ function Hola({children, title}) {
 }
 
 function TradrBoardInfo({title}) {
+  const navigation = useNavigation();
   return (
     <View style={styles.tradrboardCardContainer}>
       <View style={[styles.horizontalFlex, styles.cardTitleContainer]}>
@@ -89,30 +91,31 @@ function TradrBoardInfo({title}) {
       <View style={styles.tradrboardCard}>
         <View style={styles.infoItem}>
           <Text style={[styles.textInfo, {marginLeft: 35}]}>Mon niveau</Text>
-          <TouchableOpacity
-            style={[styles.infoButton, {width: 112, marginLeft: 35}]}>
+          <View style={[styles.infoButton, {width: 112, marginLeft: 35}]}>
             <Text style={styles.infoButtonText}>Non-inscrit</Text>
-          </TouchableOpacity>
+          </View>
         </View>
         <View style={styles.infoItem}>
           <Text style={[styles.textInfo, {marginLeft: 8}]}>Membre depuis</Text>
-          <TouchableOpacity
-            style={[styles.infoButton, {width: 131, marginLeft: 8}]}>
+          <View style={[styles.infoButton, {width: 131, marginLeft: 8}]}>
             <Text style={styles.infoButtonText}>Aujourd'hui?</Text>
-          </TouchableOpacity>
+          </View>
         </View>
         <View style={styles.infoItem}>
           <Text style={[styles.textInfo, {marginLeft: 35}]}>Abonnement</Text>
-          <TouchableOpacity
-            style={[styles.infoButton, {width: 73, marginLeft: 35}]}>
+          <View style={[styles.infoButton, {width: 73, marginLeft: 35}]}>
             <Text style={styles.infoButtonText}>Aucun</Text>
-          </TouchableOpacity>
+          </View>
         </View>
         <View style={styles.infoItem}>
           <Text style={[styles.textInfo, {marginLeft: 8}]}>
             Mes informations
           </Text>
-          <TouchableOpacity style={[styles.horizontalFlex, {marginLeft: 8}]}>
+          <TouchableOpacity
+            style={[styles.horizontalFlex, {marginLeft: 8}]}
+            onPress={() => {
+              navigation.navigate('Connection');
+            }}>
             <Text style={styles.connectInfoButtonText}>Se connecter</Text>
             <ArrowRigth
               width={13}
@@ -353,16 +356,13 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   infoTitle: {
-    // width: 103,
-    width: 98,
+    width: Platform.OS === 'android' ? 98 : 103,
   },
   objectiveTitle: {
-    // width: 219,
-    width: 200,
+    width: Platform.OS === 'android' ? 200 : 219,
   },
   videoTitle: {
-    // width: 225,
-    width: 210,
+    width: Platform.OS === 'android' ? 210 : 225,
   },
   videoContainer: {
     margin: 10,
@@ -433,7 +433,7 @@ const styles = StyleSheet.create({
   },
   connectInfoButtonText: {
     // width: 114,
-    width: 108,
+    width: Platform.OS === 'android' ? 108 : 114,
     fontStyle: 'normal',
     height: 21,
     color: '#9154FD',

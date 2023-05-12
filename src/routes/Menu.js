@@ -8,6 +8,7 @@ import Profil from '../assets/icons/profil.svg';
 import SwitchIconDark from '../assets/switchIconDark.svg';
 import SwitchIconLight from '../assets/switchIconLight.svg';
 import Tradr from '../assets/icons/tradrboard.svg';
+import {useNavigation} from '@react-navigation/native';
 
 export function NavbarMenu(props) {
   const dispatch = useDispatch();
@@ -62,7 +63,8 @@ export function NavbarMenu(props) {
   );
 }
 
-function Menu(props) {
+function Menu() {
+  const navigation = useNavigation();
   return (
     <View style={styles.menuContainer}>
       <View style={styles.profil}>
@@ -77,7 +79,11 @@ function Menu(props) {
       <Text style={styles.connectText}>
         Connecte toi pour avoir accès à Tradr dans son intégralité !
       </Text>
-      <TouchableOpacity style={styles.connectButton} onPress={() => {}}>
+      <TouchableOpacity
+        style={styles.connectButton}
+        onPress={() => {
+          navigation.navigate('Connection');
+        }}>
         <Text style={styles.connectButtonText}>Se connecter</Text>
       </TouchableOpacity>
     </View>
