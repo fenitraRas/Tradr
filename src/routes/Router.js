@@ -3,14 +3,14 @@ import {ImageBackground, StyleSheet, useColorScheme} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
-import Home from './Home';
-import Menu from './Menu';
-import Tradrboard from './Tradrboard';
 import Connection from './Connection';
-import Inscription from './Inscription';
 import ForgetPassword from './ForgetPassword';
 import ForgetPasswordCode from './ForgetPasswordCode';
+import Home from './Home';
+import Inscription from './Inscription';
+import Menu from './Menu';
 import NewPassword from './NewPassword';
+import Tradrboard from './Tradrboard';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -46,7 +46,9 @@ function Router() {
   return (
     <ImageBackground source={img} resizeMode="cover" style={styles.image}>
       <NavigationContainer theme={navTheme}>
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator
+          initialRouteName="Home"
+          screenOptions={{animation: 'none'}}>
           <Stack.Screen
             name="Home"
             component={Home}

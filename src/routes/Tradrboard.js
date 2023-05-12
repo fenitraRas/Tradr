@@ -6,6 +6,9 @@
  */
 
 import {
+  Dimensions,
+  Image,
+  Platform,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -14,35 +17,33 @@ import {
   TouchableOpacity,
   View,
   useColorScheme,
-  Image,
-  Platform,
 } from 'react-native';
+import Menu, {NavbarMenu} from './Menu';
+import React, {useRef, useState} from 'react';
 
-import React from 'react';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {ProgressBar} from 'react-native-paper';
-import {useNavigation} from '@react-navigation/native';
-import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
-import WavingHand from '../assets/icons/wavingHand.svg';
-import Locked from '../assets/icons/locked.svg';
-import HighVoltage from '../assets/icons/highVoltage.svg';
-import Books from '../assets/icons/books.svg';
 import ArrowRigth from '../assets/icons/arrowRigth.svg';
-import UnseletedRadio from '../assets/icons/unselectedRadio.svg';
+import Books from '../assets/icons/books.svg';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
+import HighVoltage from '../assets/icons/highVoltage.svg';
+import Locked from '../assets/icons/locked.svg';
+import {ProgressBar} from 'react-native-paper';
 import SeletedRadio from '../assets/icons/selectedRadio.svg';
+import UnseletedRadio from '../assets/icons/unselectedRadio.svg';
+import WavingHand from '../assets/icons/wavingHand.svg';
+import {useNavigation} from '@react-navigation/native';
 
-function Navbar({children, title}) {
-  const navigation = useNavigation();
+function Navbar(props) {
   return (
     <View style={styles.navbarContainer}>
       <View style={styles.navbarIcon} />
       <View style={styles.navbarTextContainer}>
-        <Text style={styles.navbarText}>{children}</Text>
+        <Text style={styles.navbarText}>{props.title}</Text>
       </View>
       <View style={styles.navbarIcon}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('Menu')}>
+          onPress={() => props.handleScrollToRight()}>
           <DotThreeVertical width={30} height={20} />
         </TouchableOpacity>
       </View>
@@ -80,6 +81,7 @@ function Hola({children, title}) {
 }
 
 function TradrBoardInfo({title}) {
+  const navigation = useNavigation();
   return (
     <View style={styles.tradrboardCardContainer}>
       <View style={[styles.horizontalFlex, styles.cardTitleContainer]}>
@@ -89,30 +91,31 @@ function TradrBoardInfo({title}) {
       <View style={styles.tradrboardCard}>
         <View style={styles.infoItem}>
           <Text style={[styles.textInfo, {marginLeft: 35}]}>Mon niveau</Text>
-          <TouchableOpacity
-            style={[styles.infoButton, {width: 112, marginLeft: 35}]}>
+          <View style={[styles.infoButton, {width: 112, marginLeft: 35}]}>
             <Text style={styles.infoButtonText}>Non-inscrit</Text>
-          </TouchableOpacity>
+          </View>
         </View>
         <View style={styles.infoItem}>
           <Text style={[styles.textInfo, {marginLeft: 8}]}>Membre depuis</Text>
-          <TouchableOpacity
-            style={[styles.infoButton, {width: 131, marginLeft: 8}]}>
+          <View style={[styles.infoButton, {width: 131, marginLeft: 8}]}>
             <Text style={styles.infoButtonText}>Aujourd'hui?</Text>
-          </TouchableOpacity>
+          </View>
         </View>
         <View style={styles.infoItem}>
           <Text style={[styles.textInfo, {marginLeft: 35}]}>Abonnement</Text>
-          <TouchableOpacity
-            style={[styles.infoButton, {width: 73, marginLeft: 35}]}>
+          <View style={[styles.infoButton, {width: 73, marginLeft: 35}]}>
             <Text style={styles.infoButtonText}>Aucun</Text>
-          </TouchableOpacity>
+          </View>
         </View>
         <View style={styles.infoItem}>
           <Text style={[styles.textInfo, {marginLeft: 8}]}>
             Mes informations
           </Text>
-          <TouchableOpacity style={[styles.horizontalFlex, {marginLeft: 8}]}>
+          <TouchableOpacity
+            style={[styles.horizontalFlex, {marginLeft: 8}]}
+            onPress={() => {
+              navigation.navigate('Connection');
+            }}>
             <Text style={styles.connectInfoButtonText}>Se connecter</Text>
             <ArrowRigth
               width={13}
@@ -184,10 +187,38 @@ function TradrBoardVideo({title}) {
   );
 }
 
+function TradrboardContainer(props) {
+  return (
+    <ScrollView>
+      <TradrboardContent>Se connecter</TradrboardContent>
+    </ScrollView>
+  );
+}
+
 function Tradrboard() {
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  };
+  const scrollViewRef = useRef(null);
+  const [scrollToMenu, setScrollToMenu] = useState(false);
+
+  const handleScrollToRight = () => {
+    setScrollToMenu(true);
+    scrollViewRef.current.scrollTo({x: 41, animated: true});
+  };
+  const handleScrollToLeft = () => {
+    setScrollToMenu(false);
+    scrollViewRef.current.scrollToEnd();
+  };
+
+  const handleContentSizeChange = (contentWidth, contentHeight) => {
+    const screenWidth = Dimensions.get('window').width;
+    scrollViewRef.current.scrollTo({
+      x: contentWidth - screenWidth,
+      y: 0,
+      animated: false,
+    });
   };
   return (
     <SafeAreaView>
@@ -195,11 +226,22 @@ function Tradrboard() {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ScrollView>
-        <View>
-          <Navbar>Tradrboard</Navbar>
-          <TradrboardContent>Se connecter</TradrboardContent>
-        </View>
+      {scrollToMenu ? (
+        <NavbarMenu handleScrollToLeft={() => handleScrollToLeft()} />
+      ) : (
+        <Navbar
+          handleScrollToRight={() => handleScrollToRight()}
+          title="Tradrboard"
+        />
+      )}
+      <ScrollView
+        ref={scrollViewRef}
+        horizontal={true}
+        scrollEnabled={false}
+        onContentSizeChange={handleContentSizeChange}
+        contentOffset={{x: 0, y: 0}}>
+        <Menu />
+        <TradrboardContainer />
       </ScrollView>
     </SafeAreaView>
   );
@@ -236,6 +278,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
+    marginTop: 5,
   },
   shadowProp: {
     shadowColor: 'rgba(9, 13, 109, 0.4)',
@@ -317,7 +360,7 @@ const styles = StyleSheet.create({
     marginTop: 22,
   },
   tradrboardCardContainer: {
-    width: 370,
+    width: 390,
     marginTop: 30,
     // backgroundColor: 'red',
   },
@@ -335,16 +378,13 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   infoTitle: {
-    // width: 103,
-    width: 98,
+    width: Platform.OS === 'android' ? 98 : 103,
   },
   objectiveTitle: {
-    // width: 219,
-    width: 200,
+    width: Platform.OS === 'android' ? 200 : 219,
   },
   videoTitle: {
-    // width: 225,
-    width: 210,
+    width: Platform.OS === 'android' ? 210 : 225,
   },
   videoContainer: {
     margin: 10,
@@ -352,7 +392,7 @@ const styles = StyleSheet.create({
     height: 370,
   },
   video: {
-   //video style
+    //video style
   },
   imageTitle: {
     marginTop: 2,
@@ -423,7 +463,7 @@ const styles = StyleSheet.create({
   },
   connectInfoButtonText: {
     // width: 114,
-    width: 108,
+    width: Platform.OS === 'android' ? 108 : 114,
     fontStyle: 'normal',
     height: 21,
     color: '#9154FD',

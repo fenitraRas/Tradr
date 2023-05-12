@@ -63,7 +63,6 @@ function Form({title}) {
         <Text style={styles.title}>{title}</Text>
         <FlexedBiceps width={18} height={18} style={styles.titleImg} />
       </View>
-      {/* form content */}
       <View style={styles.formContent}>
         <View style={styles.inputContainer}>
           <MyTextInput

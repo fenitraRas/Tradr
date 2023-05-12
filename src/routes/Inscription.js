@@ -62,7 +62,6 @@ function InscriptionForm({title}) {
         <Text style={styles.title}>{title}</Text>
         <FoldedHands width={18} height={18} style={styles.titleImg} />
       </View>
-      {/* form content */}
       <View style={styles.formContent}>
         <View style={styles.inputContainer}>
           <MyTextInput
