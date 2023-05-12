@@ -278,13 +278,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    elevation: 20,
     marginTop: 5,
   },
   shadowProp: {
-    shadowOffset: {width: 2, height: 4},
     shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOpacity: 0.5,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 20,
+    elevation: 2,
   },
   connectButton: {
     width: 102,
@@ -297,10 +301,28 @@ const styles = StyleSheet.create({
     backgroundColor: '#9154FD',
     marginTop: 15,
     marginLeft: 15,
-    elevation: 4,
-    shadowOffset: {width: 2, height: 4},
     shadowColor: 'rgba(145, 84, 253, 0.8)',
-    shadowOpacity: 0.5,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 4,
+    elevation: 1,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(145, 84, 253, 0.6)',
+        shadowOffset: {
+          width: 0,
+          height: 0,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 14,
+      },
+      android: {
+        elevation: 3,
+      },
+    }),
   },
   connectButtonText: {
     fontWeight: 500,
@@ -386,10 +408,14 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     borderRadius: 20,
     backgroundColor: '#E9EDFC',
-    elevation: 40,
-    shadowOffset: {width: 2, height: 4},
     shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOpacity: 0.5,
+    shadowOffset: {
+      width: 0,
+      height: 30,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 40,
+    elevation: Platform.OS === 'android' ? -35 : undefined,
   },
   infoItem: {
     width: '50%',
@@ -417,10 +443,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#9154FD',
     marginTop: 5,
     // marginLeft: 35,
+    shadowColor: 'rgba(145, 84, 253, 0.7)',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 20,
     elevation: 4,
-    shadowOffset: {width: 2, height: 4},
-    shadowColor: 'rgba(145, 84, 253, 0.8)',
-    shadowOpacity: 0.5,
   },
   infoButtonText: {
     fontWeight: 500,
@@ -476,10 +506,28 @@ const styles = StyleSheet.create({
     height: 13,
     borderRadius: 6.5,
     marginTop: 4,
-    elevation: 15,
-    shadowOffset: {width: 2, height: 4},
-    shadowColor: 'rgba(9, 13, 109, 0.5)',
-    shadowOpacity: 0.5,
+    shadowColor: 'rgba(145, 84, 253, 0.8)',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 4,
+    elevation: 1,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(145, 84, 253, 0.6)',
+        shadowOffset: {
+          width: 0,
+          height: 0,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 14,
+      },
+      android: {
+        elevation: 3,
+      }
+    })
   },
   radioContent: {
     marginLeft: 24,

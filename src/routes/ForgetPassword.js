@@ -23,6 +23,8 @@ import {useNavigation} from '@react-navigation/native';
 import BackIcon from '../assets/icons/backIcon.svg';
 import LogoApple from '../assets/icons/logoApple.svg';
 import FlexedBiceps from '../assets/icons/flexedBiceps.svg';
+import MyTextInput from '../Components/TextInput';
+import MyButton from '../Components/Button';
 
 function Navbar({children}) {
   const navigation = useNavigation();
@@ -54,13 +56,32 @@ function ConnectToAppleButton({children}) {
   );
 }
 function Form({title}) {
+  const navigation = useNavigation();
   return (
     <View style={styles.FormContainer}>
       <View style={[styles.horizontalFlex, styles.titleContainer]}>
         <Text style={styles.title}>{title}</Text>
         <FlexedBiceps width={18} height={18} style={styles.titleImg} />
       </View>
-      {/* form content */}
+      <View style={styles.formContent}>
+        <View style={styles.inputContainer}>
+          <MyTextInput
+            placeholder="Email"
+            autoCapitalize="none"
+            autoCompleteType="email"
+            keyboardType="email-address"
+            keyboardAppearance="dark"
+            returnKeyType="next"
+            returnKeyLabel="next"
+          />
+        </View>
+        <View style={styles.loginButtonContainer}>
+          <MyButton
+            label="Réinitialiser"
+            onPress={() => navigation.navigate('ForgetPasswordCode')}
+          />
+        </View>
+      </View>
     </View>
   );
 }
@@ -108,6 +129,15 @@ const styles = StyleSheet.create({
   verticalFlex: {
     flex: 1,
     flexDirection: 'column',
+  },
+  formContent: {
+    marginTop: 14,
+  },
+  inputContainer: {
+    width: '100%',
+  },
+  loginButtonContainer: {
+    marginTop: 30,
   },
   navbarContainer: {
     width: '100%',
@@ -170,13 +200,11 @@ const styles = StyleSheet.create({
   FormContainer: {
     marginTop: 50,
     width: 350,
-    height: 180,
+    // height: 180,
     marginLeft: 20,
-    backgroundColor: 'green',
   },
   titleContainer: {
     height: 22,
-    // backgroundColor: 'green',
   },
   title: {
     height: 24,
@@ -191,12 +219,6 @@ const styles = StyleSheet.create({
     marginLeft: 6,
     marginTop: 2,
   },
-  // connectButton: {
-    
-  // },
-  // connectButtonText: {
-    
-  // },
   inscriptionContainer: {
     alignSelf: 'center',
     alignItems: 'center',

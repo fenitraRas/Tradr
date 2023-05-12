@@ -23,6 +23,8 @@ import {useNavigation} from '@react-navigation/native';
 import BackIcon from '../assets/icons/backIcon.svg';
 import LogoApple from '../assets/icons/logoApple.svg';
 import PartyingFace from '../assets/icons/partyingFace.svg';
+import MyTextInput from '../Components/TextInput';
+import MyButton from '../Components/Button';
 
 function Navbar({children}) {
   const navigation = useNavigation();
@@ -60,7 +62,29 @@ function Form({title}) {
         <Text style={styles.title}>{title}</Text>
         <PartyingFace width={18} height={18} style={styles.titleImg} />
       </View>
-      {/* form content */}
+      <View style={styles.formContent}>
+        <View style={styles.inputContainer}>
+          <MyTextInput
+            placeholder="Nouveau mot de passe"
+            secureTextEntry
+            autoCompleteType="password"
+            autoCapitalize="none"
+            keyboardAppearance="dark"
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <MyTextInput
+            placeholder="Confirmation mot de passe"
+            secureTextEntry
+            autoCompleteType="password"
+            autoCapitalize="none"
+            keyboardAppearance="dark"
+          />
+        </View>
+        <View style={styles.loginButtonContainer}>
+          <MyButton label="Confirmer" onPress={() => true} />
+        </View>
+      </View>
     </View>
   );
 }
@@ -108,6 +132,15 @@ const styles = StyleSheet.create({
   verticalFlex: {
     flex: 1,
     flexDirection: 'column',
+  },
+  formContent: {
+    marginTop: 14,
+  },
+  inputContainer: {
+    width: '100%',
+  },
+  loginButtonContainer: {
+    marginTop: 30,
   },
   navbarContainer: {
     width: '100%',
@@ -170,13 +203,11 @@ const styles = StyleSheet.create({
   FormContainer: {
     marginTop: 50,
     width: 350,
-    height: 239,
+    // height: 239,
     marginLeft: 20,
-    backgroundColor: 'green',
   },
   titleContainer: {
     height: 22,
-    // backgroundColor: 'green',
   },
   title: {
     height: 24,
@@ -191,12 +222,6 @@ const styles = StyleSheet.create({
     marginLeft: 6,
     marginTop: 2,
   },
-  // connectButton: {
-    
-  // },
-  // connectButtonText: {
-    
-  // },
   inscriptionContainer: {
     alignSelf: 'center',
     alignItems: 'center',

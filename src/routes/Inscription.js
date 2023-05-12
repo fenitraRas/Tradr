@@ -23,6 +23,8 @@ import {useNavigation} from '@react-navigation/native';
 import BackIcon from '../assets/icons/backIcon.svg';
 import LogoApple from '../assets/icons/logoApple.svg';
 import FoldedHands from '../assets/icons/foldedHands.svg';
+import MyTextInput from '../Components/TextInput';
+import MyButton from '../Components/Button';
 
 function Navbar({children}) {
   const navigation = useNavigation();
@@ -60,7 +62,59 @@ function InscriptionForm({title}) {
         <Text style={styles.title}>{title}</Text>
         <FoldedHands width={18} height={18} style={styles.titleImg} />
       </View>
-      {/* form content */}
+      <View style={styles.formContent}>
+        <View style={styles.inputContainer}>
+          <MyTextInput
+            placeholder="Prénom"
+            autoCapitalize="none"
+            keyboardAppearance="dark"
+            returnKeyType="next"
+            returnKeyLabel="next"
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <MyTextInput
+            placeholder="Nom"
+            autoCapitalize="none"
+            keyboardAppearance="dark"
+            returnKeyType="next"
+            returnKeyLabel="next"
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <MyTextInput
+            placeholder="Email"
+            autoCapitalize="none"
+            autoCompleteType="email"
+            keyboardType="email-address"
+            keyboardAppearance="dark"
+            returnKeyType="next"
+            returnKeyLabel="next"
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <MyTextInput
+            placeholder="Téléphone"
+            autoCompleteType="phone"
+            keyboardType="phone-pad"
+            keyboardAppearance="dark"
+            returnKeyType="next"
+            returnKeyLabel="next"
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <MyTextInput
+            placeholder="Mot de passe"
+            secureTextEntry
+            autoCompleteType="password"
+            autoCapitalize="none"
+            keyboardAppearance="dark"
+          />
+        </View>
+        <View style={styles.loginButtonContainer}>
+          <MyButton label="S'inscrire" onPress={() => true} />
+        </View>
+      </View>
     </View>
   );
 }
@@ -113,6 +167,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 8,
     marginBottom: 10,
+  },
+  formContent: {
+    marginTop: 14,
+  },
+  inputContainer: {
+    width: '100%',
+  },
+  loginButtonContainer: {
+    marginTop: 30,
   },
   navbarIcon: {
     flex: 1,
@@ -168,13 +231,11 @@ const styles = StyleSheet.create({
   InscriptionFormContainer: {
     marginTop: 50,
     width: 350,
-    height: 416,
+    // height: 416,
     marginLeft: 20,
-    backgroundColor: 'green',
   },
   titleContainer: {
     height: 22,
-    // backgroundColor: 'green',
   },
   title: {
     height: 22,
@@ -189,12 +250,6 @@ const styles = StyleSheet.create({
     marginLeft: 6,
     marginTop: 2,
   },
-  // connectButton: {
-    
-  // },
-  // connectButtonText: {
-    
-  // },
   inscriptionContainer: {
     alignSelf: 'center',
     alignItems: 'center',

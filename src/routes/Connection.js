@@ -23,6 +23,8 @@ import {useNavigation} from '@react-navigation/native';
 import BackIcon from '../assets/icons/backIcon.svg';
 import LogoApple from '../assets/icons/logoApple.svg';
 import WavingHand from '../assets/icons/wavingHand.svg';
+import MyTextInput from '../Components/TextInput';
+import MyButton from '../Components/Button';
 
 function Navbar({children}) {
   const navigation = useNavigation();
@@ -54,13 +56,43 @@ function ConnectToAppleButton({children}) {
   );
 }
 function ConnectForm({title}) {
+  const navigation = useNavigation();
   return (
     <View style={styles.connectFormContainer}>
       <View style={[styles.horizontalFlex, styles.titleContainer]}>
         <Text style={styles.title}>{title}</Text>
         <WavingHand width={18} height={18} style={styles.titleImg} />
       </View>
-      {/* form content */}
+      <View style={styles.formContent}>
+        <View style={styles.inputContainer}>
+          <MyTextInput
+            placeholder="Email"
+            autoCapitalize="none"
+            autoCompleteType="email"
+            keyboardType="email-address"
+            keyboardAppearance="dark"
+            returnKeyType="next"
+            returnKeyLabel="next"
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <MyTextInput
+            placeholder="Mot de passe"
+            secureTextEntry
+            autoCompleteType="password"
+            autoCapitalize="none"
+            keyboardAppearance="dark"
+          />
+        </View>
+        <View style={styles.loginButtonContainer}>
+          <MyButton label="Se connecter" onPress={() => true} />
+        </View>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('ForgetPassword')}
+          style={styles.forgetPassword}>
+          <Text style={styles.inscriptionTitle}>Mot de passe oublié ?</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -111,6 +143,20 @@ const styles = StyleSheet.create({
   verticalFlex: {
     flex: 1,
     flexDirection: 'column',
+  },
+  formContent: {
+    marginTop: 14,
+  },
+  inputContainer: {
+    width: '100%',
+  },
+  loginButtonContainer: {
+    marginTop: 30,
+  },
+  forgetPassword: {
+    marginTop: 20,
+    alignSelf: 'center',
+    alignItems: 'center',
   },
   navbarContainer: {
     width: '100%',
@@ -173,13 +219,11 @@ const styles = StyleSheet.create({
   connectFormContainer: {
     marginTop: 50,
     width: 350,
-    height: 277,
+    // height: 277,
     marginLeft: 20,
-    backgroundColor: 'green',
   },
   titleContainer: {
     height: 22,
-    // backgroundColor: 'green',
   },
   title: {
     height: 24,
@@ -194,12 +238,6 @@ const styles = StyleSheet.create({
     marginLeft: 6,
     marginTop: 2,
   },
-  // connectButton: {
-    
-  // },
-  // connectButtonText: {
-    
-  // },
   inscriptionContainer: {
     alignSelf: 'center',
     alignItems: 'center',
