@@ -30,6 +30,7 @@ import {ProgressBar} from 'react-native-paper';
 import SeletedRadio from '../assets/icons/selectedRadio.svg';
 import UnseletedRadio from '../assets/icons/unselectedRadio.svg';
 import WavingHand from '../assets/icons/wavingHand.svg';
+import {useNavigation} from '@react-navigation/native';
 
 function Navbar(props) {
   return (
@@ -50,9 +51,12 @@ function Navbar(props) {
 }
 
 function TradrboardContent({children}) {
+  const navigation = useNavigation();
   return (
     <View style={[styles.tradrboardContent, styles.shadowProp]}>
-      <TouchableOpacity style={styles.connectButton}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Connection')}
+        style={styles.connectButton}>
         <Text style={styles.connectButtonText}>{children}</Text>
       </TouchableOpacity>
       <View style={styles.horizontalFlex}>

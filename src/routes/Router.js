@@ -6,6 +6,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import Home from './Home';
 import Menu from './Menu';
 import Tradrboard from './Tradrboard';
+import Connection from './Connection';
+import Inscription from './Inscription';
+import ForgetPassword from './ForgetPassword';
+import ForgetPasswordCode from './ForgetPasswordCode';
+import NewPassword from './NewPassword';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -55,6 +60,31 @@ function Router() {
           <Stack.Screen
             name="Tradrboard"
             component={Tradrboard}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Connection"
+            component={Connection}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Inscription"
+            component={Inscription}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="ForgetPassword"
+            component={ForgetPassword}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="ForgetPasswordCode"
+            component={ForgetPasswordCode}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="NewPassword"
+            component={NewPassword}
             options={{headerShown: false}}
           />
         </Stack.Navigator>
