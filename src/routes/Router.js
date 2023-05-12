@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import Home from './Home';
 import Menu from './Menu';
 import Tradrboard from './Tradrboard';
+import Connection from './Connection';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -55,6 +56,11 @@ function Router() {
           <Stack.Screen
             name="Tradrboard"
             component={Tradrboard}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Connection"
+            component={Connection}
             options={{headerShown: false}}
           />
         </Stack.Navigator>
