@@ -19,7 +19,7 @@ import {
 
 import React from 'react';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import { ProgressBar, MD3Colors } from 'react-native-paper';
+import {ProgressBar} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import WavingHand from '../assets/icons/wavingHand.svg';
@@ -50,9 +50,12 @@ function Navbar({children, title}) {
 }
 
 function TradrboardContent({children}) {
+  const navigation = useNavigation();
   return (
     <View style={[styles.tradrboardContent, styles.shadowProp]}>
-      <TouchableOpacity style={styles.connectButton}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Connection')}
+        style={styles.connectButton}>
         <Text style={styles.connectButtonText}>{children}</Text>
       </TouchableOpacity>
       <View style={styles.horizontalFlex}>
@@ -85,27 +88,36 @@ function TradrBoardInfo({title}) {
       <View style={styles.tradrboardCard}>
         <View style={styles.infoItem}>
           <Text style={[styles.textInfo, {marginLeft: 35}]}>Mon niveau</Text>
-          <TouchableOpacity style={[styles.infoButton, {width: 112, marginLeft: 35}]}>
+          <TouchableOpacity
+            style={[styles.infoButton, {width: 112, marginLeft: 35}]}>
             <Text style={styles.infoButtonText}>Non-inscrit</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.infoItem}>
           <Text style={[styles.textInfo, {marginLeft: 8}]}>Membre depuis</Text>
-          <TouchableOpacity style={[styles.infoButton, {width: 131, marginLeft: 8}]}>
+          <TouchableOpacity
+            style={[styles.infoButton, {width: 131, marginLeft: 8}]}>
             <Text style={styles.infoButtonText}>Aujourd'hui?</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.infoItem}>
           <Text style={[styles.textInfo, {marginLeft: 35}]}>Abonnement</Text>
-          <TouchableOpacity style={[styles.infoButton, {width: 73, marginLeft: 35}]}>
+          <TouchableOpacity
+            style={[styles.infoButton, {width: 73, marginLeft: 35}]}>
             <Text style={styles.infoButtonText}>Aucun</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.infoItem}>
-          <Text style={[styles.textInfo, {marginLeft: 8}]}>Mes informations</Text>
+          <Text style={[styles.textInfo, {marginLeft: 8}]}>
+            Mes informations
+          </Text>
           <TouchableOpacity style={[styles.horizontalFlex, {marginLeft: 8}]}>
             <Text style={styles.connectInfoButtonText}>Se connecter</Text>
-            <ArrowRigth width={13} height={16} style={styles.connectInfoButtonImg} />
+            <ArrowRigth
+              width={13}
+              height={16}
+              style={styles.connectInfoButtonImg}
+            />
           </TouchableOpacity>
         </View>
       </View>
@@ -128,9 +140,9 @@ function TradrBoardObjective({title}) {
             </View>
             <View style={styles.progressContent}>
               <ProgressBar
-               style={styles.progress}
-               progress={0.33}
-               color="#9154FD"
+                style={styles.progress}
+                progress={0.33}
+                color="#9154FD"
               />
             </View>
             <View style={styles.progressNumber}>
@@ -147,7 +159,9 @@ function TradrBoardObjective({title}) {
           </View>
           <View style={[styles.horizontalFlex, styles.radioContent]}>
             <UnseletedRadio width={28} height={28} />
-            <Text style={styles.radioText}>Accomplir les deux objectifs précédents</Text>
+            <Text style={styles.radioText}>
+              Accomplir les deux objectifs précédents
+            </Text>
           </View>
         </View>
       </View>
