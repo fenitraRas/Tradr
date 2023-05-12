@@ -11,7 +11,7 @@ function Home() {
   const navigation = useNavigation();
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('Connection');
+      navigation.navigate('NewPassword');
     }, 3000);
   }, [navigation]);
 

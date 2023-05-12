@@ -22,7 +22,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {useNavigation} from '@react-navigation/native';
 import BackIcon from '../assets/icons/backIcon.svg';
 import LogoApple from '../assets/icons/logoApple.svg';
-import WavingHand from '../assets/icons/wavingHand.svg';
+import PartyingFace from '../assets/icons/partyingFace.svg';
 
 function Navbar({children}) {
   const navigation = useNavigation();
@@ -53,19 +53,19 @@ function ConnectToAppleButton({children}) {
     </View>
   );
 }
-function ConnectForm({title}) {
+function Form({title}) {
   return (
-    <View style={styles.connectFormContainer}>
+    <View style={styles.FormContainer}>
       <View style={[styles.horizontalFlex, styles.titleContainer]}>
         <Text style={styles.title}>{title}</Text>
-        <WavingHand width={18} height={18} style={styles.titleImg} />
+        <PartyingFace width={18} height={18} style={styles.titleImg} />
       </View>
       {/* form content */}
     </View>
   );
 }
 
-function Connection() {
+function NewPassword() {
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -86,13 +86,11 @@ function Connection() {
             />
           </View>
           <ConnectToAppleButton>Continuer avec Apple</ConnectToAppleButton>
-          <ConnectForm title="Ravi de vous revoir!" />
+          <Form title="Un tout nouveau mot de passe !" />
           <View style={styles.inscriptionContainer}>
-            <Text style={styles.inscriptionTitle}>
-              Rejoignez notre communauté !
-            </Text>
+            <Text style={styles.connectTitle}>Vous vous en rappeler ?</Text>
             <TouchableOpacity>
-              <Text style={styles.inscriptionText}>S'inscrire</Text>
+              <Text style={styles.connectText}>Connectez-vous</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -168,10 +166,10 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginTop: 1,
   },
-  connectFormContainer: {
+  FormContainer: {
     marginTop: 50,
     width: 350,
-    height: 277,
+    height: 239,
     marginLeft: 20,
     backgroundColor: 'green',
   },
@@ -204,10 +202,10 @@ const styles = StyleSheet.create({
     padding: 0,
     width: 230,
     height: 52,
-    // marginTop: 137,
-    marginTop: 107,
+    // marginTop: 274,
+    marginTop: 144,
   },
-  inscriptionTitle: {
+  connectTitle: {
     height: 18,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
@@ -215,17 +213,19 @@ const styles = StyleSheet.create({
     fontSize: 15,
     lineHeight: 18,
     color: '#1A2442',
+    textAlign: 'center',
   },
-  inscriptionText: {
+  connectText: {
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 600,
     fontSize: 20,
     lineHeight: 24,
     color: '#1A2442',
-    width: 94,
+    width: 165,
     height: 24,
+    textAlign: 'center',
   },
 });
 
-export default Connection;
+export default NewPassword;

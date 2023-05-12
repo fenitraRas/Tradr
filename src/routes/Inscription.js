@@ -22,7 +22,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {useNavigation} from '@react-navigation/native';
 import BackIcon from '../assets/icons/backIcon.svg';
 import LogoApple from '../assets/icons/logoApple.svg';
-import WavingHand from '../assets/icons/wavingHand.svg';
+import FoldedHands from '../assets/icons/foldedHands.svg';
 
 function Navbar({children}) {
   const navigation = useNavigation();
@@ -53,19 +53,19 @@ function ConnectToAppleButton({children}) {
     </View>
   );
 }
-function ConnectForm({title}) {
+function InscriptionForm({title}) {
   return (
-    <View style={styles.connectFormContainer}>
+    <View style={styles.InscriptionFormContainer}>
       <View style={[styles.horizontalFlex, styles.titleContainer]}>
         <Text style={styles.title}>{title}</Text>
-        <WavingHand width={18} height={18} style={styles.titleImg} />
+        <FoldedHands width={18} height={18} style={styles.titleImg} />
       </View>
       {/* form content */}
     </View>
   );
 }
 
-function Connection() {
+function Inscription() {
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -86,14 +86,11 @@ function Connection() {
             />
           </View>
           <ConnectToAppleButton>Continuer avec Apple</ConnectToAppleButton>
-          <ConnectForm title="Ravi de vous revoir!" />
+          <InscriptionForm title="Un tout nouveau membre !" />
           <View style={styles.inscriptionContainer}>
             <Text style={styles.inscriptionTitle}>
-              Rejoignez notre communauté !
+              Vous êtes déjà un membre Tradr ?
             </Text>
-            <TouchableOpacity>
-              <Text style={styles.inscriptionText}>S'inscrire</Text>
-            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -135,10 +132,10 @@ const styles = StyleSheet.create({
     color: '#1A2442',
   },
   image: {
-    marginTop: 40,
-    alignSelf: 'center',
     height: 40,
     width: 113.68,
+    marginTop: 40,
+    alignSelf: 'center',
   },
   connectToAppleButton: {
     alignSelf: 'center',
@@ -168,10 +165,10 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginTop: 1,
   },
-  connectFormContainer: {
+  InscriptionFormContainer: {
     marginTop: 50,
     width: 350,
-    height: 277,
+    height: 416,
     marginLeft: 20,
     backgroundColor: 'green',
   },
@@ -180,7 +177,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'green',
   },
   title: {
-    height: 24,
+    height: 22,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 600,
@@ -202,10 +199,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     padding: 0,
-    width: 230,
+    width: '100%',
     height: 52,
-    // marginTop: 137,
-    marginTop: 107,
+    // marginTop: 70,
+    marginTop: 20,
   },
   inscriptionTitle: {
     height: 18,
@@ -216,16 +213,6 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     color: '#1A2442',
   },
-  inscriptionText: {
-    fontFamily: 'Montserrat',
-    fontStyle: 'normal',
-    fontWeight: 600,
-    fontSize: 20,
-    lineHeight: 24,
-    color: '#1A2442',
-    width: 94,
-    height: 24,
-  },
 });
 
-export default Connection;
+export default Inscription;
