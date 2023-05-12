@@ -72,6 +72,31 @@
     {
       "path": "src/assets/fonts/Montserrat-ThinItalic.ttf",
       "sha1": "c70c1a424f7288c1eb1665441e93369313c50a9b"
+<<<<<<< HEAD
+    },
+    {
+      "path": "src/assets/icons/dots-three-vertical.svg",
+      "sha1": "3d48a9d675a945248fcfea9c8540154b77746580"
+    },
+    {
+      "path": "src/assets/icons/open.svg",
+      "sha1": "33fc7eb830e83a43d6bd8babf7b2fb7e08ab229a"
+    },
+    {
+      "path": "src/assets/spalshscreen.png",
+      "sha1": "0e2359853315ed860570534db0fc588e90594141"
+    },
+    {
+      "path": "src/assets/switchIconDark.svg",
+      "sha1": "1aed6bdf4d65cd95663413e135ab5d03b5282ce9"
+    },
+    {
+      "path": "src/assets/switchIconLight.svg",
+      "sha1": "de8de3f220b3311a21f7bf0a56e27f9eae1c2b97"
+    },
+    {
+      "path": "src/assets/wavingHand.svg",
+      "sha1": "754b339a6d34644e6e4e90f6cb3465b728ad5b62"
     }
   ]
 }
