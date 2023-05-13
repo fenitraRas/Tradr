@@ -32,6 +32,8 @@ import SeletedRadio from '../assets/icons/selectedRadio.svg';
 import UnseletedRadio from '../assets/icons/unselectedRadio.svg';
 import WavingHand from '../assets/icons/wavingHand.svg';
 import {useNavigation} from '@react-navigation/native';
+import Video from 'react-native-video';
+import video from '../assets/video/video_test.mp4';
 
 function Navbar(props) {
   return (
@@ -174,6 +176,7 @@ function TradrBoardObjective({title}) {
 }
 
 function TradrBoardVideo({title}) {
+  const [isPlaying, setIsPlaying] = React.useState(false);
   return (
     <View style={styles.tradrboardCardContainer}>
       <View style={[styles.horizontalFlex, styles.cardTitleContainer]}>
@@ -181,7 +184,19 @@ function TradrBoardVideo({title}) {
         <Books width={18} height={18} style={styles.imageTitle} />
       </View>
       <View style={styles.videoContainer}>
-        <Image source={require('../assets/video.png')} style={styles.video} />
+        <Video
+          source={video}
+          paused={!isPlaying}
+          controls={true}
+          style={styles.video}
+          repeat={true}
+          resizeMode="cover"
+        />
+        <TouchableOpacity
+          onPress={() => setIsPlaying(p => !p)}
+          title={isPlaying ? 'Stop' : 'Play'}
+        />
+        {/* <Image source={require('../assets/video.png')} style={styles.video} /> */}
       </View>
     </View>
   );
@@ -388,11 +403,13 @@ const styles = StyleSheet.create({
   },
   videoContainer: {
     margin: 10,
-    // width: 200,
-    height: 370,
+    width: 365,
+    height: 260,
   },
   video: {
-    //video style
+    borderRadius: 20,
+    height: 200,
+    width: '100%',
   },
   imageTitle: {
     marginTop: 2,
