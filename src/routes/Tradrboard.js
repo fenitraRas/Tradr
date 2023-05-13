@@ -373,7 +373,7 @@ const styles = StyleSheet.create({
     height: 24,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
-    fontWeight: 500,
+    // fontWeight: 500,
     fontSize: 20,
     lineHeight: 24,
   },
@@ -476,7 +476,7 @@ const styles = StyleSheet.create({
   connectInfoButtonImg: {
     color: '#9154FD',
     marginTop: 16,
-    fontWeight: 500,
+    // fontWeight: 500,
   },
 
   progressContainer: {
@@ -493,7 +493,7 @@ const styles = StyleSheet.create({
     minWidth: 27,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
-    fontWeight: 500,
+    // fontWeight: 500,
     fontSize: 22,
     lineHeight: 27,
     color: '#1A2442',
