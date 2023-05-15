@@ -1,10 +1,11 @@
-import React from 'react';
 import {
-  TextInput as RNTextInput,
-  View,
-  StyleSheet,
   Platform,
+  TextInput as RNTextInput,
+  StyleSheet,
+  View,
 } from 'react-native';
+
+import React from 'react';
 
 export default function TextInput({...otherProps}) {
   return (
@@ -12,7 +13,7 @@ export default function TextInput({...otherProps}) {
       <RNTextInput
         style={styles.inputStyle}
         // underlineColorAndroid='transparent'
-        // placeholderTextColor='rgba(34, 62, 75, 0.7)'
+        placeholderTextColor="#1A2442"
         {...otherProps}
       />
     </View>
@@ -35,6 +36,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 20,
     elevation: Platform.OS === 'android' ? -15 : undefined,
+    justifyContent: 'center',
   },
   inputStyle: {
     fontFamily: 'Montserrat',
@@ -42,5 +44,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     lineHeight: 21,
     color: '#1A2442',
+    marginLeft: 15,
   },
 });
