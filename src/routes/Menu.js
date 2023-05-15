@@ -1,5 +1,12 @@
+import {
+  Dimensions,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
 import OpenDark from '../assets/icons/openDark.svg';
@@ -100,8 +107,6 @@ const styles = StyleSheet.create({
   },
   navbarIcon: {
     flex: 1,
-    // maxWidth: 45,
-    // minWidth: 52,
     marginTop: -5,
   },
   navbarTextContainer: {
@@ -125,13 +130,16 @@ const styles = StyleSheet.create({
     width: 30,
     border: 5,
     marginTop: 5,
-    marginLeft: 55,
+    marginLeft: 65,
   },
   menuContainer: {
     marginLeft: 50,
-    marginRight: 10,
-    width: 325,
-    height: 721,
+    marginRight: 7,
+    width: Dimensions.get('window').width - 52 - 13,
+    height:
+      Platform.OS === 'android'
+        ? Dimensions.get('window').height - 15 - 26 - 8 - 27
+        : Dimensions.get('window').height - 15 - 61 - 8 - 27,
     marginTop: 10,
     backgroundColor: '#FFFFFF',
     shadowColor: '#090d6d',
@@ -147,9 +155,9 @@ const styles = StyleSheet.create({
   },
   rectangle283: {
     position: 'absolute',
-    width: 144,
+    width: Dimensions.get('window').width - 109 - 137,
     height: 14,
-    marginLeft: 96,
+    marginLeft: 109,
     marginTop: 45,
     backgroundColor: '#E9EDFC',
     borderRadius: 20,
@@ -159,13 +167,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     position: 'absolute',
-    width: 270,
+    width: Dimensions.get('window').width - 77 - 43,
     height: 21,
     left: 30,
     top: 127,
   },
   tradrText: {
-    width: 97,
+    width: Dimensions.get('window').width - 215 - 78,
     height: 21,
     left: 35,
     fontWeight: 600,
@@ -194,9 +202,9 @@ const styles = StyleSheet.create({
   },
   connectText: {
     position: 'absolute',
-    width: 295,
+    width: Dimensions.get('window').width - 70 - 25,
     height: 42,
-    left: 25,
+    left: 12,
     top: 305,
     fontWeight: 400,
     fontSize: 17,
@@ -208,9 +216,9 @@ const styles = StyleSheet.create({
   },
   connectButton: {
     position: 'absolute',
-    width: 139,
+    width: Dimensions.get('window').width - 145 - 103,
     height: 38,
-    left: 103,
+    left: 90,
     top: 367,
     backgroundColor: '#9154FD',
     borderRadius: 10,
