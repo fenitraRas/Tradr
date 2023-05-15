@@ -288,6 +288,7 @@ const styles = StyleSheet.create({
     color: '#1A2442',
   },
   tradrboardContent: {
+    width: Dimensions.get('window').width,
     flex: 1,
     flexDirection: 'column',
     backgroundColor: '#FFFFFF',
@@ -375,20 +376,19 @@ const styles = StyleSheet.create({
     marginTop: 22,
   },
   tradrboardCardContainer: {
-    width: 390,
+    width: '100%',
     marginTop: 30,
-    // backgroundColor: 'red',
+    paddingLeft: 10,
+    paddingRight: 10,
   },
   cardTitleContainer: {
     height: 24,
     marginLeft: 15,
-    // backgroundColor: 'green',
   },
   cardTitle: {
     height: 24,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
-    // fontWeight: 500,
     fontSize: 20,
     lineHeight: 24,
   },
@@ -402,8 +402,8 @@ const styles = StyleSheet.create({
     width: Platform.OS === 'android' ? 210 : 225,
   },
   videoContainer: {
-    margin: 10,
-    width: 365,
+    padding: 10,
+    width: '100%',
     height: 260,
   },
   video: {
@@ -415,8 +415,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   tradrboardCard: {
-    marginLeft: 10,
-    width: 370,
+    width: '100%',
     height: 159,
     marginTop: 10,
     flex: 1,
@@ -438,9 +437,7 @@ const styles = StyleSheet.create({
     width: '50%',
   },
   textInfo: {
-    // width: 87,
     height: 18,
-    // marginLeft: 35,
     marginTop: 15,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
@@ -450,7 +447,6 @@ const styles = StyleSheet.create({
     color: '#1A2442',
   },
   infoButton: {
-    // width: 102,
     height: 29,
     borderRadius: 4,
     paddingTop: 2,
@@ -459,7 +455,6 @@ const styles = StyleSheet.create({
     paddingLeft: 4,
     backgroundColor: '#9154FD',
     marginTop: 5,
-    // marginLeft: 35,
     shadowColor: 'rgba(145, 84, 253, 0.7)',
     shadowOffset: {
       width: 0,
@@ -479,7 +474,6 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
   },
   connectInfoButtonText: {
-    // width: 114,
     width: Platform.OS === 'android' ? 108 : 114,
     fontStyle: 'normal',
     height: 21,
@@ -497,11 +491,12 @@ const styles = StyleSheet.create({
   },
 
   progressContainer: {
-    width: 319,
+    width: '100%',
     height: 27,
     flexDirection: 'row',
-    marginLeft: 25,
     marginTop: 15,
+    paddingLeft: 25,
+    paddingRight: 25,
     marginBottom: 5,
   },
   progressNumber: {
@@ -543,8 +538,8 @@ const styles = StyleSheet.create({
       },
       android: {
         elevation: 3,
-      }
-    })
+      },
+    }),
   },
   radioContent: {
     marginLeft: 24,
