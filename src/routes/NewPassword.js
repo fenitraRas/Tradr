@@ -210,6 +210,7 @@ const styles = StyleSheet.create({
     marginTop: 1,
   },
   FormContainer: {
+    alignSelf: 'center',
     marginTop: 50,
     width: '100%',
     maxWidth: 350,
