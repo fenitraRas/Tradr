@@ -21,6 +21,7 @@ import {
 import Menu, {NavbarMenu} from './Menu';
 import React, {useRef, useState} from 'react';
 import {indexStyles} from '../assets/css/index';
+import {formStyles} from '../assets/css/form';
 
 import ArrowRigth from '../assets/icons/arrowRigth.svg';
 import Books from '../assets/icons/books.svg';
@@ -38,12 +39,12 @@ import video from '../assets/video/video_test.mp4';
 
 function Navbar(props) {
   return (
-    <View style={styles.navbarContainer}>
-      <View style={styles.navbarIcon} />
-      <View style={styles.navbarTextContainer}>
-        <Text style={styles.navbarText}>{props.title}</Text>
+    <View style={formStyles.navbarContainer}>
+      <View style={formStyles.navbarIcon} />
+      <View style={formStyles.navbarTextContainer}>
+        <Text style={formStyles.navbarText}>{props.title}</Text>
       </View>
-      <View style={styles.navbarIcon}>
+      <View style={formStyles.navbarIcon}>
         <TouchableOpacity
           style={styles.button}
           onPress={() => props.handleScrollToRight()}>
@@ -143,7 +144,7 @@ function TradrBoardObjective({title}) {
         <View style={indexStyles.verticalFlex}>
           <View style={styles.progressContainer}>
             <View style={styles.progressNumber}>
-              <Text style={styles.navbarText}>0</Text>
+              <Text style={styles.progressText}>0</Text>
             </View>
             <View style={styles.progressContent}>
               <ProgressBar
@@ -153,7 +154,7 @@ function TradrBoardObjective({title}) {
               />
             </View>
             <View style={styles.progressNumber}>
-              <Text style={styles.navbarText}>3</Text>
+              <Text style={styles.progressText}>3</Text>
             </View>
           </View>
           <View style={[indexStyles.horizontalFlex, styles.radioContent]}>
@@ -264,23 +265,7 @@ function Tradrboard() {
 }
 
 const styles = StyleSheet.create({
-  navbarContainer: {
-    width: '100%',
-    height: 27,
-    flexDirection: 'row',
-    marginTop: 8,
-    marginBottom: 10,
-  },
-  navbarIcon: {
-    flex: 1,
-    paddingTop: 2,
-    maxWidth: 32,
-    minWidth: 32,
-  },
-  navbarTextContainer: {
-    flex: 2,
-  },
-  navbarText: {
+  progressText: {
     textAlign: 'center',
     fontWeight: 500,
     fontSize: 20,
@@ -376,7 +361,7 @@ const styles = StyleSheet.create({
   },
   cardTitleContainer: {
     height: 24,
-    marginLeft: 15,
+    marginLeft: 5,
   },
   cardTitle: {
     height: 24,
@@ -395,7 +380,8 @@ const styles = StyleSheet.create({
     width: Platform.OS === 'android' ? 210 : 225,
   },
   videoContainer: {
-    padding: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
     width: '100%',
     height: 260,
   },

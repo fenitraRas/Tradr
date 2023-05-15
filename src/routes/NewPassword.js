@@ -20,6 +20,7 @@ import {
 import React from 'react';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {indexStyles} from '../assets/css/index';
+import {formStyles} from '../assets/css/form';
 import {useNavigation} from '@react-navigation/native';
 import BackIcon from '../assets/icons/backIcon.svg';
 import LogoApple from '../assets/icons/logoApple.svg';
@@ -30,16 +31,16 @@ import MyButton from '../Components/Button';
 function Navbar({children}) {
   const navigation = useNavigation();
   return (
-    <View style={styles.navbarContainer}>
-      <View style={styles.navbarIcon}>
+    <View style={formStyles.navbarContainer}>
+      <View style={formStyles.navbarIcon}>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('Tradrboard')}>
           <BackIcon width={30} height={20} />
         </TouchableOpacity>
       </View>
-      <View style={styles.navbarTextContainer}>
-        <Text style={styles.navbarText}>{children}</Text>
+      <View style={formStyles.navbarTextContainer}>
+        <Text style={formStyles.navbarText}>{children}</Text>
       </View>
     </View>
   );
@@ -47,23 +48,23 @@ function Navbar({children}) {
 
 function ConnectToAppleButton({children}) {
   return (
-    <View style={styles.connectToAppleButtonContainer}>
+    <View style={formStyles.connectToAppleButtonContainer}>
       <TouchableOpacity
-        style={[indexStyles.horizontalFlex, styles.connectToAppleButton]}>
+        style={[indexStyles.horizontalFlex, formStyles.connectToAppleButton]}>
         <LogoApple width={16} height={20} style={styles.connectToAppleImg} />
-        <Text style={styles.connectToAppleButtonText}>{children}</Text>
+        <Text style={formStyles.connectToAppleButtonText}>{children}</Text>
       </TouchableOpacity>
     </View>
   );
 }
 function Form({title}) {
   return (
-    <View style={styles.FormContainer}>
-      <View style={[indexStyles.horizontalFlex, styles.titleContainer]}>
-        <Text style={styles.title}>{title}</Text>
-        <PartyingFace width={18} height={18} style={styles.titleImg} />
+    <View style={formStyles.formContainer}>
+      <View style={[indexStyles.horizontalFlex, formStyles.titleContainer]}>
+        <Text style={formStyles.title}>{title}</Text>
+        <PartyingFace width={18} height={18} style={formStyles.titleImg} />
       </View>
-      <View style={styles.formContent}>
+      <View style={formStyles.formContent}>
         <View style={styles.inputContainer}>
           <MyTextInput
             placeholder="Nouveau mot de passe"
@@ -73,7 +74,7 @@ function Form({title}) {
             keyboardAppearance="dark"
           />
         </View>
-        <View style={styles.inputContainer}>
+        <View style={formStyles.inputContainer}>
           <MyTextInput
             placeholder="Confirmation mot de passe"
             secureTextEntry
@@ -82,7 +83,7 @@ function Form({title}) {
             keyboardAppearance="dark"
           />
         </View>
-        <View style={styles.loginButtonContainer}>
+        <View style={formStyles.loginButtonContainer}>
           <MyButton label="Confirmer" onPress={() => true} />
         </View>
       </View>
@@ -108,7 +109,7 @@ function NewPassword() {
           <View>
             <Image
               source={require('../assets/tradrLightLogo.png')}
-              style={styles.image}
+              style={formStyles.image}
             />
           </View>
           <ConnectToAppleButton>Continuer avec Apple</ConnectToAppleButton>
@@ -126,111 +127,6 @@ function NewPassword() {
 }
 
 const styles = StyleSheet.create({
-  horizontalFlex: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  formContent: {
-    marginTop: 14,
-  },
-  inputContainer: {
-    width: '100%',
-  },
-  loginButtonContainer: {
-    marginTop: 30,
-    width: '100%',
-  },
-  navbarContainer: {
-    width: '100%',
-    height: 27,
-    flexDirection: 'row',
-    marginTop: 8,
-    marginBottom: 10,
-  },
-  navbarIcon: {
-    flex: 1,
-    paddingTop: 2,
-    maxWidth: 32,
-    minWidth: 32,
-  },
-  navbarTextContainer: {
-    flex: 1,
-  },
-  navbarText: {
-    textAlign: 'left',
-    fontWeight: 500,
-    fontSize: 20,
-    lineHeight: 24,
-    fontFamily: 'Montserrat',
-    color: '#1A2442',
-  },
-  image: {
-    marginTop: 40,
-    alignSelf: 'center',
-    height: 40,
-    width: 113.68,
-  },
-  connectToAppleButtonContainer: {
-    width: '100%',
-    maxWidth: 350,
-    alignSelf: 'center',
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-  connectToAppleButton: {
-    alignSelf: 'center',
-    backgroundColor: '#000000',
-    width: '100%',
-    maxWidth: 350,
-    height: 49,
-    marginTop: 60,
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  connectToAppleImg: {
-    color: '#FFFFFF',
-    lineHeight: 20,
-    fontSize: 17,
-    fontWeight: 600,
-  },
-  connectToAppleButtonText: {
-    width: 186,
-    height: 21,
-    fontFamily: 'Montserrat',
-    fontStyle: 'normal',
-    fontWeight: 500,
-    fontSize: 17,
-    lineHeight: 21,
-    color: '#FFFFFF',
-    marginLeft: 10,
-    marginTop: 1,
-  },
-  FormContainer: {
-    alignSelf: 'center',
-    marginTop: 50,
-    width: '100%',
-    maxWidth: 350,
-    paddingLeft: 10,
-    paddingRight: 10,
-    // height: 239,
-  },
-  titleContainer: {
-    height: 22,
-  },
-  title: {
-    height: 24,
-    fontFamily: 'Montserrat',
-    fontStyle: 'normal',
-    fontWeight: 600,
-    fontSize: 18,
-    lineHeight: 22,
-    color: '#1A2442',
-  },
-  titleImg: {
-    marginLeft: 6,
-    marginTop: 2,
-  },
   inscriptionContainer: {
     alignSelf: 'center',
     alignItems: 'center',
