@@ -64,12 +64,13 @@ const formStyles = StyleSheet.create({
     flex: 1,
   },
   navbarText: {
+    marginTop: 3,
     textAlign: 'left',
-    fontWeight: 500,
-    fontSize: 20,
-    lineHeight: 24,
+    fontWeight: 300,
+    fontSize: 21,
+    lineHeight: 21,
     fontFamily: 'Montserrat',
-    color: '#1A2442',
+    color: '#9154FD',
   },
   image: {
     marginTop: 40,
