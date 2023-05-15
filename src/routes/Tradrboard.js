@@ -279,6 +279,14 @@ function Tradrboard() {
 }
 
 const styles = StyleSheet.create({
+  navbarText: {
+    textAlign: 'center',
+    fontWeight: 500,
+    fontSize: 20,
+    lineHeight: 24,
+    fontFamily: 'Montserrat',
+    color: '#1A2442',
+  },
   progressText: {
     textAlign: 'center',
     fontWeight: 500,
