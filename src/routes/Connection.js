@@ -46,7 +46,7 @@ function Navbar({children}) {
 
 function ConnectToAppleButton({children}) {
   return (
-    <View>
+    <View style={styles.connectToAppleButtonContainer}>
       <TouchableOpacity
         style={[styles.horizontalFlex, styles.connectToAppleButton]}>
         <LogoApple width={16} height={20} style={styles.connectToAppleImg} />
@@ -151,6 +151,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   loginButtonContainer: {
+    width: '100%',
     marginTop: 30,
   },
   forgetPassword: {
@@ -188,10 +189,18 @@ const styles = StyleSheet.create({
     height: 40,
     width: 113.68,
   },
+  connectToAppleButtonContainer: {
+    width: '100%',
+    maxWidth: 350,
+    alignSelf: 'center',
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
   connectToAppleButton: {
     alignSelf: 'center',
     backgroundColor: '#000000',
-    width: 350,
+    width: '100%',
+    maxWidth: 350,
     height: 49,
     marginTop: 60,
     borderRadius: 10,
@@ -205,7 +214,6 @@ const styles = StyleSheet.create({
     fontWeight: 600,
   },
   connectToAppleButtonText: {
-    width: 186,
     height: 21,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
@@ -218,9 +226,12 @@ const styles = StyleSheet.create({
   },
   connectFormContainer: {
     marginTop: 50,
-    width: 350,
+    width: '100%',
+    paddingLeft: 10,
+    paddingRight: 10,
+    maxWidth: 350,
     // height: 277,
-    marginLeft: 20,
+    alignSelf: 'center',
   },
   titleContainer: {
     height: 22,

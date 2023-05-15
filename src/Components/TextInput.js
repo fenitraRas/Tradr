@@ -21,7 +21,8 @@ export default function TextInput({...otherProps}) {
 
 const styles = StyleSheet.create({
   inputContainer: {
-    width: 350,
+    maxWidth: 350,
+    width: '100%',
     height: 49,
     marginTop: 10,
     backgroundColor: '#FFFFFF',
