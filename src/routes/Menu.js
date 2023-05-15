@@ -99,15 +99,18 @@ function Menu() {
 
 const styles = StyleSheet.create({
   navbarContainer: {
-    width: '100%',
+    width: Dimensions.get('window').width,
     height: 27,
     flexDirection: 'row',
     marginTop: 8,
     marginBottom: 10,
   },
+
   navbarIcon: {
     flex: 1,
-    marginTop: -5,
+    paddingTop: -5,
+    maxWidth: 70,
+    minWidth: 70,
   },
   navbarTextContainer: {
     flex: 2,
@@ -121,16 +124,16 @@ const styles = StyleSheet.create({
     color: '#1A2442',
   },
   buttonSwitcher: {
-    width: 71,
+    width: Dimensions.get('window').width - 309 - 10,
     height: 36,
-    marginLeft: 5,
+    marginLeft: 10,
   },
   buttonOpen: {
     height: 22,
-    width: 30,
+    width: Dimensions.get('window').width - 345 - 15,
     border: 5,
     marginTop: 5,
-    marginLeft: 65,
+    marginLeft: 28,
   },
   menuContainer: {
     marginLeft: 50,
