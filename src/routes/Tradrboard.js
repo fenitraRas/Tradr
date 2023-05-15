@@ -25,28 +25,42 @@ import ArrowRigth from '../assets/icons/arrowRigth.svg';
 import Books from '../assets/icons/books.svg';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
+import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
 import HighVoltage from '../assets/icons/highVoltage.svg';
 import Locked from '../assets/icons/locked.svg';
 import {ProgressBar} from 'react-native-paper';
 import SeletedRadio from '../assets/icons/selectedRadio.svg';
 import UnseletedRadio from '../assets/icons/unselectedRadio.svg';
+import Video from 'react-native-video';
 import WavingHand from '../assets/icons/wavingHand.svg';
 import {useNavigation} from '@react-navigation/native';
-import Video from 'react-native-video';
+import {useSelector} from 'react-redux';
 import video from '../assets/video/video_test.mp4';
 
 function Navbar(props) {
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const [option] = useState(colorScheme);
   return (
     <View style={styles.navbarContainer}>
       <View style={styles.navbarIcon} />
       <View style={styles.navbarTextContainer}>
-        <Text style={styles.navbarText}>{props.title}</Text>
+        <Text
+          style={[
+            styles.navbarText,
+            {color: option === 'dark' ? '#FFFFFF' : '#1A2442'},
+          ]}>
+          {props.title}
+        </Text>
       </View>
       <View style={styles.navbarIcon}>
         <TouchableOpacity
           style={styles.button}
           onPress={() => props.handleScrollToRight()}>
-          <DotThreeVertical width={30} height={20} />
+          {option === 'light' ? (
+            <DotThreeVertical width={30} height={20} />
+          ) : (
+            <DotThreeVerticalLight width={30} height={20} />
+          )}
         </TouchableOpacity>
       </View>
     </View>

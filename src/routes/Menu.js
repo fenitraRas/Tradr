@@ -53,7 +53,13 @@ export function NavbarMenu(props) {
         </TouchableOpacity>
       </View>
       <View style={styles.navbarTextContainer}>
-        <Text style={styles.navbarText}>Menu</Text>
+        <Text
+          style={[
+            styles.navbarText,
+            {color: option === 'light' ? '#1A2442' : '#FFFFFF'},
+          ]}>
+          Menu
+        </Text>
       </View>
       <View style={styles.navbarIcon}>
         <TouchableOpacity
@@ -127,12 +133,13 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width - 309 - 10,
     height: 36,
     marginLeft: 10,
+    marginTop: -5,
   },
   buttonOpen: {
     height: 22,
     width: Dimensions.get('window').width - 345 - 15,
     border: 5,
-    marginTop: 5,
+    marginTop: 3,
     marginLeft: 28,
   },
   menuContainer: {
