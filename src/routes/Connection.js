@@ -6,6 +6,7 @@
  */
 
 import {
+  Image,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -14,19 +15,18 @@ import {
   TouchableOpacity,
   View,
   useColorScheme,
-  Image,
 } from 'react-native';
 
-import React from 'react';
-import {indexStyles} from '../assets/css/index';
-import {formStyles} from '../assets/css/form';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {useNavigation} from '@react-navigation/native';
 import BackIcon from '../assets/icons/backIcon.svg';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import LogoApple from '../assets/icons/logoApple.svg';
-import WavingHand from '../assets/icons/wavingHand.svg';
-import MyTextInput from '../Components/TextInput';
 import MyButton from '../Components/Button';
+import MyTextInput from '../Components/TextInput';
+import React from 'react';
+import WavingHand from '../assets/icons/wavingHand.svg';
+import {formStyles} from '../assets/css/form';
+import {indexStyles} from '../assets/css/index';
+import {useNavigation} from '@react-navigation/native';
 
 function Navbar({children}) {
   const navigation = useNavigation();
@@ -40,7 +40,9 @@ function Navbar({children}) {
         </TouchableOpacity>
       </View>
       <View style={formStyles.navbarTextContainer}>
-        <Text style={formStyles.navbarText}>{children}</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Tradrboard')}>
+          <Text style={formStyles.navbarText}>{children}</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
