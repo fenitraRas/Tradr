@@ -18,6 +18,7 @@ import {
 } from 'react-native';
 
 import React from 'react';
+import {indexStyles} from '../assets/css/index';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {useNavigation} from '@react-navigation/native';
 import BackIcon from '../assets/icons/backIcon.svg';
@@ -48,7 +49,7 @@ function ConnectToAppleButton({children}) {
   return (
     <View style={styles.connectToAppleButtonContainer}>
       <TouchableOpacity
-        style={[styles.horizontalFlex, styles.connectToAppleButton]}>
+        style={[indexStyles.horizontalFlex, styles.connectToAppleButton]}>
         <LogoApple width={16} height={20} style={styles.connectToAppleImg} />
         <Text style={styles.connectToAppleButtonText}>{children}</Text>
       </TouchableOpacity>
@@ -59,7 +60,7 @@ function Form({title}) {
   const navigation = useNavigation();
   return (
     <View style={styles.FormContainer}>
-      <View style={[styles.horizontalFlex, styles.titleContainer]}>
+      <View style={[indexStyles.horizontalFlex, styles.titleContainer]}>
         <Text style={styles.title}>{title}</Text>
         <FlexedBiceps width={18} height={18} style={styles.titleImg} />
       </View>
@@ -122,14 +123,6 @@ function ForgetPassword() {
 }
 
 const styles = StyleSheet.create({
-  horizontalFlex: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  verticalFlex: {
-    flex: 1,
-    flexDirection: 'column',
-  },
   formContent: {
     marginTop: 14,
   },
