@@ -13,7 +13,7 @@ export default function TextInput({...otherProps}) {
       <RNTextInput
         style={styles.inputStyle}
         // underlineColorAndroid='transparent'
-        // placeholderTextColor='rgba(34, 62, 75, 0.7)'
+        placeholderTextColor="#1A2442"
         {...otherProps}
       />
     </View>
