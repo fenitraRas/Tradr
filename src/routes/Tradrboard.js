@@ -20,6 +20,7 @@ import {
 } from 'react-native';
 import Menu, {NavbarMenu} from './Menu';
 import React, {useRef, useState} from 'react';
+import {indexStyles} from '../assets/css/index';
 
 import ArrowRigth from '../assets/icons/arrowRigth.svg';
 import Books from '../assets/icons/books.svg';
@@ -62,7 +63,7 @@ function TradrboardContent({children}) {
         style={styles.connectButton}>
         <Text style={styles.connectButtonText}>{children}</Text>
       </TouchableOpacity>
-      <View style={styles.horizontalFlex}>
+      <View style={indexStyles.horizontalFlex}>
         <Hola>Holà !</Hola>
         <WavingHand width={26} height={26} style={styles.holaImage} />
       </View>
@@ -86,7 +87,7 @@ function TradrBoardInfo({title}) {
   const navigation = useNavigation();
   return (
     <View style={styles.tradrboardCardContainer}>
-      <View style={[styles.horizontalFlex, styles.cardTitleContainer]}>
+      <View style={[indexStyles.horizontalFlex, styles.cardTitleContainer]}>
         <Text style={[styles.cardTitle, styles.infoTitle]}>{title}</Text>
         <Locked width={18} height={18} style={styles.imageTitle} />
       </View>
@@ -114,7 +115,7 @@ function TradrBoardInfo({title}) {
             Mes informations
           </Text>
           <TouchableOpacity
-            style={[styles.horizontalFlex, {marginLeft: 8}]}
+            style={[indexStyles.horizontalFlex, {marginLeft: 8}]}
             onPress={() => {
               navigation.navigate('Connection');
             }}>
@@ -134,12 +135,12 @@ function TradrBoardInfo({title}) {
 function TradrBoardObjective({title}) {
   return (
     <View style={styles.tradrboardCardContainer}>
-      <View style={[styles.horizontalFlex, styles.cardTitleContainer]}>
+      <View style={[indexStyles.horizontalFlex, styles.cardTitleContainer]}>
         <Text style={[styles.cardTitle, styles.objectiveTitle]}>{title}</Text>
         <HighVoltage width={18} height={18} style={styles.imageTitle} />
       </View>
       <View style={styles.tradrboardCard}>
-        <View style={styles.verticalFlex}>
+        <View style={indexStyles.verticalFlex}>
           <View style={styles.progressContainer}>
             <View style={styles.progressNumber}>
               <Text style={styles.navbarText}>0</Text>
@@ -155,15 +156,15 @@ function TradrBoardObjective({title}) {
               <Text style={styles.navbarText}>3</Text>
             </View>
           </View>
-          <View style={[styles.horizontalFlex, styles.radioContent]}>
+          <View style={[indexStyles.horizontalFlex, styles.radioContent]}>
             <UnseletedRadio width={28} height={28} />
             <Text style={styles.radioText}>S'inscrire</Text>
           </View>
-          <View style={[styles.horizontalFlex, styles.radioContent]}>
+          <View style={[indexStyles.horizontalFlex, styles.radioContent]}>
             <SeletedRadio width={28} height={28} />
             <Text style={styles.radioText}>Visionner l'épisode accessible</Text>
           </View>
-          <View style={[styles.horizontalFlex, styles.radioContent]}>
+          <View style={[indexStyles.horizontalFlex, styles.radioContent]}>
             <UnseletedRadio width={28} height={28} />
             <Text style={styles.radioText}>
               Accomplir les deux objectifs précédents
@@ -179,7 +180,7 @@ function TradrBoardVideo({title}) {
   const [isPlaying, setIsPlaying] = React.useState(false);
   return (
     <View style={styles.tradrboardCardContainer}>
-      <View style={[styles.horizontalFlex, styles.cardTitleContainer]}>
+      <View style={[indexStyles.horizontalFlex, styles.cardTitleContainer]}>
         <Text style={[styles.cardTitle, styles.videoTitle]}>{title}</Text>
         <Books width={18} height={18} style={styles.imageTitle} />
       </View>
@@ -348,14 +349,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
-  },
-  horizontalFlex: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  verticalFlex: {
-    flex: 1,
-    flexDirection: 'column',
   },
   holaContent: {
     width: 96,
