@@ -20,6 +20,7 @@ import {
 import React from 'react';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {indexStyles} from '../assets/css/index';
+import {formStyles} from '../assets/css/form';
 import {useNavigation} from '@react-navigation/native';
 import BackIcon from '../assets/icons/backIcon.svg';
 import LogoApple from '../assets/icons/logoApple.svg';
@@ -30,16 +31,16 @@ import MyButton from '../Components/Button';
 function Navbar({children}) {
   const navigation = useNavigation();
   return (
-    <View style={styles.navbarContainer}>
-      <View style={styles.navbarIcon}>
+    <View style={formStyles.navbarContainer}>
+      <View style={formStyles.navbarIcon}>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('Tradrboard')}>
           <BackIcon width={30} height={20} />
         </TouchableOpacity>
       </View>
-      <View style={styles.navbarTextContainer}>
-        <Text style={styles.navbarText}>{children}</Text>
+      <View style={formStyles.navbarTextContainer}>
+        <Text style={formStyles.navbarText}>{children}</Text>
       </View>
     </View>
   );
@@ -47,24 +48,24 @@ function Navbar({children}) {
 
 function ConnectToAppleButton({children}) {
   return (
-    <View style={styles.connectToAppleButtonContainer}>
+    <View style={formStyles.connectToAppleButtonContainer}>
       <TouchableOpacity
-        style={[indexStyles.horizontalFlex, styles.connectToAppleButton]}>
+        style={[indexStyles.horizontalFlex, formStyles.connectToAppleButton]}>
         <LogoApple width={16} height={20} style={styles.connectToAppleImg} />
-        <Text style={styles.connectToAppleButtonText}>{children}</Text>
+        <Text style={formStyles.connectToAppleButtonText}>{children}</Text>
       </TouchableOpacity>
     </View>
   );
 }
 function InscriptionForm({title}) {
   return (
-    <View style={styles.InscriptionFormContainer}>
-      <View style={[indexStyles.horizontalFlex, styles.titleContainer]}>
-        <Text style={styles.title}>{title}</Text>
-        <FoldedHands width={18} height={18} style={styles.titleImg} />
+    <View style={styles.inscriptionFormContainer}>
+      <View style={[indexStyles.horizontalFlex, formStyles.titleContainer]}>
+        <Text style={formStyles.title}>{title}</Text>
+        <FoldedHands width={18} height={18} style={formStyles.titleImg} />
       </View>
-      <View style={styles.formContent}>
-        <View style={styles.inputContainer}>
+      <View style={formStyles.formContent}>
+        <View style={formStyles.inputContainer}>
           <MyTextInput
             placeholder="Prénom"
             autoCapitalize="none"
@@ -73,7 +74,7 @@ function InscriptionForm({title}) {
             returnKeyLabel="next"
           />
         </View>
-        <View style={styles.inputContainer}>
+        <View style={formStyles.inputContainer}>
           <MyTextInput
             placeholder="Nom"
             autoCapitalize="none"
@@ -82,7 +83,7 @@ function InscriptionForm({title}) {
             returnKeyLabel="next"
           />
         </View>
-        <View style={styles.inputContainer}>
+        <View style={formStyles.inputContainer}>
           <MyTextInput
             placeholder="Email"
             autoCapitalize="none"
@@ -93,7 +94,7 @@ function InscriptionForm({title}) {
             returnKeyLabel="next"
           />
         </View>
-        <View style={styles.inputContainer}>
+        <View style={formStyles.inputContainer}>
           <MyTextInput
             placeholder="Téléphone"
             autoCompleteType="phone"
@@ -103,7 +104,7 @@ function InscriptionForm({title}) {
             returnKeyLabel="next"
           />
         </View>
-        <View style={styles.inputContainer}>
+        <View style={formStyles.inputContainer}>
           <MyTextInput
             placeholder="Mot de passe"
             secureTextEntry
@@ -112,7 +113,7 @@ function InscriptionForm({title}) {
             keyboardAppearance="dark"
           />
         </View>
-        <View style={styles.loginButtonContainer}>
+        <View style={formStyles.loginButtonContainer}>
           <MyButton label="S'inscrire" onPress={() => true} />
         </View>
       </View>
@@ -137,7 +138,7 @@ function Inscription() {
           <View>
             <Image
               source={require('../assets/tradrLightLogo.png')}
-              style={styles.image}
+              style={formStyles.image}
             />
           </View>
           <ConnectToAppleButton>Continuer avec Apple</ConnectToAppleButton>
@@ -154,83 +155,7 @@ function Inscription() {
 }
 
 const styles = StyleSheet.create({
-  navbarContainer: {
-    width: '100%',
-    height: 27,
-    flexDirection: 'row',
-    marginTop: 8,
-    marginBottom: 10,
-  },
-  formContent: {
-    marginTop: 14,
-  },
-  inputContainer: {
-    width: '100%',
-  },
-  loginButtonContainer: {
-    marginTop: 30,
-    width: '100%',
-  },
-  navbarIcon: {
-    flex: 1,
-    paddingTop: 2,
-    maxWidth: 32,
-    minWidth: 32,
-  },
-  navbarTextContainer: {
-    flex: 1,
-  },
-  navbarText: {
-    textAlign: 'left',
-    fontWeight: 500,
-    fontSize: 20,
-    lineHeight: 24,
-    fontFamily: 'Montserrat',
-    color: '#1A2442',
-  },
-  image: {
-    height: 40,
-    width: 113.68,
-    marginTop: 40,
-    alignSelf: 'center',
-  },
-  connectToAppleButtonContainer: {
-    width: '100%',
-    maxWidth: 350,
-    alignSelf: 'center',
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-  connectToAppleButton: {
-    alignSelf: 'center',
-    backgroundColor: '#000000',
-    width: '100%',
-    maxWidth: 350,
-    height: 49,
-    marginTop: 60,
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  connectToAppleImg: {
-    color: '#FFFFFF',
-    lineHeight: 20,
-    fontSize: 17,
-    fontWeight: 600,
-  },
-  connectToAppleButtonText: {
-    width: 186,
-    height: 21,
-    fontFamily: 'Montserrat',
-    fontStyle: 'normal',
-    fontWeight: 500,
-    fontSize: 17,
-    lineHeight: 21,
-    color: '#FFFFFF',
-    marginLeft: 10,
-    marginTop: 1,
-  },
-  InscriptionFormContainer: {
+  inscriptionFormContainer: {
     alignSelf: 'center',
     marginTop: 50,
     width: '100%',
@@ -238,22 +163,6 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     // height: 416,
-  },
-  titleContainer: {
-    height: 22,
-  },
-  title: {
-    height: 22,
-    fontFamily: 'Montserrat',
-    fontStyle: 'normal',
-    fontWeight: 600,
-    fontSize: 18,
-    lineHeight: 22,
-    color: '#1A2442',
-  },
-  titleImg: {
-    marginLeft: 6,
-    marginTop: 2,
   },
   inscriptionContainer: {
     alignSelf: 'center',
