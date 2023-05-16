@@ -6,6 +6,7 @@
  */
 
 import {
+  Alert,
   Dimensions,
   Image,
   Platform,
@@ -20,8 +21,6 @@ import {
 } from 'react-native';
 import Menu, {NavbarMenu} from './Menu';
 import React, {useRef, useState} from 'react';
-import {indexStyles} from '../assets/css/index';
-import {formStyles} from '../assets/css/form';
 
 import ArrowRigth from '../assets/icons/arrowRigth.svg';
 import Books from '../assets/icons/books.svg';
@@ -35,6 +34,8 @@ import SeletedRadio from '../assets/icons/selectedRadio.svg';
 import UnseletedRadio from '../assets/icons/unselectedRadio.svg';
 import Video from 'react-native-video';
 import WavingHand from '../assets/icons/wavingHand.svg';
+import {formStyles} from '../assets/css/form';
+import {indexStyles} from '../assets/css/index';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import video from '../assets/video/video_test.mp4';
@@ -71,6 +72,31 @@ function Navbar(props) {
 
 function TradrboardContent({children}) {
   const navigation = useNavigation();
+  const user = useSelector(state => state.userReducer.user);
+  if (user) {
+    return (
+      <View style={[styles.tradrboardContent, styles.shadowProp]}>
+        <View
+          style={[
+            styles.connectButton,
+            {
+              width: Dimensions.get('window').width - 240 - 15,
+            },
+          ]}>
+          <Text style={styles.connectButtonText}>Nouveau membre</Text>
+        </View>
+        <View
+          style={[indexStyles.horizontalFlex, {marginLeft: 15, marginTop: 15}]}>
+          <Text style={styles.holaText}>Holà, {`${user.prenom}`}!</Text>
+          <WavingHand width={26} height={26} style={styles.holaImage} />
+        </View>
+
+        <TradrBoardInfo title="Personnel" />
+        <TradrBoardObjective title="Objectifs à compléter" />
+        <TradrBoardVideo title="Episode en libre accès" />
+      </View>
+    );
+  }
   return (
     <View style={[styles.tradrboardContent, styles.shadowProp]}>
       <TouchableOpacity
@@ -78,8 +104,9 @@ function TradrboardContent({children}) {
         style={styles.connectButton}>
         <Text style={styles.connectButtonText}>{children}</Text>
       </TouchableOpacity>
-      <View style={indexStyles.horizontalFlex}>
-        <Hola>Holà !</Hola>
+      <View
+        style={[indexStyles.horizontalFlex, {marginLeft: 15, marginTop: 15}]}>
+        <Text style={styles.holaText}>Holà !</Text>
         <WavingHand width={26} height={26} style={styles.holaImage} />
       </View>
 
@@ -100,6 +127,11 @@ function Hola({children, title}) {
 
 function TradrBoardInfo({title}) {
   const navigation = useNavigation();
+  const user = useSelector(state => state.userReducer.user);
+  const status = user ? user.statut : 'Non-inscrit';
+  const member = user ? user.date_creation : "Aujourd'hui?";
+  const subscription = user ? user.abonnement : 'Aucun';
+  const info = user ? 'Voir mon profil' : 'Se connecter';
   return (
     <View style={styles.tradrboardCardContainer}>
       <View style={[indexStyles.horizontalFlex, styles.cardTitleContainer]}>
@@ -109,20 +141,20 @@ function TradrBoardInfo({title}) {
       <View style={styles.tradrboardCard}>
         <View style={styles.infoItem}>
           <Text style={[styles.textInfo, {marginLeft: 35}]}>Mon niveau</Text>
-          <View style={[styles.infoButton, {width: 112, marginLeft: 35}]}>
-            <Text style={styles.infoButtonText}>Non-inscrit</Text>
+          <View style={[styles.infoButton, {width: 131, marginLeft: 35}]}>
+            <Text style={styles.infoButtonText}>{status}</Text>
           </View>
         </View>
         <View style={styles.infoItem}>
           <Text style={[styles.textInfo, {marginLeft: 8}]}>Membre depuis</Text>
           <View style={[styles.infoButton, {width: 131, marginLeft: 8}]}>
-            <Text style={styles.infoButtonText}>Aujourd'hui?</Text>
+            <Text style={styles.infoButtonText}>{member}</Text>
           </View>
         </View>
         <View style={styles.infoItem}>
           <Text style={[styles.textInfo, {marginLeft: 35}]}>Abonnement</Text>
-          <View style={[styles.infoButton, {width: 73, marginLeft: 35}]}>
-            <Text style={styles.infoButtonText}>Aucun</Text>
+          <View style={[styles.infoButton, {width: 131, marginLeft: 35}]}>
+            <Text style={styles.infoButtonText}>{subscription}</Text>
           </View>
         </View>
         <View style={styles.infoItem}>
@@ -132,9 +164,9 @@ function TradrBoardInfo({title}) {
           <TouchableOpacity
             style={[indexStyles.horizontalFlex, {marginLeft: 8}]}
             onPress={() => {
-              navigation.navigate('Connection');
+              user ? alertInfo() : navigation.navigate('Connection');
             }}>
-            <Text style={styles.connectInfoButtonText}>Se connecter</Text>
+            <Text style={styles.connectInfoButtonText}>{info}</Text>
             <ArrowRigth
               width={13}
               height={16}
@@ -278,6 +310,17 @@ function Tradrboard() {
   );
 }
 
+function alertInfo() {
+  Alert.alert('INFO', 'Fonctionnalité en cours de développement', [
+    {
+      text: 'Cancel',
+      onPress: () => console.log('Cancel Pressed'),
+      style: 'cancel',
+    },
+    {text: 'OK', onPress: () => console.log('OK Pressed')},
+  ]);
+}
+
 const styles = StyleSheet.create({
   navbarText: {
     textAlign: 'center',
@@ -364,7 +407,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   holaText: {
-    width: 96,
+    // width: Dimensions.get('window').width,
     height: 41,
     fontWeight: 600,
     fontFamily: 'Montserrat',
@@ -373,7 +416,8 @@ const styles = StyleSheet.create({
     lineHeight: 41,
   },
   holaImage: {
-    marginTop: 22,
+    marginTop: 8,
+    marginLeft: 15,
   },
   tradrboardCardContainer: {
     width: '100%',
@@ -475,7 +519,7 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
   },
   connectInfoButtonText: {
-    width: Platform.OS === 'android' ? 108 : 114,
+    // width: Platform.OS === 'android' ? 108 : 114,
     fontStyle: 'normal',
     height: 21,
     color: '#9154FD',
@@ -488,6 +532,7 @@ const styles = StyleSheet.create({
   connectInfoButtonImg: {
     color: '#9154FD',
     marginTop: 16,
+    marginLeft: 10,
     // fontWeight: 500,
   },
 

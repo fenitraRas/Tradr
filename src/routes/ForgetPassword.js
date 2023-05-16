@@ -6,6 +6,7 @@
  */
 
 import {
+  Alert,
   Image,
   SafeAreaView,
   ScrollView,
@@ -48,11 +49,23 @@ function Navbar({children}) {
   );
 }
 
+function alertInfo() {
+  Alert.alert('INFO', 'Fonctionnalité en cours de développement', [
+    {
+      text: 'Cancel',
+      onPress: () => console.log('Cancel Pressed'),
+      style: 'cancel',
+    },
+    {text: 'OK', onPress: () => console.log('OK Pressed')},
+  ]);
+}
+
 function ConnectToAppleButton({children}) {
   return (
     <View style={formStyles.connectToAppleButtonContainer}>
       <TouchableOpacity
-        style={[indexStyles.horizontalFlex, formStyles.connectToAppleButton]}>
+        style={[indexStyles.horizontalFlex, formStyles.connectToAppleButton]}
+        onPress={() => alertInfo()}>
         <LogoApple width={16} height={20} style={styles.connectToAppleImg} />
         <Text style={formStyles.connectToAppleButtonText}>{children}</Text>
       </TouchableOpacity>
@@ -82,7 +95,8 @@ function Form({title}) {
         <View style={formStyles.loginButtonContainer}>
           <MyButton
             label="Réinitialiser"
-            onPress={() => navigation.navigate('ForgetPasswordCode')}
+            // onPress={() => navigation.navigate('ForgetPasswordCode')}
+            onPress={() => alertInfo()}
           />
         </View>
       </View>

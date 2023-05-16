@@ -1,20 +1,31 @@
 import {
+  Alert,
   Dimensions,
+  Image,
   Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
+import Accompagnement from '../assets/icons/accompagnement.svg';
+import Live from '../assets/icons/live.svg';
 import OpenDark from '../assets/icons/openDark.svg';
 import OpenLight from '../assets/icons/openLight.svg';
+import Outils from '../assets/icons/outils.svg';
+import Params from '../assets/icons/params.svg';
+import Parrainage from '../assets/icons/parrainage.svg';
 import Profil from '../assets/icons/profil.svg';
+import Quiz from '../assets/icons/quiz.svg';
+import Replay from '../assets/icons/replay.svg';
 import SwitchIconDark from '../assets/switchIconDark.svg';
 import SwitchIconLight from '../assets/switchIconLight.svg';
 import Tradr from '../assets/icons/tradrboard.svg';
+import Tradrbox from '../assets/icons/tradrbox.svg';
+import Vector from '../assets/icons/vector.svg';
 import {useNavigation} from '@react-navigation/native';
 
 export function NavbarMenu(props) {
@@ -77,11 +88,27 @@ export function NavbarMenu(props) {
 }
 
 function Menu() {
+  const [isConnected, setIsConnected] = useState(false);
+  const isAuthenticated = useSelector(
+    state => state.userReducer.isAuthenticated,
+  );
+
+  useEffect(() => {
+    setIsConnected(isAuthenticated);
+  }, [isAuthenticated]);
+
+  if (isConnected) {
+    return <MenuConnected setIsConnected={v => setIsConnected(v)} />;
+  }
+  return <MenuDisconnected />;
+}
+
+function MenuDisconnected() {
   const navigation = useNavigation();
   return (
     <View style={styles.menuContainer}>
       <View style={styles.profil}>
-        <Profil width={74} height={74} position="absolute" />
+        <Profil position="absolute" />
       </View>
       <View style={styles.rectangle283} />
       <View style={styles.menuNav}>
@@ -98,6 +125,139 @@ function Menu() {
           navigation.navigate('Connection');
         }}>
         <Text style={styles.connectButtonText}>Se connecter</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+function alertInfo() {
+  Alert.alert('INFO', 'Fonctionnalité en cours de développement', [
+    {
+      text: 'Cancel',
+      onPress: () => console.log('Cancel Pressed'),
+      style: 'cancel',
+    },
+    {text: 'OK', onPress: () => console.log('OK Pressed')},
+  ]);
+}
+
+function MenuConnected(props) {
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  return (
+    <View style={styles.menuContainer}>
+      <View style={styles.profil}>
+        <Image
+          style={{position: 'absolute'}}
+          source={require('../assets/profil.png')}
+        />
+      </View>
+      <Text style={styles.name}>Kévin Clément</Text>
+      <TouchableOpacity
+        style={styles.buttonProfil}
+        onPress={() => {
+          alertInfo();
+        }}>
+        <Text style={styles.profilText}>Mon profil</Text>
+      </TouchableOpacity>
+
+      <View style={styles.menuNav}>
+        <Tradr />
+        <Text style={styles.tradrText}>Tradrboard</Text>
+        <View style={styles.actived} />
+      </View>
+
+      <View style={styles.services}>
+        <Text style={styles.title}>Services</Text>
+        <TouchableOpacity
+          style={styles.iconText}
+          onPress={() => {
+            alertInfo();
+          }}>
+          <Vector width={18} height={18} />
+          <Text style={styles.subTitle}>Formation</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.iconText}
+          onPress={() => {
+            alertInfo();
+          }}>
+          <Accompagnement width={18} height={18} />
+          <Text style={styles.subTitle}>Accompagnement</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.iconText}
+          onPress={() => {
+            alertInfo();
+          }}>
+          <Quiz width={18} height={18} />
+          <Text style={styles.subTitle}>Quiz</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.premium}>
+        <Text style={styles.title}>Premuim</Text>
+        <TouchableOpacity
+          style={styles.iconText}
+          onPress={() => {
+            alertInfo();
+          }}>
+          <Tradrbox width={18} height={18} />
+          <Text style={styles.subTitle}>Tradrbox</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.iconText}
+          onPress={() => {
+            alertInfo();
+          }}>
+          <Live width={18} height={18} />
+          <Text style={styles.subTitle}>Live</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.iconText}
+          onPress={() => {
+            alertInfo();
+          }}>
+          <Replay width={18} height={18} />
+          <Text style={styles.subTitle}>Replay</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.plus}>
+        <Text style={styles.title}>Plus</Text>
+        <TouchableOpacity
+          style={styles.iconText}
+          onPress={() => {
+            alertInfo();
+          }}>
+          <Outils width={18} height={18} />
+          <Text style={styles.subTitle}>Outils</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.iconText}
+          onPress={() => {
+            alertInfo();
+          }}>
+          <Parrainage width={18} height={18} />
+          <Text style={styles.subTitle}>Parrainer</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.iconText}
+          onPress={() => {
+            alertInfo();
+          }}>
+          <Params width={18} height={18} />
+          <Text style={styles.subTitle}>Paramètres</Text>
+        </TouchableOpacity>
+      </View>
+
+      <TouchableOpacity
+        style={styles.disconnect}
+        onPress={() => {
+          props.setIsConnected(false);
+          dispatch({type: 'LOGOUT'});
+        }}>
+        <Text style={styles.disconnectText}>Se déconnecter</Text>
       </TouchableOpacity>
     </View>
   );
@@ -249,6 +409,103 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     textAlign: 'center',
     color: '#FFFFFF',
+  },
+  name: {
+    position: 'absolute',
+    width: Dimensions.get('window').width - 140 - 113,
+    height: 22,
+    left: 103,
+    top: 25,
+    color: '#1A2442',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    fontSize: 18,
+    lineHeight: 22,
+    textAlign: 'center',
+  },
+  buttonProfil: {
+    position: 'absolute',
+    width: Dimensions.get('window').width - 114 - 195,
+    height: 17,
+    left: 118,
+    top: 57,
+    backgroundColor: '#9154FD',
+    borderRadius: 4,
+    shadowColor: 'rgba(145, 84, 253, 0.8)',
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 1,
+    shadowRadius: 4,
+    elevation: 4,
+    justifyContent: 'center',
+  },
+  profilText: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 14,
+    lineHeight: 17,
+    color: '#FFFFFF',
+    textAlign: 'center',
+  },
+  services: {
+    width: Dimensions.get('window').width - 153.02 - 40,
+    height: 126,
+    top: 178,
+    left: 30,
+    position: 'absolute',
+  },
+  title: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    fontSize: 15,
+    lineHeight: 18,
+    color: '#1A2442',
+  },
+  iconText: {
+    flexDirection: 'row',
+    padding: 0,
+    gap: 17,
+    marginTop: 15,
+    alignItems: 'center',
+  },
+  subTitle: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    fontSize: 17,
+    lineHeight: 21,
+    color: '#9BA5BF',
+  },
+  premium: {
+    width: Dimensions.get('window').width - 153.02 - 40,
+    height: 126,
+    top: 334,
+    left: 30,
+    position: 'absolute',
+  },
+  plus: {
+    width: Dimensions.get('window').width - 153.02 - 40,
+    height: 126,
+    top: 490,
+    left: 30,
+    position: 'absolute',
+  },
+  disconnect: {
+    position: 'absolute',
+    width: Dimensions.get('window').width - 150 - 104,
+    bottom: 30,
+    left: 94,
+  },
+  disconnectText: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 17,
+    lineHeight: 21,
+    color: '#1A2442',
+    textAlign: 'center',
   },
 });
 

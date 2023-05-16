@@ -6,6 +6,7 @@
  */
 
 import {
+  Alert,
   Image,
   SafeAreaView,
   ScrollView,
@@ -26,6 +27,7 @@ import React from 'react';
 import WavingHand from '../assets/icons/wavingHand.svg';
 import {formStyles} from '../assets/css/form';
 import {indexStyles} from '../assets/css/index';
+import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 
 function Navbar({children}) {
@@ -52,7 +54,7 @@ function ConnectToAppleButton({children}) {
   return (
     <View style={formStyles.connectToAppleButtonContainer}>
       <TouchableOpacity
-        style={[indexStyles.horizontalFlex, formStyles.connectToAppleButton]}>
+        style={[indexStyles.horizontalFlex, formStyles.connectToAppleButton]} onPress={() => alertInfo()}>
         <LogoApple width={16} height={20} style={styles.connectToAppleImg} />
         <Text style={formStyles.connectToAppleButtonText}>{children}</Text>
       </TouchableOpacity>
@@ -61,6 +63,7 @@ function ConnectToAppleButton({children}) {
 }
 function ConnectForm({title}) {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   return (
     <View style={formStyles.formContainer}>
       <View style={[indexStyles.horizontalFlex, formStyles.titleContainer]}>
@@ -77,6 +80,8 @@ function ConnectForm({title}) {
             keyboardAppearance="dark"
             returnKeyType="next"
             returnKeyLabel="next"
+            editable={false}
+            value="kevin@tradrdemo.fr"
           />
         </View>
         <View style={formStyles.inputContainer}>
@@ -86,10 +91,18 @@ function ConnectForm({title}) {
             autoCompleteType="password"
             autoCapitalize="none"
             keyboardAppearance="dark"
+            editable={false}
+            value="12345"
           />
         </View>
         <View style={formStyles.loginButtonContainer}>
-          <MyButton label="Se connecter" onPress={() => true} />
+          <MyButton
+            label="Se connecter"
+            onPress={() => {
+              dispatch({type: 'LOGIN'});
+              navigation.navigate('Tradrboard');
+            }}
+          />
         </View>
         <TouchableOpacity
           onPress={() => navigation.navigate('ForgetPassword')}
@@ -137,6 +150,17 @@ function Connection() {
       </ScrollView>
     </SafeAreaView>
   );
+}
+
+function alertInfo() {
+  Alert.alert('INFO', 'Fonctionnalité en cours de développement', [
+    {
+      text: 'Cancel',
+      onPress: () => console.log('Cancel Pressed'),
+      style: 'cancel',
+    },
+    {text: 'OK', onPress: () => console.log('OK Pressed')},
+  ]);
 }
 
 const styles = StyleSheet.create({
