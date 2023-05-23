@@ -21,6 +21,7 @@ import {
   ScrollView,
 } from 'react-native';
 import React, {useRef, useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {useSelector} from 'react-redux';
@@ -65,6 +66,7 @@ function Navbar(props) {
 }
 
 function ProfileContent(props) {
+  const navigation = useNavigation();
   return (
     <View style={[styles.profileContent, styles.shadowProp]}>
       <View style={styles.profil}>
@@ -77,10 +79,8 @@ function ProfileContent(props) {
         Kévin Clément
       </Text>
       <TouchableOpacity
-        style={styles.buttonProfil}
-        onPress={() => {
-          alertInfo();
-        }}>
+        onPress={() => navigation.navigate('EditProfile')}
+        style={styles.buttonProfil}>
         <Text style={styles.profilText}>Modifier mes informations</Text>
       </TouchableOpacity>
       <ProfileInformation title="Mes informations" />

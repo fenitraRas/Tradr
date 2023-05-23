@@ -12,6 +12,7 @@ import Menu from './Menu';
 import NewPassword from './NewPassword';
 import Tradrboard from './Tradrboard';
 import Profile from './Profile';
+import EditProfile from './EditProfile';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -94,6 +95,11 @@ function Router() {
           <Stack.Screen
             name="Profile"
             component={Profile}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="EditProfile"
+            component={EditProfile}
             options={{headerShown: false}}
           />
         </Stack.Navigator>
