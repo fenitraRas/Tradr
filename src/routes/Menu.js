@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 
 import Accompagnement from '../assets/icons/accompagnement.svg';
 import Live from '../assets/icons/live.svg';
@@ -26,7 +27,6 @@ import SwitchIconLight from '../assets/switchIconLight.svg';
 import Tradr from '../assets/icons/tradrboard.svg';
 import Tradrbox from '../assets/icons/tradrbox.svg';
 import Vector from '../assets/icons/vector.svg';
-import {useNavigation} from '@react-navigation/native';
 
 export function NavbarMenu(props) {
   const dispatch = useDispatch();
@@ -87,7 +87,7 @@ export function NavbarMenu(props) {
   );
 }
 
-function Menu() {
+function Menu(props) {
   const [isConnected, setIsConnected] = useState(false);
   const isAuthenticated = useSelector(
     state => state.userReducer.isAuthenticated,
@@ -98,12 +98,17 @@ function Menu() {
   }, [isAuthenticated]);
 
   if (isConnected) {
-    return <MenuConnected setIsConnected={v => setIsConnected(v)} />;
+    return (
+      <MenuConnected
+        setIsConnected={v => setIsConnected(v)}
+        title={props.title}
+      />
+    );
   }
-  return <MenuDisconnected />;
+  return <MenuDisconnected title={props.title} />;
 }
 
-function MenuDisconnected() {
+function MenuDisconnected(props) {
   const navigation = useNavigation();
   return (
     <View style={styles.menuContainer}>
@@ -113,7 +118,7 @@ function MenuDisconnected() {
       <View style={styles.rectangle283} />
       <View style={styles.menuNav}>
         <Tradr />
-        <Text style={styles.tradrText}>Tradrboard</Text>
+        <Text style={styles.tradrText}>{props.title}</Text>
         <View style={styles.actived} />
       </View>
       <Text style={styles.connectText}>
@@ -163,7 +168,7 @@ function MenuConnected(props) {
 
       <View style={styles.menuNav}>
         <Tradr />
-        <Text style={styles.tradrText}>Tradrboard</Text>
+        <Text style={styles.tradrText}>{props.title}</Text>
         <View style={styles.actived} />
       </View>
 

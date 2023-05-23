@@ -11,6 +11,7 @@ import Inscription from './Inscription';
 import Menu from './Menu';
 import NewPassword from './NewPassword';
 import Tradrboard from './Tradrboard';
+import Profile from './Profile';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -35,6 +36,7 @@ function Router() {
     }
     return require('../assets/backgroundLight.png');
   }
+
   useEffect(() => {
     if (!colorScheme) {
       dispatch({type: 'SET_THEME', theme: scheme});
@@ -87,6 +89,11 @@ function Router() {
           <Stack.Screen
             name="NewPassword"
             component={NewPassword}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Profile"
+            component={Profile}
             options={{headerShown: false}}
           />
         </Stack.Navigator>
