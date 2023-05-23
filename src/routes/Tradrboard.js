@@ -21,23 +21,26 @@ import {
 } from 'react-native';
 import Menu, {NavbarMenu} from './Menu';
 import React, {useRef, useState} from 'react';
+import {ProgressBar} from 'react-native-paper';
+import Video from 'react-native-video';
+
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
+
+import {formStyles} from '../assets/css/form';
+import {indexStyles} from '../assets/css/index';
 
 import ArrowRigth from '../assets/icons/arrowRigth.svg';
 import Books from '../assets/icons/books.svg';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
 import HighVoltage from '../assets/icons/highVoltage.svg';
 import Locked from '../assets/icons/locked.svg';
-import {ProgressBar} from 'react-native-paper';
 import SeletedRadio from '../assets/icons/selectedRadio.svg';
 import UnseletedRadio from '../assets/icons/unselectedRadio.svg';
-import Video from 'react-native-video';
 import WavingHand from '../assets/icons/wavingHand.svg';
-import {formStyles} from '../assets/css/form';
-import {indexStyles} from '../assets/css/index';
-import {useNavigation} from '@react-navigation/native';
-import {useSelector} from 'react-redux';
+
 import video from '../assets/video/video_test.mp4';
 
 function Navbar(props) {
@@ -117,14 +120,6 @@ function TradrboardContent({children}) {
   );
 }
 
-function Hola({children, title}) {
-  return (
-    <View style={styles.holaContent}>
-      <Text style={styles.holaText}>{children}</Text>
-    </View>
-  );
-}
-
 function TradrBoardInfo({title}) {
   const navigation = useNavigation();
   const user = useSelector(state => state.userReducer.user);
@@ -164,7 +159,7 @@ function TradrBoardInfo({title}) {
           <TouchableOpacity
             style={[indexStyles.horizontalFlex, {marginLeft: 8}]}
             onPress={() => {
-              user ? alertInfo() : navigation.navigate('Connection');
+              user ? navigation.navigate('Profile') : navigation.navigate('Connection');
             }}>
             <Text style={styles.connectInfoButtonText}>{info}</Text>
             <ArrowRigth
@@ -303,7 +298,7 @@ function Tradrboard() {
         scrollEnabled={false}
         onContentSizeChange={handleContentSizeChange}
         contentOffset={{x: 0, y: 0}}>
-        <Menu />
+        <Menu title="Tradrboard" />
         <TradrboardContainer />
       </ScrollView>
     </SafeAreaView>

@@ -16,17 +16,20 @@ import {
   View,
   useColorScheme,
 } from 'react-native';
+import React from 'react';
 
-import BackIcon from '../assets/icons/backIcon.svg';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import LogoApple from '../assets/icons/logoApple.svg';
+import {useNavigation} from '@react-navigation/native';
+
 import MyButton from '../Components/Button';
 import MyTextInput from '../Components/TextInput';
-import React from 'react';
-import ShushingFace from '../assets/icons/shushingFace.svg';
+
 import {formStyles} from '../assets/css/form';
 import {indexStyles} from '../assets/css/index';
-import {useNavigation} from '@react-navigation/native';
+
+import BackIcon from '../assets/icons/backIcon.svg';
+import LogoApple from '../assets/icons/logoApple.svg';
+import ShushingFace from '../assets/icons/shushingFace.svg';
 
 function Navbar({children}) {
   const navigation = useNavigation();
