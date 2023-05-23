@@ -246,7 +246,7 @@ function ProfileDocumentContent() {
           </TouchableOpacity>
         </View>
 
-        <View style={[styles.arrangeHorizontally]}>
+        <View style={[styles.arrangeHorizontally, {maxHeight: 130}]}>
           {values.map(value => (
             <View key={value} style={[styles.pdfContainer]}>
               <Text style={styles.pdfText}>{value}</Text>
