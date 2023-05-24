@@ -17,21 +17,18 @@ import {
   View,
   useColorScheme,
 } from 'react-native';
-import React from 'react';
-
-import MyButton from '../Components/Button';
-import MyTextInput from '../Components/TextInput';
-
-import {formStyles} from '../assets/css/form';
-import {indexStyles} from '../assets/css/index';
-
-import {useDispatch} from 'react-redux';
-import {useNavigation} from '@react-navigation/native';
 
 import BackIcon from '../assets/icons/backIcon.svg';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import LogoApple from '../assets/icons/logoApple.svg';
+import MyButton from '../Components/Button';
+import MyTextInput from '../Components/TextInput';
+import React from 'react';
 import WavingHand from '../assets/icons/wavingHand.svg';
+import {formStyles} from '../assets/css/form';
+import {indexStyles} from '../assets/css/index';
+import {useDispatch} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 
 function Navbar({children}) {
   const navigation = useNavigation();
@@ -103,7 +100,7 @@ function ConnectForm({title}) {
             label="Se connecter"
             onPress={() => {
               dispatch({type: 'LOGIN'});
-              navigation.navigate('Tradrboard');
+              navigation.push('Tradrboard');
             }}
           />
         </View>
