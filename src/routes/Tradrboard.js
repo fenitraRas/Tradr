@@ -244,7 +244,7 @@ function TradrBoardVideo({title}) {
   );
 }
 
-function TradrboardContainer(props) {
+export function TradrboardContainer(props) {
   return (
     <ScrollView>
       <TradrboardContent>Se connecter</TradrboardContent>
@@ -305,17 +305,6 @@ function Tradrboard() {
       </ScrollView>
     </SafeAreaView>
   );
-}
-
-function alertInfo() {
-  Alert.alert('INFO', 'Fonctionnalité en cours de développement', [
-    {
-      text: 'Cancel',
-      onPress: () => console.log('Cancel Pressed'),
-      style: 'cancel',
-    },
-    {text: 'OK', onPress: () => console.log('OK Pressed')},
-  ]);
 }
 
 const styles = StyleSheet.create({

@@ -137,17 +137,6 @@ function MenuDisconnected(props) {
   );
 }
 
-function alertInfo() {
-  Alert.alert('INFO', 'Fonctionnalité en cours de développement', [
-    {
-      text: 'Cancel',
-      onPress: () => console.log('Cancel Pressed'),
-      style: 'cancel',
-    },
-    {text: 'OK', onPress: () => console.log('OK Pressed')},
-  ]);
-}
-
 function MenuConnected(props) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -165,7 +154,7 @@ function MenuConnected(props) {
         onPress={() => {
           props.currentScreen === 'Profile'
             ? props.handleScrollToLeft()
-            : navigation.push('Profile');
+            : navigation.replace('Profile');
         }}>
         <Text style={styles.profilText}>Mon profil</Text>
       </TouchableOpacity>
@@ -175,7 +164,7 @@ function MenuConnected(props) {
         onPress={() => {
           props.currentScreen === 'Tradrboard'
             ? props.handleScrollToLeft()
-            : navigation.push('Tradrboard');
+            : navigation.replace('Tradrboard');
         }}>
         <Tradr />
         <Text style={styles.tradrText}>Tradrboard</Text>
@@ -235,6 +224,7 @@ function MenuConnected(props) {
         onPress={() => {
           props.setIsConnected(false);
           dispatch({type: 'LOGOUT'});
+          navigation.replace('Tradrboard');
         }}>
         <Text style={styles.disconnectText}>Se déconnecter</Text>
       </TouchableOpacity>

@@ -22,6 +22,7 @@ import {
 } from 'react-native';
 import Menu, {NavbarMenu} from './Menu';
 import React, {useRef, useState} from 'react';
+import Tradrboard, { TradrboardContainer } from './Tradrboard';
 
 import ButtonAdd from '../assets/icons/buttonAdd.svg';
 import CardIndexDividers from '../assets/icons/cardIndexDividers.svg';
@@ -328,6 +329,7 @@ function Profile() {
       animated: false,
     });
   };
+
   return (
     <SafeAreaView>
       <StatusBar
@@ -356,17 +358,6 @@ function Profile() {
       </ScrollView>
     </SafeAreaView>
   );
-}
-
-function alertInfo() {
-  Alert.alert('INFO', 'Fonctionnalité en cours de développement', [
-    {
-      text: 'Cancel',
-      onPress: () => console.log('Cancel Pressed'),
-      style: 'cancel',
-    },
-    {text: 'OK', onPress: () => console.log('OK Pressed')},
-  ]);
 }
 
 const styles = StyleSheet.create({
