@@ -1,5 +1,4 @@
 import {
-  Alert,
   Dimensions,
   Image,
   Platform,
@@ -24,7 +23,6 @@ import Replay from '../assets/icons/replay.svg';
 import SwitchIconDark from '../assets/switchIconDark.svg';
 import SwitchIconLight from '../assets/switchIconLight.svg';
 import Tradr from '../assets/icons/tradrboard.svg';
-import Tradrboard from './Tradrboard';
 import Tradrbox from '../assets/icons/tradrbox.svg';
 import Vector from '../assets/icons/vector.svg';
 import {useNavigation} from '@react-navigation/native';

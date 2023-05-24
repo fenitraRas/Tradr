@@ -6,9 +6,7 @@
  */
 
 import {
-  Alert,
   Dimensions,
-  FlatList,
   Image,
   Platform,
   SafeAreaView,
@@ -22,7 +20,6 @@ import {
 } from 'react-native';
 import Menu, {NavbarMenu} from './Menu';
 import React, {useRef, useState} from 'react';
-import Tradrboard, { TradrboardContainer } from './Tradrboard';
 
 import ButtonAdd from '../assets/icons/buttonAdd.svg';
 import CardIndexDividers from '../assets/icons/cardIndexDividers.svg';

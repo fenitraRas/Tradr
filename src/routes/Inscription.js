@@ -6,7 +6,6 @@
  */
 
 import {
-  Alert,
   Image,
   SafeAreaView,
   ScrollView,
@@ -17,20 +16,17 @@ import {
   View,
   useColorScheme,
 } from 'react-native';
-import React from 'react';
-
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {useNavigation} from '@react-navigation/native';
-
-import MyButton from '../Components/Button';
-import MyTextInput from '../Components/TextInput';
-
-import {formStyles} from '../assets/css/form';
-import {indexStyles} from '../assets/css/index';
 
 import BackIcon from '../assets/icons/backIcon.svg';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import FoldedHands from '../assets/icons/foldedHands.svg';
 import LogoApple from '../assets/icons/logoApple.svg';
+import MyButton from '../Components/Button';
+import MyTextInput from '../Components/TextInput';
+import React from 'react';
+import {formStyles} from '../assets/css/form';
+import {indexStyles} from '../assets/css/index';
+import {useNavigation} from '@react-navigation/native';
 
 function Navbar({children}) {
   const navigation = useNavigation();
@@ -52,23 +48,12 @@ function Navbar({children}) {
   );
 }
 
-function alertInfo() {
-  Alert.alert('INFO', 'Fonctionnalité en cours de développement', [
-    {
-      text: 'Cancel',
-      onPress: () => console.log('Cancel Pressed'),
-      style: 'cancel',
-    },
-    {text: 'OK', onPress: () => console.log('OK Pressed')},
-  ]);
-}
-
 function ConnectToAppleButton({children}) {
   return (
     <View style={formStyles.connectToAppleButtonContainer}>
       <TouchableOpacity
         style={[indexStyles.horizontalFlex, formStyles.connectToAppleButton]}
-        onPress={() => alertInfo()}>
+        onPress={() => {}}>
         <LogoApple width={16} height={20} style={styles.connectToAppleImg} />
         <Text style={formStyles.connectToAppleButtonText}>{children}</Text>
       </TouchableOpacity>
@@ -132,7 +117,7 @@ function InscriptionForm({title}) {
           />
         </View>
         <View style={formStyles.loginButtonContainer}>
-          <MyButton label="S'inscrire" onPress={() => alertInfo()} />
+          <MyButton label="S'inscrire" onPress={() => {}} />
         </View>
       </View>
     </View>

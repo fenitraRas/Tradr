@@ -6,7 +6,6 @@
  */
 
 import {
-  Alert,
   Image,
   SafeAreaView,
   ScrollView,
@@ -54,7 +53,8 @@ function ConnectToAppleButton({children}) {
   return (
     <View style={formStyles.connectToAppleButtonContainer}>
       <TouchableOpacity
-        style={[indexStyles.horizontalFlex, formStyles.connectToAppleButton]} onPress={() => alertInfo()}>
+        style={[indexStyles.horizontalFlex, formStyles.connectToAppleButton]}
+        onPress={() => {}}>
         <LogoApple width={16} height={20} style={styles.connectToAppleImg} />
         <Text style={formStyles.connectToAppleButtonText}>{children}</Text>
       </TouchableOpacity>
@@ -150,17 +150,6 @@ function Connection() {
       </ScrollView>
     </SafeAreaView>
   );
-}
-
-function alertInfo() {
-  Alert.alert('INFO', 'Fonctionnalité en cours de développement', [
-    {
-      text: 'Cancel',
-      onPress: () => console.log('Cancel Pressed'),
-      style: 'cancel',
-    },
-    {text: 'OK', onPress: () => console.log('OK Pressed')},
-  ]);
 }
 
 const styles = StyleSheet.create({

@@ -6,9 +6,7 @@
  */
 
 import {
-  Alert,
   Dimensions,
-  Image,
   Platform,
   SafeAreaView,
   ScrollView,
