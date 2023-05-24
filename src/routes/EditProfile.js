@@ -242,10 +242,12 @@ const styles = StyleSheet.create({
   informationTitleContainer: {
     height: 24,
     marginLeft: 5,
+    alignSelf: 'center',
+    maxWidth: 370,
   },
   informationCardTitle: {
     height: 24,
-    width: 304,
+    width: 370,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontSize: 20,
@@ -256,9 +258,10 @@ const styles = StyleSheet.create({
   informationCard: {
     width: '100%',
     marginTop: 10,
-    alignItems: 'flex-start',
     borderRadius: 20,
     backgroundColor: '#E9EDFC',
+    alignSelf: 'center',
+    maxWidth: 370,
     shadowColor: 'rgba(9, 13, 109, 0.4)',
     shadowOffset: {
       width: 0,
@@ -324,6 +327,8 @@ const styles = StyleSheet.create({
   saveButtonContainer: {
     width: '100%',
     marginTop: 30,
+    alignSelf: 'center',
+    maxWidth: 370,
   },
 });
 
