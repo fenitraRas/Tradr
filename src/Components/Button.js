@@ -1,9 +1,13 @@
-import React from 'react';
-import {TouchableOpacity, Text, StyleSheet, Platform} from 'react-native';
+import {Platform, StyleSheet, Text, TouchableOpacity} from 'react-native';
 
-export default function Button({label, onPress}) {
+import React from 'react';
+
+export default function Button({label, onPress, disabled}) {
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
+    <TouchableOpacity
+      style={styles.button}
+      onPress={onPress}
+      disabled={disabled}>
       <Text style={styles.buttonText}>{label}</Text>
     </TouchableOpacity>
   );

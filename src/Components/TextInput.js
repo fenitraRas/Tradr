@@ -7,9 +7,14 @@ import {
 
 import React from 'react';
 
-export default function TextInput({...otherProps}) {
+export default function TextInput({error, ...otherProps}) {
   return (
-    <View style={styles.inputContainer}>
+    <View
+      style={
+        error
+          ? [styles.inputContainer, {borderColor: 'red', borderWidth: 2}]
+          : styles.inputContainer
+      }>
       <RNTextInput
         style={styles.inputStyle}
         // underlineColorAndroid='transparent'
