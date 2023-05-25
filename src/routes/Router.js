@@ -13,6 +13,8 @@ import NewPassword from './NewPassword';
 import Tradrboard from './Tradrboard';
 import Profile from './Profile';
 import EditProfile from './EditProfile';
+import Formation from './Formation';
+import FormationPlayer from './FormationPlayer';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -100,6 +102,16 @@ function Router() {
           <Stack.Screen
             name="EditProfile"
             component={EditProfile}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Formation"
+            component={Formation}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="FormationPlayer"
+            component={FormationPlayer}
             options={{headerShown: false}}
           />
         </Stack.Navigator>

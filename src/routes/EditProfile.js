@@ -165,7 +165,7 @@ function EditProfileForm() {
 
 function EditProfileContent(props) {
   return (
-    <View style={[styles.profileContent, styles.shadowProp]}>
+    <View style={[styles.editProfileConten, styles.shadowProp]}>
       <EditProfileTitle title="Modifier des informations" />
       <EditProfileForm />
       <View style={styles.saveButtonContainer}>
@@ -202,9 +202,6 @@ function EditProfile() {
 }
 
 const styles = StyleSheet.create({
-  editProfileConten: {
-    backgroundColor: 'red',
-  },
   navbarText: {
     textAlign: 'center',
     fontWeight: 500,
@@ -213,7 +210,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
     color: '#1A2442',
   },
-  profileContent: {
+  editProfileConten: {
     width: Dimensions.get('window').width,
     paddingLeft: 10,
     paddingRight: 10,
