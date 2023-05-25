@@ -1,5 +1,4 @@
 import {
-  Alert,
   Dimensions,
   Image,
   Platform,
@@ -10,7 +9,6 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {useNavigation} from '@react-navigation/native';
 
 import Accompagnement from '../assets/icons/accompagnement.svg';
 import Live from '../assets/icons/live.svg';
@@ -27,6 +25,7 @@ import SwitchIconLight from '../assets/switchIconLight.svg';
 import Tradr from '../assets/icons/tradrboard.svg';
 import Tradrbox from '../assets/icons/tradrbox.svg';
 import Vector from '../assets/icons/vector.svg';
+import {useNavigation} from '@react-navigation/native';
 
 export function NavbarMenu(props) {
   const dispatch = useDispatch();
@@ -101,7 +100,8 @@ function Menu(props) {
     return (
       <MenuConnected
         setIsConnected={v => setIsConnected(v)}
-        title={props.title}
+        currentScreen={props.currentScreen}
+        handleScrollToLeft={() => props.handleScrollToLeft()}
       />
     );
   }
@@ -135,17 +135,6 @@ function MenuDisconnected(props) {
   );
 }
 
-function alertInfo() {
-  Alert.alert('INFO', 'Fonctionnalité en cours de développement', [
-    {
-      text: 'Cancel',
-      onPress: () => console.log('Cancel Pressed'),
-      style: 'cancel',
-    },
-    {text: 'OK', onPress: () => console.log('OK Pressed')},
-  ]);
-}
-
 function MenuConnected(props) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -161,99 +150,71 @@ function MenuConnected(props) {
       <TouchableOpacity
         style={styles.buttonProfil}
         onPress={() => {
-          alertInfo();
+          props.currentScreen === 'Profile'
+            ? props.handleScrollToLeft()
+            : navigation.replace('Profile');
         }}>
         <Text style={styles.profilText}>Mon profil</Text>
       </TouchableOpacity>
 
-      <View style={styles.menuNav}>
+      <TouchableOpacity
+        style={styles.menuNav}
+        onPress={() => {
+          props.currentScreen === 'Tradrboard'
+            ? props.handleScrollToLeft()
+            : navigation.replace('Tradrboard');
+        }}>
         <Tradr />
-        <Text style={styles.tradrText}>{props.title}</Text>
+        <Text style={styles.tradrText}>Tradrboard</Text>
         <View style={styles.actived} />
-      </View>
+      </TouchableOpacity>
 
       <View style={styles.services}>
         <Text style={styles.title}>Services</Text>
-        <TouchableOpacity
-          style={styles.iconText}
-          onPress={() => {
-            alertInfo();
-          }}>
+        <View style={styles.iconText} onPress={() => {}}>
           <Vector width={18} height={18} />
           <Text style={styles.subTitle}>Formation</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.iconText}
-          onPress={() => {
-            alertInfo();
-          }}>
+        </View>
+        <View style={styles.iconText} onPress={() => {}}>
           <Accompagnement width={18} height={18} />
           <Text style={styles.subTitle}>Accompagnement</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.iconText}
-          onPress={() => {
-            alertInfo();
-          }}>
+        </View>
+        <View style={styles.iconText} onPress={() => {}}>
           <Quiz width={18} height={18} />
           <Text style={styles.subTitle}>Quiz</Text>
-        </TouchableOpacity>
+        </View>
       </View>
 
       <View style={styles.premium}>
         <Text style={styles.title}>Premuim</Text>
-        <TouchableOpacity
-          style={styles.iconText}
-          onPress={() => {
-            alertInfo();
-          }}>
+        <View style={styles.iconText} onPress={() => {}}>
           <Tradrbox width={18} height={18} />
           <Text style={styles.subTitle}>Tradrbox</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.iconText}
-          onPress={() => {
-            alertInfo();
-          }}>
+        </View>
+        <View style={styles.iconText} onPress={() => {}}>
           <Live width={18} height={18} />
           <Text style={styles.subTitle}>Live</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.iconText}
-          onPress={() => {
-            alertInfo();
-          }}>
+        </View>
+        <View style={styles.iconText} onPress={() => {}}>
           <Replay width={18} height={18} />
           <Text style={styles.subTitle}>Replay</Text>
-        </TouchableOpacity>
+        </View>
       </View>
 
       <View style={styles.plus}>
         <Text style={styles.title}>Plus</Text>
-        <TouchableOpacity
-          style={styles.iconText}
-          onPress={() => {
-            alertInfo();
-          }}>
+        <View style={styles.iconText} onPress={() => {}}>
           <Outils width={18} height={18} />
           <Text style={styles.subTitle}>Outils</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.iconText}
-          onPress={() => {
-            alertInfo();
-          }}>
+        </View>
+        <View style={styles.iconText} onPress={() => {}}>
           <Parrainage width={18} height={18} />
           <Text style={styles.subTitle}>Parrainer</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.iconText}
-          onPress={() => {
-            alertInfo();
-          }}>
+        </View>
+        <View style={styles.iconText} onPress={() => {}}>
           <Params width={18} height={18} />
           <Text style={styles.subTitle}>Paramètres</Text>
-        </TouchableOpacity>
+        </View>
       </View>
 
       <TouchableOpacity
@@ -261,6 +222,7 @@ function MenuConnected(props) {
         onPress={() => {
           props.setIsConnected(false);
           dispatch({type: 'LOGOUT'});
+          navigation.replace('Tradrboard');
         }}>
         <Text style={styles.disconnectText}>Se déconnecter</Text>
       </TouchableOpacity>
