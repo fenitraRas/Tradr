@@ -31,15 +31,13 @@ import {useSelector} from 'react-redux';
 import {formStyles} from '../assets/css/form';
 import {indexStyles} from '../assets/css/index';
 
-import ArrowRigth from '../assets/icons/arrowRigth.svg';
 import ChevronLeft from '../assets/icons/chevronLeft.svg';
-import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import BlackDotThreeVertical from '../assets/icons/blackDotThreeVertical.svg';
-import HighVoltage from '../assets/icons/highVoltage.svg';
-import Locked from '../assets/icons/locked.svg';
-import SeletedRadio from '../assets/icons/selectedRadio.svg';
-import UnseletedRadio from '../assets/icons/unselectedRadio.svg';
-import WavingHand from '../assets/icons/wavingHand.svg';
+import ArrowDownIcon from '../assets/icons/arrowDownIcon.svg';
+import ArrowUpIcon from '../assets/icons/arrowUpIcon.svg';
+import FileFolder from '../assets/icons/fileFolder.svg';
+import Download from '../assets/icons/download.svg';
+import PdfIcon from '../assets/icons/pdfIcon.svg';
 
 import video from '../assets/video/video_test.mp4';
 
@@ -73,10 +71,37 @@ function Navbar(props) {
 }
 
 function FormationPlayerContent() {
-  const [isPlaying, setIsPlaying] = React.useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const files = [
+    {
+      id: '1',
+      title: 'Bien commencer le trading',
+    },
+    {
+      id: '2',
+      title: 'Prendre le contrôle de son capital  ',
+    },
+    {
+      id: '3',
+      title: 'Le savoir',
+    },
+    {
+      id: '4',
+      title: 'Le savoir',
+    },
+    {
+      id: '5',
+      title: 'Michelle Dare',
+    },
+  ];
   return (
     <View style={[styles.formationPlayerContent, styles.shadowProp]}>
-      <View style={styles.cardContainer}>
+      <View
+        style={[
+          styles.cardContainer,
+          expanded ? styles.expandedH : styles.inexpandedH,
+        ]}>
         <View style={styles.videoContainer}>
           <Video
             source={video}
@@ -97,7 +122,68 @@ function FormationPlayerContent() {
             Prendre le contrôle de son capital
           </Text>
         </View>
+        <AccordionItem
+          title="Fichiers"
+          expanded={expanded}
+          setExpanded={v => setExpanded(v)}>
+          {expanded ? (
+            <ScrollView style={styles.accordBody}>
+              {files.map(file => {
+                return (
+                  <View key={file.id} style={styles.fileListContainer}>
+                    <TouchableOpacity>
+                      <Download
+                        width={15}
+                        height={14}
+                        style={{marginTop: 8, marginLeft: 10}}
+                      />
+                    </TouchableOpacity>
+                    <PdfIcon
+                      width={23}
+                      height={30}
+                      style={{marginLeft: 10, marginRight: 7}}
+                    />
+                    <View>
+                      <Text style={styles.itemId}>Épisode {file.id}</Text>
+                      <Text style={styles.itemTitle}>{file.title}</Text>
+                    </View>
+                  </View>
+                );
+              })}
+            </ScrollView>
+          ) : null}
+        </AccordionItem>
+        {/* </View> */}
       </View>
+    </View>
+  );
+}
+
+function AccordionItem({children, title, expanded, setExpanded}) {
+  function toggleItem() {
+    setExpanded(!expanded);
+  }
+
+  const body = <View>{children}</View>;
+
+  const icon = expanded ? (
+    <ArrowUpIcon width={21.21} height={6.38} style={styles.arrow} />
+  ) : (
+    <ArrowDownIcon width={21.21} height={6.38} style={styles.arrow} />
+  );
+
+  return (
+    <View style={styles.accordContainer}>
+      <TouchableOpacity
+        style={expanded ? styles.expendAccordHeader : styles.accordHeader}
+        onPress={toggleItem}>
+        <View style={indexStyles.horizontalFlex}>
+          <Text style={styles.accordTitle}>{title}</Text>
+          <FileFolder width={15} height={15} style={{marginLeft: 6}} />
+        </View>
+        {icon}
+      </TouchableOpacity>
+      {expanded && body}
     </View>
   );
 }
@@ -156,9 +242,14 @@ const styles = StyleSheet.create({
     shadowRadius: 20,
     elevation: 2,
   },
+  expandedH: {
+    height: 479,
+  },
+  inexpandedH: {
+    height: 328,
+  },
   cardContainer: {
     width: '100%',
-    height: 328,
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -209,6 +300,90 @@ const styles = StyleSheet.create({
     color: '#1A2442',
     height: 24,
     marginTop: 3,
+  },
+  accordContainer: {
+    marginTop: 5,
+    width: '100%',
+    padding: 10,
+  },
+  accordHeader: {
+    backgroundColor: '#FFFFFF',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    height: 38,
+    paddingLeft: 12,
+    paddingTop: 11,
+    paddingBottom: 3,
+    borderRadius: 10,
+    shadowColor: '#090d6d',
+    shadowOffset: {width: 0, height: 15},
+    shadowOpacity: 0.4,
+    shadowRadius: 15,
+    elevation: 5,
+  },
+  expendAccordHeader: {
+    backgroundColor: '#FFFFFF',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    height: 29,
+    paddingLeft: 12,
+    paddingTop: 11,
+    paddingBottom: 3,
+    shadowColor: '#090d6d',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.1,
+    elevation: 3,
+    shadowRadius: 15,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 0,
+  },
+  arrow: {
+    marginTop: 5,
+    marginRight: 14,
+  },
+  accordTitle: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 12,
+    lineHeight: 15,
+    color: '#1A2442',
+  },
+  accordBody: {
+    backgroundColor: '#F7F7F7',
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
+    height: 161,
+    paddingTop: 12,
+  },
+  fileListContainer: {
+    marginLeft: 10,
+    marginBottom: 15,
+    marginRight: 14,
+    height: 31,
+    flexDirection: 'row',
+  },
+  itemId: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    fontSize: 10,
+    lineHeight: 12,
+    color: '#706F94',
+  },
+  itemTitle: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    fontSize: 15,
+    lineHeight: 18,
+    color: '#1A2442',
   },
 });
 
