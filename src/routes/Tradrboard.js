@@ -519,7 +519,6 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     // fontWeight: 500,
   },
-
   progressContainer: {
     width: '100%',
     height: 27,
