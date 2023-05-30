@@ -6,9 +6,7 @@
  */
 
 import {
-  Alert,
   Dimensions,
-  Image,
   Platform,
   SafeAreaView,
   ScrollView,
@@ -19,7 +17,6 @@ import {
   View,
   useColorScheme,
 } from 'react-native';
-import Menu, {NavbarMenu} from './Menu';
 import React, {useRef, useState} from 'react';
 import {ProgressBar} from 'react-native-paper';
 import Video from 'react-native-video';
@@ -38,6 +35,7 @@ import ArrowUpIcon from '../assets/icons/arrowUpIcon.svg';
 import FileFolder from '../assets/icons/fileFolder.svg';
 import Download from '../assets/icons/download.svg';
 import PdfIcon from '../assets/icons/pdfIcon.svg';
+import PlayVideo from '../assets/icons/playVideo.svg';
 
 import video from '../assets/video/video_test.mp4';
 
@@ -75,24 +73,29 @@ function FormationPlayerContent() {
   const [expanded, setExpanded] = useState(false);
   const files = [
     {
-      id: '1',
+      id: 1,
       title: 'Bien commencer le trading',
+      duration: '26mn',
     },
     {
-      id: '2',
+      id: 2,
       title: 'Prendre le contrôle de son capital  ',
+      duration: '24mn',
     },
     {
-      id: '3',
+      id: 3,
       title: 'Le savoir',
+      duration: '32mn',
     },
     {
-      id: '4',
-      title: 'Le savoir',
+      id: 4,
+      title: 'Nouveau titre',
+      duration: '22mn',
     },
     {
-      id: '5',
+      id: 5,
       title: 'Michelle Dare',
+      duration: '31mn',
     },
   ];
   return (
@@ -153,9 +156,71 @@ function FormationPlayerContent() {
             </ScrollView>
           ) : null}
         </AccordionItem>
-        {/* </View> */}
+      </View>
+
+      <View style={[styles.videoCardContainer]}>
+        <VideoCardHeader />
+        <VideoCardList files={files} />
       </View>
     </View>
+  );
+}
+
+function VideoCardHeader() {
+  return (
+    <View style={styles.videoCardHeaderContainer}>
+      <TouchableOpacity>
+        <Text style={styles.selectedVideoCardHeaderText}>Saison 1</Text>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Text style={styles.videoCardHeaderText}>Saison 2</Text>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Text style={styles.videoCardHeaderText}>Saison 3</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+function VideoCardList({files}) {
+  const [selectedVideo, setSelectedVideo] = useState(2);
+  return (
+    <ScrollView style={styles.videoCardListContainer}>
+      {files.map(file => {
+        return (
+          <TouchableOpacity
+            key={file.id}
+            style={
+              selectedVideo === file.id
+                ? styles.selectedVideoListContainer
+                : styles.videoListContainer
+            }
+            onPress={() => setSelectedVideo(p => file.id)}>
+            {selectedVideo === file.id ? (
+              <PlayVideo width={32} height={32} />
+            ) : null}
+            <View style={styles.videoListContent}>
+              <View>
+                <View style={styles.topVideoList}>
+                  <Text style={styles.fileId}>Épisode {file.id}</Text>
+                  <View style={styles.progressContent}>
+                    <ProgressBar
+                      style={styles.progress}
+                      progress={0.33}
+                      color="#9154FD"
+                    />
+                  </View>
+                  <Text style={styles.videoDuration}>{file.duration}</Text>
+                </View>
+                <View>
+                  <Text style={styles.fileTitle}>{file.title}</Text>
+                </View>
+              </View>
+            </View>
+          </TouchableOpacity>
+        );
+      })}
+    </ScrollView>
   );
 }
 
@@ -252,6 +317,25 @@ const styles = StyleSheet.create({
     width: '100%',
     flex: 1,
     flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    borderRadius: 20,
+    backgroundColor: '#E9EDFC',
+    shadowColor: 'rgba(9, 13, 109, 0.4)',
+    shadowOffset: {
+      width: 0,
+      height: 30,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 40,
+    elevation: Platform.OS === 'android' ? -35 : undefined,
+  },
+  videoCardContainer: {
+    height: 686,
+    marginTop: 30,
+    width: '100%',
+    flex: 1,
+    flexDirection: 'column',
     flexWrap: 'wrap',
     alignItems: 'flex-start',
     borderRadius: 20,
@@ -368,6 +452,133 @@ const styles = StyleSheet.create({
     marginRight: 14,
     height: 31,
     flexDirection: 'row',
+  },
+  videoCardHeaderContainer: {
+    flexDirection: 'row',
+    paddingLeft: 20,
+    paddingTop: 15,
+    paddingBottom: 13,
+  },
+  selectedVideoCardHeaderText: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 14,
+    lineHeight: 17,
+    color: '#9154FD',
+    marginRight: 25,
+  },
+  videoCardHeaderText: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    fontSize: 14,
+    lineHeight: 17,
+    color: '#9BA5BF',
+    marginRight: 22,
+  },
+
+  videoCardListContainer: {
+    paddingLeft: 4,
+    paddingRight: 4,
+    width: '100%',
+    paddingTop: 2,
+  },
+  videoListContainer: {
+    width: '100%',
+    paddingLeft: 39,
+    paddingTop: 15,
+    paddingRight: 17,
+    height: 54,
+    flexDirection: 'row',
+  },
+  selectedVideoListContainer: {
+    width: '100%',
+    paddingLeft: 7,
+    paddingTop: 15,
+    paddingRight: 17,
+    height: 54,
+    borderRadius: 6,
+    backgroundColor: '#E9EDFC',
+    elevation: 4,
+    shadowColor: 'rgba(9, 13, 109, 0.4)',
+    shadowOffset: {
+      width: 0,
+      height: 15,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 20,
+    flexDirection: 'row',
+  },
+  videoListContent: {
+    marginBottom: 15,
+    width: '100%',
+    maxWidth: 294,
+    height: 34,
+  },
+  topVideoList: {
+    flexDirection: 'row',
+    height: 17,
+  },
+  progressContent: {
+    flex: 2,
+    marginLeft: 80,
+    marginTop: 6,
+  },
+  progress: {
+    backgroundColor: '#FFFFFF',
+    height: 2,
+    width: 88,
+    borderRadius: 6.5,
+    marginTop: 4,
+    shadowColor: 'rgba(145, 84, 253, 0.8)',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 4,
+    elevation: 1,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(145, 84, 253, 0.6)',
+        shadowOffset: {
+          width: 0,
+          height: 0,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 14,
+      },
+      android: {
+        elevation: 3,
+      },
+    }),
+  },
+  fileId: {
+    marginTop: 2,
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 14,
+    lineHeight: 17,
+    color: '#1A2442',
+  },
+  videoDuration: {
+    marginTop: 4,
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    fontSize: 10,
+    lineHeight: 12,
+    color: '#706F94',
+  },
+  fileTitle: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    fontSize: 12,
+    lineHeight: 15,
+    color: '#9BA5BF',
   },
   itemId: {
     fontFamily: 'Montserrat',
