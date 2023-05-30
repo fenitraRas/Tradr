@@ -6,31 +6,29 @@
  */
 
 import {
+  Dimensions,
+  Platform,
   SafeAreaView,
+  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
   useColorScheme,
-  ScrollView,
-  Dimensions,
-  Platform,
 } from 'react-native';
+import Menu, {NavbarMenu} from './Menu';
 import React, {useRef, useState} from 'react';
 
+import ChevronLeft from '../assets/icons/chevronLeft.svg';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {useSelector} from 'react-redux';
-import {useNavigation} from '@react-navigation/native';
-
-import MyTextInput from '../Components/TextInput';
-import PurpleButton from '../Components/PurpleButton';
-
-import {formStyles} from '../assets/css/form';
-
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
-import ChevronLeft from '../assets/icons/chevronLeft.svg';
+import MyTextInput from '../Components/TextInput';
+import PurpleButton from '../Components/PurpleButton';
+import {formStyles} from '../assets/css/form';
+import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
@@ -53,7 +51,9 @@ function Navbar(props) {
         </Text>
       </View>
       <View style={formStyles.navbarIcon}>
-        <TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => props.handleScrollToRight()}>
           {option === 'light' ? (
             <DotThreeVertical width={30} height={20} />
           ) : (
@@ -165,7 +165,7 @@ function EditProfileForm() {
 
 function EditProfileContent(props) {
   return (
-    <View style={[styles.editProfileConten, styles.shadowProp]}>
+    <View style={[styles.editProfileContent, styles.shadowProp]}>
       <EditProfileTitle title="Modifier des informations" />
       <EditProfileForm />
       <View style={styles.saveButtonContainer}>
@@ -188,6 +188,26 @@ function EditProfile() {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+  const scrollViewRef = useRef(null);
+  const [scrollToMenu, setScrollToMenu] = useState(false);
+
+  const handleScrollToRight = () => {
+    setScrollToMenu(true);
+    scrollViewRef.current.scrollTo({x: 41, animated: true});
+  };
+  const handleScrollToLeft = () => {
+    setScrollToMenu(false);
+    scrollViewRef.current.scrollToEnd();
+  };
+
+  const handleContentSizeChange = (contentWidth, contentHeight) => {
+    const screenWidth = Dimensions.get('window').width;
+    scrollViewRef.current.scrollTo({
+      x: contentWidth - screenWidth,
+      y: 0,
+      animated: false,
+    });
+  };
 
   return (
     <SafeAreaView>
@@ -195,8 +215,26 @@ function EditProfile() {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <Navbar title="Mon Profil" />
-      <EditProfileContainer />
+      {scrollToMenu ? (
+        <NavbarMenu handleScrollToLeft={() => handleScrollToLeft()} />
+      ) : (
+        <Navbar
+          handleScrollToRight={() => handleScrollToRight()}
+          title="Mon Profil"
+        />
+      )}
+      <ScrollView
+        ref={scrollViewRef}
+        horizontal={true}
+        scrollEnabled={false}
+        onContentSizeChange={handleContentSizeChange}
+        contentOffset={{x: 0, y: 0}}>
+        <Menu
+          currentScreen="Profile"
+          handleScrollToLeft={() => handleScrollToLeft()}
+        />
+        <EditProfileContainer />
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -210,7 +248,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
     color: '#1A2442',
   },
-  editProfileConten: {
+  editProfileContent: {
     width: Dimensions.get('window').width,
     paddingLeft: 10,
     paddingRight: 10,
@@ -258,7 +296,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: '#E9EDFC',
     alignSelf: 'center',
-    maxWidth: 370,
+    // maxWidth: 370,
     shadowColor: 'rgba(9, 13, 109, 0.4)',
     shadowOffset: {
       width: 0,

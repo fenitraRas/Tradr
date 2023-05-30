@@ -7,9 +7,14 @@ import {
 
 import React from 'react';
 
-export default function TextInput({...otherProps}) {
+export default function TextInput({error, ...otherProps}) {
   return (
-    <View style={styles.inputContainer}>
+    <View
+      style={
+        error
+          ? [styles.inputContainer, {borderColor: 'red', borderWidth: 2}]
+          : styles.inputContainer
+      }>
       <RNTextInput
         style={styles.inputStyle}
         // underlineColorAndroid='transparent'
@@ -22,7 +27,7 @@ export default function TextInput({...otherProps}) {
 
 const styles = StyleSheet.create({
   inputContainer: {
-    maxWidth: 350,
+    // maxWidth: 350,
     width: '100%',
     height: 49,
     marginTop: 10,

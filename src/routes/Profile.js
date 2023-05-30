@@ -6,36 +6,33 @@
  */
 
 import {
-  Alert,
   Dimensions,
   Image,
   Platform,
   SafeAreaView,
+  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
   useColorScheme,
-  FlatList,
-  ScrollView,
 } from 'react-native';
+import Menu, {NavbarMenu} from './Menu';
 import React, {useRef, useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
 
+import ButtonAdd from '../assets/icons/buttonAdd.svg';
+import CardIndexDividers from '../assets/icons/cardIndexDividers.svg';
+import ChartIncreasing from '../assets/icons/chartIncreasing.svg';
+import Closed from '../assets/icons/closed.svg';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {useSelector} from 'react-redux';
-
-import {formStyles} from '../assets/css/form';
-import {indexStyles} from '../assets/css/index';
-
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
 import Sparkles from '../assets/icons/sparkles.svg';
-import CardIndexDividers from '../assets/icons/cardIndexDividers.svg';
-import ButtonAdd from '../assets/icons/buttonAdd.svg';
-import Closed from '../assets/icons/closed.svg';
-import ChartIncreasing from '../assets/icons/chartIncreasing.svg';
+import {formStyles} from '../assets/css/form';
+import {indexStyles} from '../assets/css/index';
+import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
@@ -53,7 +50,9 @@ function Navbar(props) {
         </Text>
       </View>
       <View style={formStyles.navbarIcon}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => props.handleScrollToRight()}>
           {option === 'light' ? (
             <DotThreeVertical width={30} height={20} />
           ) : (
@@ -307,6 +306,26 @@ function Profile() {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+  const scrollViewRef = useRef(null);
+  const [scrollToMenu, setScrollToMenu] = useState(false);
+
+  const handleScrollToRight = () => {
+    setScrollToMenu(true);
+    scrollViewRef.current.scrollTo({x: 41, animated: true});
+  };
+  const handleScrollToLeft = () => {
+    setScrollToMenu(false);
+    scrollViewRef.current.scrollToEnd();
+  };
+
+  const handleContentSizeChange = (contentWidth, contentHeight) => {
+    const screenWidth = Dimensions.get('window').width;
+    scrollViewRef.current.scrollTo({
+      x: contentWidth - screenWidth,
+      y: 0,
+      animated: false,
+    });
+  };
 
   return (
     <SafeAreaView>
@@ -314,21 +333,28 @@ function Profile() {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <Navbar title="Mon Profil" />
-      <ProfileContainer />
+      {scrollToMenu ? (
+        <NavbarMenu handleScrollToLeft={() => handleScrollToLeft()} />
+      ) : (
+        <Navbar
+          handleScrollToRight={() => handleScrollToRight()}
+          title="Mon Profil"
+        />
+      )}
+      <ScrollView
+        ref={scrollViewRef}
+        horizontal={true}
+        scrollEnabled={false}
+        onContentSizeChange={handleContentSizeChange}
+        contentOffset={{x: 0, y: 0}}>
+        <Menu
+          currentScreen="Profile"
+          handleScrollToLeft={() => handleScrollToLeft()}
+        />
+        <ProfileContainer />
+      </ScrollView>
     </SafeAreaView>
   );
-}
-
-function alertInfo() {
-  Alert.alert('INFO', 'Fonctionnalité en cours de développement', [
-    {
-      text: 'Cancel',
-      onPress: () => console.log('Cancel Pressed'),
-      style: 'cancel',
-    },
-    {text: 'OK', onPress: () => console.log('OK Pressed')},
-  ]);
 }
 
 const styles = StyleSheet.create({
