@@ -6,7 +6,6 @@
  */
 
 import {
-  Alert,
   Dimensions,
   Image,
   NativeModules,
@@ -20,28 +19,14 @@ import {
   View,
   useColorScheme,
 } from 'react-native';
-import Menu, {NavbarMenu} from './Menu';
 import React, {useRef, useState} from 'react';
 
-import ArrowRigth from '../assets/icons/arrowRigth.svg';
-import Books from '../assets/icons/books.svg';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
-import HighVoltage from '../assets/icons/highVoltage.svg';
-import Locked from '../assets/icons/locked.svg';
 import PlayButton from '../assets/icons/playButton.svg';
-import {ProgressBar} from 'react-native-paper';
 import Rewind from '../assets/icons/rewind.svg';
-import SeletedRadio from '../assets/icons/selectedRadio.svg';
-import UnseletedRadio from '../assets/icons/unselectedRadio.svg';
-import Video from 'react-native-video';
-import WavingHand from '../assets/icons/wavingHand.svg';
 import {formStyles} from '../assets/css/form';
-import {indexStyles} from '../assets/css/index';
 import {useNavigation} from '@react-navigation/native';
-import {useSelector} from 'react-redux';
-import video from '../assets/video/video_test.mp4';
 
 const {StatusBarManager} = NativeModules;
 
@@ -69,7 +54,6 @@ function Formation() {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
-  const [isPlaying, setIsPlaying] = React.useState(false);
   const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
@@ -96,7 +80,7 @@ function Formation() {
         <View style={styles.videoTime} />
         <View style={styles.videoTimeInProgress} />
         <TouchableOpacity style={styles.rewind} onPress={() => {}}>
-          <Rewind width={24} height={20} position="absolute" />
+          <Rewind width={24} height={20} style={styles.rewindicon} />
         </TouchableOpacity>
       </View>
       <View style={styles.fixedNavbar}>
@@ -188,19 +172,11 @@ const styles = StyleSheet.create({
   imgContainer: {
     width: '100%',
     height: 377,
-    // backgroundColor: 'red',
   },
   image: {
     width: '100%',
     height: 742,
     marginTop: Platform.OS === 'android' ? 0 : -StatusBarManager.HEIGHT - 5,
-    // width: Dimensions.get('window').width,
-    // height:
-    //   Platform.OS === 'android'
-    //     ? 416
-    //     : Dimensions.get('window').height + StatusBarManager.HEIGHT,
-    // backgroundColor: 'red',
-    // maxHeight: 416,
   },
   fixedNavbar: {
     width: '100%',
@@ -304,12 +280,14 @@ const styles = StyleSheet.create({
   },
   rewind: {
     position: 'absolute',
-    width: Dimensions.get('window').width - 346 - 20,
+    width: '100%',
     height: 20,
-    left: 366,
-    top: 346,
-    justifyContent: 'center',
-    alignItems: 'center',
+    right: 10,
+    bottom: 12,
+  },
+  rewindicon: {
+    position: 'absolute',
+    right: 10,
   },
   coverTitle: {
     width: '100%',
@@ -341,7 +319,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     ...Platform.select({
       android: {
-        elevation: 10,
+        // elevation: 10,
       },
       ios: {
         shadowColor: '#282A49',
