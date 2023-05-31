@@ -11,7 +11,7 @@ function Home() {
   const navigation = useNavigation();
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('Formation');
+      navigation.navigate('Tradrboard');
     }, 3000);
   }, [navigation]);
 

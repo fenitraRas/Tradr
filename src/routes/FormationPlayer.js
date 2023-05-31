@@ -17,26 +17,25 @@ import {
   View,
   useColorScheme,
 } from 'react-native';
+import Menu, {NavbarMenu} from './Menu';
 import React, {useRef, useState} from 'react';
-import {ProgressBar} from 'react-native-paper';
-import Video from 'react-native-video';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {useNavigation} from '@react-navigation/native';
-import {useSelector} from 'react-redux';
-
-import {formStyles} from '../assets/css/form';
-import {indexStyles} from '../assets/css/index';
-
-import ChevronLeft from '../assets/icons/chevronLeft.svg';
-import BlackDotThreeVertical from '../assets/icons/blackDotThreeVertical.svg';
 import ArrowDownIcon from '../assets/icons/arrowDownIcon.svg';
 import ArrowUpIcon from '../assets/icons/arrowUpIcon.svg';
-import FileFolder from '../assets/icons/fileFolder.svg';
+import ChevronLeft from '../assets/icons/chevronLeft.svg';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
+import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
 import Download from '../assets/icons/download.svg';
+import FileFolder from '../assets/icons/fileFolder.svg';
 import PdfIcon from '../assets/icons/pdfIcon.svg';
 import PlayVideo from '../assets/icons/playVideo.svg';
-
+import {ProgressBar} from 'react-native-paper';
+import Video from 'react-native-video';
+import {formStyles} from '../assets/css/form';
+import {indexStyles} from '../assets/css/index';
+import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 import video from '../assets/video/video_test.mp4';
 
 function Navbar(props) {
@@ -60,8 +59,14 @@ function Navbar(props) {
         </Text>
       </View>
       <View style={formStyles.navbarIcon}>
-        <TouchableOpacity>
-          <BlackDotThreeVertical width={30} height={20} />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => props.handleScrollToRight()}>
+          {option === 'light' ? (
+            <DotThreeVertical width={30} height={20} />
+          ) : (
+            <DotThreeVerticalLight width={30} height={20} />
+          )}
         </TouchableOpacity>
       </View>
     </View>
@@ -266,14 +271,52 @@ function FormationPlayer() {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+  const scrollViewRef = useRef(null);
+  const [scrollToMenu, setScrollToMenu] = useState(false);
+
+  const handleScrollToRight = () => {
+    setScrollToMenu(true);
+    scrollViewRef.current.scrollTo({x: 41, animated: true});
+  };
+  const handleScrollToLeft = () => {
+    setScrollToMenu(false);
+    scrollViewRef.current.scrollToEnd();
+  };
+
+  const handleContentSizeChange = (contentWidth, contentHeight) => {
+    const screenWidth = Dimensions.get('window').width;
+    scrollViewRef.current.scrollTo({
+      x: contentWidth - screenWidth,
+      y: 0,
+      animated: false,
+    });
+  };
   return (
     <SafeAreaView>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <Navbar title="God's Plan" />
-      <FormationPlayerContainer />
+      {scrollToMenu ? (
+        <NavbarMenu handleScrollToLeft={() => handleScrollToLeft()} />
+      ) : (
+        <Navbar
+          title="Trade"
+          handleScrollToRight={() => handleScrollToRight()}
+        />
+      )}
+      <ScrollView
+        ref={scrollViewRef}
+        horizontal={true}
+        scrollEnabled={false}
+        onContentSizeChange={handleContentSizeChange}
+        contentOffset={{x: 0, y: 0}}>
+        <Menu
+          currentScreen="Formation"
+          handleScrollToLeft={() => handleScrollToLeft()}
+        />
+        <FormationPlayerContainer />
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -331,7 +374,7 @@ const styles = StyleSheet.create({
     elevation: Platform.OS === 'android' ? -35 : undefined,
   },
   videoCardContainer: {
-    height: 686,
+    // height: 686,
     marginTop: 30,
     width: '100%',
     flex: 1,
