@@ -171,10 +171,14 @@ function MenuConnected(props) {
 
       <View style={styles.services}>
         <Text style={styles.title}>Services</Text>
-        <View style={styles.iconText} onPress={() => {}}>
+        <TouchableOpacity
+          style={styles.iconText}
+          onPress={() => {
+            navigation.navigate('Formation');
+          }}>
           <Vector width={18} height={18} />
           <Text style={styles.subTitle}>Formation</Text>
-        </View>
+        </TouchableOpacity>
         <View style={styles.iconText} onPress={() => {}}>
           <Accompagnement width={18} height={18} />
           <Text style={styles.subTitle}>Accompagnement</Text>
