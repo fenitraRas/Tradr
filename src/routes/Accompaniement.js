@@ -116,9 +116,18 @@ function AccompaniementContent() {
               </View>
             </View>
           </View>
-          <Text style={styles.infoPersonCard}>test</Text>
+          <Text style={styles.infoPersonCard}>
+            Session individuelle de 45 minutes.
+          </Text>
           <View style={[styles.bottomPersonCard]}>
-            <Text>test</Text>
+            <Text style={styles.bottomPersonCardLeft}>
+              Plan d'action simplifié
+            </Text>
+            <View style={[styles.bottomPersonCardRight]}>
+              <Text>23 . 03 . 2023</Text>
+              <Text> à </Text>
+              <Text>10h00</Text>
+            </View>
           </View>
         </View>
         <View style={[styles.personCard]}>
@@ -408,14 +417,37 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 10,
   },
-  topPersonCardName: {
-
-  },
-  infoPersonCard: {
-
-  },
+  topPersonCardName: {},
+  infoPersonCard: {},
   bottomPersonCard: {
-
+    flexDirection: 'row',
+    position: 'absolute',
+    // left: 10,
+    bottom: 10,
+    // right: 10,
+    width: '100%',
+    height: 30,
+  },
+  bottomPersonCardLeft: {
+    position: 'absolute',
+    left: 14,
+    bottom: 4,
+    width: 100,
+  },
+  bottomPersonCardRight: {
+    position: 'absolute',
+    right: 10,
+    bottom: 1,
+    elevation: 5,
+    shadowColor: '#090d6d',
+    shadowOffset: {width: 0, height: 3},
+    shadowOpacity: 0.5,
+    shadowRadius: 8,
+    borderRadius: 10,
+    backgroundColor: '#FFFFFF',
+    height: 42,
+    width: 210,
+    flexDirection: 'row',
   },
   footer: {
     position: 'absolute',
