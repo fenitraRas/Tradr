@@ -53,7 +53,7 @@ function Navbar(props) {
   );
 }
 
-function AccompaniementContent() {
+function InProgressAccompaniementContent() {
   return (
     <View style={[styles.accompaniementContent, styles.shadowProp]}>
       <View style={[styles.imgContainer]}>
@@ -61,7 +61,8 @@ function AccompaniementContent() {
           source={require('../assets/video/maxime.jpg')}
           style={styles.image}
         />
-        <Text style={styles.imgName}>Maxime</Text>
+        <Text style={styles.imgName}>Maxime Legrand</Text>
+        <Image source={require('../assets/emoji.png')} style={styles.emoji} />
       </View>
       <ScrollView horizontal style={[styles.stateCardContainer]}>
         <View style={[styles.stateCard]}>
@@ -107,13 +108,18 @@ function AccompaniementContent() {
         </View>
       </ScrollView>
       <ScrollView horizontal style={[styles.personCardContainer]}>
-        <View style={[styles.selectedPersonCard]}>
+        <TouchableOpacity style={[styles.selectedPersonCard]}>
           <View style={[styles.topPersonCardContainer]}>
             <View style={[styles.topPersonCardContent]}>
-              <Text style={styles.topPersonCardContentLeft}>TRADING</Text>
-              <View style={[styles.topPersonCardContentRight]}>
-                <Text>Débutant</Text>
+              <Text style={styles.topPersonCardContentLeft}>Trading</Text>
+              <View style={[styles.greenTopPersonCardContentRight]}>
+                <Text style={styles.topPersonCardContentRightText}>
+                  Débutant
+                </Text>
               </View>
+              <Text style={styles.topPersonCardContentName}>
+                Maxime Legrand
+              </Text>
             </View>
           </View>
           <Text style={styles.infoPersonCard}>
@@ -124,15 +130,344 @@ function AccompaniementContent() {
               Plan d'action simplifié
             </Text>
             <View style={[styles.bottomPersonCardRight]}>
-              <Text>23 . 03 . 2023</Text>
-              <Text> à </Text>
-              <Text>10h00</Text>
+              <Text style={styles.bottomPersonCardDate}>23 . 03 . 2023</Text>
+              <Text style={styles.bottomPersonCardDate}> à </Text>
+              <Text style={styles.bottomPersonCardTime}>10h00</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.personCard]}>
+          <View style={[styles.topPersonCardContainer]}>
+            <View style={[styles.topPersonCardContent]}>
+              <Text style={styles.topPersonCardContentLeft}>Économie</Text>
+              <View style={[styles.orangeTopPersonCardContentRight]}>
+                <Text style={styles.topPersonCardContentRightText}>
+                  Intérmediaire
+                </Text>
+              </View>
+              <Text style={styles.topPersonCardContentName}>Léna Forelle</Text>
+            </View>
+          </View>
+          <Text style={styles.infoPersonCard}>
+            Session individuelle de 1 heure.
+          </Text>
+          <View style={[styles.bottomPersonCard]}>
+            <Text style={styles.bottomPersonCardLeft}>
+              Plan d'action avancé
+            </Text>
+            <View style={[styles.bottomPersonCardRight]}>
+              <Text style={styles.bottomPersonCardDate}>25 . 03 . 2023</Text>
+              <Text style={styles.bottomPersonCardDate}> à </Text>
+              <Text style={styles.bottomPersonCardTime}>15h00</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.personCard]}>
+          <View style={[styles.topPersonCardContainer]}>
+            <View style={[styles.topPersonCardContent]}>
+              <Text style={styles.topPersonCardContentLeft}>Placement</Text>
+              <View style={[styles.redTopPersonCardContentRight]}>
+                <Text style={styles.topPersonCardContentRightText}>
+                  Confirmé
+                </Text>
+              </View>
+              <Text style={styles.topPersonCardContentName}>Inès Dore</Text>
+            </View>
+          </View>
+          <Text style={styles.infoPersonCard}>
+            Session individuelle de 1 heure et 30 minutes.
+          </Text>
+          <View style={[styles.bottomPersonCard]}>
+            <Text style={styles.bottomPersonCardLeft}>
+              Plan d'action personnalisé
+            </Text>
+            <View style={[styles.bottomPersonCardRight]}>
+              <Text style={styles.bottomPersonCardDate}>26 . 03 . 2023</Text>
+              <Text style={styles.bottomPersonCardDate}> à </Text>
+              <Text style={styles.bottomPersonCardTime}>17h00</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+      </ScrollView>
+    </View>
+  );
+}
+
+function toBookAccompaniementContent() {
+  return (
+    <View style={[styles.accompaniementContent, styles.shadowProp]}>
+      <View style={[styles.imgContainer]}>
+        <Image
+          source={require('../assets/video/maxime.jpg')}
+          style={styles.image}
+        />
+        <Text style={styles.imgName}>Maxime Legrand</Text>
+        <Image source={require('../assets/emoji.png')} style={styles.emoji} />
+      </View>
+      <ScrollView horizontal style={[styles.stateCardContainer]}>
+        <View style={[styles.stateCard]}>
+          <Text style={styles.stateTitle}>Prochaine séance</Text>
+          <View style={[styles.stateCardContent]}>
+            <View style={[styles.stateCardTimeContainer]}>
+              <Text style={styles.stateCardTime}>10h</Text>
+            </View>
+            <Text style={styles.stateCardDate}>25 . 03 . 2023</Text>
+          </View>
+        </View>
+        <View style={[styles.stateCard]}>
+          <Text style={styles.stateTitle}>Exercice en cours</Text>
+          <View style={[styles.stateCardContent]}>
+            <View style={[styles.stateCardNumberContainer]}>
+              <Text style={styles.stateCardNumber}>1</Text>
+            </View>
+            <View style={[styles.selectedStateCardNumberContainer]}>
+              <Text style={styles.selectedStateCardNumber}>2</Text>
+            </View>
+            <View style={[styles.stateCardNumberContainer]}>
+              <Text style={styles.stateCardNumber}>3</Text>
+            </View>
+            <View style={[styles.stateCardNumberContainer]}>
+              <Text style={styles.stateCardNumber}>4</Text>
+            </View>
+            <View style={[styles.stateCardNumberContainer]}>
+              <Text style={styles.stateCardNumber}>5</Text>
             </View>
           </View>
         </View>
-        <View style={[styles.personCard]}>
-          <Text>test</Text>
+        <View style={[styles.stateCard]}>
+          <Text style={styles.stateTitle}>Séances restantes</Text>
+          <View style={[styles.stateCardRContainer]}>
+            <Text style={styles.stateCardTime}>1</Text>
+          </View>
         </View>
+        <View style={[styles.stateCard]}>
+          <Text style={styles.stateTitle}>Séances terminées</Text>
+          <View style={[styles.stateCardRContainer]}>
+            <Text style={styles.stateCardTime}>4</Text>
+          </View>
+        </View>
+      </ScrollView>
+      <ScrollView horizontal style={[styles.personCardContainer]}>
+        <TouchableOpacity style={[styles.selectedPersonCard]}>
+          <View style={[styles.topPersonCardContainer]}>
+            <View style={[styles.topPersonCardContent]}>
+              <Text style={styles.topPersonCardContentLeft}>Trading</Text>
+              <View style={[styles.greenTopPersonCardContentRight]}>
+                <Text style={styles.topPersonCardContentRightText}>
+                  Débutant
+                </Text>
+              </View>
+              <Text style={styles.topPersonCardContentName}>
+                Maxime Legrand
+              </Text>
+            </View>
+          </View>
+          <Text style={styles.infoPersonCard}>
+            Session individuelle de 45 minutes.
+          </Text>
+          <View style={[styles.bottomPersonCard]}>
+            <Text style={styles.bottomPersonCardLeft}>
+              Plan d'action simplifié
+            </Text>
+            <View style={[styles.bottomPersonCardRight]}>
+              <Text style={styles.bottomPersonCardDate}>23 . 03 . 2023</Text>
+              <Text style={styles.bottomPersonCardDate}> à </Text>
+              <Text style={styles.bottomPersonCardTime}>10h00</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.personCard]}>
+          <View style={[styles.topPersonCardContainer]}>
+            <View style={[styles.topPersonCardContent]}>
+              <Text style={styles.topPersonCardContentLeft}>Économie</Text>
+              <View style={[styles.orangeTopPersonCardContentRight]}>
+                <Text style={styles.topPersonCardContentRightText}>
+                  Intérmediaire
+                </Text>
+              </View>
+              <Text style={styles.topPersonCardContentName}>Léna Forelle</Text>
+            </View>
+          </View>
+          <Text style={styles.infoPersonCard}>
+            Session individuelle de 1 heure.
+          </Text>
+          <View style={[styles.bottomPersonCard]}>
+            <Text style={styles.bottomPersonCardLeft}>
+              Plan d'action avancé
+            </Text>
+            <View style={[styles.bottomPersonCardRight]}>
+              <Text style={styles.bottomPersonCardDate}>25 . 03 . 2023</Text>
+              <Text style={styles.bottomPersonCardDate}> à </Text>
+              <Text style={styles.bottomPersonCardTime}>15h00</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.personCard]}>
+          <View style={[styles.topPersonCardContainer]}>
+            <View style={[styles.topPersonCardContent]}>
+              <Text style={styles.topPersonCardContentLeft}>Placement</Text>
+              <View style={[styles.redTopPersonCardContentRight]}>
+                <Text style={styles.topPersonCardContentRightText}>
+                  Confirmé
+                </Text>
+              </View>
+              <Text style={styles.topPersonCardContentName}>Inès Dore</Text>
+            </View>
+          </View>
+          <Text style={styles.infoPersonCard}>
+            Session individuelle de 1 heure et 30 minutes.
+          </Text>
+          <View style={[styles.bottomPersonCard]}>
+            <Text style={styles.bottomPersonCardLeft}>
+              Plan d'action personnalisé
+            </Text>
+            <View style={[styles.bottomPersonCardRight]}>
+              <Text style={styles.bottomPersonCardDate}>26 . 03 . 2023</Text>
+              <Text style={styles.bottomPersonCardDate}> à </Text>
+              <Text style={styles.bottomPersonCardTime}>17h00</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+      </ScrollView>
+    </View>
+  );
+}
+
+function completedAccompaniementContent() {
+  return (
+    <View style={[styles.accompaniementContent, styles.shadowProp]}>
+      <View style={[styles.imgContainer]}>
+        <Image
+          source={require('../assets/video/maxime.jpg')}
+          style={styles.image}
+        />
+        <Text style={styles.imgName}>Maxime Legrand</Text>
+        <Image source={require('../assets/emoji.png')} style={styles.emoji} />
+      </View>
+      <ScrollView horizontal style={[styles.stateCardContainer]}>
+        <View style={[styles.stateCard]}>
+          <Text style={styles.stateTitle}>Prochaine séance</Text>
+          <View style={[styles.stateCardContent]}>
+            <View style={[styles.stateCardTimeContainer]}>
+              <Text style={styles.stateCardTime}>10h</Text>
+            </View>
+            <Text style={styles.stateCardDate}>25 . 03 . 2023</Text>
+          </View>
+        </View>
+        <View style={[styles.stateCard]}>
+          <Text style={styles.stateTitle}>Exercice en cours</Text>
+          <View style={[styles.stateCardContent]}>
+            <View style={[styles.stateCardNumberContainer]}>
+              <Text style={styles.stateCardNumber}>1</Text>
+            </View>
+            <View style={[styles.selectedStateCardNumberContainer]}>
+              <Text style={styles.selectedStateCardNumber}>2</Text>
+            </View>
+            <View style={[styles.stateCardNumberContainer]}>
+              <Text style={styles.stateCardNumber}>3</Text>
+            </View>
+            <View style={[styles.stateCardNumberContainer]}>
+              <Text style={styles.stateCardNumber}>4</Text>
+            </View>
+            <View style={[styles.stateCardNumberContainer]}>
+              <Text style={styles.stateCardNumber}>5</Text>
+            </View>
+          </View>
+        </View>
+        <View style={[styles.stateCard]}>
+          <Text style={styles.stateTitle}>Séances restantes</Text>
+          <View style={[styles.stateCardRContainer]}>
+            <Text style={styles.stateCardTime}>1</Text>
+          </View>
+        </View>
+        <View style={[styles.stateCard]}>
+          <Text style={styles.stateTitle}>Séances terminées</Text>
+          <View style={[styles.stateCardRContainer]}>
+            <Text style={styles.stateCardTime}>4</Text>
+          </View>
+        </View>
+      </ScrollView>
+      <ScrollView horizontal style={[styles.personCardContainer]}>
+        <TouchableOpacity style={[styles.selectedPersonCard]}>
+          <View style={[styles.topPersonCardContainer]}>
+            <View style={[styles.topPersonCardContent]}>
+              <Text style={styles.topPersonCardContentLeft}>Trading</Text>
+              <View style={[styles.greenTopPersonCardContentRight]}>
+                <Text style={styles.topPersonCardContentRightText}>
+                  Débutant
+                </Text>
+              </View>
+              <Text style={styles.topPersonCardContentName}>
+                Maxime Legrand
+              </Text>
+            </View>
+          </View>
+          <Text style={styles.infoPersonCard}>
+            Session individuelle de 45 minutes.
+          </Text>
+          <View style={[styles.bottomPersonCard]}>
+            <Text style={styles.bottomPersonCardLeft}>
+              Plan d'action simplifié
+            </Text>
+            <View style={[styles.bottomPersonCardRight]}>
+              <Text style={styles.bottomPersonCardDate}>23 . 03 . 2023</Text>
+              <Text style={styles.bottomPersonCardDate}> à </Text>
+              <Text style={styles.bottomPersonCardTime}>10h00</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.personCard]}>
+          <View style={[styles.topPersonCardContainer]}>
+            <View style={[styles.topPersonCardContent]}>
+              <Text style={styles.topPersonCardContentLeft}>Économie</Text>
+              <View style={[styles.orangeTopPersonCardContentRight]}>
+                <Text style={styles.topPersonCardContentRightText}>
+                  Intérmediaire
+                </Text>
+              </View>
+              <Text style={styles.topPersonCardContentName}>Léna Forelle</Text>
+            </View>
+          </View>
+          <Text style={styles.infoPersonCard}>
+            Session individuelle de 1 heure.
+          </Text>
+          <View style={[styles.bottomPersonCard]}>
+            <Text style={styles.bottomPersonCardLeft}>
+              Plan d'action avancé
+            </Text>
+            <View style={[styles.bottomPersonCardRight]}>
+              <Text style={styles.bottomPersonCardDate}>25 . 03 . 2023</Text>
+              <Text style={styles.bottomPersonCardDate}> à </Text>
+              <Text style={styles.bottomPersonCardTime}>15h00</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.personCard]}>
+          <View style={[styles.topPersonCardContainer]}>
+            <View style={[styles.topPersonCardContent]}>
+              <Text style={styles.topPersonCardContentLeft}>Placement</Text>
+              <View style={[styles.redTopPersonCardContentRight]}>
+                <Text style={styles.topPersonCardContentRightText}>
+                  Confirmé
+                </Text>
+              </View>
+              <Text style={styles.topPersonCardContentName}>Inès Dore</Text>
+            </View>
+          </View>
+          <Text style={styles.infoPersonCard}>
+            Session individuelle de 1 heure et 30 minutes.
+          </Text>
+          <View style={[styles.bottomPersonCard]}>
+            <Text style={styles.bottomPersonCardLeft}>
+              Plan d'action personnalisé
+            </Text>
+            <View style={[styles.bottomPersonCardRight]}>
+              <Text style={styles.bottomPersonCardDate}>26 . 03 . 2023</Text>
+              <Text style={styles.bottomPersonCardDate}> à </Text>
+              <Text style={styles.bottomPersonCardTime}>17h00</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );
@@ -141,7 +476,7 @@ function AccompaniementContent() {
 function AccompaniementContainer() {
   return (
     <ScrollView>
-      <AccompaniementContent />
+      <InProgressAccompaniementContent />
     </ScrollView>
   );
 }
@@ -162,7 +497,15 @@ function Accompaniement() {
         <AccompaniementContainer />
       </ScrollView>
       <View style={styles.footer}>
-        <Text>footer</Text>
+        <TouchableOpacity style={styles.selectedFooter}>
+          <Text style={styles.selectedFooterText}>En cours</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.unselectedFooterCenter}>
+          <Text style={styles.unselectedFooterText}>À réserver</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.unselectedFooter}>
+          <Text style={styles.unselectedFooterText}>Terminées</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -177,6 +520,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     marginTop: 5,
+    paddingBottom: 14,
   },
   shadowProp: {
     shadowColor: 'rgba(9, 13, 109, 0.4)',
@@ -205,6 +549,11 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     borderRadius: 20,
+  },
+  emoji: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
   },
   imgName: {
     position: 'absolute',
@@ -412,27 +761,99 @@ const styles = StyleSheet.create({
   topPersonCardContentLeft: {
     position: 'absolute',
     left: 15,
+    color: '#1A2442',
+    fontWeight: 600,
+    fontSize: 28,
+    lineHeight: 28,
+    textTransform: 'uppercase',
   },
-  topPersonCardContentRight: {
+  greenTopPersonCardContentRight: {
     position: 'absolute',
     right: 10,
+    width: 77,
+    height: 21,
+    backgroundColor: '#7AC84A',
+    borderRadius: 4,
+    alignItems: 'center',
+    shadowColor: '#7AC84A',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 14,
+    elevation: 2,
   },
-  topPersonCardName: {},
-  infoPersonCard: {},
+  orangeTopPersonCardContentRight: {
+    position: 'absolute',
+    right: 10,
+    width: 105,
+    height: 21,
+    borderRadius: 4,
+    alignItems: 'center',
+    backgroundColor: '#F8B940',
+    elevation: 2,
+    shadowColor: '#F8B940',
+    shadowOffset: {width: 0, height: 4},
+    shadowOpacity: 1,
+    shadowRadius: 14,
+  },
+  redTopPersonCardContentRight: {
+    position: 'absolute',
+    right: 10,
+    width: 75,
+    height: 21,
+    backgroundColor: '#FF4141',
+    borderRadius: 4,
+    alignItems: 'center',
+    shadowColor: '#FF4141',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 14,
+    elevation: 2,
+  },
+  topPersonCardContentRightText: {
+    marginTop: 2,
+    color: '#FFFFFF',
+    fontWeight: 500,
+    fontSize: 14,
+    lineHeight: 17,
+  },
+  topPersonCardContentName: {
+    marginTop: 30,
+    marginLeft: 15,
+    color: '#9BA5BF',
+    fontWeight: 600,
+    fontSize: 16,
+    lineHeight: 20,
+  },
+  infoPersonCard: {
+    marginTop: 15,
+    marginLeft: 14,
+    color: '#1A2442',
+    fontWeight: 500,
+    fontSize: 15,
+    lineHeight: 18,
+  },
   bottomPersonCard: {
     flexDirection: 'row',
     position: 'absolute',
-    // left: 10,
     bottom: 10,
-    // right: 10,
     width: '100%',
     height: 30,
   },
   bottomPersonCardLeft: {
     position: 'absolute',
     left: 14,
-    bottom: 4,
+    bottom: 6,
     width: 100,
+    fontWeight: 400,
+    fontSize: 12,
+    lineHeight: 14,
+    color: '#1A2442',
   },
   bottomPersonCardRight: {
     position: 'absolute',
@@ -446,8 +867,23 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#FFFFFF',
     height: 42,
-    width: 210,
+    width: 198,
     flexDirection: 'row',
+    paddingLeft: 12,
+  },
+  bottomPersonCardDate: {
+    fontWeight: 500,
+    fontSize: 16,
+    lineHeight: 16,
+    color: '#9154FD',
+    marginTop: 15,
+  },
+  bottomPersonCardTime: {
+    fontWeight: 600,
+    fontSize: 18,
+    lineHeight: 18,
+    color: '#9154FD',
+    marginTop: 15,
   },
   footer: {
     position: 'absolute',
@@ -475,6 +911,49 @@ const styles = StyleSheet.create({
         elevation: 1,
       },
     }),
+    paddingLeft: 5,
+    paddingRight: 5,
+    paddingTop: 6,
+  },
+  selectedFooter: {
+    width: '33%',
+    alignItems: 'center',
+    backgroundColor: '#9154FD',
+    height: 28,
+    maxWidth: 126,
+    borderRadius: 4,
+    shadowColor: '#9154fd',
+    shadowOffset: {width: 0, height: 4},
+    shadowOpacity: 0.6,
+    shadowRadius: 14,
+    elevation: 5,
+  },
+  unselectedFooterCenter: {
+    width: '33%',
+    alignItems: 'center',
+    borderRightWidth: 1,
+    height: 16,
+    marginTop: 6,
+    borderColor: '#9BA5BF',
+  },
+  unselectedFooter: {
+    width: '33%',
+    alignItems: 'center',
+    height: 16,
+    marginTop: 6,
+  },
+  selectedFooterText: {
+    fontWeight: 500,
+    fontSize: 13,
+    lineHeight: 16,
+    color: '#FFFFFF',
+    marginTop: 6,
+  },
+  unselectedFooterText: {
+    fontWeight: 500,
+    fontSize: 13,
+    lineHeight: 16,
+    color: '#9BA5BF',
   },
 });
 
