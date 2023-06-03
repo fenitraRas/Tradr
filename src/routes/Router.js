@@ -15,6 +15,7 @@ import Profile from './Profile';
 import EditProfile from './EditProfile';
 import Formation from './Formation';
 import FormationPlayer from './FormationPlayer';
+import Accompaniement from './Accompaniement';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -112,6 +113,11 @@ function Router() {
           <Stack.Screen
             name="FormationPlayer"
             component={FormationPlayer}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Accompaniement"
+            component={Accompaniement}
             options={{headerShown: false}}
           />
         </Stack.Navigator>
