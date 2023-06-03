@@ -579,18 +579,30 @@ function CompletedAccompaniementContent() {
   );
 }
 
-function AccompaniementContainer() {
+function AccompaniementContainer({selectedFooter}) {
+  if (selectedFooter === 'tobook') {
+    return (
+      <ScrollView>
+        <ToBookAccompaniementContent />
+      </ScrollView>
+    );
+  } else if (selectedFooter === 'completed') {
+    return (
+      <ScrollView>
+        <CompletedAccompaniementContent />
+      </ScrollView>
+    );
+  }
   return (
     <ScrollView>
-      {/* <InProgressAccompaniementContent /> */}
-      {/* <ToBookAccompaniementContent /> */}
-      <CompletedAccompaniementContent />
+      <InProgressAccompaniementContent />
     </ScrollView>
   );
 }
 
 function Accompaniement() {
   const isDarkMode = useColorScheme() === 'dark';
+  const [selectedFooter, setSelectedFooter] = useState('inprogress');
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
@@ -602,17 +614,56 @@ function Accompaniement() {
       />
       <Navbar title="Accompagnement" />
       <ScrollView>
-        <AccompaniementContainer />
+        <AccompaniementContainer selectedFooter={selectedFooter} />
       </ScrollView>
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.selectedFooter}>
-          <Text style={styles.selectedFooterText}>En cours</Text>
+        <TouchableOpacity
+          style={
+            selectedFooter === 'inprogress'
+              ? styles.selectedFooter
+              : styles.unselectedFooter
+          }
+          onPress={() => setSelectedFooter('inprogress')}>
+          <Text
+            style={
+              selectedFooter === 'inprogress'
+                ? styles.selectedFooterText
+                : styles.unselectedFooterText
+            }>
+            En cours
+          </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.unselectedFooterCenter}>
-          <Text style={styles.unselectedFooterText}>À réserver</Text>
+        <TouchableOpacity
+          style={
+            selectedFooter === 'tobook'
+              ? styles.selectedFooter
+              : styles.unselectedFooterCenter
+          }
+          onPress={() => setSelectedFooter('tobook')}>
+          <Text
+            style={
+              selectedFooter === 'tobook'
+                ? styles.selectedFooterText
+                : styles.unselectedFooterText
+            }>
+            À réserver
+          </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.unselectedFooter}>
-          <Text style={styles.unselectedFooterText}>Terminées</Text>
+        <TouchableOpacity
+          style={
+            selectedFooter === 'completed'
+              ? styles.selectedFooter
+              : styles.unselectedFooter
+          }
+          onPress={() => setSelectedFooter('completed')}>
+          <Text
+            style={
+              selectedFooter === 'completed'
+                ? styles.selectedFooterText
+                : styles.unselectedFooterText
+            }>
+            Terminées
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
