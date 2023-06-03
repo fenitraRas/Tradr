@@ -439,10 +439,12 @@ function CompletedAccompaniementContent() {
             </Text>
             <View style={[styles.bottomPersonCard]}>
               <View style={[styles.sessionNumberContainer]}>
-                <Text style={styles.sessionNumber}>Séance 2 /6</Text>
+                <Text style={styles.sessionNumber}>Séances </Text>
+                <Text style={styles.boldSessionNumber}>2</Text>
+                <Text style={styles.sessionNumber}> /6</Text>
               </View>
               <View style={[styles.sessionDateContainer]}>
-                <Text style={styles.sessionNumber}>12 . 03 . 2023</Text>
+                <Text style={styles.sessionDate}>12 . 03 . 2023</Text>
               </View>
             </View>
           </View>
@@ -462,10 +464,12 @@ function CompletedAccompaniementContent() {
             </Text>
             <View style={[styles.bottomPersonCard]}>
               <View style={[styles.sessionNumberContainer]}>
-                <Text style={styles.sessionNumber}>Séances 1 /6</Text>
+                <Text style={styles.sessionNumber}>Séances </Text>
+                <Text style={styles.boldSessionNumber}>1</Text>
+                <Text style={styles.sessionNumber}> /6</Text>
               </View>
               <View style={[styles.sessionDateContainer]}>
-                <Text style={styles.sessionNumber}>22 . 03 . 2023</Text>
+                <Text style={styles.sessionDate}>22 . 03 . 2023</Text>
               </View>
             </View>
           </View>
@@ -491,10 +495,12 @@ function CompletedAccompaniementContent() {
             </Text>
             <View style={[styles.bottomPersonCard]}>
               <View style={[styles.sessionNumberContainer]}>
-                <Text style={styles.sessionNumber}>Séance 4 /5</Text>
+                <Text style={styles.sessionNumber}>Séances </Text>
+                <Text style={styles.boldSessionNumber}>4</Text>
+                <Text style={styles.sessionNumber}> /5</Text>
               </View>
               <View style={[styles.sessionDateContainer]}>
-                <Text style={styles.sessionNumber}>22 . 03 . 2023</Text>
+                <Text style={styles.sessionDate}>22 . 03 . 2023</Text>
               </View>
             </View>
           </View>
@@ -514,10 +520,12 @@ function CompletedAccompaniementContent() {
             </Text>
             <View style={[styles.bottomPersonCard]}>
               <View style={[styles.sessionNumberContainer]}>
-                <Text style={styles.sessionNumber}>Séances 1 /6</Text>
+                <Text style={styles.sessionNumber}>Séances </Text>
+                <Text style={styles.boldSessionNumber}>1</Text>
+                <Text style={styles.sessionNumber}> /6</Text>
               </View>
               <View style={[styles.sessionDateContainer]}>
-                <Text style={styles.sessionNumber}>11 . 03 . 2023</Text>
+                <Text style={styles.sessionDate}>11 . 03 . 2023</Text>
               </View>
             </View>
           </View>
@@ -543,10 +551,12 @@ function CompletedAccompaniementContent() {
             </Text>
             <View style={[styles.bottomPersonCard]}>
               <View style={[styles.sessionNumberContainer]}>
-                <Text style={styles.sessionNumber}>Séance 2 /5</Text>
+                <Text style={styles.sessionNumber}>Séances </Text>
+                <Text style={styles.boldSessionNumber}>2</Text>
+                <Text style={styles.sessionNumber}> /5</Text>
               </View>
               <View style={[styles.sessionDateContainer]}>
-                <Text style={styles.sessionNumber}>18 . 03 . 2023</Text>
+                <Text style={styles.sessionDate}>18 . 03 . 2023</Text>
               </View>
             </View>
           </View>
@@ -554,7 +564,7 @@ function CompletedAccompaniementContent() {
             <View style={[styles.topPersonCardContainerWithoutName]}>
               <View style={[styles.topPersonCardContent]}>
                 <Text style={styles.topPersonCardContentLeft}>Placement</Text>
-                <View style={[styles.orangeTopPersonCardContentRight]}>
+                <View style={[styles.redTopPersonCardContentRight]}>
                   <Text style={styles.topPersonCardContentRightText}>
                     Confirmé
                   </Text>
@@ -566,10 +576,12 @@ function CompletedAccompaniementContent() {
             </Text>
             <View style={[styles.bottomPersonCard]}>
               <View style={[styles.sessionNumberContainer]}>
-                <Text style={styles.sessionNumber}>Séances 1 /5</Text>
+                <Text style={styles.sessionNumber}>Séances </Text>
+                <Text style={styles.boldSessionNumber}>1</Text>
+                <Text style={styles.sessionNumber}> /5</Text>
               </View>
               <View style={[styles.sessionDateContainer]}>
-                <Text style={styles.sessionNumber}>10 . 03 . 2023</Text>
+                <Text style={styles.sessionDate}>10 . 03 . 2023</Text>
               </View>
             </View>
           </View>
@@ -1154,6 +1166,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   sessionNumberContainer: {
+    flexDirection: 'row',
     width: 101,
     height: 38,
     borderRadius: 10,
@@ -1167,13 +1180,21 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 15},
     shadowOpacity: 1,
     shadowRadius: 20,
+    paddingLeft: 6,
   },
   sessionNumber: {
-    marginTop: 9,
     color: '#9154FD',
     fontWeight: 400,
     fontSize: 15,
     lineHeight: 18,
+    textAlign: 'center',
+  },
+  boldSessionNumber: {
+    color: '#9154FD',
+    fontWeight: 600,
+    fontSize: 15,
+    lineHeight: 18,
+    textAlign: 'center',
   },
   sessionDateContainer: {
     width: 110,
@@ -1189,6 +1210,14 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 15},
     shadowOpacity: 1,
     shadowRadius: 20,
+  },
+  sessionDate: {
+    marginTop: 9,
+    color: '#9154FD',
+    fontWeight: 400,
+    fontSize: 15,
+    lineHeight: 18,
+    textAlign: 'center',
   },
   toBookButton: {
     position: 'absolute',
