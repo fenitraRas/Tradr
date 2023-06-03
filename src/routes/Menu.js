@@ -182,7 +182,9 @@ function MenuConnected(props) {
         <TouchableOpacity
           style={styles.iconText}
           onPress={() => {
-            navigation.navigate('Accompaniement');
+            props.currentScreen === 'Accompaniement'
+              ? props.handleScrollToLeft()
+              : navigation.replace('Accompaniement');
           }}>
           <Accompagnement width={18} height={18} />
           <Text style={styles.subTitle}>Accompagnement</Text>

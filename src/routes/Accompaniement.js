@@ -6,8 +6,8 @@
  */
 
 import {
-  Image,
   Dimensions,
+  Image,
   Platform,
   SafeAreaView,
   ScrollView,
@@ -18,16 +18,16 @@ import {
   View,
   useColorScheme,
 } from 'react-native';
+import Menu, {NavbarMenu} from './Menu';
 import React, {useRef, useState} from 'react';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {useSelector} from 'react-redux';
 
+import Calendar from '../assets/icons/calendar.svg';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
-import Calendar from '../assets/icons/calendar.svg';
 import WinkingFace from '../assets/icons/winkingFace.svg';
-
 import {formStyles} from '../assets/css/form';
+import {useSelector} from 'react-redux';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
@@ -45,7 +45,7 @@ function Navbar(props) {
         </Text>
       </View>
       <View style={formStyles.navbarIcon}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => props.handleScrollToRight()}>
           {option === 'light' ? (
             <DotThreeVertical width={30} height={20} />
           ) : (
@@ -618,66 +618,105 @@ function Accompaniement() {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+  const scrollViewRef = useRef(null);
+  const [scrollToMenu, setScrollToMenu] = useState(false);
+
+  const handleScrollToRight = () => {
+    setScrollToMenu(true);
+    scrollViewRef.current.scrollTo({x: 41, animated: true});
+  };
+  const handleScrollToLeft = () => {
+    setScrollToMenu(false);
+    scrollViewRef.current.scrollToEnd();
+  };
+
+  const handleContentSizeChange = (contentWidth, contentHeight) => {
+    const screenWidth = Dimensions.get('window').width;
+    scrollViewRef.current.scrollTo({
+      x: contentWidth - screenWidth,
+      y: 0,
+      animated: false,
+    });
+  };
   return (
-    <SafeAreaView style={{height: Dimensions.get('window').height}}>
+    <SafeAreaView
+      style={!scrollToMenu ? {height: Dimensions.get('window').height} : {}}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <Navbar title="Accompagnement" />
-      <ScrollView>
+      {scrollToMenu ? (
+        <NavbarMenu handleScrollToLeft={() => handleScrollToLeft()} />
+      ) : (
+        <Navbar
+          handleScrollToRight={() => handleScrollToRight()}
+          title="Accompagnement"
+        />
+      )}
+      <ScrollView
+        ref={scrollViewRef}
+        horizontal={true}
+        scrollEnabled={false}
+        onContentSizeChange={handleContentSizeChange}
+        contentOffset={{x: 0, y: 0}}>
+        <Menu
+          currentScreen="Accompaniement"
+          handleScrollToLeft={() => handleScrollToLeft()}
+        />
         <AccompaniementContainer selectedFooter={selectedFooter} />
       </ScrollView>
-      <View style={styles.footer}>
-        <TouchableOpacity
-          style={
-            selectedFooter === 'inprogress'
-              ? styles.selectedFooter
-              : styles.unselectedFooter
-          }
-          onPress={() => setSelectedFooter('inprogress')}>
-          <Text
+      {!scrollToMenu ? (
+        <View style={styles.footer}>
+          <TouchableOpacity
             style={
               selectedFooter === 'inprogress'
-                ? styles.selectedFooterText
-                : styles.unselectedFooterText
-            }>
-            En cours
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={
-            selectedFooter === 'tobook'
-              ? styles.selectedFooter
-              : styles.unselectedFooterCenter
-          }
-          onPress={() => setSelectedFooter('tobook')}>
-          <Text
+                ? styles.selectedFooter
+                : styles.unselectedFooter
+            }
+            onPress={() => setSelectedFooter('inprogress')}>
+            <Text
+              style={
+                selectedFooter === 'inprogress'
+                  ? styles.selectedFooterText
+                  : styles.unselectedFooterText
+              }>
+              En cours
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
             style={
               selectedFooter === 'tobook'
-                ? styles.selectedFooterText
-                : styles.unselectedFooterText
-            }>
-            À réserver
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={
-            selectedFooter === 'completed'
-              ? styles.selectedFooter
-              : styles.unselectedFooter
-          }
-          onPress={() => setSelectedFooter('completed')}>
-          <Text
+                ? styles.selectedFooter
+                : styles.unselectedFooterCenter
+            }
+            onPress={() => setSelectedFooter('tobook')}>
+            <Text
+              style={
+                selectedFooter === 'tobook'
+                  ? styles.selectedFooterText
+                  : styles.unselectedFooterText
+              }>
+              À réserver
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
             style={
               selectedFooter === 'completed'
-                ? styles.selectedFooterText
-                : styles.unselectedFooterText
-            }>
-            Terminées
-          </Text>
-        </TouchableOpacity>
-      </View>
+                ? styles.selectedFooter
+                : styles.unselectedFooter
+            }
+            onPress={() => setSelectedFooter('completed')}>
+            <Text
+              style={
+                selectedFooter === 'completed'
+                  ? styles.selectedFooterText
+                  : styles.unselectedFooterText
+              }>
+              Terminées
+            </Text>
+          </TouchableOpacity>
+        </View>
+      ) : null}
     </SafeAreaView>
   );
 }
