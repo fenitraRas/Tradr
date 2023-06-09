@@ -71,11 +71,14 @@ function StepQuizContent(props) {
   const navigation = useNavigation();
   return (
     <View style={[styles.stepQuizContent, styles.shadowProp]}>
-      <View style={[styles.titleContainer]}>
-        <Text style={styles.title}>
+      <View style={[styles.topTitleContainer]}>
+        <Text style={styles.topTitle}>
           Question 8
           <PoliceCarLight width={18} height={18} style={{marginLeft: 6}} />
         </Text>
+        <View style={[styles.greenTopPersonCardContentRight]}>
+          <Text style={styles.topPersonCardContentRightText}>Débutant</Text>
+        </View>
       </View>
       <View style={styles.progressContainer}>
         <View style={styles.progressContent}>
@@ -89,7 +92,27 @@ function StepQuizContent(props) {
           <Text style={styles.progressText}>3s</Text>
         </View>
       </View>
-      <View style={[styles.quizListContainer]}></View>
+      <View style={[styles.quizListContainer]}>
+        <Text style={styles.quizListTitle}>
+          La Pratique du Trading consiste à Acheter ou Vendre :
+        </Text>
+        <View style={styles.materialGoodCard}>
+          <Text style={styles.materialGoodText}>Des biens matériels</Text>
+        </View>
+        <View style={styles.selectedMaterialGoodCard}>
+          <Text style={styles.selectedMaterialGoodText}>
+            Des produits financiers
+          </Text>
+        </View>
+        <View style={styles.materialGoodCard}>
+          <Text style={styles.materialGoodText}>Des services</Text>
+        </View>
+        <View style={styles.materialGoodCard}>
+          <Text style={styles.materialGoodText}>
+            Uniquement des biens immobiliers
+          </Text>
+        </View>
+      </View>
 
       <View style={[styles.titleContainer]}>
         <Text style={styles.title}>
@@ -108,19 +131,21 @@ function StepQuizContent(props) {
             <Text style={[styles.numberText, styles.redNumberText]}>5</Text>
             <Text style={[styles.numberText, styles.redNumberText]}>6</Text>
             <Text style={[styles.numberText, styles.greenNumberText]}>7</Text>
-            <Text style={[styles.numberText, styles.greenNumberText]}>8</Text>
-            <Text style={[styles.numberText, styles.greenNumberText]}>9</Text>
-            <Text style={[styles.numberText, styles.redNumberText]}>10</Text>
-            <Text style={[styles.numberText, styles.redNumberText]}>11</Text>
-            <Text style={[styles.numberText, styles.greenNumberText]}>12</Text>
-            <Text style={[styles.numberText, styles.greenNumberText]}>13</Text>
-            <Text style={[styles.numberText, styles.redNumberText]}>14</Text>
-            <Text style={[styles.numberText, styles.greenNumberText]}>15</Text>
-            <Text style={[styles.numberText, styles.greenNumberText]}>16</Text>
-            <Text style={[styles.numberText, styles.redNumberText]}>17</Text>
-            <Text style={[styles.numberText, styles.redNumberText]}>18</Text>
-            <Text style={[styles.numberText, styles.greenNumberText]}>19</Text>
-            <Text style={[styles.numberText, styles.greenNumberText]}>20</Text>
+            <View style={styles.selectedNumberTextContainer}>
+              <Text style={[styles.selectedNumberText]}>8</Text>
+            </View>
+            <Text style={[styles.numberText, styles.grayNumberText]}>9</Text>
+            <Text style={[styles.numberText, styles.grayNumberText]}>10</Text>
+            <Text style={[styles.numberText, styles.grayNumberText]}>11</Text>
+            <Text style={[styles.numberText, styles.grayNumberText]}>12</Text>
+            <Text style={[styles.numberText, styles.grayNumberText]}>13</Text>
+            <Text style={[styles.numberText, styles.grayNumberText]}>14</Text>
+            <Text style={[styles.numberText, styles.grayNumberText]}>15</Text>
+            <Text style={[styles.numberText, styles.grayNumberText]}>16</Text>
+            <Text style={[styles.numberText, styles.grayNumberText]}>17</Text>
+            <Text style={[styles.numberText, styles.grayNumberText]}>18</Text>
+            <Text style={[styles.numberText, styles.grayNumberText]}>19</Text>
+            <Text style={[styles.numberText, styles.grayNumberText]}>20</Text>
           </View>
         </View>
       </View>
@@ -186,9 +211,23 @@ const styles = StyleSheet.create({
     shadowRadius: 20,
     elevation: 2,
   },
+  topTitleContainer: {
+    marginLeft: 5,
+    marginTop: 15,
+    flexDirection: 'row',
+  },
   titleContainer: {
     marginLeft: 5,
     marginTop: 15,
+  },
+  topTitle: {
+    marginTop: 10,
+    color: '#1A2442',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 20,
+    lineHeight: 24,
   },
   title: {
     color: '#1A2442',
@@ -225,6 +264,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: 84,
     width: '100%',
+    paddingLeft: 10,
   },
   numberContent: {
     flexDirection: 'row',
@@ -234,6 +274,9 @@ const styles = StyleSheet.create({
   },
   greenNumberText: {
     color: '#7AC84A',
+  },
+  grayNumberText: {
+    color: '#D2D6E1',
   },
   redNumberText: {
     color: '#FF4141',
@@ -248,8 +291,33 @@ const styles = StyleSheet.create({
     width: 18.4,
     minWidth: 7.48,
     height: 20,
-    marginLeft: 18,
+    marginLeft: 9,
+    marginRight: 9,
     marginTop: 17,
+    textAlign: 'center',
+  },
+  selectedNumberTextContainer: {
+    backgroundColor: '#9154FD',
+    borderRadius: 5,
+    marginTop: 12,
+    marginLeft: 5,
+    marginRight: 5,
+    height: 27,
+    width: 27,
+  },
+  selectedNumberText: {
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    fontSize: 16,
+    lineHeight: 20,
+    minWidth: 7.48,
+    height: 20,
+    marginLeft: 9,
+    marginRight: 9,
+    marginTop: 4,
+    textAlign: 'center',
   },
   quizListContainer: {
     backgroundColor: '#E9EDFC',
@@ -259,6 +327,74 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingLeft: 10,
     paddingRight: 10,
+  },
+  quizListTitle: {
+    color: '#1A2442',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 15,
+    lineHeight: 18,
+    marginTop: 20,
+    marginLeft: 5,
+    marginBottom: 18,
+  },
+  materialGoodCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    height: 53,
+    width: '100%',
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 15,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 20,
+      },
+      android: {
+        elevation: 10,
+      },
+    }),
+    marginBottom: 15,
+  },
+  materialGoodText: {
+    color: '#1A2442',
+    marginLeft: 12,
+    marginTop: 18,
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 14,
+    lineHeight: 17,
+  },
+  selectedMaterialGoodCard: {
+    backgroundColor: '#9154FD',
+    borderRadius: 10,
+    height: 53,
+    width: '100%',
+    borderWidth: 2,
+    borderColor: '#9154FD',
+    shadowColor: 'rgba(145, 84, 253, 0.8)',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.6,
+    shadowRadius: 30,
+    marginBottom: 15,
+  },
+  selectedMaterialGoodText: {
+    color: '#FFFFFF',
+    marginLeft: 12,
+    marginTop: 18,
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 14,
+    lineHeight: 17,
   },
   progressContainer: {
     width: '100%',
@@ -287,16 +423,16 @@ const styles = StyleSheet.create({
     elevation: 1,
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(145, 84, 253, 0.6)',
+        shadowColor: 'rgba(145, 84, 253, 0.8)',
         shadowOffset: {
           width: 0,
           height: 0,
         },
-        shadowOpacity: 1,
+        shadowOpacity: 0.6,
         shadowRadius: 14,
       },
       android: {
-        elevation: 3,
+        elevation: 4,
       },
     }),
   },
@@ -313,6 +449,30 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     color: '#1A2442',
     textAlign: 'right',
+  },
+  greenTopPersonCardContentRight: {
+    position: 'absolute',
+    right: 5,
+    width: 77,
+    height: 21,
+    backgroundColor: '#7AC84A',
+    borderRadius: 4,
+    alignItems: 'center',
+    shadowColor: '#7AC84A',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 14,
+    elevation: 2,
+  },
+  topPersonCardContentRightText: {
+    marginTop: 2,
+    color: '#FFFFFF',
+    fontWeight: 500,
+    fontSize: 14,
+    lineHeight: 17,
   },
 });
 
