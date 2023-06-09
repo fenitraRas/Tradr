@@ -65,6 +65,7 @@ function Navbar(props) {
 }
 
 function SummaryQuizContent(props) {
+  const navigation = useNavigation();
   return (
     <View style={[styles.summaryQuizContent, styles.shadowProp]}>
       <View style={[styles.titleContainer]}>
@@ -146,7 +147,7 @@ function SummaryQuizContent(props) {
           elit sed risus. Maecenas eget condimentum velit, sit amet feugiat
           lectus.
         </Text>
-        <TouchableOpacity style={styles.redoButton}>
+        <TouchableOpacity style={styles.redoButton} onPress={() => navigation.navigate('IntroductionQuiz')}>
           <Text style={styles.redoButtonText}>Refaire</Text>
         </TouchableOpacity>
       </View>

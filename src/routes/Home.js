@@ -11,7 +11,7 @@ function Home() {
   const navigation = useNavigation();
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('Quiz');
+      navigation.navigate('StepQuiz');
     }, 3000);
   }, [navigation]);
 
