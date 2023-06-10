@@ -18,6 +18,8 @@ import FormationPlayer from './FormationPlayer';
 import Accompaniement from './Accompaniement';
 import Quiz from './Quiz';
 import SummaryQuiz from './SummaryQuiz';
+import IntroductionQuiz from './IntroductionQuiz';
+import StepQuiz from './StepQuiz';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -130,6 +132,16 @@ function Router() {
           <Stack.Screen
             name="SummaryQuiz"
             component={SummaryQuiz}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="IntroductionQuiz"
+            component={IntroductionQuiz}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="StepQuiz"
+            component={StepQuiz}
             options={{headerShown: false}}
           />
         </Stack.Navigator>
