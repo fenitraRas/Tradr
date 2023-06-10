@@ -36,7 +36,7 @@ function Navbar(props) {
   return (
     <View style={formStyles.navbarContainer}>
       <View style={formStyles.navbarIcon}>
-        <TouchableOpacity onPress={() => navigation.navigate('Quiz')}>
+        <TouchableOpacity onPress={() => navigation.navigate('StepQuiz')}>
           <ChevronLeft width={30} height={20} />
         </TouchableOpacity>
       </View>
@@ -64,11 +64,14 @@ function Navbar(props) {
   );
 }
 
-function SummaryQuizContent(props) {
+function SummaryEndQuizContainer(props) {
   const navigation = useNavigation();
   return (
     <View style={[styles.summaryQuizContent, styles.shadowProp]}>
       <View style={[styles.titleContainer]}>
+        <View style={[styles.greenTopPersonCardContentRight]}>
+          <Text style={styles.topPersonCardContentRightText}>Débutant</Text>
+        </View>
         <Text style={styles.title}>
           Résumé
           <BarChart width={18} height={18} style={{marginLeft: 6}} />
@@ -129,43 +132,31 @@ function SummaryQuizContent(props) {
           <Text style={styles.resultText}>Vous avez réussi !</Text>
         </View>
       </View>
-      <View style={[styles.descriptionContainer]}>
-        <View style={styles.myQuizCardBottom}>
-          <View style={styles.myQuizCardBottomLeft}>
-            <Text style={styles.myQuizCardBottomLeftNumber}>20</Text>
-            <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
-          </View>
-          <View style={[styles.orangeTopPersonCardContentRight]}>
-            <Text style={styles.bottomCardContentRightText}>Intermédiaire</Text>
-          </View>
-        </View>
-        <Text style={styles.descriptionTitle}>Description</Text>
-        <Text style={styles.description}>
-          Sorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu
-          turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec
-          fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus
-          elit sed risus. Maecenas eget condimentum velit, sit amet feugiat
-          lectus.
-        </Text>
+      {/* <TouchableOpacity
+        style={styles.redoButton}
+        onPress={() => navigation.navigate('IntroductionQuiz')}>
+        <Text style={styles.redoButtonText}>Refaire</Text>
+      </TouchableOpacity> */}
+      <View style={styles.redoButtonContainer}>
         <TouchableOpacity
           style={styles.redoButton}
-          onPress={() => navigation.navigate('IntroductionQuiz')}>
-          <Text style={styles.redoButtonText}>Refaire</Text>
+          onPress={() => navigation.navigate('Quiz')}>
+          <Text style={styles.redoButtonText}>Terminé</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 }
 
-function SummaryQuizContainer() {
-  return (
-    <ScrollView>
-      <SummaryQuizContent />
-    </ScrollView>
-  );
-}
+// function SummaryEndQuizContainer() {
+//   return (
+//     <ScrollView>
+//       <SummaryEndQuizContent />
+//     </ScrollView>
+//   );
+// }
 
-function SummaryQuiz() {
+function SummaryEndQuiz() {
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -212,10 +203,10 @@ function SummaryQuiz() {
         onContentSizeChange={handleContentSizeChange}
         contentOffset={{x: 0, y: 0}}>
         <Menu
-          currentScreen="Tradrboard"
+          currentScreen="Quiz"
           handleScrollToLeft={() => handleScrollToLeft()}
         />
-        <SummaryQuizContainer />
+        <SummaryEndQuizContainer />
       </ScrollView>
     </SafeAreaView>
   );
@@ -264,6 +255,7 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 20,
     lineHeight: 24,
+    marginTop: 30,
   },
   resultContainer: {
     backgroundColor: '#E9EDFC',
@@ -526,12 +518,12 @@ const styles = StyleSheet.create({
   },
   redoButton: {
     position: 'absolute',
-    bottom: 10,
+    top: 20,
     right: 10,
     backgroundColor: '#9154FD',
     borderRadius: 10,
     height: 38,
-    width: 94,
+    width: 104,
     shadowColor: 'rgba(145, 84, 253, 0.6)',
     shadowOffset: {
       width: 0,
@@ -550,6 +542,30 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 10,
   },
+  greenTopPersonCardContentRight: {
+    position: 'absolute',
+    right: 5,
+    width: 77,
+    height: 21,
+    backgroundColor: '#7AC84A',
+    borderRadius: 4,
+    alignItems: 'center',
+    shadowColor: '#7AC84A',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 14,
+    elevation: 2,
+  },
+  topPersonCardContentRightText: {
+    marginTop: 2,
+    color: '#FFFFFF',
+    fontWeight: 500,
+    fontSize: 14,
+    lineHeight: 17,
+  },
 });
 
-export default SummaryQuiz;
+export default SummaryEndQuiz;

@@ -23,11 +23,11 @@ import React, {useRef, useState} from 'react';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
+import Fire from '../assets/icons/fire.svg';
+import WhiteChevronLeft from '../assets/icons/whiteChevronLeft.svg';
 import {formStyles} from '../assets/css/form';
 import {useNavigation} from '@react-navigation/native';
 
-import WhiteChevronLeft from '../assets/icons/whiteChevronLeft.svg';
-import Fire from '../assets/icons/fire.svg';
 const {StatusBarManager} = NativeModules;
 
 function Navbar(props) {
