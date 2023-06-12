@@ -3,23 +3,24 @@ import {ImageBackground, StyleSheet, useColorScheme} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
+import Accompaniement from './Accompaniement';
 import Connection from './Connection';
+import EditProfile from './EditProfile';
 import ForgetPassword from './ForgetPassword';
 import ForgetPasswordCode from './ForgetPasswordCode';
-import Home from './Home';
-import Inscription from './Inscription';
-import Menu from './Menu';
-import NewPassword from './NewPassword';
-import Tradrboard from './Tradrboard';
-import Profile from './Profile';
-import EditProfile from './EditProfile';
 import Formation from './Formation';
 import FormationPlayer from './FormationPlayer';
-import Accompaniement from './Accompaniement';
-import Quiz from './Quiz';
-import SummaryQuiz from './SummaryQuiz';
+import Home from './Home';
+import Inscription from './Inscription';
 import IntroductionQuiz from './IntroductionQuiz';
+import Menu from './Menu';
+import NewPassword from './NewPassword';
+import Profile from './Profile';
+import Quiz from './Quiz';
 import StepQuiz from './StepQuiz';
+import SummaryEndQuiz from './SummaryEndQuiz';
+import SummaryQuiz from './SummaryQuiz';
+import Tradrboard from './Tradrboard';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -142,6 +143,11 @@ function Router() {
           <Stack.Screen
             name="StepQuiz"
             component={StepQuiz}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="SummaryEndQuiz"
+            component={SummaryEndQuiz}
             options={{headerShown: false}}
           />
         </Stack.Navigator>

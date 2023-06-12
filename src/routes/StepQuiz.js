@@ -17,29 +17,28 @@ import {
   View,
   useColorScheme,
 } from 'react-native';
+import Menu, {NavbarMenu} from './Menu';
 import React, {useRef, useState} from 'react';
-import {ProgressBar} from 'react-native-paper';
 
+import BarChart from '../assets/icons/barChart.svg';
+import {BlurView} from '@react-native-community/blur';
 import ChevronLeft from '../assets/icons/chevronLeft.svg';
-import PoliceCarLight from '../assets/icons/policeCarLight.svg';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
+import PoliceCarLight from '../assets/icons/policeCarLight.svg';
+import {ProgressBar} from 'react-native-paper';
 import {formStyles} from '../assets/css/form';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 
-import BarChart from '../assets/icons/barChart.svg';
-
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
   const [option] = useState(colorScheme);
-  const navigation = useNavigation();
   return (
     <View style={formStyles.navbarContainer}>
       <View style={formStyles.navbarIcon}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('IntroductionQuiz')}>
+        <TouchableOpacity onPress={() => props.setShowPopup(true)}>
           <ChevronLeft width={30} height={20} />
         </TouchableOpacity>
       </View>
@@ -99,11 +98,13 @@ function StepQuizContent(props) {
         <View style={styles.materialGoodCard}>
           <Text style={styles.materialGoodText}>Des biens matériels</Text>
         </View>
-        <View style={styles.selectedMaterialGoodCard}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('SummaryEndQuiz')}
+          style={styles.selectedMaterialGoodCard}>
           <Text style={styles.selectedMaterialGoodText}>
             Des produits financiers
           </Text>
-        </View>
+        </TouchableOpacity>
         <View style={styles.materialGoodCard}>
           <Text style={styles.materialGoodText}>Des services</Text>
         </View>
@@ -166,20 +167,226 @@ function StepQuiz() {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+  const scrollViewRef = useRef(null);
+  const [scrollToMenu, setScrollToMenu] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const navigation = useNavigation();
 
+  const handleScrollToRight = () => {
+    setScrollToMenu(true);
+    scrollViewRef.current.scrollTo({x: 41, animated: true});
+  };
+  const handleScrollToLeft = () => {
+    setScrollToMenu(false);
+    scrollViewRef.current.scrollToEnd();
+  };
+
+  const handleContentSizeChange = (contentWidth, contentHeight) => {
+    const screenWidth = Dimensions.get('window').width;
+    scrollViewRef.current.scrollTo({
+      x: contentWidth - screenWidth,
+      y: 0,
+      animated: false,
+    });
+  };
   return (
     <SafeAreaView>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <Navbar title="Titre du quiz" />
-      <StepQuizContainer />
+      {scrollToMenu ? (
+        <NavbarMenu handleScrollToLeft={() => handleScrollToLeft()} />
+      ) : (
+        <Navbar
+          setShowPopup={v => setShowPopup(v)}
+          handleScrollToRight={() => handleScrollToRight()}
+          title="Titre du quiz"
+        />
+      )}
+      <ScrollView
+        ref={scrollViewRef}
+        horizontal={true}
+        scrollEnabled={false}
+        onContentSizeChange={handleContentSizeChange}
+        contentOffset={{x: 0, y: 0}}>
+        <Menu
+          currentScreen="Tradrboard"
+          handleScrollToLeft={() => handleScrollToLeft()}
+        />
+        <StepQuizContainer />
+      </ScrollView>
+      {showPopup ? (
+        <BlurView
+          style={styles.blurViewStyle}
+          blurType="light"
+          blurAmount={10}
+          reducedTransparencyFallbackColor="white">
+          <View style={styles.popupContainer}>
+            <View style={styles.popupTitleContainer}>
+              <Text style={styles.popupTitle}>
+                Veux-tu vraiment quitter le quiz ?
+              </Text>
+              <Text style={styles.popupSubtitle}>
+                Le résultat en cours ne sera pas enregistré et le quiz devra
+                être refait dans son intégralité
+              </Text>
+            </View>
+
+            <View style={styles.popupButtonContainer}>
+              <TouchableOpacity
+                style={styles.buttonPopupReturn}
+                onPress={() => setShowPopup(false)}>
+                <Text style={styles.textButtonReturn}>Retour</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.buttonPopupExit}
+                onPress={() => navigation.navigate('Quiz')}>
+                <Text style={styles.textButtonExit}>Quitter</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </BlurView>
+      ) : null}
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  popupTitleContainer: {
+    position: 'absolute',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    padding: 0,
+    gap: 3,
+    width: 300,
+    height: 75,
+    flex: 0,
+    order: 0,
+    flexGrow: 0,
+    top: 25,
+  },
+  popupSubtitle: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    fontSize: 10,
+    lineHeight: 12,
+    textAlign: 'center',
+    color: '#9BA5BF',
+  },
+  popupTitle: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    fontSize: 20,
+    lineHeight: 24,
+    textAlign: 'center',
+    color: '#1A2442',
+  },
+  textButtonExit: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: '600',
+    fontSize: 15,
+    lineHeight: 18,
+    textAlign: 'center',
+    color: '#FFFFFF',
+  },
+  textButtonReturn: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    fontSize: 15,
+    lineHeight: 18,
+    textAlign: 'center',
+    color: '#9154FD',
+  },
+  buttonPopupExit: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    gap: 6,
+    width: 95,
+    height: 38,
+    backgroundColor: '#9154FD',
+    shadowColor: '#9154FD',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
+    borderRadius: 10,
+    flex: 0,
+    order: 1,
+    flexGrow: 0,
+  },
+  buttonPopupReturn: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    gap: 6,
+    width: 91,
+    height: 38,
+    borderRadius: 10,
+    flex: 0,
+    order: 0,
+    flexGrow: 0,
+  },
+  popupButtonContainer: {
+    position: 'absolute',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 0,
+    paddingHorizontal: 0,
+    gap: 20,
+    width: '100%',
+    height: 38,
+    flex: 0,
+    order: 1,
+    flexGrow: 0,
+    top: 115,
+  },
+  popupContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 25,
+    paddingBottom: 15,
+    gap: 15,
+    position: 'absolute',
+    width: Dimensions.get('window').width - 60,
+    height: 168,
+    left: 30,
+    top: 338,
+    backgroundColor: '#FFFFFF',
+    shadowColor: '#090D6D',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.4,
+    shadowRadius: -35,
+    borderRadius: 30,
+  },
+  blurViewStyle: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    bottom: 0,
+    right: 0,
+  },
   navbarText: {
     textAlign: 'center',
     fontWeight: 500,

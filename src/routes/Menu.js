@@ -189,10 +189,16 @@ function MenuConnected(props) {
           <Accompagnement width={18} height={18} />
           <Text style={styles.subTitle}>Accompagnement</Text>
         </TouchableOpacity>
-        <View style={styles.iconText} onPress={() => {}}>
+        <TouchableOpacity
+          style={styles.iconText}
+          onPress={() => {
+            props.currentScreen === 'Quiz'
+              ? props.handleScrollToLeft()
+              : navigation.replace('Quiz');
+          }}>
           <Quiz width={18} height={18} />
           <Text style={styles.subTitle}>Quiz</Text>
-        </View>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.premium}>
