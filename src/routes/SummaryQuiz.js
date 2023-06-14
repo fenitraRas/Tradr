@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   titleContainer: {
-    marginLeft: 15,
+    marginLeft: 5,
     marginTop: 15,
   },
   title: {

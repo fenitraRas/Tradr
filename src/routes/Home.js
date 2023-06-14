@@ -11,7 +11,7 @@ function Home() {
   const navigation = useNavigation();
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('TradrboxFolder');
+      navigation.navigate('Replay');
     }, 3000);
   }, [navigation]);
 

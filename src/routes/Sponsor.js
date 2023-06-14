@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     fontWeight: 600,
     fontSize: 26,
     lineHeight: 32,
-    marginLeft: 15,
+    marginLeft: 5,
     marginRight: 15,
   },
 });

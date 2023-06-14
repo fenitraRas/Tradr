@@ -63,6 +63,7 @@ function Navbar(props) {
 
 function TradrboxFolderContent() {
   const [text, onChangeText] = React.useState('Rechercher');
+  const navigation = useNavigation();
   return (
     <View style={[styles.tradrboxContent, styles.shadowProp]}>
       <View style={styles.tradrboxTitleContainer}>
@@ -79,7 +80,11 @@ function TradrboxFolderContent() {
       </View>
       <ScrollView>
         <View style={styles.folderContainer}>
-          <View style={styles.folderCard}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('TradrboxFile');
+            }}
+            style={styles.folderCard}>
             <View style={styles.folderImageContainer}>
               <Image
                 source={require('../assets/video/images.jpeg')}
@@ -98,8 +103,8 @@ function TradrboxFolderContent() {
                 />
               </View>
             </View>
-          </View>
-          <View style={styles.folderCard}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.folderCard}>
             <View style={styles.folderImageContainer}>
               <Image
                 source={require('../assets/video/images.jpeg')}
@@ -118,8 +123,8 @@ function TradrboxFolderContent() {
                 />
               </View>
             </View>
-          </View>
-          <View style={styles.folderCard}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.folderCard}>
             <View style={styles.folderImageContainer}>
               <Image
                 source={require('../assets/video/images.jpeg')}
@@ -138,8 +143,8 @@ function TradrboxFolderContent() {
                 />
               </View>
             </View>
-          </View>
-          <View style={styles.folderCard}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.folderCard}>
             <View style={styles.folderImageContainer}>
               <Image
                 source={require('../assets/video/images.jpeg')}
@@ -158,8 +163,8 @@ function TradrboxFolderContent() {
                 />
               </View>
             </View>
-          </View>
-          <View style={styles.folderCard}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.folderCard}>
             <View style={styles.folderImageContainer}>
               <Image
                 source={require('../assets/video/images.jpeg')}
@@ -178,8 +183,8 @@ function TradrboxFolderContent() {
                 />
               </View>
             </View>
-          </View>
-          <View style={styles.folderCard}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.folderCard}>
             <View style={styles.folderImageContainer}>
               <Image
                 source={require('../assets/video/images.jpeg')}
@@ -198,7 +203,7 @@ function TradrboxFolderContent() {
                 />
               </View>
             </View>
-          </View>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>
@@ -268,8 +273,8 @@ const styles = StyleSheet.create({
     fontWeight: 600,
     fontSize: 26,
     lineHeight: 32,
-    marginLeft: 15,
-    marginRight: 15,
+    marginLeft: 5,
+    marginRight: 5,
   },
   input: {
     width: '100%',
