@@ -11,7 +11,7 @@ function Home() {
   const navigation = useNavigation();
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('Replay');
+      navigation.navigate('LiveReplay');
     }, 3000);
   }, [navigation]);
 
