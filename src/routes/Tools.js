@@ -318,6 +318,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.6,
     shadowRadius: 14,
     elevation: 5,
+    paddingTop: 6,
   },
   selectedFooterCenter: {
     width: '33%',
@@ -330,15 +331,16 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.6,
     shadowRadius: 14,
     elevation: 5,
+    paddingTop: 6,
   },
   unselectedFooterCenter: {
     width: '33%',
     alignItems: 'center',
-    borderRightWidth: 1,
+    // borderRightWidth: 1,
     // height: 16,
     height: 44,
     marginTop: 6,
-    borderColor: '#9BA5BF',
+    // borderColor: '#9BA5BF',
   },
   unselectedFooter: {
     width: '33%',
@@ -351,7 +353,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 16,
     color: '#FFFFFF',
-    marginTop: 6,
+    // marginTop: 6,
   },
   unselectedFooterText: {
     fontWeight: 500,
@@ -360,7 +362,7 @@ const styles = StyleSheet.create({
     color: '#9BA5BF',
   },
   separator: {
-    marginTop: 10,
+    marginTop: 12,
     fontWeight: 500,
     fontSize: 13,
     lineHeight: 16,
