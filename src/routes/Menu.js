@@ -231,10 +231,14 @@ function MenuConnected(props) {
           <Outils width={18} height={18} />
           <Text style={styles.subTitle}>Outils</Text>
         </View>
-        <View style={styles.iconText} onPress={() => {}}>
+        <TouchableOpacity
+          style={styles.iconText}
+          onPress={() => {
+            navigation.navigate('Sponsor');
+          }}>
           <Parrainage width={18} height={18} />
           <Text style={styles.subTitle}>Parrainer</Text>
-        </View>
+        </TouchableOpacity>
         <View style={styles.iconText} onPress={() => {}}>
           <Params width={18} height={18} />
           <Text style={styles.subTitle}>Paramètres</Text>
