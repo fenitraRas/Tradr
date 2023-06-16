@@ -21,6 +21,11 @@ import StepQuiz from './StepQuiz';
 import SummaryEndQuiz from './SummaryEndQuiz';
 import SummaryQuiz from './SummaryQuiz';
 import Tradrboard from './Tradrboard';
+import TradrboxFolder from './TradrboxFolder';
+import TradrboxFile from './TradrboxFile';
+import Replay from './Replay';
+import LiveReplay from './LiveReplay';
+import Sponsor from './Sponsor';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -148,6 +153,31 @@ function Router() {
           <Stack.Screen
             name="SummaryEndQuiz"
             component={SummaryEndQuiz}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="TradrboxFolder"
+            component={TradrboxFolder}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="TradrboxFile"
+            component={TradrboxFile}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Replay"
+            component={Replay}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="LiveReplay"
+            component={LiveReplay}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Sponsor"
+            component={Sponsor}
             options={{headerShown: false}}
           />
         </Stack.Navigator>

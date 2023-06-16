@@ -827,8 +827,8 @@ const styles = StyleSheet.create({
     fontWeight: 600,
     fontSize: 26,
     lineHeight: 32,
-    marginLeft: 15,
-    marginRight: 15,
+    marginLeft: 5,
+    marginRight: 5,
   },
   cardTitle: {
     color: '#9BA5BF',
@@ -836,7 +836,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     lineHeight: 18,
     marginTop: 25,
-    marginLeft: 15,
+    marginLeft: 5,
   },
   cardContainer: {
     flexDirection: 'row',

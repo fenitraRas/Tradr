@@ -203,18 +203,26 @@ function MenuConnected(props) {
 
       <View style={styles.premium}>
         <Text style={styles.title}>Premuim</Text>
-        <View style={styles.iconText} onPress={() => {}}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('TradrboxFolder');
+          }}
+          style={styles.iconText}>
           <Tradrbox width={18} height={18} />
           <Text style={styles.subTitle}>Tradrbox</Text>
-        </View>
-        <View style={styles.iconText} onPress={() => {}}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconText} onPress={() => {}}>
           <Live width={18} height={18} />
           <Text style={styles.subTitle}>Live</Text>
-        </View>
-        <View style={styles.iconText} onPress={() => {}}>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Replay');
+          }}
+          style={styles.iconText}>
           <Replay width={18} height={18} />
           <Text style={styles.subTitle}>Replay</Text>
-        </View>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.plus}>
