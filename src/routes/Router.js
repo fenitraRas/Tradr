@@ -26,6 +26,8 @@ import TradrboxFile from './TradrboxFile';
 import Replay from './Replay';
 import LiveReplay from './LiveReplay';
 import Sponsor from './Sponsor';
+import Tools from './Tools';
+import Setting from './Setting';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -178,6 +180,16 @@ function Router() {
           <Stack.Screen
             name="Sponsor"
             component={Sponsor}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Tools"
+            component={Tools}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Setting"
+            component={Setting}
             options={{headerShown: false}}
           />
         </Stack.Navigator>
