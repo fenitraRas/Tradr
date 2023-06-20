@@ -109,58 +109,355 @@ function TradingPlan() {
           </TouchableOpacity>
         </View>
       </View>
-        <View style={styles.stepTitleContainer}>
-          <View style={styles.stepTitle}>
-            <Text style={styles.stepTitleText}>Étape 1</Text>
+      {/* Etape 1 */}
+      <View style={styles.stepTitleContainer}>
+        <View style={styles.stepTitle}>
+          <Text style={styles.stepTitleText}>Étape 1</Text>
+        </View>
+      </View>
+      <Text style={styles.toolsTitle2}>
+        Votre objectif de gestion de risque
+      </Text>
+      <View style={styles.objectiveCard}>
+        <View style={styles.objectiveItemContainer}>
+          <View style={styles.objectiveItemLeft}>
+            <Text style={styles.objectiveItemLeftTopText}>
+              Objectif de gains journalier
+            </Text>
+            <Text style={styles.objectiveItemLeftBottomText}>(1% de mon capital, 20 pips ...)</Text>
+          </View>
+          <View style={styles.percentageItemContainer}>
+            <Text style={styles.percentageItemText}>1%</Text>
           </View>
         </View>
-        <Text style={styles.toolsTitle2}>
-          Votre objectif de gestion de risque
+        <View style={styles.objectiveItemContainer}>
+          <View style={styles.objectiveItemLeft}>
+            <Text style={styles.objectiveItemLeftTopText}>
+              Taille de position - Niveau de risque par trade
+            </Text>
+            <Text style={styles.objectiveItemLeftBottomText}>(0.5%, 1% du capital ...)</Text>
+          </View>
+          <View style={styles.percentageItemContainer}>
+            <Text style={styles.percentageItemText}>0.5%</Text>
+          </View>
+        </View><View style={styles.objectiveItemContainer}>
+          <View style={styles.objectiveItemLeft}>
+            <Text style={styles.objectiveItemLeftTopText}>
+              Nombre de pertes consécutives acceptables
+            </Text>
+            <Text style={styles.objectiveItemLeftBottomText}>(entre 3 et 10)</Text>
+          </View>
+          <View style={styles.percentageItemContainer}>
+            <Text style={styles.percentageItemText}>4%</Text>
+          </View>
+        </View>
+        <View style={styles.objectiveItemContainer}>
+          <View style={styles.objectiveItemLeft}>
+            <Text style={styles.objectiveItemLeftTopText}>
+              Arrêt de la session de trading si perte supérieur à X% du capital
+            </Text>
+          </View>
+          <View style={styles.percentageItemContainer}>
+            <Text style={styles.percentageItemText}>2%</Text>
+          </View>
+        </View>
+      </View>
+
+      {/* Etape 2 */}
+      <View style={styles.stepTitleContainer}>
+        <View style={styles.stepTitle}>
+          <Text style={styles.stepTitleText}>Étape 2</Text>
+        </View>
+      </View>
+      <Text style={styles.toolsTitle2}>
+        Règle de votre stratégie gagnante
+      </Text>
+      <View style={styles.ruleCard}>
+        <Text style={styles.tendencyCardTitle}>
+          Quelle stratégie utilisez-vous?
         </Text>
-        <View style={styles.objectiveCard}>
-          <View style={styles.objectiveItemContainer}>
-            <View style={styles.objectiveItemLeft}>
-              <Text style={styles.objectiveItemLeftTopText}>
-                Objectif de gains journalier
-              </Text>
-              <Text style={styles.objectiveItemLeftBottomText}>(1% de mon capital, 20 pips ...)</Text>
-            </View>
-            <View style={styles.percentageItemContainer}>
-              <Text style={styles.percentageItemText}>1%</Text>
-            </View>
-          </View>
-          <View style={styles.objectiveItemContainer}>
-            <View style={styles.objectiveItemLeft}>
-              <Text style={styles.objectiveItemLeftTopText}>
-                Taille de position - Niveau de risque par trade
-              </Text>
-              <Text style={styles.objectiveItemLeftBottomText}>(0.5%, 1% du capital ...)</Text>
-            </View>
-            <View style={styles.percentageItemContainer}>
-              <Text style={styles.percentageItemText}>0.5%</Text>
-            </View>
-          </View><View style={styles.objectiveItemContainer}>
-            <View style={styles.objectiveItemLeft}>
-              <Text style={styles.objectiveItemLeftTopText}>
-                Nombre de pertes consécutives acceptables
-              </Text>
-              <Text style={styles.objectiveItemLeftBottomText}>(entre 3 et 10)</Text>
-            </View>
-            <View style={styles.percentageItemContainer}>
-              <Text style={styles.percentageItemText}>4%</Text>
-            </View>
-          </View>
-          <View style={styles.objectiveItemContainer}>
-            <View style={styles.objectiveItemLeft}>
-              <Text style={styles.objectiveItemLeftTopText}>
-                Arrêt de la session de trading si perte supérieur à X% du capital
-              </Text>
-            </View>
-            <View style={styles.percentageItemContainer}>
-              <Text style={styles.percentageItemText}>2%</Text>
-            </View>
-          </View>
+        <View
+          style={[styles.fullInputContainer]}>
+          <RNTextInput
+            style={styles.fullInputStyle}
+            autoCapitalize="none"
+            keyboardAppearance="dark"
+            returnKeyType="next"
+            returnKeyLabel="next"
+            value="DAYTRADR PRO"
+          />
         </View>
+
+        <Text style={styles.tendencyCardTitle}>
+          Quels indicaterr(s) technique(s) ?
+        </Text>
+        <View style={styles.tendencyContainer}>
+          <View
+            style={[styles.inputContainer]}>
+            <RNTextInput
+              style={styles.inputStyle}
+              placeholder="DAYTRADR PRO"
+              placeholderTextColor="#9BA5BF"
+              autoCapitalize="none"
+              keyboardAppearance="dark"
+              returnKeyType="next"
+              returnKeyLabel="next"
+            />
+          </View>
+          <TouchableOpacity>
+            <ComponentAdd width={48} height={48} style={styles.addItem} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.tendencyContainer}>
+          <View style={styles.tendencyItem}>
+            <Text style={styles.tendencyItemText}>DAYTRADR PRO</Text>
+          </View>
+          <TouchableOpacity>
+            <ComponentRemove width={35} height={35} style={styles.removeItem} />
+          </TouchableOpacity>
+        </View>
+
+        <Text style={styles.tendencyCardTitle}>
+          Sur Quelle unité de temps allez-vous trader ?
+        </Text>
+        <Text style={styles.indication}>(M1, M15, H1, H4...)</Text>
+        <View
+          style={[styles.fullInputContainer]}>
+          <RNTextInput
+            style={styles.fullInputStyle}
+            autoCapitalize="none"
+            keyboardAppearance="dark"
+            returnKeyType="next"
+            returnKeyLabel="next"
+            value="M15"
+          />
+        </View>
+
+        <Text style={styles.tendencyCardTitle}>
+          Valeur d'un Pips
+        </Text>
+        <View
+          style={[styles.fullInputContainer]}>
+          <RNTextInput
+            style={styles.fullInputStyle}
+            autoCapitalize="none"
+            keyboardAppearance="dark"
+            returnKeyType="next"
+            returnKeyLabel="next"
+            value="0.5€ ou 1€"
+          />
+        </View>
+
+        <Text style={styles.tendencyCardTitle}>
+          Horaires de session
+        </Text>
+        <View style={styles.timeRangeContainer}>
+          <View
+            style={[styles.litleInputContainer]}>
+            <RNTextInput
+              style={styles.litleInputStyle}
+              autoCapitalize="none"
+              keyboardAppearance="dark"
+              returnKeyType="next"
+              returnKeyLabel="next"
+              value="12h30"
+            />
+          </View>
+          <Text style={[styles.tendencyCardTitle, {marginRight: 10, marginTop: 20}]}>à</Text>
+          <View
+            style={[styles.litleInputContainer]}>
+            <RNTextInput
+              style={styles.litleInputStyle}
+              autoCapitalize="none"
+              keyboardAppearance="dark"
+              returnKeyType="next"
+              returnKeyLabel="next"
+              value="14h30"
+            />
+          </View>
+          <TouchableOpacity>
+            <ComponentAdd width={48} height={48} style={[styles.addItem, {marginLeft: -10}]} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.tendencyContainer}>
+          <View style={styles.litleTendencyItem}>
+            <Text style={styles.litleTendencyItemText}>10h30-12h30</Text>
+          </View>
+          <TouchableOpacity>
+            <ComponentRemove width={35} height={35} style={styles.removeItem} />
+          </TouchableOpacity>
+        </View>
+
+        <Text style={styles.tendencyCardTitle}>
+          Sens de vos trades
+        </Text>
+        <Text style={styles.indication}>(tendance ou contre-tendance)</Text>
+        <View
+          style={[styles.fullInputContainer]}>
+          <RNTextInput
+            style={styles.fullInputStyle}
+            autoCapitalize="none"
+            keyboardAppearance="dark"
+            returnKeyType="next"
+            returnKeyLabel="next"
+            value="Toujours en tendance"
+          />
+        </View>
+
+        <Text style={styles.tendencyCardTitle}>
+          Utilisation d'un Stop Loss de Protection ?
+        </Text>
+        <View
+          style={[styles.fullInputContainer]}>
+          <RNTextInput
+            style={styles.fullInputStyle}
+            autoCapitalize="none"
+            keyboardAppearance="dark"
+            returnKeyType="next"
+            returnKeyLabel="next"
+            value="Qui a chaque position"
+          />
+        </View>
+      </View>
+
+      {/* Etape 3 */}
+      <View style={styles.stepTitleContainer}>
+        <View style={styles.stepTitle}>
+          <Text style={styles.stepTitleText}>Étape 3</Text>
+        </View>
+      </View>
+      <View style={styles.toolsTitleContainer}>
+        <Text style={styles.toolsTitle2}>
+          Règle d'ouverture d'un trade
+        </Text>
+      </View>
+      <View style={styles.tendencyCard2}>
+        <Text style={styles.tendencyCardTitle}>
+          Conditions d'achats
+        </Text>
+        <View style={styles.tendencyContainer}>
+          <View
+            style={[styles.inputContainer]}>
+            <RNTextInput
+              style={styles.inputStyle}
+              placeholder="Ajouter votre règle"
+              placeholderTextColor="#9BA5BF"
+              autoCapitalize="none"
+              keyboardAppearance="dark"
+              returnKeyType="next"
+              returnKeyLabel="next"
+            />
+          </View>
+          <TouchableOpacity>
+            <ComponentAdd width={48} height={48} style={styles.addItem} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.tendencyContainer}>
+          <View style={styles.tendencyItem}>
+            <Text style={styles.tendencyItemText}>Une condition d'achat</Text>
+          </View>
+          <TouchableOpacity>
+            <ComponentRemove width={35} height={35} style={styles.removeItem} />
+          </TouchableOpacity>
+        </View>
+
+        <Text style={styles.tendencyCardTitle}>Conditions de ventes</Text>
+        <View style={styles.tendencyContainer}>
+          <View
+            style={[styles.inputContainer]}>
+            <RNTextInput
+              style={styles.inputStyle}
+              placeholder="Ajouter votre règle"
+              placeholderTextColor="#9BA5BF"
+              autoCapitalize="none"
+              keyboardAppearance="dark"
+              returnKeyType="next"
+              returnKeyLabel="next"
+            />
+          </View>
+          <TouchableOpacity>
+            <ComponentAdd width={48} height={48} style={styles.addItem} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.tendencyContainer}>
+          <View style={styles.tendencyItem}>
+            <Text style={styles.tendencyItemText}>Une condition de vente</Text>
+          </View>
+          <TouchableOpacity>
+            <ComponentRemove width={35} height={35} style={styles.removeItem} />
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      {/* Etape 4 */}
+      <View style={styles.stepTitleContainer}>
+        <View style={styles.stepTitle}>
+          <Text style={styles.stepTitleText}>Étape 4</Text>
+        </View>
+      </View>
+      <View style={styles.toolsTitleContainer}>
+        <Text style={styles.toolsTitle2}>
+          Règle de clôture d'un trade
+        </Text>
+      </View>
+      <View style={styles.tendencyCard2}>
+        <Text style={styles.tendencyCardTitle}>
+          Type d'objectif
+        </Text>
+        <View style={styles.tendencyContainer}>
+          <View
+            style={[styles.inputContainer]}>
+            <RNTextInput
+              style={styles.inputStyle}
+              placeholder="Ajouter votre règle"
+              placeholderTextColor="#9BA5BF"
+              autoCapitalize="none"
+              keyboardAppearance="dark"
+              returnKeyType="next"
+              returnKeyLabel="next"
+            />
+          </View>
+          <TouchableOpacity>
+            <ComponentAdd width={48} height={48} style={styles.addItem} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.tendencyContainer}>
+          <View style={styles.tendencyItem}>
+            <Text style={styles.tendencyItemText}>Un type d'objectif</Text>
+          </View>
+          <TouchableOpacity>
+            <ComponentRemove width={35} height={35} style={styles.removeItem} />
+          </TouchableOpacity>
+        </View>
+
+        <Text style={styles.tendencyCardTitle}>Fermeture en perte</Text>
+        <View style={styles.tendencyContainer}>
+          <View
+            style={[styles.inputContainer]}>
+            <RNTextInput
+              style={styles.inputStyle}
+              placeholder="Ajouter votre règle"
+              placeholderTextColor="#9BA5BF"
+              autoCapitalize="none"
+              keyboardAppearance="dark"
+              returnKeyType="next"
+              returnKeyLabel="next"
+            />
+          </View>
+          <TouchableOpacity>
+            <ComponentAdd width={48} height={48} style={styles.addItem} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.tendencyContainer}>
+          <View style={styles.tendencyItem}>
+            <Text style={styles.tendencyItemText}>Une fermeture en perte</Text>
+          </View>
+          <TouchableOpacity>
+            <ComponentRemove width={35} height={35} style={styles.removeItem} />
+          </TouchableOpacity>
+        </View>
+      </View>
+
     </View>
   );
 }
@@ -505,7 +802,26 @@ const styles = StyleSheet.create({
     height: 46,
   },
   inputContainer: {
-    width: Dimensions.get('window').width - 76,
+    width: Dimensions.get('window').width - 78,
+    height: 36,
+    marginTop: 10,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#9154FD',
+    borderStyle: 'solid',
+    elevation: 8,
+    shadowColor: 'rgba(9, 13, 109, 0.4)',
+    shadowOffset: {
+      width: 0,
+      height: 15,
+    },
+    shadowRadius: 20,
+    shadowOpacity: 1,
+  },
+  fullInputContainer: {
+    width: Dimensions.get('window').width - 40,
     height: 36,
     marginTop: 10,
     backgroundColor: '#FFFFFF',
@@ -531,16 +847,41 @@ const styles = StyleSheet.create({
     color: '#9BA5BF',
     marginLeft: 10,
   },
+  fullInputStyle: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontSize: 13,
+    lineHeight: 16,
+    color: '#1A2442',
+    marginLeft: 10,
+  },
   addItem: {
     marginTop: 5,
   },
   tendencyItem: {
-    width: Dimensions.get('window').width - 76,
+    width: Dimensions.get('window').width - 78,
     height: 36,
     marginTop: 10,
     backgroundColor: '#9154FD',
     borderRadius: 10,
     justifyContent: 'center',
+    shadowOffset: {
+      width: 0,
+      height: 15,
+    },
+    shadowColor: 'rgba(9, 13, 109, 0.4)',
+    shadowOpacity: 1,
+    shadowRadius: 20,
+    elevation: 8,
+  },
+  litleTendencyItem: {
+    width: 130,
+    height: 36,
+    marginTop: 10,
+    backgroundColor: '#9154FD',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
     shadowOffset: {
       width: 0,
       height: 15,
@@ -562,6 +903,14 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 16,
     marginLeft: 10,
+  },
+  litleTendencyItemText: {
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 13,
+    lineHeight: 16,
   },
   stepTitleContainer: {
     marginTop: 44,
@@ -587,7 +936,7 @@ const styles = StyleSheet.create({
     lineHeight: 21, 
   },
   objectiveCard: {
-    height: 370,
+    height: 220,
     width: '100%',
     backgroundColor: '#E9EDFC',
     borderRadius: 20,
@@ -656,7 +1005,83 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     textAlign: 'right',
 
-  }
+  },
+  ruleCard: {
+    height: 684,
+    width: '100%',
+    backgroundColor: '#E9EDFC',
+    borderRadius: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    paddingRight: 10,
+    paddingLeft: 10,
+    // elevation: 8,
+    // shadowColor: "rgba(9, 13, 109, 0.4)",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 30,
+    // },
+    // shadowRadius: 40,
+    // shadowOpacity: 1,
+  },
+  indication: {
+    color: '#9154FD',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    fontSize: 12,
+    lineHeight: 15,
+    marginLeft: 5,
+  },
+  timeRangeContainer: {
+    flexDirection: 'row',
+  },
+  litleInputContainer: {
+    width: 68,
+    height: 36,
+    marginTop: 10,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#9154FD',
+    borderStyle: 'solid',
+    elevation: 8,
+    shadowColor: 'rgba(9, 13, 109, 0.4)',
+    shadowOffset: {
+      width: 0,
+      height: 15,
+    },
+    shadowRadius: 20,
+    shadowOpacity: 1,
+    marginRight: 10,
+  },
+  litleInputStyle: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontSize: 13,
+    lineHeight: 16,
+    color: '#1A2442',
+  },
+  tendencyCard2: {
+    height: 260,
+    width: '100%',
+    backgroundColor: '#E9EDFC',
+    borderRadius: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    paddingRight: 10,
+    paddingLeft: 10,
+    // elevation: 8,
+    // shadowColor: "rgba(9, 13, 109, 0.4)",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 30,
+    // },
+    // shadowRadius: 40,
+    // shadowOpacity: 1,
+  },
 });
 
 export default Tools;
