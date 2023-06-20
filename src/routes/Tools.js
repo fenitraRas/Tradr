@@ -129,6 +129,37 @@ function TradingPlan() {
               <Text style={styles.percentageItemText}>1%</Text>
             </View>
           </View>
+          <View style={styles.objectiveItemContainer}>
+            <View style={styles.objectiveItemLeft}>
+              <Text style={styles.objectiveItemLeftTopText}>
+                Taille de position - Niveau de risque par trade
+              </Text>
+              <Text style={styles.objectiveItemLeftBottomText}>(0.5%, 1% du capital ...)</Text>
+            </View>
+            <View style={styles.percentageItemContainer}>
+              <Text style={styles.percentageItemText}>0.5%</Text>
+            </View>
+          </View><View style={styles.objectiveItemContainer}>
+            <View style={styles.objectiveItemLeft}>
+              <Text style={styles.objectiveItemLeftTopText}>
+                Nombre de pertes consécutives acceptables
+              </Text>
+              <Text style={styles.objectiveItemLeftBottomText}>(entre 3 et 10)</Text>
+            </View>
+            <View style={styles.percentageItemContainer}>
+              <Text style={styles.percentageItemText}>4%</Text>
+            </View>
+          </View>
+          <View style={styles.objectiveItemContainer}>
+            <View style={styles.objectiveItemLeft}>
+              <Text style={styles.objectiveItemLeftTopText}>
+                Arrêt de la session de trading si perte supérieur à X% du capital
+              </Text>
+            </View>
+            <View style={styles.percentageItemContainer}>
+              <Text style={styles.percentageItemText}>2%</Text>
+            </View>
+          </View>
         </View>
     </View>
   );
