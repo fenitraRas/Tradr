@@ -18,19 +18,19 @@ import {
   View,
   useColorScheme,
 } from 'react-native';
+import Menu, {NavbarMenu} from './Menu';
 import React, {useRef, useState} from 'react';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {useSelector} from 'react-redux';
-import {useNavigation} from '@react-navigation/native';
 
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import Copy from '../assets/icons/copy.svg';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
+import FoldedHands from '../assets/icons/foldedHands.svg';
 import Rocket from '../assets/icons/rocket.svg';
 import Share from '../assets/icons/share.svg';
-import Copy from '../assets/icons/copy.svg';
-import FoldedHands from '../assets/icons/foldedHands.svg';
-
 import {formStyles} from '../assets/css/form';
+import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
@@ -48,7 +48,7 @@ function Navbar(props) {
         </Text>
       </View>
       <View style={formStyles.navbarIcon}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => props.handleScrollToRight()}>
           {option === 'light' ? (
             <DotThreeVertical width={30} height={20} />
           ) : (
@@ -189,14 +189,52 @@ function Sponsor() {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+  const scrollViewRef = useRef(null);
+  const [scrollToMenu, setScrollToMenu] = useState(false);
+
+  const handleScrollToRight = () => {
+    setScrollToMenu(true);
+    scrollViewRef.current.scrollTo({x: 41, animated: true});
+  };
+  const handleScrollToLeft = () => {
+    setScrollToMenu(false);
+    scrollViewRef.current.scrollToEnd();
+  };
+
+  const handleContentSizeChange = (contentWidth, contentHeight) => {
+    const screenWidth = Dimensions.get('window').width;
+    scrollViewRef.current.scrollTo({
+      x: contentWidth - screenWidth,
+      y: 0,
+      animated: false,
+    });
+  };
   return (
-    <SafeAreaView style={{height: Dimensions.get('window').height}}>
+    <SafeAreaView>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <Navbar title="Parrainer" />
-      <SponsorContainer />
+      {scrollToMenu ? (
+        <NavbarMenu handleScrollToLeft={() => handleScrollToLeft()} />
+      ) : (
+        <Navbar
+          handleScrollToRight={() => handleScrollToRight()}
+          title="Parrainer"
+        />
+      )}
+      <ScrollView
+        ref={scrollViewRef}
+        horizontal={true}
+        scrollEnabled={false}
+        onContentSizeChange={handleContentSizeChange}
+        contentOffset={{x: 0, y: 0}}>
+        <Menu
+          currentScreen="Sponsor"
+          handleScrollToLeft={() => handleScrollToLeft()}
+        />
+        <SponsorContainer />
+      </ScrollView>
     </SafeAreaView>
   );
 }

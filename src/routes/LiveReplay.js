@@ -18,18 +18,18 @@ import {
   View,
   useColorScheme,
 } from 'react-native';
+import Menu, {NavbarMenu} from './Menu';
 import React, {useRef, useState} from 'react';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {useSelector} from 'react-redux';
-import Video from 'react-native-video';
-import {useNavigation} from '@react-navigation/native';
 
+import ChevronLeft from '../assets/icons/chevronLeft.svg';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
-import ChevronLeft from '../assets/icons/chevronLeft.svg';
 import PlayButton from '../assets/icons/playButton.svg';
-
+import Video from 'react-native-video';
 import {formStyles} from '../assets/css/form';
+import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 import video from '../assets/video/video_test.mp4';
 
 function Navbar(props) {
@@ -53,7 +53,7 @@ function Navbar(props) {
         </Text>
       </View>
       <View style={formStyles.navbarIcon}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => props.handleScrollToRight()}>
           {option === 'light' ? (
             <DotThreeVertical width={30} height={20} />
           ) : (
@@ -142,14 +142,52 @@ function LiveReplay() {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+  const scrollViewRef = useRef(null);
+  const [scrollToMenu, setScrollToMenu] = useState(false);
+
+  const handleScrollToRight = () => {
+    setScrollToMenu(true);
+    scrollViewRef.current.scrollTo({x: 41, animated: true});
+  };
+  const handleScrollToLeft = () => {
+    setScrollToMenu(false);
+    scrollViewRef.current.scrollToEnd();
+  };
+
+  const handleContentSizeChange = (contentWidth, contentHeight) => {
+    const screenWidth = Dimensions.get('window').width;
+    scrollViewRef.current.scrollTo({
+      x: contentWidth - screenWidth,
+      y: 0,
+      animated: false,
+    });
+  };
   return (
-    <SafeAreaView style={{height: Dimensions.get('window').height}}>
+    <SafeAreaView>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <Navbar title="Live Trading" />
-      <LiveReplayContainer />
+      {scrollToMenu ? (
+        <NavbarMenu handleScrollToLeft={() => handleScrollToLeft()} />
+      ) : (
+        <Navbar
+          handleScrollToRight={() => handleScrollToRight()}
+          title="Live Trading"
+        />
+      )}
+      <ScrollView
+        ref={scrollViewRef}
+        horizontal={true}
+        scrollEnabled={false}
+        onContentSizeChange={handleContentSizeChange}
+        contentOffset={{x: 0, y: 0}}>
+        <Menu
+          currentScreen="LiveReplay"
+          handleScrollToLeft={() => handleScrollToLeft()}
+        />
+        <LiveReplayContainer />
+      </ScrollView>
     </SafeAreaView>
   );
 }
