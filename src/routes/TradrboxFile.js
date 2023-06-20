@@ -14,25 +14,25 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
   useColorScheme,
-  TextInput,
 } from 'react-native';
+import Menu, {NavbarMenu} from './Menu';
 import React, {useRef, useState} from 'react';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {useSelector} from 'react-redux';
-import {useNavigation} from '@react-navigation/native';
 
+import Chat from '../assets/icons/chat.svg';
+import ChevronLeft from '../assets/icons/chevronLeft.svg';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
-import ChevronLeft from '../assets/icons/chevronLeft.svg';
-import Chat from '../assets/icons/chat.svg';
-import Search from '../assets/icons/search.svg';
-import PdfIcon from '../assets/icons/pdfIcon.svg';
 import Download from '../assets/icons/download.svg';
-
+import PdfIcon from '../assets/icons/pdfIcon.svg';
+import Search from '../assets/icons/search.svg';
 import {formStyles} from '../assets/css/form';
+import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
 function Navbar(props) {
   const navigation = useNavigation();
@@ -55,7 +55,7 @@ function Navbar(props) {
         </Text>
       </View>
       <View style={formStyles.navbarIcon}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => props.handleScrollToRight()}>
           {option === 'light' ? (
             <DotThreeVertical width={30} height={20} />
           ) : (
@@ -140,7 +140,7 @@ function TradrboxFileContent() {
             <View style={styles.fileCardTop}>
               <PdfIcon width={24} height={24} style={styles.fileCardTopImg} />
               <Text style={styles.fileCardTopText}>
-                Épisode 01 - Bien commencer le trading 
+                Épisode 01 - Bien commencer le trading
               </Text>
             </View>
             <View style={styles.fileCardBottom}>
@@ -195,14 +195,52 @@ function TradrboxFile() {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+  const scrollViewRef = useRef(null);
+  const [scrollToMenu, setScrollToMenu] = useState(false);
+
+  const handleScrollToRight = () => {
+    setScrollToMenu(true);
+    scrollViewRef.current.scrollTo({x: 41, animated: true});
+  };
+  const handleScrollToLeft = () => {
+    setScrollToMenu(false);
+    scrollViewRef.current.scrollToEnd();
+  };
+
+  const handleContentSizeChange = (contentWidth, contentHeight) => {
+    const screenWidth = Dimensions.get('window').width;
+    scrollViewRef.current.scrollTo({
+      x: contentWidth - screenWidth,
+      y: 0,
+      animated: false,
+    });
+  };
   return (
-    <SafeAreaView style={{height: Dimensions.get('window').height}}>
+    <SafeAreaView>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <Navbar title="Titre du dossier" />
-      <TradrboxFileContainer />
+      {scrollToMenu ? (
+        <NavbarMenu handleScrollToLeft={() => handleScrollToLeft()} />
+      ) : (
+        <Navbar
+          handleScrollToRight={() => handleScrollToRight()}
+          title="Titre du dossier"
+        />
+      )}
+      <ScrollView
+        ref={scrollViewRef}
+        horizontal={true}
+        scrollEnabled={false}
+        onContentSizeChange={handleContentSizeChange}
+        contentOffset={{x: 0, y: 0}}>
+        <Menu
+          currentScreen="TradrboxFile"
+          handleScrollToLeft={() => handleScrollToLeft()}
+        />
+        <TradrboxFileContainer />
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -220,7 +258,7 @@ const styles = StyleSheet.create({
     height:
       Platform.OS === 'android'
         ? Dimensions.get('window').height - 74
-        : Dimensions.get('window').height - 139,
+        : Dimensions.get('window').height - 109,
   },
   shadowProp: {
     shadowColor: 'rgba(9, 13, 109, 0.4)',

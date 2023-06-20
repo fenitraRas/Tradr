@@ -205,19 +205,29 @@ function MenuConnected(props) {
         <Text style={styles.title}>Premuim</Text>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('TradrboxFolder');
+            props.currentScreen === 'TradrboxFolder'
+              ? props.handleScrollToLeft()
+              : navigation.replace('TradrboxFolder');
           }}
           style={styles.iconText}>
           <Tradrbox width={18} height={18} />
           <Text style={styles.subTitle}>Tradrbox</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.iconText} onPress={() => {}}>
+        <TouchableOpacity
+          style={styles.iconText}
+          onPress={() => {
+            props.currentScreen === 'LiveReplay'
+              ? props.handleScrollToLeft()
+              : navigation.replace('LiveReplay');
+          }}>
           <Live width={18} height={18} />
           <Text style={styles.subTitle}>Live</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('Replay');
+            props.currentScreen === 'Replay'
+              ? props.handleScrollToLeft()
+              : navigation.replace('Replay');
           }}
           style={styles.iconText}>
           <Replay width={18} height={18} />
@@ -234,7 +244,9 @@ function MenuConnected(props) {
         <TouchableOpacity
           style={styles.iconText}
           onPress={() => {
-            navigation.navigate('Sponsor');
+            props.currentScreen === 'Sponsor'
+              ? props.handleScrollToLeft()
+              : navigation.replace('Sponsor');
           }}>
           <Parrainage width={18} height={18} />
           <Text style={styles.subTitle}>Parrainer</Text>
