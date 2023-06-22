@@ -66,17 +66,12 @@ function TradingPlan() {
   return (
     <View style={[styles.toolsContent, styles.shadowProp]}>
       <View style={styles.toolsTitleContainer}>
-        <Text style={styles.toolsTitle2}>
-          À faire avant chaque session
-        </Text>
+        <Text style={styles.toolsTitle2}>À faire avant chaque session</Text>
       </View>
       <View style={styles.tendencyCard}>
-        <Text style={styles.tendencyCardTitle}>
-          Déterminer une tendance
-        </Text>
+        <Text style={styles.tendencyCardTitle}>Déterminer une tendance</Text>
         <View style={styles.tendencyContainer}>
-          <View
-            style={[styles.inputContainer]}>
+          <View style={[styles.inputContainer]}>
             <RNTextInput
               style={styles.inputStyle}
               placeholder="Déterminer la tendance de fond"
@@ -94,7 +89,9 @@ function TradingPlan() {
         <Text style={styles.tendencyCardTitle}>Vos tendances</Text>
         <View style={styles.tendencyContainer}>
           <View style={styles.tendencyItem}>
-            <Text style={styles.tendencyItemText}>Déterminer la tendance de fond</Text>
+            <Text style={styles.tendencyItemText}>
+              Déterminer la tendance de fond
+            </Text>
           </View>
           <TouchableOpacity>
             <ComponentRemove width={35} height={35} style={styles.removeItem} />
@@ -102,7 +99,9 @@ function TradingPlan() {
         </View>
         <View style={styles.tendencyContainer}>
           <View style={styles.tendencyItem}>
-            <Text style={styles.tendencyItemText}>Déterminer la tendance de fond</Text>
+            <Text style={styles.tendencyItemText}>
+              Déterminer la tendance de fond
+            </Text>
           </View>
           <TouchableOpacity>
             <ComponentRemove width={35} height={35} style={styles.removeItem} />
@@ -124,7 +123,9 @@ function TradingPlan() {
             <Text style={styles.objectiveItemLeftTopText}>
               Objectif de gains journalier
             </Text>
-            <Text style={styles.objectiveItemLeftBottomText}>(1% de mon capital, 20 pips ...)</Text>
+            <Text style={styles.objectiveItemLeftBottomText}>
+              (1% de mon capital, 20 pips ...)
+            </Text>
           </View>
           <View style={styles.percentageItemContainer}>
             <Text style={styles.percentageItemText}>1%</Text>
@@ -135,17 +136,22 @@ function TradingPlan() {
             <Text style={styles.objectiveItemLeftTopText}>
               Taille de position - Niveau de risque par trade
             </Text>
-            <Text style={styles.objectiveItemLeftBottomText}>(0.5%, 1% du capital ...)</Text>
+            <Text style={styles.objectiveItemLeftBottomText}>
+              (0.5%, 1% du capital ...)
+            </Text>
           </View>
           <View style={styles.percentageItemContainer}>
             <Text style={styles.percentageItemText}>0.5%</Text>
           </View>
-        </View><View style={styles.objectiveItemContainer}>
+        </View>
+        <View style={styles.objectiveItemContainer}>
           <View style={styles.objectiveItemLeft}>
             <Text style={styles.objectiveItemLeftTopText}>
               Nombre de pertes consécutives acceptables
             </Text>
-            <Text style={styles.objectiveItemLeftBottomText}>(entre 3 et 10)</Text>
+            <Text style={styles.objectiveItemLeftBottomText}>
+              (entre 3 et 10)
+            </Text>
           </View>
           <View style={styles.percentageItemContainer}>
             <Text style={styles.percentageItemText}>4%</Text>
@@ -169,15 +175,12 @@ function TradingPlan() {
           <Text style={styles.stepTitleText}>Étape 2</Text>
         </View>
       </View>
-      <Text style={styles.toolsTitle2}>
-        Règle de votre stratégie gagnante
-      </Text>
+      <Text style={styles.toolsTitle2}>Règle de votre stratégie gagnante</Text>
       <View style={styles.ruleCard}>
         <Text style={styles.tendencyCardTitle}>
           Quelle stratégie utilisez-vous?
         </Text>
-        <View
-          style={[styles.fullInputContainer]}>
+        <View style={[styles.fullInputContainer]}>
           <RNTextInput
             style={styles.fullInputStyle}
             autoCapitalize="none"
@@ -192,8 +195,7 @@ function TradingPlan() {
           Quels indicaterr(s) technique(s) ?
         </Text>
         <View style={styles.tendencyContainer}>
-          <View
-            style={[styles.inputContainer]}>
+          <View style={[styles.inputContainer]}>
             <RNTextInput
               style={styles.inputStyle}
               placeholder="DAYTRADR PRO"
@@ -221,8 +223,7 @@ function TradingPlan() {
           Sur Quelle unité de temps allez-vous trader ?
         </Text>
         <Text style={styles.indication}>(M1, M15, H1, H4...)</Text>
-        <View
-          style={[styles.fullInputContainer]}>
+        <View style={[styles.fullInputContainer]}>
           <RNTextInput
             style={styles.fullInputStyle}
             autoCapitalize="none"
@@ -233,11 +234,8 @@ function TradingPlan() {
           />
         </View>
 
-        <Text style={styles.tendencyCardTitle}>
-          Valeur d'un Pips
-        </Text>
-        <View
-          style={[styles.fullInputContainer]}>
+        <Text style={styles.tendencyCardTitle}>Valeur d'un Pips</Text>
+        <View style={[styles.fullInputContainer]}>
           <RNTextInput
             style={styles.fullInputStyle}
             autoCapitalize="none"
@@ -248,12 +246,9 @@ function TradingPlan() {
           />
         </View>
 
-        <Text style={styles.tendencyCardTitle}>
-          Horaires de session
-        </Text>
+        <Text style={styles.tendencyCardTitle}>Horaires de session</Text>
         <View style={styles.timeRangeContainer}>
-          <View
-            style={[styles.litleInputContainer]}>
+          <View style={[styles.litleInputContainer]}>
             <RNTextInput
               style={styles.litleInputStyle}
               autoCapitalize="none"
@@ -263,9 +258,14 @@ function TradingPlan() {
               value="12h30"
             />
           </View>
-          <Text style={[styles.tendencyCardTitle, {marginRight: 10, marginTop: 20}]}>à</Text>
-          <View
-            style={[styles.litleInputContainer]}>
+          <Text
+            style={[
+              styles.tendencyCardTitle,
+              {marginRight: 10, marginTop: 20},
+            ]}>
+            à
+          </Text>
+          <View style={[styles.litleInputContainer]}>
             <RNTextInput
               style={styles.litleInputStyle}
               autoCapitalize="none"
@@ -276,7 +276,11 @@ function TradingPlan() {
             />
           </View>
           <TouchableOpacity>
-            <ComponentAdd width={48} height={48} style={[styles.addItem, {marginLeft: -10}]} />
+            <ComponentAdd
+              width={48}
+              height={48}
+              style={[styles.addItem, {marginLeft: -10}]}
+            />
           </TouchableOpacity>
         </View>
         <View style={styles.tendencyContainer}>
@@ -288,12 +292,9 @@ function TradingPlan() {
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.tendencyCardTitle}>
-          Sens de vos trades
-        </Text>
+        <Text style={styles.tendencyCardTitle}>Sens de vos trades</Text>
         <Text style={styles.indication}>(tendance ou contre-tendance)</Text>
-        <View
-          style={[styles.fullInputContainer]}>
+        <View style={[styles.fullInputContainer]}>
           <RNTextInput
             style={styles.fullInputStyle}
             autoCapitalize="none"
@@ -307,8 +308,7 @@ function TradingPlan() {
         <Text style={styles.tendencyCardTitle}>
           Utilisation d'un Stop Loss de Protection ?
         </Text>
-        <View
-          style={[styles.fullInputContainer]}>
+        <View style={[styles.fullInputContainer]}>
           <RNTextInput
             style={styles.fullInputStyle}
             autoCapitalize="none"
@@ -327,17 +327,12 @@ function TradingPlan() {
         </View>
       </View>
       <View style={styles.toolsTitleContainer}>
-        <Text style={styles.toolsTitle2}>
-          Règle d'ouverture d'un trade
-        </Text>
+        <Text style={styles.toolsTitle2}>Règle d'ouverture d'un trade</Text>
       </View>
       <View style={styles.tendencyCard2}>
-        <Text style={styles.tendencyCardTitle}>
-          Conditions d'achats
-        </Text>
+        <Text style={styles.tendencyCardTitle}>Conditions d'achats</Text>
         <View style={styles.tendencyContainer}>
-          <View
-            style={[styles.inputContainer]}>
+          <View style={[styles.inputContainer]}>
             <RNTextInput
               style={styles.inputStyle}
               placeholder="Ajouter votre règle"
@@ -363,8 +358,7 @@ function TradingPlan() {
 
         <Text style={styles.tendencyCardTitle}>Conditions de ventes</Text>
         <View style={styles.tendencyContainer}>
-          <View
-            style={[styles.inputContainer]}>
+          <View style={[styles.inputContainer]}>
             <RNTextInput
               style={styles.inputStyle}
               placeholder="Ajouter votre règle"
@@ -396,17 +390,12 @@ function TradingPlan() {
         </View>
       </View>
       <View style={styles.toolsTitleContainer}>
-        <Text style={styles.toolsTitle2}>
-          Règle de clôture d'un trade
-        </Text>
+        <Text style={styles.toolsTitle2}>Règle de clôture d'un trade</Text>
       </View>
       <View style={styles.tendencyCard2}>
-        <Text style={styles.tendencyCardTitle}>
-          Type d'objectif
-        </Text>
+        <Text style={styles.tendencyCardTitle}>Type d'objectif</Text>
         <View style={styles.tendencyContainer}>
-          <View
-            style={[styles.inputContainer]}>
+          <View style={[styles.inputContainer]}>
             <RNTextInput
               style={styles.inputStyle}
               placeholder="Ajouter votre règle"
@@ -432,8 +421,7 @@ function TradingPlan() {
 
         <Text style={styles.tendencyCardTitle}>Fermeture en perte</Text>
         <View style={styles.tendencyContainer}>
-          <View
-            style={[styles.inputContainer]}>
+          <View style={[styles.inputContainer]}>
             <RNTextInput
               style={styles.inputStyle}
               placeholder="Ajouter votre règle"
@@ -457,7 +445,6 @@ function TradingPlan() {
           </TouchableOpacity>
         </View>
       </View>
-
     </View>
   );
 }
@@ -465,11 +452,135 @@ function TradingPlan() {
 function Calculator() {
   return (
     <View style={[styles.toolsContent, styles.shadowProp]}>
-      <View style={styles.toolsTitleContainer}>
-        <Text style={styles.toolsTitle}>
-          Le succès les attend aussi !
-          <Rocket width={26} height={26} />
-        </Text>
+      <View style={styles.traderCard}>
+        <View style={styles.traderTextContainer}>
+          <Text style={styles.traderText}>TRADER</Text>
+        </View>
+
+        <View style={styles.traderCardContent}>
+          <View style={styles.traderCardContentLeft}>
+            <Text style={styles.traderSubtitle}>Courtier</Text>
+            <View style={styles.litleTraderTextContainer}>
+              <Text style={styles.litleTraderText}>FTMO</Text>
+            </View>
+          </View>
+          <View style={styles.traderCardContentRight}>
+            <Text style={styles.traderSubtitle}>Instrument</Text>
+            <View style={styles.litleTraderTextContainer}>
+              <Text style={styles.litleTraderText}>GER40</Text>
+            </View>
+          </View>
+        </View>
+      </View>
+
+      <View style={[styles.traderCard, {marginTop: 30}]}>
+        <View style={styles.traderTextContainer}>
+          <Text style={styles.traderText}>Mon Capital</Text>
+        </View>
+        <View style={styles.fullTraderCardContent}>
+          <Text style={styles.traderSubtitle}>Montant du capital €</Text>
+          <View style={styles.litleTraderTextContainer}>
+            <Text style={styles.litleTraderText}>5000 €</Text>
+          </View>
+        </View>
+      </View>
+
+      <View style={[styles.traderCard, {marginTop: 30}]}>
+        <View style={styles.traderTextContainer}>
+          <Text style={styles.traderText}>Stop Loss de Protection</Text>
+        </View>
+        <View style={styles.fullTraderCardContent}>
+          <Text style={styles.traderSubtitle}>Stop placé à X points/pips</Text>
+          <View style={styles.litleTraderTextContainer}>
+            <Text style={styles.litleTraderText}>11 points</Text>
+          </View>
+        </View>
+      </View>
+
+      <View style={[styles.traderCard, {marginTop: 30}]}>
+        <View style={styles.traderTextContainer}>
+          <Text style={styles.traderText}>Le Risque</Text>
+        </View>
+        <View style={styles.fullTraderCardContent}>
+          <Text style={styles.traderSubtitle}>% du risque accepté</Text>
+          <View style={styles.litleTraderTextContainer}>
+            <Text style={styles.litleTraderText}>1 %</Text>
+          </View>
+        </View>
+      </View>
+
+      <View style={[styles.traderCard, {marginTop: 30, height: 213}]}>
+        <View style={styles.traderTextContainer}>
+          <Text style={styles.traderText}>Nombre de Micro Lots</Text>
+        </View>
+        <View style={styles.fullTraderCardContent}>
+          <Text style={styles.traderSubtitle}>Valeur du points/pip €</Text>
+          <View style={styles.litleTraderTextContainer}>
+            <Text style={styles.litleTraderText}>0.10 €</Text>
+          </View>
+        </View>
+        <View style={styles.fullTraderCardContent}>
+          <Text style={styles.traderSubtitle}>
+            Nombre de micro lots à prendre
+          </Text>
+          <View style={styles.litleTraderTextContainer}>
+            <Text style={styles.litleTraderText}>45.5</Text>
+          </View>
+        </View>
+      </View>
+
+      <View style={[styles.traderCard, {marginTop: 30, height: 213}]}>
+        <View style={styles.traderTextContainer}>
+          <Text style={styles.traderText}>Objectif</Text>
+        </View>
+        <View style={styles.fullTraderCardContent}>
+          <Text style={styles.traderSubtitle}>Objectif à (en points)</Text>
+          <View style={styles.litleTraderTextContainer}>
+            <Text style={styles.litleTraderText}>95 points</Text>
+          </View>
+        </View>
+        <View style={styles.fullTraderCardContent}>
+          <Text style={styles.traderSubtitle}>Présantant / € le point</Text>
+          <View style={styles.litleTraderTextContainer}>
+            <Text style={styles.litleTraderText}>4.545</Text>
+          </View>
+        </View>
+      </View>
+
+      <Text style={styles.traderBigText}>Impact / Performances</Text>
+      <View style={[styles.traderCard, {marginTop: 10, height: 195}]}>
+        <View style={styles.impactSectionContainer}>
+          <Text style={styles.impactTextLeft}>Gain prévisionnel €</Text>
+          <View style={styles.impactSectionContainerRight}>
+            <Text style={styles.percentageItemText}>500.00 €</Text>
+          </View>
+        </View>
+        <View style={styles.impactSectionContainer}>
+          <Text style={styles.impactTextLeft}>Perte prévisionnel €</Text>
+          <View style={styles.impactSectionContainerRight}>
+            <Text style={styles.percentageItemText}>-50.00 €</Text>
+          </View>
+        </View>
+        <View style={styles.impactSectionContainer}>
+          <Text style={styles.impactTextLeft}>Niveau de Risk Rendement</Text>
+          <View style={styles.impactSectionContainerRight}>
+            <Text style={styles.percentageItemText}>8.6</Text>
+          </View>
+        </View>
+        <View style={styles.impactSectionContainer}>
+          <Text style={styles.impactTextLeft}>Évolution Capital %</Text>
+          <View style={styles.impactSectionContainerRight}>
+            <Text style={styles.percentageItemText}>8.6 %</Text>
+          </View>
+        </View>
+      </View>
+      <TouchableOpacity style={styles.saveButton}>
+        <Text style={styles.saveButtonText}>Sauvegarder</Text>
+      </TouchableOpacity>
+
+      <Text style={styles.traderBigText}>Placement du Stop</Text>
+      <View style={[styles.traderCard, {marginTop: 10, height: 295}]}>
+
       </View>
     </View>
   );
@@ -478,12 +589,54 @@ function Calculator() {
 function Simulator() {
   return (
     <View style={[styles.toolsContent, styles.shadowProp]}>
-      <View style={styles.toolsTitleContainer}>
-        <Text style={styles.toolsTitle}>
-          Le succès les attend aussi !
-          <Rocket width={26} height={26} />
-        </Text>
+      {/* Etape 1 */}
+      <View style={[styles.stepTitleContainer, {marginTop: 30}]}>
+        <View style={styles.stepTitle}>
+          <Text style={styles.stepTitleText}>Étape 1</Text>
+        </View>
       </View>
+      <Text style={styles.toolsTitle2}>
+        Configurez votre projection de gains sur les marchés financiers
+      </Text>
+      <View style={styles.traderCard}>
+        <View style={styles.cardSection}>
+          <View style={styles.cardContentLeft}>
+            <Text style={styles.cardContentLeftText}>
+              Montant de votre capital €
+            </Text>
+          </View>
+          <View style={styles.cardContentRight}>
+            <Text style={styles.cardContentRightText}>3000 €</Text>
+          </View>
+        </View>
+        <Text style={styles.sectionText}>
+          Augmentation prévisionnelle du capital*
+        </Text>
+        <Text style={styles.sectionInfo}>
+          *Par jour : veuillez entrer une valeur comprise entre 0.5 et 5 %
+        </Text>
+        <View style={styles.cardSection}>
+          <View style={styles.cardContentBottomLeft}>
+            <Text style={styles.cardContentBottomLeftText}>1.00</Text>
+          </View>
+          <View style={styles.cardContentBottomRight}>
+            <Text style={styles.cardContentBottomRightText}>
+              /jour
+              <ComponentAdd width={24} height={24} style={styles.addItem} />
+            </Text>
+          </View>
+        </View>
+      </View>
+
+      {/* Etape 2 */}
+      <View style={[styles.stepTitleContainer, {marginTop: 30}]}>
+        <View style={styles.stepTitle}>
+          <Text style={styles.stepTitleText}>Étape 2</Text>
+        </View>
+      </View>
+      <Text style={styles.toolsTitle2}>
+        Tes revenues potentiels grâce aux marchés financiers
+      </Text>
     </View>
   );
 }
@@ -504,7 +657,8 @@ function ToolsContainer(selectedFooter) {
   }
   return (
     <ScrollView>
-      <TradingPlan />
+      {/* <TradingPlan /> */}
+      <Calculator />
     </ScrollView>
   );
 }
@@ -794,7 +948,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 16,
     fontFamily: 'Montserrat',
-
   },
   tendencyContainer: {
     flexDirection: 'row',
@@ -933,7 +1086,7 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: 500,
     fontSize: 17,
-    lineHeight: 21, 
+    lineHeight: 21,
   },
   objectiveCard: {
     height: 220,
@@ -960,7 +1113,6 @@ const styles = StyleSheet.create({
     height: 36,
     marginLeft: 15,
     justifyContent: 'center',
-
   },
   objectiveItemLeftTopText: {
     color: '#1A2442',
@@ -968,7 +1120,7 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: 500,
     fontSize: 13,
-    lineHeight: 16, 
+    lineHeight: 16,
   },
   objectiveItemLeftBottomText: {
     color: '#9154FD',
@@ -979,22 +1131,22 @@ const styles = StyleSheet.create({
     lineHeight: 12,
   },
   percentageItemContainer: {
-   width: 100,
-   backgroundColor: '#FFFFFF',
-   marginLeft: 15,
-   marginTop: 15,
-   height: 36,
-   borderRadius: 10,
-   shadowOffset: {
-    width: 0,
-    height: 15,
-  },
-  shadowColor: 'rgba(9, 13, 109, 0.4)',
-  shadowOpacity: 1,
-  shadowRadius: 20,
-  justifyContent: 'center',
-  paddingRight: 10,
-  paddingLeft: 10,
+    width: 100,
+    backgroundColor: '#FFFFFF',
+    marginLeft: 15,
+    marginTop: 15,
+    height: 36,
+    borderRadius: 10,
+    shadowOffset: {
+      width: 0,
+      height: 15,
+    },
+    shadowColor: 'rgba(9, 13, 109, 0.4)',
+    shadowOpacity: 1,
+    shadowRadius: 20,
+    justifyContent: 'center',
+    paddingRight: 10,
+    paddingLeft: 10,
   },
   percentageItemText: {
     color: '#1A2442',
@@ -1004,7 +1156,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 16,
     textAlign: 'right',
-
   },
   ruleCard: {
     height: 684,
@@ -1082,6 +1233,182 @@ const styles = StyleSheet.create({
     // shadowRadius: 40,
     // shadowOpacity: 1,
   },
+  traderCard: {
+    backgroundColor: '#E9EDFC',
+    borderRadius: 20,
+    height: 138,
+    width: '100%',
+    marginTop: 10,
+    marginBottom: 10,
+    paddingRight: 10,
+    paddingLeft: 10,
+    // elevation: 8,
+    // shadowColor: "rgba(9, 13, 109, 0.4)",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 30,
+    // },
+    // shadowRadius: 40,
+    // shadowOpacity: 1,
+  },
+  traderTextContainer: {
+    width: Dimensions.get('window').width - 40,
+    height: 43,
+    marginTop: 10,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    shadowOffset: {
+      width: 0,
+      height: 15,
+    },
+    shadowColor: 'rgba(9, 13, 109, 0.45)',
+    shadowOpacity: 1,
+    shadowRadius: 40,
+    elevation: 0,
+  },
+  traderText: {
+    color: '#1A2442',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    fontSize: 22,
+    lineHeight: 27,
+    marginTop: 8,
+    marginLeft: 10,
+  },
+  traderBigText: {
+    color: '#1A2442',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    fontSize: 28,
+    lineHeight: 31,
+    marginTop: 30,
+    marginLeft: 10,
+  },
+  traderCardContent: {
+    flexDirection: 'row',
+    width: Dimensions.get('window').width - 40,
+    marginTop: 17,
+  },
+  traderCardContentLeft: {
+    width: '50%',
+    paddingRight: 20,
+  },
+  traderCardContentRight: {
+    width: '50%',
+    paddingLeft: 20,
+  },
+  fullTraderCardContent: {
+    width: Dimensions.get('window').width - 40,
+    marginTop: 17,
+  },
+  traderSubtitle: {
+    color: '#9154FD',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 13,
+    lineHeight: 16,
+    marginLeft: 5,
+  },
+  impactSectionContainer: {
+    flexDirection: 'row',
+    paddingTop: 0,
+  },
+  impactTextLeft: {
+    width: Dimensions.get('window').width - 180,
+    marginTop: 18,
+    height: 16,
+    marginLeft: 5,
+    justifyContent: 'center',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 13,
+    lineHeight: 16,
+  },
+  impactSectionContainerRight: {
+    width: 120,
+    backgroundColor: '#FFFFFF',
+    marginLeft: 15,
+    marginTop: 10,
+    height: 36,
+    borderRadius: 10,
+    shadowOffset: {
+      width: 0,
+      height: 15,
+    },
+    shadowColor: 'rgba(9, 13, 109, 0.4)',
+    shadowOpacity: 1,
+    shadowRadius: 20,
+    justifyContent: 'center',
+    paddingRight: 10,
+    paddingLeft: 10,
+  },
+  litleTraderTextContainer: {
+    width: '100%',
+    height: 36,
+    marginTop: 6,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    shadowOffset: {
+      width: 0,
+      height: 15,
+    },
+    shadowColor: 'rgba(9, 13, 109, 0.45)',
+    shadowOpacity: 1,
+    shadowRadius: 40,
+    elevation: 0,
+  },
+  litleTraderText: {
+    color: '#1A2442',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 13,
+    lineHeight: 16,
+    marginLeft: 10,
+    marginTop: 10,
+  },
+  saveButton: {
+    width: '100%',
+    height: 52,
+    backgroundColor: '#9154FD',
+    borderRadius: 10,
+    marginTop: 20,
+    alignItems: 'center',
+    shadowColor: '#9154fd',
+    shadowOffset: {width: 0, height: 4},
+    shadowOpacity: 0.6,
+    shadowRadius: 14,
+    elevation: 5,
+    paddingTop: 6,
+  },
+  saveButtonText: {
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    fontSize: 18,
+    lineHeight: 21,
+    marginTop: 10,
+  },
+  cardSection: {
+    flexDirection: 'row',
+  },
+  cardContentLeft: {},
+  cardContentLeftText: {},
+  cardContentRight: {
+    width: 100,
+  },
+  cardContentRightText: {},
+  sectionText: {},
+  sectionInfo: {},
+  cardContentBottomLeft: {},
+  cardContentBottomLeftText: {},
+  cardContentBottomRight: {},
+  cardContentBottomRightText: {},
 });
 
 export default Tools;
