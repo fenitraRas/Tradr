@@ -579,9 +579,7 @@ function Calculator() {
       </TouchableOpacity>
 
       <Text style={styles.traderBigText}>Placement du Stop</Text>
-      <View style={[styles.traderCard, {marginTop: 10, height: 295}]}>
-
-      </View>
+      <View style={[styles.traderCard, {marginTop: 10, height: 295}]}></View>
     </View>
   );
 }
@@ -601,12 +599,12 @@ function Simulator() {
       <View style={styles.traderCard}>
         <View style={styles.cardSection}>
           <View style={styles.cardContentLeft}>
-            <Text style={styles.cardContentLeftText}>
+            <Text style={styles.objectiveItemLeftTopText}>
               Montant de votre capital €
             </Text>
           </View>
-          <View style={styles.cardContentRight}>
-            <Text style={styles.cardContentRightText}>3000 €</Text>
+          <View style={styles.percentageItemContainer}>
+            <Text style={styles.percentageItemText}>3000 €</Text>
           </View>
         </View>
         <Text style={styles.sectionText}>
@@ -658,7 +656,7 @@ function ToolsContainer(selectedFooter) {
   return (
     <ScrollView>
       {/* <TradingPlan /> */}
-      <Calculator />
+      <Simulator />
     </ScrollView>
   );
 }
@@ -1147,6 +1145,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingRight: 10,
     paddingLeft: 10,
+    borderWidth: 1,
+    borderColor: '#9154FD',
+    borderStyle: 'solid',
   },
   percentageItemText: {
     color: '#1A2442',
@@ -1360,6 +1361,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 40,
     elevation: 0,
+    borderWidth: 1,
+    borderColor: '#9154FD',
+    borderStyle: 'solid',
   },
   litleTraderText: {
     color: '#1A2442',
@@ -1397,12 +1401,17 @@ const styles = StyleSheet.create({
   cardSection: {
     flexDirection: 'row',
   },
-  cardContentLeft: {},
+  cardContentLeft: {
+    width: Dimensions.get('window').width - 160,
+    marginTop: 15,
+    height: 36,
+    marginLeft: 5,
+    justifyContent: 'center',
+  },
   cardContentLeftText: {},
   cardContentRight: {
     width: 100,
   },
-  cardContentRightText: {},
   sectionText: {},
   sectionInfo: {},
   cardContentBottomLeft: {},
