@@ -65,7 +65,7 @@ function Navbar(props) {
 
 function TradingPlan() {
   return (
-    <View style={[styles.toolsContent, styles.shadowProp]}>
+    <ScrollView style={[styles.toolsContent, styles.shadowProp]}>
       <View style={styles.toolsTitleContainer}>
         <Text style={styles.toolsTitle2}>À faire avant chaque session</Text>
       </View>
@@ -446,13 +446,13 @@ function TradingPlan() {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 function Calculator() {
   return (
-    <View style={[styles.toolsContent, styles.shadowProp]}>
+    <ScrollView style={[styles.toolsContent, styles.shadowProp]}>
       <View style={styles.traderCard}>
         <View style={styles.traderTextContainer}>
           <Text style={styles.traderText}>TRADER</Text>
@@ -581,13 +581,13 @@ function Calculator() {
 
       <Text style={styles.traderBigText}>Placement du Stop</Text>
       <View style={[styles.traderCard, {marginTop: 10, height: 295}]}></View>
-    </View>
+    </ScrollView>
   );
 }
 
 function Simulator() {
   return (
-    <View style={[styles.toolsContent, styles.shadowProp]}>
+    <ScrollView style={[styles.toolsContent, styles.shadowProp]}>
       {/* Etape 1 */}
       <View style={[styles.stepTitleContainer, {marginTop: 30}]}>
         <View style={styles.stepTitle}>
@@ -636,7 +636,7 @@ function Simulator() {
       <Text style={styles.toolsTitle2}>
         Tes revenues potentiels grâce aux marchés financiers
       </Text>
-      <View style={[styles.traderCard, {height: 940}]}>
+      <View style={[styles.traderCard, styles.simulator]}>
         <View style={styles.cardSubtitleSection}>
           <View style={styles.subtitleSectionLeft}>
             <Text style={styles.subtitleSectionLeftText}>
@@ -740,26 +740,26 @@ function Simulator() {
           </View>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 function ToolsContainer({selectedFooter}) {
   if (selectedFooter === 'calculator') {
     return (
-      <ScrollView>
+      <ScrollView style={styles.tabContent}>
         <Calculator />
       </ScrollView>
     );
   } else if (selectedFooter === 'simulator') {
     return (
-      <ScrollView>
+      <ScrollView style={styles.tabContent}>
         <Simulator />
       </ScrollView>
     );
   }
   return (
-    <ScrollView>
+    <ScrollView style={styles.tabContent}>
       <TradingPlan />
     </ScrollView>
   );
@@ -886,6 +886,7 @@ function Tools() {
 const styles = StyleSheet.create({
   toolsContent: {
     width: Dimensions.get('window').width,
+    height: '100%',
     paddingLeft: 10,
     paddingRight: 10,
     backgroundColor: '#FFFFFF',
@@ -893,6 +894,15 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     marginTop: 5,
     paddingBottom: 14,
+  },
+  tabContent: {
+    height:
+      Platform.OS === 'android'
+        ? Dimensions.get('window').height - 120
+        : Dimensions.get('window').height - 170,
+  },
+  simulator: {
+    height: Platform.OS === 'android' ? 920 : 940,
   },
   shadowProp: {
     shadowColor: 'rgba(9, 13, 109, 0.4)',

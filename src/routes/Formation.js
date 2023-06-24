@@ -169,6 +169,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     backgroundColor: '#FFFFFF',
+    paddingBottom: 20,
   },
   imgContainer: {
     width: '100%',

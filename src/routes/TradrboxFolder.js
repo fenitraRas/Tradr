@@ -276,6 +276,10 @@ function TradrboxFolder() {
 const styles = StyleSheet.create({
   tradrboxContent: {
     width: Dimensions.get('window').width,
+    height:
+      Platform.OS === 'android'
+        ? Dimensions.get('window').height + 130
+        : Dimensions.get('window').height,
     paddingLeft: 10,
     paddingRight: 10,
     backgroundColor: '#FFFFFF',
