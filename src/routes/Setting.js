@@ -7,11 +7,9 @@
 
 import {
   Dimensions,
-  Image,
   Platform,
   SafeAreaView,
   ScrollView,
-  Settings,
   StatusBar,
   StyleSheet,
   Text,
@@ -26,7 +24,9 @@ import {useNavigation} from '@react-navigation/native';
 
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
-import Rocket from '../assets/icons/rocket.svg';
+import IconGroup1 from '../assets/icons/iconGroup1.svg';
+import Twitter from '../assets/icons/twitter.svg';
+import Linkedin from '../assets/icons/linkedin.svg';
 
 import {formStyles} from '../assets/css/form';
 
@@ -61,19 +61,48 @@ function Navbar(props) {
 function SettingContent() {
   return (
     <View style={[styles.settingContent, styles.shadowProp]}>
-      <View style={styles.settingTitleContainer}>
-        <Text style={styles.settingTitle}>
-          Le succès les attend aussi !
-          <Rocket width={26} height={26} />
-        </Text>
+      <TouchableOpacity style={styles.item}>
+        <Text style={styles.itemText}>Compte</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.item}>
+        <Text style={styles.itemText}>Notifications</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.item}>
+        <Text style={styles.itemText}>Langage</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.item}>
+        <Text style={styles.itemText}>Support</Text>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Text style={styles.itemText}>Contact</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+function SettingFooter() {
+  return (
+    <View style={[styles.settingFooter]}>
+      <View style={styles.iconContainer}>
+        <TouchableOpacity>
+          <IconGroup1 width={26} height={26} style={styles.icon} />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Twitter width={26} height={26} style={styles.icon} />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Linkedin width={26} height={26} style={styles.icon} />
+        </TouchableOpacity>
       </View>
+      <Text style={styles.infoApp}>Création Pléiade[s] - TRADR © 2023</Text>
+      <Text style={styles.version}>version 1.0.0</Text>
     </View>
   );
 }
 
 function SettingContainer() {
   return (
-    <ScrollView>
+    <ScrollView style={styles.content}>
       <SettingContent />
     </ScrollView>
   );
@@ -92,6 +121,7 @@ function Setting() {
       />
       <Navbar title="Paramètres" />
       <SettingContainer />
+      <SettingFooter />
     </SafeAreaView>
   );
 }
@@ -99,8 +129,13 @@ function Setting() {
 const styles = StyleSheet.create({
   settingContent: {
     width: Dimensions.get('window').width,
-    paddingLeft: 10,
-    paddingRight: 10,
+    height:
+      Platform.OS === 'android'
+        ? Dimensions.get('window').height
+        : Dimensions.get('window').height - 140,
+    paddingLeft: 28,
+    paddingRight: 28,
+    paddingTop: 20,
     backgroundColor: '#FFFFFF',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
@@ -117,6 +152,12 @@ const styles = StyleSheet.create({
     shadowRadius: 20,
     elevation: 2,
   },
+  content: {
+    height:
+      Platform.OS === 'android'
+        ? Dimensions.get('window').height - 120
+        : Dimensions.get('window').height - 170,
+  },
   navbarText: {
     textAlign: 'center',
     fontWeight: 500,
@@ -125,17 +166,51 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
     color: '#1A2442',
   },
-  settingTitleContainer: {
-    width: 'auto',
+  item: {
+    width: '100%',
+    borderBottomColor: '#D2D6E1',
+    borderBottomWidth: 1,
+    borderBottomStyle: 'solid',
   },
-  settingTitle: {
+  itemText: {
+    height: 20,
+    marginTop: 17,
+    marginBottom: 17,
     color: '#1A2442',
-    marginTop: 30,
-    fontWeight: 600,
-    fontSize: 26,
-    lineHeight: 32,
-    marginLeft: 5,
-    marginRight: 15,
+    fontSize: 16,
+    fontFamily: 'Montserrat',
+  },
+  settingFooter: {
+    position: 'absolute',
+    bottom: Platform.OS === 'android' ? 25 : 35,
+    left: 0,
+    height: 100,
+    width: '100%',
+  },
+  iconContainer: {
+    flexDirection: 'row',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 26,
+  },
+  icon: {
+    marginLeft: 14,
+    marginRight: 14,
+  },
+  infoApp: {
+    marginTop: 20,
+    textAlign: 'center',
+    color: '#9BA5BF',
+    fontFamily: 'Montserrat',
+    fontSize: 16,
+  },
+  version: {
+    textAlign: 'center',
+    marginTop: 6,
+    color: '#9BA5BF',
+    fontFamily: 'Montserrat',
+    fontSize: 13,
   },
 });
 
