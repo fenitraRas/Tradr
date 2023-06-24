@@ -31,6 +31,7 @@ import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg
 import Rocket from '../assets/icons/rocket.svg';
 import ComponentRemove from '../assets/icons/componentRemove.svg';
 import ComponentAdd from '../assets/icons/componentAdd.svg';
+import ArrowDesc from '../assets/icons/arrowDesc.svg';
 
 import {formStyles} from '../assets/css/form';
 
@@ -596,7 +597,7 @@ function Simulator() {
       <Text style={styles.toolsTitle2}>
         Configurez votre projection de gains sur les marchés financiers
       </Text>
-      <View style={styles.traderCard}>
+      <View style={[styles.traderCard, {height: 150}]}>
         <View style={styles.cardSection}>
           <View style={styles.cardContentLeft}>
             <Text style={styles.objectiveItemLeftTopText}>
@@ -613,14 +614,14 @@ function Simulator() {
         <Text style={styles.sectionInfo}>
           *Par jour : veuillez entrer une valeur comprise entre 0.5 et 5 %
         </Text>
-        <View style={styles.cardSection}>
+        <View style={[styles.cardSection, {marginTop: 11}]}>
           <View style={styles.cardContentBottomLeft}>
             <Text style={styles.cardContentBottomLeftText}>1.00</Text>
           </View>
           <View style={styles.cardContentBottomRight}>
             <Text style={styles.cardContentBottomRightText}>
               /jour
-              <ComponentAdd width={24} height={24} style={styles.addItem} />
+              <ArrowDesc width={10} height={4} style={{marginLeft: 15}} />
             </Text>
           </View>
         </View>
@@ -635,11 +636,115 @@ function Simulator() {
       <Text style={styles.toolsTitle2}>
         Tes revenues potentiels grâce aux marchés financiers
       </Text>
+      <View style={[styles.traderCard, {height: 940}]}>
+        <View style={styles.cardSubtitleSection}>
+          <View style={styles.subtitleSectionLeft}>
+            <Text style={styles.subtitleSectionLeftText}>
+              Voici ce que les marchés vous rapporteraient en seulement
+            </Text>
+          </View>
+          <View style={styles.cardSubtitleSectionRight}>
+            <Text style={styles.cardSubtitleSectionRightText}>1 an</Text>
+          </View>
+        </View>
+        <View style={styles.innerCardSection}>
+          <View style={styles.innerCardSubtitleContainer}>
+            <Text style={styles.innerCardSubtitleText}>Marchés financiers</Text>
+          </View>
+          <View style={styles.innerCardContent}>
+            <View style={styles.innerCardContentLeft}>
+              <Text style={[styles.innerCardNumber, {color: '#9154FD'}]}>
+                150€
+              </Text>
+              <Text style={[styles.innerCardText]}>tes gains</Text>
+            </View>
+            <View style={styles.innerCardContentRight}>
+              <Text style={[styles.innerCardNumber, {color: '#9154FD'}]}>
+                5%
+              </Text>
+              <Text style={[styles.innerCardText]}>ta rentabilité</Text>
+            </View>
+          </View>
+        </View>
+        <View style={[styles.innerCardSection, {marginTop: 10}]}>
+          <View style={styles.innerCardSubtitleContainer}>
+            <Text style={styles.innerCardSubtitleText}>Marchés financiers</Text>
+          </View>
+          <View style={styles.innerCardContent}>
+            <View style={styles.innerCardContentLeft}>
+              <Text style={[styles.innerCardNumber, {color: '#7AC84A'}]}>
+                14 987.38€
+              </Text>
+              <Text style={[styles.innerCardText]}>tes gains</Text>
+            </View>
+            <View style={styles.innerCardContentRight}>
+              <Text style={[styles.innerCardNumber, {color: '#7AC84A'}]}>
+                498.45%
+              </Text>
+              <Text style={styles.innerCardText}>ta rentabilité</Text>
+            </View>
+          </View>
+        </View>
+
+        <View style={[styles.innerCardSection, styles.graphSection]}>
+          <Text>GRAPHIQUE A INSERER</Text>
+        </View>
+
+        {/* 2 ans */}
+        <View style={[styles.cardSubtitleSection, {marginTop: 30}]}>
+          <View style={styles.subtitleSectionLeft2}>
+            <Text style={styles.subtitleSectionLeftText}>
+              Voici ce que les marchés vous rapporteraient en seulement
+            </Text>
+          </View>
+          <View style={[styles.cardSubtitleSectionRight, {width: 48}]}>
+            <Text style={styles.cardSubtitleSectionRightText}>2 ans</Text>
+          </View>
+        </View>
+        <View style={styles.innerCardSection}>
+          <View style={styles.innerCardSubtitleContainer}>
+            <Text style={styles.innerCardSubtitleText}>Marchés financiers</Text>
+          </View>
+          <View style={styles.innerCardContent}>
+            <View style={styles.innerCardContentLeft}>
+              <Text style={[styles.innerCardNumber, {color: '#9154FD'}]}>
+                300€
+              </Text>
+              <Text style={[styles.innerCardText]}>tes gains</Text>
+            </View>
+            <View style={styles.innerCardContentRight}>
+              <Text style={[styles.innerCardNumber, {color: '#9154FD'}]}>
+                10%
+              </Text>
+              <Text style={[styles.innerCardText]}>ta rentabilité</Text>
+            </View>
+          </View>
+        </View>
+        <View style={[styles.innerCardSection, {marginTop: 10}]}>
+          <View style={styles.innerCardSubtitleContainer}>
+            <Text style={styles.innerCardSubtitleText}>Marchés financiers</Text>
+          </View>
+          <View style={styles.innerCardContent}>
+            <View style={styles.innerCardContentLeft}>
+              <Text style={[styles.innerCardNumber, {color: '#7AC84A'}]}>
+                104 848.96€
+              </Text>
+              <Text style={[styles.innerCardText]}>tes gains</Text>
+            </View>
+            <View style={styles.innerCardContentRight}>
+              <Text style={[styles.innerCardNumber, {color: '#7AC84A'}]}>
+                3 494.97%
+              </Text>
+              <Text style={styles.innerCardText}>ta rentabilité</Text>
+            </View>
+          </View>
+        </View>
+      </View>
     </View>
   );
 }
 
-function ToolsContainer(selectedFooter) {
+function ToolsContainer({selectedFooter}) {
   if (selectedFooter === 'calculator') {
     return (
       <ScrollView>
@@ -655,8 +760,7 @@ function ToolsContainer(selectedFooter) {
   }
   return (
     <ScrollView>
-      {/* <TradingPlan /> */}
-      <Simulator />
+      <TradingPlan />
     </ScrollView>
   );
 }
@@ -1408,16 +1512,182 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     justifyContent: 'center',
   },
-  cardContentLeftText: {},
   cardContentRight: {
     width: 100,
   },
-  sectionText: {},
-  sectionInfo: {},
-  cardContentBottomLeft: {},
-  cardContentBottomLeftText: {},
-  cardContentBottomRight: {},
-  cardContentBottomRightText: {},
+  sectionText: {
+    color: '#1A2442',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 13,
+    lineHeight: 15,
+    marginLeft: 5,
+    marginTop: 15,
+  },
+  sectionInfo: {
+    color: '#9154FD',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 10,
+    lineHeight: 12,
+    marginLeft: 5,
+  },
+  cardContentBottomLeft: {
+    width: Dimensions.get('window').width - 155,
+    height: 36,
+    borderRadius: 10,
+    backgroundColor: '#FFFFFF',
+    borderColor: '#9154FD',
+    borderWidth: 1,
+    border: 'solod',
+    marginRight: 15,
+  },
+  cardContentBottomLeftText: {
+    color: '#1A2442',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 13,
+    lineHeight: 15,
+    textAlign: 'right',
+    marginRight: 10,
+    marginTop: 10,
+  },
+  cardContentBottomRight: {
+    width: 100,
+    height: 36,
+    backgroundColor: '#9154FD',
+    borderRadius: 10,
+    shadowColor: 'rgba(145, 84, 253, 0.60)',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 14,
+    elevation: 4,
+    paddingTop: 10,
+  },
+  cardContentBottomRightText: {
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 13,
+    lineHeight: 15,
+    textAlign: 'right',
+    marginLeft: 15,
+  },
+  cardSubtitleSection: {
+    flexDirection: 'row',
+    width: '100%',
+    paddingRight: 5,
+    paddingLeft: 5,
+    marginTop: 15,
+  },
+  subtitleSectionLeft: {
+    width: Dimensions.get('window').width - 85,
+  },
+  subtitleSectionLeft2: {
+    width: Dimensions.get('window').width - 98,
+  },
+  subtitleSectionLeftText: {
+    color: '#1A2442',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 13,
+    lineHeight: 16,
+  },
+  cardSubtitleSectionRight: {
+    width: 35,
+    height: 21,
+    backgroundColor: '#9154FD',
+    borderRadius: 4,
+    shadowColor: 'rgba(145, 84, 253, 0.60)',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 14,
+    elevation: 4,
+  },
+  cardSubtitleSectionRightText: {
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 14,
+    lineHeight: 17,
+    textAlign: 'center',
+    marginTop: 2,
+  },
+  innerCardSection: {
+    width: '100%',
+    height: 120,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    marginTop: 15,
+    elevation: 8,
+    shadowColor: 'rgba(9, 13, 109, 0.45)',
+    shadowOffset: {
+      width: 0,
+      height: 15,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 40,
+  },
+  innerCardSubtitleContainer: {
+    width: '100%',
+    marginTop: 15,
+    paddingLeft: 15,
+    paddingRight: 15,
+  },
+  innerCardSubtitleText: {
+    color: '#1A2442',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 15,
+    lineHeight: 18,
+  },
+  innerCardContent: {
+    flexDirection: 'row',
+    width: '100%',
+    marginTop: 20,
+  },
+  innerCardContentLeft: {
+    width: '50%',
+    alignItems: 'center',
+  },
+  innerCardNumber: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    fontSize: 26,
+    lineHeight: 30,
+  },
+  innerCardText: {
+    color: '#9BA5BF',
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 15,
+    lineHeight: 18,
+  },
+  innerCardContentRight: {
+    width: '50%',
+    alignItems: 'center',
+  },
+  graphSection: {
+    marginTop: 30,
+    height: 260,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 export default Tools;
