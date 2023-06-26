@@ -17,18 +17,18 @@ import {
   View,
   useColorScheme,
 } from 'react-native';
+import Menu, {NavbarMenu} from './Menu';
 import React, {useRef, useState} from 'react';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {useSelector} from 'react-redux';
-import {useNavigation} from '@react-navigation/native';
 
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
 import IconGroup1 from '../assets/icons/iconGroup1.svg';
-import Twitter from '../assets/icons/twitter.svg';
 import Linkedin from '../assets/icons/linkedin.svg';
-
+import Twitter from '../assets/icons/twitter.svg';
 import {formStyles} from '../assets/css/form';
+import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
@@ -46,7 +46,7 @@ function Navbar(props) {
         </Text>
       </View>
       <View style={formStyles.navbarIcon}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => props.handleScrollToRight()}>
           {option === 'light' ? (
             <DotThreeVertical width={30} height={20} />
           ) : (
@@ -102,9 +102,9 @@ function SettingFooter() {
 
 function SettingContainer() {
   return (
-    <ScrollView style={styles.content}>
+    <View style={styles.content}>
       <SettingContent />
-    </ScrollView>
+    </View>
   );
 }
 
@@ -113,15 +113,53 @@ function Setting() {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+  const scrollViewRef = useRef(null);
+  const [scrollToMenu, setScrollToMenu] = useState(false);
+
+  const handleScrollToRight = () => {
+    setScrollToMenu(true);
+    scrollViewRef.current.scrollTo({x: 41, animated: true});
+  };
+  const handleScrollToLeft = () => {
+    setScrollToMenu(false);
+    scrollViewRef.current.scrollToEnd();
+  };
+
+  const handleContentSizeChange = (contentWidth, contentHeight) => {
+    const screenWidth = Dimensions.get('window').width;
+    scrollViewRef.current.scrollTo({
+      x: contentWidth - screenWidth,
+      y: 0,
+      animated: false,
+    });
+  };
   return (
-    <SafeAreaView style={{height: Dimensions.get('window').height}}>
+    <SafeAreaView>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <Navbar title="Paramètres" />
-      <SettingContainer />
-      <SettingFooter />
+      {scrollToMenu ? (
+        <NavbarMenu handleScrollToLeft={() => handleScrollToLeft()} />
+      ) : (
+        <Navbar
+          handleScrollToRight={() => handleScrollToRight()}
+          title="Paramètres"
+        />
+      )}
+      <ScrollView
+        ref={scrollViewRef}
+        horizontal={true}
+        scrollEnabled={false}
+        onContentSizeChange={handleContentSizeChange}
+        contentOffset={{x: 0, y: 0}}>
+        <Menu
+          currentScreen="Setting"
+          handleScrollToLeft={() => handleScrollToLeft()}
+        />
+        <SettingContainer />
+      </ScrollView>
+      {!scrollToMenu ? <SettingFooter /> : null}
     </SafeAreaView>
   );
 }
@@ -132,7 +170,7 @@ const styles = StyleSheet.create({
     height:
       Platform.OS === 'android'
         ? Dimensions.get('window').height
-        : Dimensions.get('window').height - 140,
+        : Dimensions.get('window').height + 140,
     paddingLeft: 28,
     paddingRight: 28,
     paddingTop: 20,
@@ -182,10 +220,11 @@ const styles = StyleSheet.create({
   },
   settingFooter: {
     position: 'absolute',
-    bottom: Platform.OS === 'android' ? 25 : 35,
+    bottom: Platform.OS === 'android' ? 34 : 54,
     left: 0,
     height: 100,
     width: '100%',
+    backgroundColor: '#FFFFFF',
   },
   iconContainer: {
     flexDirection: 'row',

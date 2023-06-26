@@ -240,7 +240,9 @@ function MenuConnected(props) {
         <TouchableOpacity
           style={styles.iconText}
           onPress={() => {
-            navigation.navigate('Tools');
+            props.currentScreen === 'Tools'
+              ? props.handleScrollToLeft()
+              : navigation.replace('Tools');
           }}>
           <Outils width={18} height={18} />
           <Text style={styles.subTitle}>Outils</Text>
@@ -258,7 +260,9 @@ function MenuConnected(props) {
         <TouchableOpacity
           style={styles.iconText}
           onPress={() => {
-            navigation.navigate('Setting');
+            props.currentScreen === 'Setting'
+              ? props.handleScrollToLeft()
+              : navigation.replace('Setting');
           }}>
           <Params width={18} height={18} />
           <Text style={styles.subTitle}>Paramètres</Text>

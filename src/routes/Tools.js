@@ -9,6 +9,7 @@ import {
   Dimensions,
   Image,
   Platform,
+  TextInput as RNTextInput,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -17,23 +18,21 @@ import {
   TouchableOpacity,
   View,
   useColorScheme,
-  TextInput as RNTextInput,
 } from 'react-native';
-import React, {useRef, useState} from 'react';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {useSelector} from 'react-redux';
-import {useNavigation} from '@react-navigation/native';
 import Menu, {NavbarMenu} from './Menu';
-import MyTextInput from '../Components/TextInput';
+import React, {useRef, useState} from 'react';
 
+import ArrowDesc from '../assets/icons/arrowDesc.svg';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import ComponentAdd from '../assets/icons/componentAdd.svg';
+import ComponentRemove from '../assets/icons/componentRemove.svg';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
+import MyTextInput from '../Components/TextInput';
 import Rocket from '../assets/icons/rocket.svg';
-import ComponentRemove from '../assets/icons/componentRemove.svg';
-import ComponentAdd from '../assets/icons/componentAdd.svg';
-import ArrowDesc from '../assets/icons/arrowDesc.svg';
-
 import {formStyles} from '../assets/css/form';
+import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
@@ -51,7 +50,7 @@ function Navbar(props) {
         </Text>
       </View>
       <View style={formStyles.navbarIcon}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => props.handleScrollToRight()}>
           {option === 'light' ? (
             <DotThreeVertical width={30} height={20} />
           ) : (
@@ -813,7 +812,7 @@ function Tools() {
         onContentSizeChange={handleContentSizeChange}
         contentOffset={{x: 0, y: 0}}>
         <Menu
-          currentScreen="Outils"
+          currentScreen="Tools"
           handleScrollToLeft={() => handleScrollToLeft()}
         />
         <ToolsContainer selectedFooter={selectedFooter} />
