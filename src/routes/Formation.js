@@ -26,7 +26,9 @@ import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg
 import PlayButton from '../assets/icons/playButton.svg';
 import Rewind from '../assets/icons/rewind.svg';
 import {formStyles} from '../assets/css/form';
+import theme from '../assets/theme';
 import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
 const {StatusBarManager} = NativeModules;
 
@@ -50,13 +52,21 @@ function Navbar(props) {
 }
 
 function Formation() {
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const classes = {
+    container: [
+      styles.container,
+      colorScheme === 'dark' && styles.containerDark,
+    ],
+    content: [styles.content, colorScheme === 'dark' && styles.contentDark],
+  };
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
   const navigation = useNavigation();
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={classes.container}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
@@ -87,7 +97,7 @@ function Formation() {
         <Navbar title="Formation" />
       </View>
 
-      <ScrollView style={styles.content}>
+      <ScrollView style={classes.content}>
         <View>
           <Text style={styles.coverTitle}>Reprendre</Text>
           <ScrollView horizontal style={styles.cover}>
@@ -168,8 +178,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLight,
     paddingBottom: 20,
+  },
+  containerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   imgContainer: {
     width: '100%',
@@ -198,11 +211,14 @@ const styles = StyleSheet.create({
     height: 898,
     left: 0,
     // top: 275,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLight,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     borderBottomRightRadius: 0,
     borderBottomLeftRadius: 0,
+  },
+  contentDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   videoTitle: {
     position: 'absolute',
