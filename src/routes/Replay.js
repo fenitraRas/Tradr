@@ -168,7 +168,7 @@ function ReplayContent() {
 
 function ReplayContainer() {
   return (
-    <ScrollView>
+    <ScrollView style={styles.content}>
       <ReplayContent />
     </ScrollView>
   );
@@ -232,6 +232,7 @@ function Replay() {
 const styles = StyleSheet.create({
   replayContent: {
     width: Dimensions.get('window').width,
+    height: '100%',
     paddingLeft: 10,
     paddingRight: 10,
     backgroundColor: '#FFFFFF',
@@ -239,6 +240,12 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     marginTop: 5,
     paddingBottom: 14,
+  },
+  content: {
+    height:
+      Platform.OS === 'android'
+        ? Dimensions.get('window').height - 120
+        : Dimensions.get('window').height - 170,
   },
   shadowProp: {
     shadowColor: 'rgba(9, 13, 109, 0.4)',

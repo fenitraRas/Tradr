@@ -237,10 +237,14 @@ function MenuConnected(props) {
 
       <View style={styles.plus}>
         <Text style={styles.title}>Plus</Text>
-        <View style={styles.iconText} onPress={() => {}}>
+        <TouchableOpacity
+          style={styles.iconText}
+          onPress={() => {
+            navigation.navigate('Tools');
+          }}>
           <Outils width={18} height={18} />
           <Text style={styles.subTitle}>Outils</Text>
-        </View>
+        </TouchableOpacity>
         <TouchableOpacity
           style={styles.iconText}
           onPress={() => {
@@ -251,10 +255,14 @@ function MenuConnected(props) {
           <Parrainage width={18} height={18} />
           <Text style={styles.subTitle}>Parrainer</Text>
         </TouchableOpacity>
-        <View style={styles.iconText} onPress={() => {}}>
+        <TouchableOpacity
+          style={styles.iconText}
+          onPress={() => {
+            navigation.navigate('Setting');
+          }}>
           <Params width={18} height={18} />
           <Text style={styles.subTitle}>Paramètres</Text>
-        </View>
+        </TouchableOpacity>
       </View>
 
       <TouchableOpacity
