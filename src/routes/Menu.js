@@ -23,8 +23,10 @@ import Replay from '../assets/icons/replay.svg';
 import SwitchIconDark from '../assets/switchIconDark.svg';
 import SwitchIconLight from '../assets/switchIconLight.svg';
 import Tradr from '../assets/icons/tradrboard.svg';
+import TradrDark from '../assets/icons/tradrboardDark.svg';
 import Tradrbox from '../assets/icons/tradrbox.svg';
 import Vector from '../assets/icons/vector.svg';
+import theme from '../assets/theme';
 import {useNavigation} from '@react-navigation/native';
 
 export function NavbarMenu(props) {
@@ -87,6 +89,24 @@ export function NavbarMenu(props) {
 }
 
 function Menu(props) {
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const classes = {
+    menuContainer: [
+      styles.menuContainer,
+      colorScheme === 'dark' && styles.menuContainerDark,
+    ],
+    name: [styles.name, colorScheme === 'dark' && styles.nameDark],
+    title: [styles.title, colorScheme === 'dark' && styles.titleDark],
+    tradrText: [
+      styles.tradrText,
+      colorScheme === 'dark' && styles.tradrTextDark,
+    ],
+    disconnectText: [
+      styles.disconnectText,
+      colorScheme === 'dark' && styles.disconnectTextDark,
+    ],
+    actived: [styles.actived, colorScheme === 'dark' && styles.activedDark],
+  };
   const [isConnected, setIsConnected] = useState(false);
   const isAuthenticated = useSelector(
     state => state.userReducer.isAuthenticated,
@@ -102,25 +122,33 @@ function Menu(props) {
         setIsConnected={v => setIsConnected(v)}
         currentScreen={props.currentScreen}
         handleScrollToLeft={() => props.handleScrollToLeft()}
+        classes={classes}
       />
     );
   }
-  return <MenuDisconnected title={props.title} />;
+  return <MenuDisconnected title={props.title} classes={classes} />;
 }
 
 function MenuDisconnected(props) {
   const navigation = useNavigation();
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
   return (
-    <View style={styles.menuContainer}>
+    <View style={props.classes.menuContainer}>
       <View style={styles.profil}>
         <Profil position="absolute" />
       </View>
       <View style={styles.rectangle283} />
-      <View style={styles.menuNav}>
-        <Tradr />
-        <Text style={styles.tradrText}>{props.title}</Text>
-        <View style={styles.actived} />
-      </View>
+      <TouchableOpacity
+        style={styles.menuNav}
+        onPress={() => {
+          props.currentScreen === 'Tradrboard'
+            ? props.handleScrollToLeft()
+            : navigation.replace('Tradrboard');
+        }}>
+        {colorScheme === 'dark' ? <TradrDark /> : <Tradr />}
+        <Text style={props.classes.tradrText}>Tradrboard</Text>
+        <View style={props.classes.actived} />
+      </TouchableOpacity>
       <Text style={styles.connectText}>
         Connecte toi pour avoir accès à Tradr dans son intégralité !
       </Text>
@@ -138,15 +166,16 @@ function MenuDisconnected(props) {
 function MenuConnected(props) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
   return (
-    <View style={styles.menuContainer}>
+    <View style={props.classes.menuContainer}>
       <View style={styles.profil}>
         <Image
           style={{position: 'absolute'}}
           source={require('../assets/profil.png')}
         />
       </View>
-      <Text style={styles.name}>Kévin Clément</Text>
+      <Text style={props.classes.name}>Kévin Clément</Text>
       <TouchableOpacity
         style={styles.buttonProfil}
         onPress={() => {
@@ -164,13 +193,13 @@ function MenuConnected(props) {
             ? props.handleScrollToLeft()
             : navigation.replace('Tradrboard');
         }}>
-        <Tradr />
-        <Text style={styles.tradrText}>Tradrboard</Text>
-        <View style={styles.actived} />
+        {colorScheme === 'dark' ? <TradrDark /> : <Tradr />}
+        <Text style={props.classes.tradrText}>Tradrboard</Text>
+        <View style={props.classes.actived} />
       </TouchableOpacity>
 
       <View style={styles.services}>
-        <Text style={styles.title}>Services</Text>
+        <Text style={props.classes.title}>Services</Text>
         <TouchableOpacity
           style={styles.iconText}
           onPress={() => {
@@ -202,7 +231,7 @@ function MenuConnected(props) {
       </View>
 
       <View style={styles.premium}>
-        <Text style={styles.title}>Premuim</Text>
+        <Text style={props.classes.title}>Premuim</Text>
         <TouchableOpacity
           onPress={() => {
             props.currentScreen === 'TradrboxFolder'
@@ -236,7 +265,7 @@ function MenuConnected(props) {
       </View>
 
       <View style={styles.plus}>
-        <Text style={styles.title}>Plus</Text>
+        <Text style={props.classes.title}>Plus</Text>
         <TouchableOpacity
           style={styles.iconText}
           onPress={() => {
@@ -276,7 +305,7 @@ function MenuConnected(props) {
           dispatch({type: 'LOGOUT'});
           navigation.replace('Tradrboard');
         }}>
-        <Text style={styles.disconnectText}>Se déconnecter</Text>
+        <Text style={props.classes.disconnectText}>Se déconnecter</Text>
       </TouchableOpacity>
     </View>
   );
@@ -289,6 +318,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 8,
     marginBottom: 10,
+  },
+  menuContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
 
   navbarIcon: {
@@ -330,7 +362,7 @@ const styles = StyleSheet.create({
         ? Dimensions.get('window').height - 15 - 26 - 8 - 27
         : Dimensions.get('window').height - 15 - 61 - 8 - 27,
     marginTop: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     shadowColor: '#090d6d',
     shadowOffset: {width: 0, height: 0},
     shadowOpacity: 0.4,
@@ -370,7 +402,10 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
+  },
+  tradrTextDark: {
+    color: theme.colors.text.$textDark,
   },
   actived: {
     position: 'absolute',
@@ -388,6 +423,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 10,
     elevation: 15,
+  },
+  activedDark: {
+    backgroundColor: '#ff8cef',
+    shadowColor: '#ff8cef',
   },
   connectText: {
     position: 'absolute',
@@ -435,13 +474,16 @@ const styles = StyleSheet.create({
     height: 22,
     left: 103,
     top: 25,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 600,
     fontSize: 18,
     lineHeight: 22,
     textAlign: 'center',
+  },
+  nameDark: {
+    color: theme.colors.text.$textDark,
   },
   buttonProfil: {
     position: 'absolute',
@@ -480,7 +522,10 @@ const styles = StyleSheet.create({
     fontWeight: 400,
     fontSize: 15,
     lineHeight: 18,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
+  },
+  titleDark: {
+    color: theme.colors.text.$textDark,
   },
   iconText: {
     flexDirection: 'row',
@@ -523,8 +568,11 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 17,
     lineHeight: 21,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     textAlign: 'center',
+  },
+  disconnectTextDark: {
+    color: theme.colors.text.$textDark,
   },
 });
 
