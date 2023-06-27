@@ -215,9 +215,9 @@ function Inscription() {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ScrollView>
-        <View>
-          <Navbar>Tradrboard</Navbar>
+      <View>
+        <Navbar>Tradrboard</Navbar>
+        <ScrollView>
           <View style={formStyles.logoContainer}>
             <TradrLogo width={113.684} height={40} />
           </View>
@@ -228,8 +228,8 @@ function Inscription() {
               Vous êtes déjà un membre Tradr ?
             </Text>
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     </SafeAreaView>
   );
 }
@@ -248,8 +248,7 @@ const styles = StyleSheet.create({
     padding: 0,
     width: '100%',
     height: 52,
-    // marginTop: 70,
-    marginTop: 20,
+    marginTop: 70,
   },
   inscriptionTitle: {
     height: 18,

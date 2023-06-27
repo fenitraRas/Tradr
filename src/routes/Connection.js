@@ -29,6 +29,7 @@ import {indexStyles} from '../assets/css/index';
 import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import TradrLogo from '../assets/icons/tradrLogo.svg';
+import WhiteTradrLogo from '../assets/icons/whiteTradrLogo.svg';
 
 function Navbar({children}) {
   const navigation = useNavigation();
@@ -121,6 +122,11 @@ function Connection() {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+  let logo = isDarkMode ? (
+    <WhiteTradrLogo width={113.684} height={40} />
+  ) : (
+    <TradrLogo width={113.684} height={40} />
+  );
   return (
     <SafeAreaView>
       <StatusBar
@@ -130,9 +136,7 @@ function Connection() {
       <ScrollView>
         <View>
           <Navbar>Tradrboard</Navbar>
-          <View style={formStyles.logoContainer}>
-            <TradrLogo width={113.684} height={40} />
-          </View>
+          <View style={formStyles.logoContainer}>{logo}</View>
           <ConnectToAppleButton>Continuer avec Apple</ConnectToAppleButton>
           <ConnectForm title="Ravi de vous revoir!" />
           <View style={styles.inscriptionContainer}>

@@ -74,7 +74,7 @@ function TradrboardContent(props) {
   const user = useSelector(state => state.userReducer.user);
   if (user) {
     return (
-      <View style={[props.classes.tradrboardContent, styles.shadowProp]}>
+      <View style={[props.classes.tradrboardContent, indexStyles.shadowProp]}>
         <View
           style={[
             styles.connectButton,
@@ -103,7 +103,7 @@ function TradrboardContent(props) {
     );
   }
   return (
-    <View style={[props.classes.tradrboardContent, styles.shadowProp]}>
+    <View style={[props.classes.tradrboardContent, indexStyles.shadowProp]}>
       <TouchableOpacity
         onPress={() => navigation.navigate('Connection')}
         style={styles.connectButton}>
@@ -375,16 +375,6 @@ const styles = StyleSheet.create({
   tradrboardContentDark: {
     backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
-  shadowProp: {
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 20,
-    elevation: 2,
-  },
   connectButton: {
     width: 102,
     height: 21,
@@ -401,23 +391,9 @@ const styles = StyleSheet.create({
       width: 0,
       height: 0,
     },
-    shadowOpacity: 1,
+    shadowOpacity: 0.9,
     shadowRadius: 4,
-    elevation: 1,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'rgba(145, 84, 253, 0.6)',
-        shadowOffset: {
-          width: 0,
-          height: 0,
-        },
-        shadowOpacity: 1,
-        shadowRadius: 14,
-      },
-      android: {
-        elevation: 3,
-      },
-    }),
+    elevation: 3,
   },
   connectButtonText: {
     fontWeight: 500,
@@ -508,10 +484,10 @@ const styles = StyleSheet.create({
     shadowColor: 'rgba(9, 13, 109, 0.4)',
     shadowOffset: {
       width: 0,
-      height: 30,
+      height: 4,
     },
-    shadowOpacity: 1,
-    shadowRadius: 40,
+    shadowOpacity: 0.6,
+    shadowRadius: 4,
     elevation: Platform.OS === 'android' ? -35 : undefined,
   },
   tradrboardCardDark: {
@@ -545,11 +521,11 @@ const styles = StyleSheet.create({
     shadowColor: 'rgba(145, 84, 253, 0.7)',
     shadowOffset: {
       width: 0,
-      height: 4,
+      height: 0,
     },
-    shadowOpacity: 1,
-    shadowRadius: 20,
-    elevation: 4,
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
+    elevation: 3,
   },
   infoButtonText: {
     fontWeight: 500,
@@ -634,7 +610,6 @@ const styles = StyleSheet.create({
   radioText: {
     marginTop: 4,
     fontFamily: 'Montserrat',
-    fontStyle: 'normal',
     fontWeight: 500,
     fontSize: 15,
     lineHeight: 18,

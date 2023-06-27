@@ -365,8 +365,8 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     shadowColor: '#090d6d',
     shadowOffset: {width: 0, height: 0},
-    shadowOpacity: 0.4,
-    shadowRadius: 20,
+    shadowOpacity: 0.2,
+    shadowRadius: 7,
     borderRadius: 30,
   },
   profil: {
