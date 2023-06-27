@@ -34,6 +34,7 @@ import Video from 'react-native-video';
 import WavingHand from '../assets/icons/wavingHand.svg';
 import {formStyles} from '../assets/css/form';
 import {indexStyles} from '../assets/css/index';
+import theme from '../assets/theme';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import video from '../assets/video/video_test.mp4';
@@ -68,12 +69,12 @@ function Navbar(props) {
   );
 }
 
-function TradrboardContent({children}) {
+function TradrboardContent(props) {
   const navigation = useNavigation();
   const user = useSelector(state => state.userReducer.user);
   if (user) {
     return (
-      <View style={[styles.tradrboardContent, styles.shadowProp]}>
+      <View style={[props.classes.tradrboardContent, styles.shadowProp]}>
         <View
           style={[
             styles.connectButton,
@@ -85,37 +86,46 @@ function TradrboardContent({children}) {
         </View>
         <View
           style={[indexStyles.horizontalFlex, {marginLeft: 15, marginTop: 15}]}>
-          <Text style={styles.holaText}>Holà, {`${user.prenom}`}!</Text>
+          <Text style={props.classes.holaText}>Holà, {`${user.prenom}`}!</Text>
           <WavingHand width={26} height={26} style={styles.holaImage} />
         </View>
 
-        <TradrBoardInfo title="Personnel" />
-        <TradrBoardObjective title="Objectifs à compléter" />
-        <TradrBoardVideo title="Episode en libre accès" />
+        <TradrBoardInfo classes={props.classes} title="Personnel" />
+        <TradrBoardObjective
+          classes={props.classes}
+          title="Objectifs à compléter"
+        />
+        <TradrBoardVideo
+          classes={props.classes}
+          title="Episode en libre accès"
+        />
       </View>
     );
   }
   return (
-    <View style={[styles.tradrboardContent, styles.shadowProp]}>
+    <View style={[props.classes.tradrboardContent, styles.shadowProp]}>
       <TouchableOpacity
         onPress={() => navigation.navigate('Connection')}
         style={styles.connectButton}>
-        <Text style={styles.connectButtonText}>{children}</Text>
+        <Text style={styles.connectButtonText}>{props.title}</Text>
       </TouchableOpacity>
       <View
         style={[indexStyles.horizontalFlex, {marginLeft: 15, marginTop: 15}]}>
-        <Text style={styles.holaText}>Holà !</Text>
+        <Text style={props.classes.holaText}>Holà !</Text>
         <WavingHand width={26} height={26} style={styles.holaImage} />
       </View>
 
-      <TradrBoardInfo title="Personnel" />
-      <TradrBoardObjective title="Objectifs à compléter" />
-      <TradrBoardVideo title="Episode en libre accès" />
+      <TradrBoardInfo classes={props.classes} title="Personnel" />
+      <TradrBoardObjective
+        classes={props.classes}
+        title="Objectifs à compléter"
+      />
+      <TradrBoardVideo classes={props.classes} title="Episode en libre accès" />
     </View>
   );
 }
 
-function TradrBoardInfo({title}) {
+function TradrBoardInfo({classes, title}) {
   const navigation = useNavigation();
   const user = useSelector(state => state.userReducer.user);
   const status = user ? user.statut : 'Non-inscrit';
@@ -125,30 +135,30 @@ function TradrBoardInfo({title}) {
   return (
     <View style={styles.tradrboardCardContainer}>
       <View style={[indexStyles.horizontalFlex, styles.cardTitleContainer]}>
-        <Text style={[styles.cardTitle, styles.infoTitle]}>{title}</Text>
+        <Text style={[classes.cardTitle, styles.infoTitle]}>{title}</Text>
         <Locked width={18} height={18} style={styles.imageTitle} />
       </View>
-      <View style={styles.tradrboardCard}>
+      <View style={classes.tradrboardCard}>
         <View style={styles.infoItem}>
-          <Text style={[styles.textInfo, {marginLeft: 35}]}>Mon niveau</Text>
+          <Text style={[classes.textInfo, {marginLeft: 35}]}>Mon niveau</Text>
           <View style={[styles.infoButton, {width: 131, marginLeft: 35}]}>
             <Text style={styles.infoButtonText}>{status}</Text>
           </View>
         </View>
         <View style={styles.infoItem}>
-          <Text style={[styles.textInfo, {marginLeft: 8}]}>Membre depuis</Text>
+          <Text style={[classes.textInfo, {marginLeft: 8}]}>Membre depuis</Text>
           <View style={[styles.infoButton, {width: 131, marginLeft: 8}]}>
             <Text style={styles.infoButtonText}>{member}</Text>
           </View>
         </View>
         <View style={styles.infoItem}>
-          <Text style={[styles.textInfo, {marginLeft: 35}]}>Abonnement</Text>
+          <Text style={[classes.textInfo, {marginLeft: 35}]}>Abonnement</Text>
           <View style={[styles.infoButton, {width: 131, marginLeft: 35}]}>
             <Text style={styles.infoButtonText}>{subscription}</Text>
           </View>
         </View>
         <View style={styles.infoItem}>
-          <Text style={[styles.textInfo, {marginLeft: 8}]}>
+          <Text style={[classes.textInfo, {marginLeft: 8}]}>
             Mes informations
           </Text>
           <TouchableOpacity
@@ -171,18 +181,18 @@ function TradrBoardInfo({title}) {
   );
 }
 
-function TradrBoardObjective({title}) {
+function TradrBoardObjective({classes, title}) {
   return (
     <View style={styles.tradrboardCardContainer}>
       <View style={[indexStyles.horizontalFlex, styles.cardTitleContainer]}>
-        <Text style={[styles.cardTitle, styles.objectiveTitle]}>{title}</Text>
+        <Text style={[classes.cardTitle, styles.objectiveTitle]}>{title}</Text>
         <HighVoltage width={18} height={18} style={styles.imageTitle} />
       </View>
-      <View style={styles.tradrboardCard}>
+      <View style={classes.tradrboardCard}>
         <View style={indexStyles.verticalFlex}>
           <View style={styles.progressContainer}>
             <View style={styles.progressNumber}>
-              <Text style={styles.progressText}>0</Text>
+              <Text style={classes.progressText}>0</Text>
             </View>
             <View style={styles.progressContent}>
               <ProgressBar
@@ -192,20 +202,22 @@ function TradrBoardObjective({title}) {
               />
             </View>
             <View style={styles.progressNumber}>
-              <Text style={styles.progressText}>3</Text>
+              <Text style={classes.progressText}>3</Text>
             </View>
           </View>
           <View style={[indexStyles.horizontalFlex, styles.radioContent]}>
             <UnseletedRadio width={28} height={28} />
-            <Text style={styles.radioText}>S'inscrire</Text>
+            <Text style={classes.radioText}>S'inscrire</Text>
           </View>
           <View style={[indexStyles.horizontalFlex, styles.radioContent]}>
             <SeletedRadio width={28} height={28} />
-            <Text style={styles.radioText}>Visionner l'épisode accessible</Text>
+            <Text style={classes.radioText}>
+              Visionner l'épisode accessible
+            </Text>
           </View>
           <View style={[indexStyles.horizontalFlex, styles.radioContent]}>
             <UnseletedRadio width={28} height={28} />
-            <Text style={styles.radioText}>
+            <Text style={classes.radioText}>
               Accomplir les deux objectifs précédents
             </Text>
           </View>
@@ -215,12 +227,12 @@ function TradrBoardObjective({title}) {
   );
 }
 
-function TradrBoardVideo({title}) {
+function TradrBoardVideo({classes, title}) {
   const [isPlaying, setIsPlaying] = React.useState(false);
   return (
     <View style={styles.tradrboardCardContainer}>
       <View style={[indexStyles.horizontalFlex, styles.cardTitleContainer]}>
-        <Text style={[styles.cardTitle, styles.videoTitle]}>{title}</Text>
+        <Text style={[classes.cardTitle, styles.videoTitle]}>{title}</Text>
         <Books width={18} height={18} style={styles.imageTitle} />
       </View>
       <View style={styles.videoContainer}>
@@ -245,12 +257,38 @@ function TradrBoardVideo({title}) {
 export function TradrboardContainer(props) {
   return (
     <ScrollView>
-      <TradrboardContent>Se connecter</TradrboardContent>
+      <TradrboardContent classes={props.classes} title="Se connecter" />
     </ScrollView>
   );
 }
 
 function Tradrboard() {
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const classes = {
+    tradrboardContent: [
+      styles.tradrboardContent,
+      colorScheme === 'dark' && styles.tradrboardContentDark,
+    ],
+    holaText: [styles.holaText, colorScheme === 'dark' && styles.holaTextDark],
+    cardTitle: [
+      styles.cardTitle,
+      colorScheme === 'dark' && styles.cardTitleDark,
+    ],
+    tradrboardCard: [
+      styles.tradrboardCard,
+      colorScheme === 'dark' && styles.tradrboardCardDark,
+    ],
+    textInfo: [styles.textInfo, colorScheme === 'dark' && styles.textInfoDark],
+    progressText: [
+      styles.progressText,
+      colorScheme === 'dark' && styles.progressTextDark,
+    ],
+    radioText: [
+      styles.radioText,
+      colorScheme === 'dark' && styles.radioTextDark,
+    ],
+  };
+
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -299,7 +337,7 @@ function Tradrboard() {
           currentScreen="Tradrboard"
           handleScrollToLeft={() => handleScrollToLeft()}
         />
-        <TradrboardContainer />
+        <TradrboardContainer classes={classes} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -320,16 +358,22 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 24,
     fontFamily: 'Montserrat',
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
+  },
+  progressTextDark: {
+    color: theme.colors.text.$textDark,
   },
   tradrboardContent: {
     width: Dimensions.get('window').width,
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     marginTop: 5,
+  },
+  tradrboardContentDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   shadowProp: {
     shadowColor: 'rgba(9, 13, 109, 0.4)',
@@ -398,6 +442,10 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontSize: 34,
     lineHeight: 41,
+    color: theme.colors.text.$textLight,
+  },
+  holaTextDark: {
+    color: theme.colors.text.$textDark,
   },
   holaImage: {
     marginTop: 8,
@@ -419,6 +467,10 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontSize: 20,
     lineHeight: 24,
+    color: theme.colors.text.$textLight,
+  },
+  cardTitleDark: {
+    color: theme.colors.text.$textDark,
   },
   infoTitle: {
     width: Platform.OS === 'android' ? 98 : 103,
@@ -452,7 +504,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     alignItems: 'flex-start',
     borderRadius: 20,
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     shadowColor: 'rgba(9, 13, 109, 0.4)',
     shadowOffset: {
       width: 0,
@@ -461,6 +513,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 40,
     elevation: Platform.OS === 'android' ? -35 : undefined,
+  },
+  tradrboardCardDark: {
+    backgroundColor: theme.colors.component.$cardDark,
   },
   infoItem: {
     width: '50%',
@@ -473,7 +528,10 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 15,
     lineHeight: 18,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
+  },
+  textInfoDark: {
+    color: theme.colors.text.$textDark,
   },
   infoButton: {
     height: 29,
@@ -580,7 +638,10 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 15,
     lineHeight: 18,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
+  },
+  radioTextDark: {
+    color: theme.colors.text.$textDark,
   },
 });
 

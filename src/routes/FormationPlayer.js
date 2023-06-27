@@ -23,6 +23,7 @@ import React, {useRef, useState} from 'react';
 import ArrowDownIcon from '../assets/icons/arrowDownIcon.svg';
 import ArrowUpIcon from '../assets/icons/arrowUpIcon.svg';
 import ChevronLeft from '../assets/icons/chevronLeft.svg';
+import ChevronLeftDark from '../assets/icons/chevronLeftDark.svg';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
@@ -34,6 +35,7 @@ import {ProgressBar} from 'react-native-paper';
 import Video from 'react-native-video';
 import {formStyles} from '../assets/css/form';
 import {indexStyles} from '../assets/css/index';
+import theme from '../assets/theme';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import video from '../assets/video/video_test.mp4';
@@ -46,7 +48,11 @@ function Navbar(props) {
     <View style={formStyles.navbarContainer}>
       <View style={formStyles.navbarIcon}>
         <TouchableOpacity onPress={() => navigation.navigate('Formation')}>
-          <ChevronLeft width={30} height={20} />
+          {option === 'light' ? (
+            <ChevronLeft width={30} height={20} />
+          ) : (
+            <ChevronLeftDark width={30} height={20} />
+          )}
         </TouchableOpacity>
       </View>
       <View style={formStyles.navbarTextContainer}>
@@ -73,7 +79,7 @@ function Navbar(props) {
   );
 }
 
-function FormationPlayerContent() {
+function FormationPlayerContent(props) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const files = [
@@ -104,10 +110,10 @@ function FormationPlayerContent() {
     },
   ];
   return (
-    <View style={[styles.formationPlayerContent, styles.shadowProp]}>
+    <View style={[props.classes.formationPlayerContent, styles.shadowProp]}>
       <View
         style={[
-          styles.cardContainer,
+          props.classes.cardContainer,
           expanded ? styles.expandedH : styles.inexpandedH,
         ]}>
         <View style={styles.videoContainer}>
@@ -126,16 +132,17 @@ function FormationPlayerContent() {
         </View>
         <View style={styles.videoTextContainer}>
           <Text style={styles.videoText}>Épisode 03</Text>
-          <Text style={styles.videoTitle}>
+          <Text style={props.classes.videoTitle}>
             Prendre le contrôle de son capital
           </Text>
         </View>
         <AccordionItem
           title="Fichiers"
+          classes={props.classes}
           expanded={expanded}
           setExpanded={v => setExpanded(v)}>
           {expanded ? (
-            <ScrollView style={styles.accordBody}>
+            <ScrollView style={props.classes.accordBody}>
               {files.map(file => {
                 return (
                   <View key={file.id} style={styles.fileListContainer}>
@@ -153,7 +160,7 @@ function FormationPlayerContent() {
                     />
                     <View>
                       <Text style={styles.itemId}>Épisode {file.id}</Text>
-                      <Text style={styles.itemTitle}>{file.title}</Text>
+                      <Text style={props.classes.itemTitle}>{file.title}</Text>
                     </View>
                   </View>
                 );
@@ -163,9 +170,9 @@ function FormationPlayerContent() {
         </AccordionItem>
       </View>
 
-      <View style={[styles.videoCardContainer]}>
+      <View style={[props.classes.videoCardContainer]}>
         <VideoCardHeader />
-        <VideoCardList files={files} />
+        <VideoCardList classes={props.classes} files={files} />
       </View>
     </View>
   );
@@ -187,17 +194,17 @@ function VideoCardHeader() {
   );
 }
 
-function VideoCardList({files}) {
+function VideoCardList({classes, files}) {
   const [selectedVideo, setSelectedVideo] = useState(2);
   return (
-    <ScrollView style={styles.videoCardListContainer}>
+    <ScrollView style={classes.videoCardListContainer}>
       {files.map(file => {
         return (
           <TouchableOpacity
             key={file.id}
             style={
               selectedVideo === file.id
-                ? styles.selectedVideoListContainer
+                ? classes.selectedVideoListContainer
                 : styles.videoListContainer
             }
             onPress={() => setSelectedVideo(p => file.id)}>
@@ -207,7 +214,7 @@ function VideoCardList({files}) {
             <View style={styles.videoListContent}>
               <View>
                 <View style={styles.topVideoList}>
-                  <Text style={styles.fileId}>Épisode {file.id}</Text>
+                  <Text style={classes.fileId}>Épisode {file.id}</Text>
                   <View style={styles.progressContent}>
                     <ProgressBar
                       style={styles.progress}
@@ -229,7 +236,7 @@ function VideoCardList({files}) {
   );
 }
 
-function AccordionItem({children, title, expanded, setExpanded}) {
+function AccordionItem({children, classes, title, expanded, setExpanded}) {
   function toggleItem() {
     setExpanded(!expanded);
   }
@@ -245,10 +252,10 @@ function AccordionItem({children, title, expanded, setExpanded}) {
   return (
     <View style={styles.accordContainer}>
       <TouchableOpacity
-        style={expanded ? styles.expendAccordHeader : styles.accordHeader}
+        style={expanded ? classes.expendAccordHeader : classes.accordHeader}
         onPress={toggleItem}>
         <View style={indexStyles.horizontalFlex}>
-          <Text style={styles.accordTitle}>{title}</Text>
+          <Text style={classes.accordTitle}>{title}</Text>
           <FileFolder width={15} height={15} style={{marginLeft: 6}} />
         </View>
         {icon}
@@ -258,15 +265,63 @@ function AccordionItem({children, title, expanded, setExpanded}) {
   );
 }
 
-function FormationPlayerContainer() {
+function FormationPlayerContainer(props) {
   return (
     <ScrollView>
-      <FormationPlayerContent />
+      <FormationPlayerContent classes={props.classes} />
     </ScrollView>
   );
 }
 
 function FormationPlayer() {
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const classes = {
+    formationPlayerContent: [
+      styles.formationPlayerContent,
+      colorScheme === 'dark' && styles.formationPlayerContentDark,
+    ],
+    cardContainer: [
+      styles.cardContainer,
+      colorScheme === 'dark' && styles.cardContainerDark,
+    ],
+    videoCardContainer: [
+      styles.videoCardContainer,
+      colorScheme === 'dark' && styles.videoCardContainerDark,
+    ],
+    videoTitle: [
+      styles.videoTitle,
+      colorScheme === 'dark' && styles.videoTitleDark,
+    ],
+    selectedVideoListContainer: [
+      styles.selectedVideoListContainer,
+      colorScheme === 'dark' && styles.selectedVideoListContainerDark,
+    ],
+    videoCardListContainer: [
+      styles.videoCardListContainer,
+      colorScheme === 'dark' && styles.videoCardListContainerDark,
+    ],
+    fileId: [styles.fileId, colorScheme === 'dark' && styles.fileIdDark],
+    accordHeader: [
+      styles.accordHeader,
+      colorScheme === 'dark' && styles.accordHeaderDark,
+    ],
+    expendAccordHeader: [
+      styles.expendAccordHeader,
+      colorScheme === 'dark' && styles.expendAccordHeaderDark,
+    ],
+    accordBody: [
+      styles.accordBody,
+      colorScheme === 'dark' && styles.accordBodyDark,
+    ],
+    accordTitle: [
+      styles.accordTitle,
+      colorScheme === 'dark' && styles.accordTitleDark,
+    ],
+    itemTitle: [
+      styles.itemTitle,
+      colorScheme === 'dark' && styles.itemTitleDark,
+    ],
+  };
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -315,7 +370,7 @@ function FormationPlayer() {
           currentScreen="Formation"
           handleScrollToLeft={() => handleScrollToLeft()}
         />
-        <FormationPlayerContainer />
+        <FormationPlayerContainer classes={classes} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -334,11 +389,14 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLight,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     marginTop: 5,
     padding: 10,
+  },
+  formationPlayerContentDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   shadowProp: {
     shadowColor: 'rgba(9, 13, 109, 0.4)',
@@ -363,7 +421,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     alignItems: 'flex-start',
     borderRadius: 20,
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     shadowColor: 'rgba(9, 13, 109, 0.4)',
     shadowOffset: {
       width: 0,
@@ -372,6 +430,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 40,
     elevation: Platform.OS === 'android' ? -35 : undefined,
+  },
+  cardContainerDark: {
+    backgroundColor: theme.colors.component.$cardDark,
   },
   videoCardContainer: {
     // height: 686,
@@ -382,7 +443,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     alignItems: 'flex-start',
     borderRadius: 20,
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     shadowColor: 'rgba(9, 13, 109, 0.4)',
     shadowOffset: {
       width: 0,
@@ -391,6 +452,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 40,
     elevation: Platform.OS === 'android' ? -35 : undefined,
+  },
+  videoCardContainerDark: {
+    backgroundColor: theme.colors.component.$cardDark,
   },
   videoContainer: {
     width: '100%',
@@ -424,9 +488,12 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 20,
     lineHeight: 24,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     height: 24,
     marginTop: 3,
+  },
+  videoTitleDark: {
+    color: theme.colors.text.$textDark,
   },
   accordContainer: {
     marginTop: 5,
@@ -434,7 +501,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   accordHeader: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
@@ -449,8 +516,11 @@ const styles = StyleSheet.create({
     shadowRadius: 15,
     elevation: 5,
   },
+  accordHeaderDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   expendAccordHeader: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
@@ -468,6 +538,9 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
   },
+  expendAccordHeaderDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   arrow: {
     marginTop: 5,
     marginRight: 14,
@@ -478,16 +551,23 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 12,
     lineHeight: 15,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
+  },
+  accordTitleDark: {
+    color: theme.colors.text.$textDark,
   },
   accordBody: {
-    backgroundColor: '#F7F7F7',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
+    flexDirection: 'row',
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
     height: 161,
     paddingTop: 12,
+  },
+  accordBodyDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   fileListContainer: {
     marginLeft: 10,
@@ -524,8 +604,15 @@ const styles = StyleSheet.create({
   videoCardListContainer: {
     paddingLeft: 4,
     paddingRight: 4,
-    width: '100%',
+    width: '95%',
+    margin: 10,
     paddingTop: 2,
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
+    borderRadius: 10,
+    // borderTopRightRadius: 30,
+  },
+  videoCardListContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   videoListContainer: {
     width: '100%',
@@ -542,7 +629,7 @@ const styles = StyleSheet.create({
     paddingRight: 17,
     height: 54,
     borderRadius: 6,
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     elevation: 4,
     shadowColor: 'rgba(9, 13, 109, 0.4)',
     shadowOffset: {
@@ -552,6 +639,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 20,
     flexDirection: 'row',
+  },
+  selectedVideoListContainerDark: {
+    backgroundColor: theme.colors.component.$cardDark,
   },
   videoListContent: {
     marginBottom: 15,
@@ -604,7 +694,10 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 14,
     lineHeight: 17,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
+  },
+  fileIdDark: {
+    color: theme.colors.text.$textDark,
   },
   videoDuration: {
     marginTop: 4,
@@ -637,7 +730,10 @@ const styles = StyleSheet.create({
     fontWeight: 400,
     fontSize: 15,
     lineHeight: 18,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
+  },
+  itemTitleDark: {
+    color: theme.colors.text.$textDark,
   },
 });
 

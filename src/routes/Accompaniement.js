@@ -27,6 +27,7 @@ import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
 import WinkingFace from '../assets/icons/winkingFace.svg';
 import {formStyles} from '../assets/css/form';
+import theme from '../assets/theme';
 import {useSelector} from 'react-redux';
 
 function Navbar(props) {
@@ -57,9 +58,9 @@ function Navbar(props) {
   );
 }
 
-function InProgressAccompaniementContent() {
+function InProgressAccompaniementContent(props) {
   return (
-    <View style={[styles.accompaniementContent, styles.shadowProp]}>
+    <View style={[props.classes.accompaniementContent, styles.shadowProp]}>
       <View style={[styles.imgContainer]}>
         <Image
           source={require('../assets/video/maxime.jpg')}
@@ -69,22 +70,22 @@ function InProgressAccompaniementContent() {
         <Image source={require('../assets/emoji.png')} style={styles.emoji} />
       </View>
       <ScrollView horizontal style={[styles.stateCardContainer]}>
-        <View style={[styles.stateCard]}>
-          <Text style={styles.stateTitle}>Prochaine séance</Text>
+        <View style={[props.classes.stateCard]}>
+          <Text style={props.classes.stateTitle}>Prochaine séance</Text>
           <View style={[styles.stateCardContent]}>
-            <View style={[styles.stateCardTimeContainer]}>
+            <View style={[props.classes.stateCardTimeContainer]}>
               <Text style={styles.stateCardTime}>10h</Text>
             </View>
             <Text style={styles.stateCardDate}>25 . 03 . 2023</Text>
           </View>
         </View>
-        <View style={[styles.stateCard]}>
-          <Text style={styles.stateTitle}>Exercice en cours</Text>
+        <View style={[props.classes.stateCard]}>
+          <Text style={props.classes.stateTitle}>Exercice en cours</Text>
           <View style={[styles.stateCardContent]}>
             <View style={[styles.stateCardNumberContainer]}>
               <Text style={styles.stateCardNumber}>1</Text>
             </View>
-            <View style={[styles.selectedStateCardNumberContainer]}>
+            <View style={[props.classes.selectedStateCardNumberContainer]}>
               <Text style={styles.selectedStateCardNumber}>2</Text>
             </View>
             <View style={[styles.stateCardNumberContainer]}>
@@ -98,24 +99,26 @@ function InProgressAccompaniementContent() {
             </View>
           </View>
         </View>
-        <View style={[styles.stateCard]}>
-          <Text style={styles.stateTitle}>Séances restantes</Text>
-          <View style={[styles.stateCardRContainer]}>
+        <View style={[props.classes.stateCard]}>
+          <Text style={props.classes.stateTitle}>Séances restantes</Text>
+          <View style={[props.classes.stateCardRContainer]}>
             <Text style={styles.stateCardTime}>1</Text>
           </View>
         </View>
-        <View style={[styles.stateCard]}>
-          <Text style={styles.stateTitle}>Séances terminées</Text>
-          <View style={[styles.stateCardRContainer]}>
+        <View style={[props.classes.stateCard]}>
+          <Text style={props.classes.stateTitle}>Séances terminées</Text>
+          <View style={[props.classes.stateCardRContainer]}>
             <Text style={styles.stateCardTime}>4</Text>
           </View>
         </View>
       </ScrollView>
       <ScrollView horizontal style={[styles.personCardContainer]}>
-        <TouchableOpacity style={[styles.selectedPersonCard]}>
-          <View style={[styles.topPersonCardContainer]}>
+        <TouchableOpacity style={[props.classes.selectedPersonCard]}>
+          <View style={[props.classes.topPersonCardContainer]}>
             <View style={[styles.topPersonCardContent]}>
-              <Text style={styles.topPersonCardContentLeft}>Trading</Text>
+              <Text style={props.classes.topPersonCardContentLeft}>
+                Trading
+              </Text>
               <View style={[styles.greenTopPersonCardContentRight]}>
                 <Text style={styles.topPersonCardContentRightText}>
                   Débutant
@@ -126,24 +129,26 @@ function InProgressAccompaniementContent() {
               </Text>
             </View>
           </View>
-          <Text style={styles.infoPersonCard}>
+          <Text style={props.classes.infoPersonCard}>
             Session individuelle de 45 minutes.
           </Text>
           <View style={[styles.bottomPersonCard]}>
-            <Text style={styles.bottomPersonCardLeft}>
+            <Text style={props.classes.bottomPersonCardLeft}>
               Plan d'action simplifié
             </Text>
-            <View style={[styles.bottomPersonCardRight]}>
+            <View style={[props.classes.bottomPersonCardRight]}>
               <Text style={styles.bottomPersonCardDate}>23 . 03 . 2023</Text>
               <Text style={styles.bottomPersonCardDate}> à </Text>
               <Text style={styles.bottomPersonCardTime}>10h00</Text>
             </View>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.personCard]}>
-          <View style={[styles.topPersonCardContainer]}>
+        <TouchableOpacity style={[props.classes.personCard]}>
+          <View style={[props.classes.topPersonCardContainer]}>
             <View style={[styles.topPersonCardContent]}>
-              <Text style={styles.topPersonCardContentLeft}>Économie</Text>
+              <Text style={props.classes.topPersonCardContentLeft}>
+                Économie
+              </Text>
               <View style={[styles.orangeTopPersonCardContentRight]}>
                 <Text style={styles.topPersonCardContentRightText}>
                   Intermédiaire
@@ -152,24 +157,26 @@ function InProgressAccompaniementContent() {
               <Text style={styles.topPersonCardContentName}>Léna Forelle</Text>
             </View>
           </View>
-          <Text style={styles.infoPersonCard}>
+          <Text style={props.classes.infoPersonCard}>
             Session individuelle de 1 heure.
           </Text>
           <View style={[styles.bottomPersonCard]}>
-            <Text style={styles.bottomPersonCardLeft}>
+            <Text style={props.classes.bottomPersonCardLeft}>
               Plan d'action avancé
             </Text>
-            <View style={[styles.bottomPersonCardRight]}>
+            <View style={[props.classes.bottomPersonCardRight]}>
               <Text style={styles.bottomPersonCardDate}>25 . 03 . 2023</Text>
               <Text style={styles.bottomPersonCardDate}> à </Text>
               <Text style={styles.bottomPersonCardTime}>15h00</Text>
             </View>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.personCard]}>
-          <View style={[styles.topPersonCardContainer]}>
+        <TouchableOpacity style={[props.classes.personCard]}>
+          <View style={[props.classes.topPersonCardContainer]}>
             <View style={[styles.topPersonCardContent]}>
-              <Text style={styles.topPersonCardContentLeft}>Placement</Text>
+              <Text style={props.classes.topPersonCardContentLeft}>
+                Placement
+              </Text>
               <View style={[styles.redTopPersonCardContentRight]}>
                 <Text style={styles.topPersonCardContentRightText}>
                   Confirmé
@@ -178,14 +185,14 @@ function InProgressAccompaniementContent() {
               <Text style={styles.topPersonCardContentName}>Inès Dore</Text>
             </View>
           </View>
-          <Text style={styles.infoPersonCard}>
+          <Text style={props.classes.infoPersonCard}>
             Session individuelle de 1 heure et 30 minutes.
           </Text>
           <View style={[styles.bottomPersonCard]}>
-            <Text style={styles.bottomPersonCardLeft}>
+            <Text style={props.classes.bottomPersonCardLeft}>
               Plan d'action personnalisé
             </Text>
-            <View style={[styles.bottomPersonCardRight]}>
+            <View style={[props.classes.bottomPersonCardRight]}>
               <Text style={styles.bottomPersonCardDate}>26 . 03 . 2023</Text>
               <Text style={styles.bottomPersonCardDate}> à </Text>
               <Text style={styles.bottomPersonCardTime}>17h00</Text>
@@ -197,11 +204,11 @@ function InProgressAccompaniementContent() {
   );
 }
 
-function ToBookAccompaniementContent() {
+function ToBookAccompaniementContent(props) {
   return (
-    <View style={[styles.accompaniementContent, styles.shadowProp]}>
+    <View style={[props.classes.accompaniementContent, styles.shadowProp]}>
       <View style={styles.toBookTitleContainer}>
-        <Text style={styles.toBookTitle}>
+        <Text style={props.classes.toBookTitle}>
           N'hésite plus et réserve ta séance !
           <Calendar width={26} height={26} />
         </Text>
@@ -209,10 +216,12 @@ function ToBookAccompaniementContent() {
       <ScrollView>
         <Text style={styles.tradingCardTitle}>Pour bien commencer</Text>
         <ScrollView horizontal style={[styles.toBookCardContainer]}>
-          <View style={[styles.personCard]}>
-            <View style={[styles.topPersonCardContainerWithoutName]}>
+          <View style={[props.classes.personCard]}>
+            <View style={[props.classes.topPersonCardContainerWithoutName]}>
               <View style={[styles.topPersonCardContent]}>
-                <Text style={styles.topPersonCardContentLeft}>Trading</Text>
+                <Text style={props.classes.topPersonCardContentLeft}>
+                  Trading
+                </Text>
                 <View style={[styles.greenTopPersonCardContentRight]}>
                   <Text style={styles.topPersonCardContentRightText}>
                     Débutant
@@ -220,11 +229,11 @@ function ToBookAccompaniementContent() {
                 </View>
               </View>
             </View>
-            <Text style={styles.infoPersonCard}>
+            <Text style={props.classes.infoPersonCard}>
               Session individuelle de 45 minutes avec un coach.
             </Text>
             <View style={[styles.bottomPersonCard]}>
-              <View style={[styles.sessionNumberContainer]}>
+              <View style={[props.classes.sessionNumberContainer]}>
                 <Text style={styles.sessionNumber}>4 séances</Text>
               </View>
               <TouchableOpacity style={[styles.toBookButton]}>
@@ -232,10 +241,12 @@ function ToBookAccompaniementContent() {
               </TouchableOpacity>
             </View>
           </View>
-          <View style={[styles.personCard]}>
-            <View style={[styles.topPersonCardContainerWithoutName]}>
+          <View style={[props.classes.personCard]}>
+            <View style={[props.classes.topPersonCardContainerWithoutName]}>
               <View style={[styles.topPersonCardContent]}>
-                <Text style={styles.topPersonCardContentLeft}>Trading</Text>
+                <Text style={props.classes.topPersonCardContentLeft}>
+                  Trading
+                </Text>
                 <View style={[styles.greenTopPersonCardContentRight]}>
                   <Text style={styles.topPersonCardContentRightText}>
                     Débutant
@@ -243,11 +254,11 @@ function ToBookAccompaniementContent() {
                 </View>
               </View>
             </View>
-            <Text style={styles.infoPersonCard}>
+            <Text style={props.classes.infoPersonCard}>
               Session individuelle de 45 minutes avec un coach.
             </Text>
             <View style={[styles.bottomPersonCard]}>
-              <View style={[styles.sessionNumberContainer]}>
+              <View style={[props.classes.sessionNumberContainer]}>
                 <Text style={styles.sessionNumber}>6 séances</Text>
               </View>
               <TouchableOpacity style={[styles.toBookButton]}>
@@ -261,10 +272,12 @@ function ToBookAccompaniementContent() {
 
         <Text style={styles.tradingCardTitle}>Des séances avancées</Text>
         <ScrollView horizontal style={[styles.toBookCardContainer]}>
-          <View style={[styles.personCard]}>
-            <View style={[styles.topPersonCardContainerWithoutName]}>
+          <View style={[props.classes.personCard]}>
+            <View style={[props.classes.topPersonCardContainerWithoutName]}>
               <View style={[styles.topPersonCardContent]}>
-                <Text style={styles.topPersonCardContentLeft}>Économie</Text>
+                <Text style={props.classes.topPersonCardContentLeft}>
+                  Économie
+                </Text>
                 <View style={[styles.orangeTopPersonCardContentRight]}>
                   <Text style={styles.topPersonCardContentRightText}>
                     Intermédiaire
@@ -272,11 +285,11 @@ function ToBookAccompaniementContent() {
                 </View>
               </View>
             </View>
-            <Text style={styles.infoPersonCard}>
+            <Text style={props.classes.infoPersonCard}>
               Session individuelle de 1 heure avec un coach.
             </Text>
             <View style={[styles.bottomPersonCard]}>
-              <View style={[styles.sessionNumberContainer]}>
+              <View style={[props.classes.sessionNumberContainer]}>
                 <Text style={styles.sessionNumber}>5 séances</Text>
               </View>
               <TouchableOpacity style={[styles.toBookButton]}>
@@ -284,10 +297,12 @@ function ToBookAccompaniementContent() {
               </TouchableOpacity>
             </View>
           </View>
-          <View style={[styles.personCard]}>
-            <View style={[styles.topPersonCardContainerWithoutName]}>
+          <View style={[props.classes.personCard]}>
+            <View style={[props.classes.topPersonCardContainerWithoutName]}>
               <View style={[styles.topPersonCardContent]}>
-                <Text style={styles.topPersonCardContentLeft}>Placement</Text>
+                <Text style={props.classes.topPersonCardContentLeft}>
+                  Placement
+                </Text>
                 <View style={[styles.orangeTopPersonCardContentRight]}>
                   <Text style={styles.topPersonCardContentRightText}>
                     Intermédiaire
@@ -295,11 +310,11 @@ function ToBookAccompaniementContent() {
                 </View>
               </View>
             </View>
-            <Text style={styles.infoPersonCard}>
+            <Text style={props.classes.infoPersonCard}>
               Session individuelle de 1 heure avec un coach.
             </Text>
             <View style={[styles.bottomPersonCard]}>
-              <View style={[styles.sessionNumberContainer]}>
+              <View style={[props.classes.sessionNumberContainer]}>
                 <Text style={styles.sessionNumber}>5 séances</Text>
               </View>
               <TouchableOpacity style={[styles.toBookButton]}>
@@ -307,10 +322,12 @@ function ToBookAccompaniementContent() {
               </TouchableOpacity>
             </View>
           </View>
-          <View style={[styles.personCard]}>
-            <View style={[styles.topPersonCardContainerWithoutName]}>
+          <View style={[props.classes.personCard]}>
+            <View style={[props.classes.topPersonCardContainerWithoutName]}>
               <View style={[styles.topPersonCardContent]}>
-                <Text style={styles.topPersonCardContentLeft}>Trading</Text>
+                <Text style={props.classes.topPersonCardContentLeft}>
+                  Trading
+                </Text>
                 <View style={[styles.orangeTopPersonCardContentRight]}>
                   <Text style={styles.topPersonCardContentRightText}>
                     Intermédiaire
@@ -318,11 +335,11 @@ function ToBookAccompaniementContent() {
                 </View>
               </View>
             </View>
-            <Text style={styles.infoPersonCard}>
+            <Text style={props.classes.infoPersonCard}>
               Session individuelle de 1 heure avec un coach.
             </Text>
             <View style={[styles.bottomPersonCard]}>
-              <View style={[styles.sessionNumberContainer]}>
+              <View style={[props.classes.sessionNumberContainer]}>
                 <Text style={styles.sessionNumber}>8 séances</Text>
               </View>
               <TouchableOpacity style={[styles.toBookButton]}>
@@ -336,10 +353,12 @@ function ToBookAccompaniementContent() {
 
         <Text style={styles.tradingCardTitle}>Pour les plus compétiteurs</Text>
         <ScrollView horizontal style={[styles.toBookCardContainer]}>
-          <View style={[styles.personCard]}>
-            <View style={[styles.topPersonCardContainerWithoutName]}>
+          <View style={[props.classes.personCard]}>
+            <View style={[props.classes.topPersonCardContainerWithoutName]}>
               <View style={[styles.topPersonCardContent]}>
-                <Text style={styles.topPersonCardContentLeft}>Forex</Text>
+                <Text style={props.classes.topPersonCardContentLeft}>
+                  Forex
+                </Text>
                 <View style={[styles.redTopPersonCardContentRight]}>
                   <Text style={styles.topPersonCardContentRightText}>
                     Confirmé
@@ -347,11 +366,11 @@ function ToBookAccompaniementContent() {
                 </View>
               </View>
             </View>
-            <Text style={styles.infoPersonCard}>
+            <Text style={props.classes.infoPersonCard}>
               Session individuelle de 1 heure avec un coach.
             </Text>
             <View style={[styles.bottomPersonCard]}>
-              <View style={[styles.sessionNumberContainer]}>
+              <View style={[props.classes.sessionNumberContainer]}>
                 <Text style={styles.sessionNumber}>4 séances</Text>
               </View>
               <TouchableOpacity style={[styles.toBookButton]}>
@@ -359,10 +378,12 @@ function ToBookAccompaniementContent() {
               </TouchableOpacity>
             </View>
           </View>
-          <View style={[styles.personCard]}>
-            <View style={[styles.topPersonCardContainerWithoutName]}>
+          <View style={[props.classes.personCard]}>
+            <View style={[props.classes.topPersonCardContainerWithoutName]}>
               <View style={[styles.topPersonCardContent]}>
-                <Text style={styles.topPersonCardContentLeft}>Ftmo Trader</Text>
+                <Text style={props.classes.topPersonCardContentLeft}>
+                  Ftmo Trader
+                </Text>
                 <View style={[styles.redTopPersonCardContentRight]}>
                   <Text style={styles.topPersonCardContentRightText}>
                     Confirmé
@@ -370,11 +391,11 @@ function ToBookAccompaniementContent() {
                 </View>
               </View>
             </View>
-            <Text style={styles.infoPersonCard}>
+            <Text style={props.classes.infoPersonCard}>
               Session individuelle de 1 heure avec un coach.
             </Text>
             <View style={[styles.bottomPersonCard]}>
-              <View style={[styles.sessionNumberContainer]}>
+              <View style={[props.classes.sessionNumberContainer]}>
                 <Text style={styles.sessionNumber}>3 séances</Text>
               </View>
               <TouchableOpacity style={[styles.toBookButton]}>
@@ -382,10 +403,12 @@ function ToBookAccompaniementContent() {
               </TouchableOpacity>
             </View>
           </View>
-          <View style={[styles.personCard]}>
-            <View style={[styles.topPersonCardContainerWithoutName]}>
+          <View style={[props.classes.personCard]}>
+            <View style={[props.classes.topPersonCardContainerWithoutName]}>
               <View style={[styles.topPersonCardContent]}>
-                <Text style={styles.topPersonCardContentLeft}>Placement</Text>
+                <Text style={props.classes.topPersonCardContentLeft}>
+                  Placement
+                </Text>
                 <View style={[styles.redTopPersonCardContentRight]}>
                   <Text style={styles.topPersonCardContentRightText}>
                     Confirmé
@@ -393,11 +416,11 @@ function ToBookAccompaniementContent() {
                 </View>
               </View>
             </View>
-            <Text style={styles.infoPersonCard}>
+            <Text style={props.classes.infoPersonCard}>
               Session individuelle de 1 heure avec un coach.
             </Text>
             <View style={[styles.bottomPersonCard]}>
-              <View style={[styles.sessionNumberContainer]}>
+              <View style={[props.classes.sessionNumberContainer]}>
                 <Text style={styles.sessionNumber}>6 séances</Text>
               </View>
               <TouchableOpacity style={[styles.toBookButton]}>
@@ -411,11 +434,11 @@ function ToBookAccompaniementContent() {
   );
 }
 
-function CompletedAccompaniementContent() {
+function CompletedAccompaniementContent(props) {
   return (
-    <View style={[styles.accompaniementContent, styles.shadowProp]}>
+    <View style={[props.classes.accompaniementContent, styles.shadowProp]}>
       <View style={styles.toBookTitleContainer}>
-        <Text style={styles.toBookTitle}>
+        <Text style={props.classes.toBookTitle}>
           Un historique de tes super cours !
           <WinkingFace width={26} height={26} />
         </Text>
@@ -423,10 +446,12 @@ function CompletedAccompaniementContent() {
       <ScrollView>
         <Text style={styles.tradingCardTitle}>Maxime Legrand</Text>
         <ScrollView horizontal style={[styles.toBookCardContainer]}>
-          <View style={[styles.personCard]}>
-            <View style={[styles.topPersonCardContainerWithoutName]}>
+          <View style={[props.classes.personCard]}>
+            <View style={[props.classes.topPersonCardContainerWithoutName]}>
               <View style={[styles.topPersonCardContent]}>
-                <Text style={styles.topPersonCardContentLeft}>Trading</Text>
+                <Text style={props.classes.topPersonCardContentLeft}>
+                  Trading
+                </Text>
                 <View style={[styles.greenTopPersonCardContentRight]}>
                   <Text style={styles.topPersonCardContentRightText}>
                     Débutant
@@ -434,24 +459,26 @@ function CompletedAccompaniementContent() {
                 </View>
               </View>
             </View>
-            <Text style={styles.infoPersonCard}>
+            <Text style={props.classes.infoPersonCard}>
               Session individuelle de 45 minutes avec un coach.
             </Text>
             <View style={[styles.bottomPersonCard]}>
-              <View style={[styles.sessionNumberContainer]}>
+              <View style={[props.classes.sessionNumberContainer]}>
                 <Text style={styles.sessionNumber}>Séances </Text>
                 <Text style={styles.boldSessionNumber}>2</Text>
                 <Text style={styles.sessionNumber}> /6</Text>
               </View>
-              <View style={[styles.sessionDateContainer]}>
+              <View style={[props.classes.sessionDateContainer]}>
                 <Text style={styles.sessionDate}>12 . 03 . 2023</Text>
               </View>
             </View>
           </View>
-          <View style={[styles.personCard]}>
-            <View style={[styles.topPersonCardContainerWithoutName]}>
+          <View style={[props.classes.personCard]}>
+            <View style={[props.classes.topPersonCardContainerWithoutName]}>
               <View style={[styles.topPersonCardContent]}>
-                <Text style={styles.topPersonCardContentLeft}>Trading</Text>
+                <Text style={props.classes.topPersonCardContentLeft}>
+                  Trading
+                </Text>
                 <View style={[styles.greenTopPersonCardContentRight]}>
                   <Text style={styles.topPersonCardContentRightText}>
                     Débutant
@@ -459,16 +486,16 @@ function CompletedAccompaniementContent() {
                 </View>
               </View>
             </View>
-            <Text style={styles.infoPersonCard}>
+            <Text style={props.classes.infoPersonCard}>
               Session individuelle de 45 minutes avec un coach.
             </Text>
             <View style={[styles.bottomPersonCard]}>
-              <View style={[styles.sessionNumberContainer]}>
+              <View style={[props.classes.sessionNumberContainer]}>
                 <Text style={styles.sessionNumber}>Séances </Text>
                 <Text style={styles.boldSessionNumber}>1</Text>
                 <Text style={styles.sessionNumber}> /6</Text>
               </View>
-              <View style={[styles.sessionDateContainer]}>
+              <View style={[props.classes.sessionDateContainer]}>
                 <Text style={styles.sessionDate}>22 . 03 . 2023</Text>
               </View>
             </View>
@@ -479,10 +506,12 @@ function CompletedAccompaniementContent() {
       <ScrollView>
         <Text style={styles.tradingCardTitle}>Léna Forelle</Text>
         <ScrollView horizontal style={[styles.toBookCardContainer]}>
-          <View style={[styles.personCard]}>
-            <View style={[styles.topPersonCardContainerWithoutName]}>
+          <View style={[props.classes.personCard]}>
+            <View style={[props.classes.topPersonCardContainerWithoutName]}>
               <View style={[styles.topPersonCardContent]}>
-                <Text style={styles.topPersonCardContentLeft}>Économie</Text>
+                <Text style={props.classes.topPersonCardContentLeft}>
+                  Économie
+                </Text>
                 <View style={[styles.orangeTopPersonCardContentRight]}>
                   <Text style={styles.topPersonCardContentRightText}>
                     Intermédiaire
@@ -490,24 +519,26 @@ function CompletedAccompaniementContent() {
                 </View>
               </View>
             </View>
-            <Text style={styles.infoPersonCard}>
+            <Text style={props.classes.infoPersonCard}>
               Session individuelle de 1 heure.
             </Text>
             <View style={[styles.bottomPersonCard]}>
-              <View style={[styles.sessionNumberContainer]}>
+              <View style={[props.classes.sessionNumberContainer]}>
                 <Text style={styles.sessionNumber}>Séances </Text>
                 <Text style={styles.boldSessionNumber}>4</Text>
                 <Text style={styles.sessionNumber}> /5</Text>
               </View>
-              <View style={[styles.sessionDateContainer]}>
+              <View style={[props.classes.sessionDateContainer]}>
                 <Text style={styles.sessionDate}>22 . 03 . 2023</Text>
               </View>
             </View>
           </View>
-          <View style={[styles.personCard]}>
-            <View style={[styles.topPersonCardContainerWithoutName]}>
+          <View style={[props.classes.personCard]}>
+            <View style={[props.classes.topPersonCardContainerWithoutName]}>
               <View style={[styles.topPersonCardContent]}>
-                <Text style={styles.topPersonCardContentLeft}>Économie</Text>
+                <Text style={props.classes.topPersonCardContentLeft}>
+                  Économie
+                </Text>
                 <View style={[styles.orangeTopPersonCardContentRight]}>
                   <Text style={styles.topPersonCardContentRightText}>
                     Intermédiaire
@@ -515,16 +546,16 @@ function CompletedAccompaniementContent() {
                 </View>
               </View>
             </View>
-            <Text style={styles.infoPersonCard}>
+            <Text style={props.classes.infoPersonCard}>
               Session individuelle de 1 heure.
             </Text>
             <View style={[styles.bottomPersonCard]}>
-              <View style={[styles.sessionNumberContainer]}>
+              <View style={[props.classes.sessionNumberContainer]}>
                 <Text style={styles.sessionNumber}>Séances </Text>
                 <Text style={styles.boldSessionNumber}>1</Text>
                 <Text style={styles.sessionNumber}> /6</Text>
               </View>
-              <View style={[styles.sessionDateContainer]}>
+              <View style={[props.classes.sessionDateContainer]}>
                 <Text style={styles.sessionDate}>11 . 03 . 2023</Text>
               </View>
             </View>
@@ -535,10 +566,12 @@ function CompletedAccompaniementContent() {
       <ScrollView>
         <Text style={styles.tradingCardTitle}>Inès Dore</Text>
         <ScrollView horizontal style={[styles.toBookCardContainer]}>
-          <View style={[styles.personCard]}>
-            <View style={[styles.topPersonCardContainerWithoutName]}>
+          <View style={[props.classes.personCard]}>
+            <View style={[props.classes.topPersonCardContainerWithoutName]}>
               <View style={[styles.topPersonCardContent]}>
-                <Text style={styles.topPersonCardContentLeft}>Placement</Text>
+                <Text style={props.classes.topPersonCardContentLeft}>
+                  Placement
+                </Text>
                 <View style={[styles.redTopPersonCardContentRight]}>
                   <Text style={styles.topPersonCardContentRightText}>
                     Confirmé
@@ -546,24 +579,26 @@ function CompletedAccompaniementContent() {
                 </View>
               </View>
             </View>
-            <Text style={styles.infoPersonCard}>
+            <Text style={props.classes.infoPersonCard}>
               Session individuelle de 1 heure et 30 minutes.
             </Text>
             <View style={[styles.bottomPersonCard]}>
-              <View style={[styles.sessionNumberContainer]}>
+              <View style={[props.classes.sessionNumberContainer]}>
                 <Text style={styles.sessionNumber}>Séances </Text>
                 <Text style={styles.boldSessionNumber}>2</Text>
                 <Text style={styles.sessionNumber}> /5</Text>
               </View>
-              <View style={[styles.sessionDateContainer]}>
+              <View style={[props.classes.sessionDateContainer]}>
                 <Text style={styles.sessionDate}>18 . 03 . 2023</Text>
               </View>
             </View>
           </View>
-          <View style={[styles.personCard]}>
-            <View style={[styles.topPersonCardContainerWithoutName]}>
+          <View style={[props.classes.personCard]}>
+            <View style={[props.classes.topPersonCardContainerWithoutName]}>
               <View style={[styles.topPersonCardContent]}>
-                <Text style={styles.topPersonCardContentLeft}>Placement</Text>
+                <Text style={props.classes.topPersonCardContentLeft}>
+                  Placement
+                </Text>
                 <View style={[styles.redTopPersonCardContentRight]}>
                   <Text style={styles.topPersonCardContentRightText}>
                     Confirmé
@@ -571,16 +606,16 @@ function CompletedAccompaniementContent() {
                 </View>
               </View>
             </View>
-            <Text style={styles.infoPersonCard}>
+            <Text style={props.classes.infoPersonCard}>
               Session individuelle de 1 heure et 30 minutes.
             </Text>
             <View style={[styles.bottomPersonCard]}>
-              <View style={[styles.sessionNumberContainer]}>
+              <View style={[props.classes.sessionNumberContainer]}>
                 <Text style={styles.sessionNumber}>Séances </Text>
                 <Text style={styles.boldSessionNumber}>1</Text>
                 <Text style={styles.sessionNumber}> /5</Text>
               </View>
-              <View style={[styles.sessionDateContainer]}>
+              <View style={[props.classes.sessionDateContainer]}>
                 <Text style={styles.sessionDate}>10 . 03 . 2023</Text>
               </View>
             </View>
@@ -591,28 +626,100 @@ function CompletedAccompaniementContent() {
   );
 }
 
-function AccompaniementContainer({selectedFooter}) {
+function AccompaniementContainer({classes, selectedFooter}) {
   if (selectedFooter === 'tobook') {
     return (
       <ScrollView>
-        <ToBookAccompaniementContent />
+        <ToBookAccompaniementContent classes={classes} />
       </ScrollView>
     );
   } else if (selectedFooter === 'completed') {
     return (
       <ScrollView>
-        <CompletedAccompaniementContent />
+        <CompletedAccompaniementContent classes={classes} />
       </ScrollView>
     );
   }
   return (
     <ScrollView>
-      <InProgressAccompaniementContent />
+      <InProgressAccompaniementContent classes={classes} />
     </ScrollView>
   );
 }
 
 function Accompaniement() {
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const classes = {
+    footer: [styles.footer, colorScheme === 'dark' && styles.footerDark],
+    accompaniementContent: [
+      styles.accompaniementContent,
+      colorScheme === 'dark' && styles.accompaniementContentDark,
+    ],
+    stateCard: [
+      styles.stateCard,
+      colorScheme === 'dark' && styles.stateCardDark,
+    ],
+    stateCardTimeContainer: [
+      styles.stateCardTimeContainer,
+      colorScheme === 'dark' && styles.stateCardTimeContainerDark,
+    ],
+    stateTitle: [
+      styles.stateTitle,
+      colorScheme === 'dark' && styles.stateTitleDark,
+    ],
+    selectedStateCardNumberContainer: [
+      styles.selectedStateCardNumberContainer,
+      colorScheme === 'dark' && styles.selectedStateCardNumberContainerDark,
+    ],
+    stateCardRContainer: [
+      styles.stateCardRContainer,
+      colorScheme === 'dark' && styles.stateCardRContainerDark,
+    ],
+    topPersonCardContainer: [
+      styles.topPersonCardContainer,
+      colorScheme === 'dark' && styles.topPersonCardContainerDark,
+    ],
+    selectedPersonCard: [
+      styles.selectedPersonCard,
+      colorScheme === 'dark' && styles.selectedPersonCardDark,
+    ],
+    personCard: [
+      styles.personCard,
+      colorScheme === 'dark' && styles.personCardDark,
+    ],
+    topPersonCardContentLeft: [
+      styles.topPersonCardContentLeft,
+      colorScheme === 'dark' && styles.topPersonCardContentLeftDark,
+    ],
+    infoPersonCard: [
+      styles.infoPersonCard,
+      colorScheme === 'dark' && styles.infoPersonCardDark,
+    ],
+    bottomPersonCardLeft: [
+      styles.bottomPersonCardLeft,
+      colorScheme === 'dark' && styles.bottomPersonCardLeftDark,
+    ],
+    bottomPersonCardRight: [
+      styles.bottomPersonCardRight,
+      colorScheme === 'dark' && styles.bottomPersonCardRightDark,
+    ],
+    toBookTitle: [
+      styles.toBookTitle,
+      colorScheme === 'dark' && styles.toBookTitleDark,
+    ],
+    topPersonCardContainerWithoutName: [
+      styles.topPersonCardContainerWithoutName,
+      colorScheme === 'dark' && styles.topPersonCardContainerWithoutNameDark,
+    ],
+    sessionNumberContainer: [
+      styles.sessionNumberContainer,
+      colorScheme === 'dark' && styles.sessionNumberContainerDark,
+    ],
+    sessionDateContainer: [
+      styles.sessionDateContainer,
+      colorScheme === 'dark' && styles.sessionDateContainerDark,
+    ],
+  };
   const isDarkMode = useColorScheme() === 'dark';
   const [selectedFooter, setSelectedFooter] = useState('inprogress');
   const backgroundStyle = {
@@ -663,10 +770,13 @@ function Accompaniement() {
           currentScreen="Accompaniement"
           handleScrollToLeft={() => handleScrollToLeft()}
         />
-        <AccompaniementContainer selectedFooter={selectedFooter} />
+        <AccompaniementContainer
+          classes={classes}
+          selectedFooter={selectedFooter}
+        />
       </ScrollView>
       {!scrollToMenu ? (
-        <View style={styles.footer}>
+        <View style={classes.footer}>
           <TouchableOpacity
             style={
               selectedFooter === 'inprogress'
@@ -726,11 +836,14 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     paddingLeft: 10,
     paddingRight: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     marginTop: 5,
     paddingBottom: 14,
+  },
+  accompaniementContentDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   shadowProp: {
     shadowColor: 'rgba(9, 13, 109, 0.4)',
@@ -784,7 +897,7 @@ const styles = StyleSheet.create({
   stateCard: {
     width: 179,
     height: 92,
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     borderRadius: 20,
     marginRight: 12,
     ...Platform.select({
@@ -802,14 +915,20 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  stateCardDark: {
+    backgroundColor: theme.colors.component.$cardDark,
+  },
   stateTitle: {
     fontWeight: 500,
     fontSize: 12,
     lineHeight: 15,
     fontFamily: 'Montserrat',
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     textAlign: 'center',
     marginTop: 8,
+  },
+  stateTitleDark: {
+    color: theme.colors.text.$textDark,
   },
   stateCardContent: {
     flexDirection: 'row',
@@ -827,7 +946,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 8,
     borderRadius: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
+  },
+  stateCardTimeContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   stateCardRContainer: {
     marginTop: 8,
@@ -842,7 +964,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 8,
     borderRadius: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
+  },
+  stateCardRContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   stateCardTime: {
     color: '#9154FD',
@@ -873,7 +998,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 8,
     borderRadius: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
+  },
+  selectedStateCardNumberContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   selectedStateCardNumber: {
     color: '#9154FD',
@@ -914,7 +1042,7 @@ const styles = StyleSheet.create({
   selectedPersonCard: {
     width: 350,
     height: 209,
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     borderRadius: 20,
     marginRight: 10,
     borderWidth: 2,
@@ -935,10 +1063,13 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  selectedPersonCardDark: {
+    backgroundColor: theme.colors.component.$cardDark,
+  },
   personCard: {
     width: 350,
     height: 209,
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     borderRadius: 20,
     marginRight: 10,
     ...Platform.select({
@@ -956,6 +1087,9 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  personCardDark: {
+    backgroundColor: theme.colors.component.$cardDark,
+  },
   topPersonCardContainer: {
     marginTop: 10,
     marginLeft: 10,
@@ -968,7 +1102,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 8,
     borderRadius: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
+  },
+  topPersonCardContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   topPersonCardContent: {
     flexDirection: 'row',
@@ -977,11 +1114,14 @@ const styles = StyleSheet.create({
   topPersonCardContentLeft: {
     position: 'absolute',
     left: 15,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontWeight: 600,
     fontSize: 28,
     lineHeight: 28,
     textTransform: 'uppercase',
+  },
+  topPersonCardContentLeftDark: {
+    color: theme.colors.text.$textDark,
   },
   greenTopPersonCardContentRight: {
     position: 'absolute',
@@ -1049,10 +1189,13 @@ const styles = StyleSheet.create({
   infoPersonCard: {
     marginTop: 15,
     marginLeft: 14,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontWeight: 500,
     fontSize: 15,
     lineHeight: 18,
+  },
+  infoPersonCardDark: {
+    color: theme.colors.text.$textDark,
   },
   bottomPersonCard: {
     flexDirection: 'row',
@@ -1069,7 +1212,10 @@ const styles = StyleSheet.create({
     fontWeight: 400,
     fontSize: 12,
     lineHeight: 14,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
+  },
+  bottomPersonCardLeftDark: {
+    color: theme.colors.text.$textDark,
   },
   bottomPersonCardRight: {
     position: 'absolute',
@@ -1081,11 +1227,14 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 8,
     borderRadius: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     height: 42,
     width: 198,
     flexDirection: 'row',
     paddingLeft: 12,
+  },
+  bottomPersonCardRightDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   bottomPersonCardDate: {
     fontWeight: 500,
@@ -1108,7 +1257,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: 74,
     flexDirection: 'row',
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     borderBottomLeftRadius: 0,
@@ -1130,6 +1279,9 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     paddingRight: 5,
     paddingTop: 6,
+  },
+  footerDark: {
+    backgroundColor: theme.colors.component.$cardDark,
   },
   selectedFooter: {
     width: '33%',
@@ -1174,13 +1326,16 @@ const styles = StyleSheet.create({
     width: 'auto',
   },
   toBookTitle: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     marginTop: 30,
     fontWeight: 600,
     fontSize: 26,
     lineHeight: 32,
     marginLeft: 15,
     marginRight: 15,
+  },
+  toBookTitleDark: {
+    color: theme.colors.text.$textDark,
   },
   tradingCardTitle: {
     color: '#9BA5BF',
@@ -1202,24 +1357,30 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 8,
     borderRadius: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
+  },
+  topPersonCardContainerWithoutNameDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   sessionNumberContainer: {
     flexDirection: 'row',
     width: 101,
     height: 38,
     borderRadius: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     position: 'absolute',
     left: 10,
     bottom: 0,
     alignItems: 'center',
+    justifyContent: 'center',
     elevation: 20,
     shadowColor: 'rgba(9, 13, 109, 0.4)',
     shadowOffset: {width: 0, height: 15},
     shadowOpacity: 1,
     shadowRadius: 20,
-    paddingLeft: 6,
+  },
+  sessionNumberContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   sessionNumber: {
     color: '#9154FD',
@@ -1239,19 +1400,23 @@ const styles = StyleSheet.create({
     width: 110,
     height: 38,
     borderRadius: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     position: 'absolute',
     right: 10,
     bottom: 0,
     alignItems: 'center',
+    justifyContent: 'center',
     elevation: 20,
     shadowColor: 'rgba(9, 13, 109, 0.4)',
     shadowOffset: {width: 0, height: 15},
     shadowOpacity: 1,
     shadowRadius: 20,
   },
+  sessionDateContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   sessionDate: {
-    marginTop: 9,
+    // marginTop: 9,
     color: '#9154FD',
     fontWeight: 400,
     fontSize: 15,
