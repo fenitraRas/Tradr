@@ -156,6 +156,7 @@ const styles = StyleSheet.create({
     width: 165,
     height: 24,
     textAlign: 'center',
+    marginTop: 10,
   },
 });
 

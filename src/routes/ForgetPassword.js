@@ -83,8 +83,8 @@ function Form({title}) {
         <View style={formStyles.loginButtonContainer}>
           <MyButton
             label="Réinitialiser"
-            // onPress={() => navigation.navigate('ForgetPasswordCode')}
-            onPress={() => {}}
+            onPress={() => navigation.navigate('ForgetPasswordCode')}
+            // onPress={() => {}}
           />
         </View>
       </View>
@@ -157,6 +157,7 @@ const styles = StyleSheet.create({
     width: 165,
     height: 24,
     textAlign: 'center',
+    marginTop: 10,
   },
 });
 

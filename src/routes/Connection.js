@@ -68,7 +68,7 @@ function ConnectForm({title}) {
     <View style={formStyles.formContainer}>
       <View style={[indexStyles.horizontalFlex, formStyles.titleContainer]}>
         <Text style={formStyles.title}>{title}</Text>
-        <WavingHand width={18} height={18} formStyles={styles.titleImg} />
+        <WavingHand width={18} height={18} />
       </View>
       <View style={formStyles.formContent}>
         <View style={formStyles.inputContainer}>
@@ -185,6 +185,7 @@ const styles = StyleSheet.create({
     color: '#1A2442',
     width: 94,
     height: 24,
+    marginTop: 10,
   },
 });
 
