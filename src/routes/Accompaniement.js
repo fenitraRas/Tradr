@@ -836,11 +836,15 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     paddingLeft: 10,
     paddingRight: 10,
-    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
+    // backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     marginTop: 5,
     paddingBottom: 14,
+    height:
+      Platform.OS === 'android'
+        ? Dimensions.get('window').height + 130
+        : Dimensions.get('window').height + 180,
   },
   accompaniementContentDark: {
     backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
@@ -893,6 +897,7 @@ const styles = StyleSheet.create({
     overflowX: 'scroll',
     marginTop: 20,
     width: Dimensions.get('window').width,
+    maxHeight: 92,
   },
   stateCard: {
     width: 179,

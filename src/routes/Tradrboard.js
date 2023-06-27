@@ -79,7 +79,7 @@ function TradrboardContent(props) {
           style={[
             styles.connectButton,
             {
-              width: Dimensions.get('window').width - 240 - 15,
+              width: Platform.OS === 'android' ? 128 : 138,
             },
           ]}>
           <Text style={styles.connectButtonText}>Nouveau membre</Text>
@@ -536,7 +536,7 @@ const styles = StyleSheet.create({
   infoButton: {
     height: 29,
     borderRadius: 4,
-    paddingTop: 2,
+    paddingTop: 4,
     paddingRight: 4,
     paddingBottom: 2,
     paddingLeft: 4,

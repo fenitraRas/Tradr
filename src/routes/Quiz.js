@@ -668,7 +668,7 @@ const styles = StyleSheet.create({
     height:
       Platform.OS === 'android'
         ? Dimensions.get('window').height + 130
-        : Dimensions.get('window').height,
+        : Dimensions.get('window').height + 220,
     paddingLeft: 10,
     paddingRight: 10,
     backgroundColor: '#FFFFFF',

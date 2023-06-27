@@ -195,6 +195,7 @@ function LiveReplay() {
 const styles = StyleSheet.create({
   replayContent: {
     width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height - 95,
     paddingLeft: 10,
     paddingRight: 10,
     backgroundColor: '#FFFFFF',

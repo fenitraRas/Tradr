@@ -340,11 +340,11 @@ const styles = StyleSheet.create({
   folderContainer: {
     width: 'auto',
     flexWrap: 'wrap',
-    paddingLeft: Platform.OS === 'android' ? 10 : 5,
-    paddingRight: Platform.OS === 'android' ? 10 : 5,
+    paddingLeft: Platform.OS === 'android' ? 10 : 0,
+    paddingRight: Platform.OS === 'android' ? 10 : 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginHorizontal: Platform.OS === 'android' ? 5 : 15,
+    marginHorizontal: Platform.OS === 'android' ? 5 : 5,
   },
   folderCard: {
     width: Platform.OS === 'android' ? 160 : 170,

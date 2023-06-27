@@ -898,7 +898,7 @@ const styles = StyleSheet.create({
     height:
       Platform.OS === 'android'
         ? Dimensions.get('window').height - 120
-        : Dimensions.get('window').height - 170,
+        : Dimensions.get('window').height - 150,
   },
   simulator: {
     height: Platform.OS === 'android' ? 920 : 940,

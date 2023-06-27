@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     marginTop: 5,
-    paddingBottom: 14,
+    paddingBottom: 34,
   },
   shadowProp: {
     shadowColor: 'rgba(9, 13, 109, 0.4)',

@@ -220,9 +220,9 @@ const styles = StyleSheet.create({
   },
   settingFooter: {
     position: 'absolute',
-    bottom: Platform.OS === 'android' ? 34 : 54,
+    bottom: 0,
     left: 0,
-    height: 100,
+    height: Platform.OS === 'android' ? 118 : 142,
     width: '100%',
     backgroundColor: '#FFFFFF',
   },
