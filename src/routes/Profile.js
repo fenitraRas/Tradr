@@ -362,6 +362,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     paddingLeft: 10,
     paddingRight: 10,
+    paddingBottom: 10,
     backgroundColor: '#FFFFFF',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
@@ -473,7 +474,7 @@ const styles = StyleSheet.create({
     height: 168,
   },
   cardStat: {
-    height: Platform.OS === 'android' ? 366 : 320,
+    height: Platform.OS === 'android' ? 366 : 'auto',
     marginBottom: 10,
   },
   informationCardContent: {

@@ -278,7 +278,8 @@ const styles = StyleSheet.create({
     height: 24,
     marginLeft: 5,
     alignSelf: 'center',
-    maxWidth: 370,
+    // maxWidth: 370,
+    maxWidth: '100%',
   },
   informationCardTitle: {
     height: 24,
