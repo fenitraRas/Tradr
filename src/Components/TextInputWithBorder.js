@@ -7,7 +7,7 @@ import {
 
 import React from 'react';
 
-export default function TextInput({error, ...otherProps}) {
+export default function TextInputWithBorder({error, ...otherProps}) {
   return (
     <View
       style={
@@ -41,6 +41,8 @@ const styles = StyleSheet.create({
     shadowRadius: 20,
     elevation: Platform.OS === 'android' ? -15 : undefined,
     justifyContent: 'center',
+    borderColor: '#9154FD',
+    borderWidth: 1,
   },
   inputStyle: {
     fontFamily: 'Montserrat',

@@ -25,6 +25,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
 import MyTextInput from '../Components/TextInput';
+import MyTextInputWithBorder from '../Components/TextInputWithBorder';
 import PurpleButton from '../Components/PurpleButton';
 import {formStyles} from '../assets/css/form';
 import {useNavigation} from '@react-navigation/native';
@@ -82,7 +83,7 @@ function EditProfileForm() {
         <View style={[styles.fullInfoItem]}>
           <Text style={[styles.textInfo]}>Prénom</Text>
           <View style={[formStyles.inputContainer, styles.interH]}>
-            <MyTextInput
+            <MyTextInputWithBorder
               placeholder="Prénom"
               autoCapitalize="none"
               keyboardAppearance="dark"
@@ -95,7 +96,7 @@ function EditProfileForm() {
         <View style={[styles.fullInfoItem]}>
           <Text style={[styles.textInfo]}>Nom</Text>
           <View style={[formStyles.inputContainer, styles.interH]}>
-            <MyTextInput
+            <MyTextInputWithBorder
               placeholder="Nom"
               autoCapitalize="none"
               keyboardAppearance="dark"
@@ -108,7 +109,7 @@ function EditProfileForm() {
         <View style={[styles.fullInfoItem]}>
           <Text style={[styles.textInfo]}>Email</Text>
           <View style={[formStyles.inputContainer, styles.interH]}>
-            <MyTextInput
+            <MyTextInputWithBorder
               placeholder="Email"
               autoCapitalize="none"
               autoCompleteType="email"
@@ -123,7 +124,7 @@ function EditProfileForm() {
         <View style={[styles.fullInfoItem]}>
           <Text style={[styles.textInfo]}>Téléphone</Text>
           <View style={[formStyles.inputContainer, styles.interH]}>
-            <MyTextInput
+            <MyTextInputWithBorder
               placeholder="Téléphone"
               autoCompleteType="phone"
               keyboardType="phone-pad"
@@ -137,7 +138,7 @@ function EditProfileForm() {
         <View style={[styles.fullInfoItem]}>
           <Text style={[styles.textInfo]}>Nouveau mot de passe</Text>
           <View style={[formStyles.inputContainer, styles.interH]}>
-            <MyTextInput
+            <MyTextInputWithBorder
               placeholder="Nouveau mot de passe"
               autoCapitalize="none"
               secureTextEntry
@@ -149,7 +150,7 @@ function EditProfileForm() {
         </View>
         <View style={[styles.fullInfoItem]}>
           <View style={[formStyles.inputContainer, {marginTop: -10}]}>
-            <MyTextInput
+            <MyTextInputWithBorder
               placeholder="Confirmer mot de passe"
               autoCapitalize="none"
               secureTextEntry
