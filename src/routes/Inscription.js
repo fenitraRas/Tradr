@@ -31,6 +31,7 @@ import MyTextInput from '../Components/TextInput';
 import {formStyles} from '../assets/css/form';
 import {indexStyles} from '../assets/css/index';
 import {useNavigation} from '@react-navigation/native';
+import TradrLogo from '../assets/icons/tradrLogo.svg';
 
 function Navbar({children}) {
   const navigation = useNavigation();
@@ -217,11 +218,8 @@ function Inscription() {
       <ScrollView>
         <View>
           <Navbar>Tradrboard</Navbar>
-          <View>
-            <Image
-              source={require('../assets/tradrLightLogo.png')}
-              style={formStyles.image}
-            />
+          <View style={formStyles.logoContainer}>
+            <TradrLogo width={113.684} height={40} />
           </View>
           <ConnectToAppleButton>Continuer avec Apple</ConnectToAppleButton>
           <InscriptionForm title="Un tout nouveau membre !" />

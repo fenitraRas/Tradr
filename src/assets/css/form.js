@@ -100,6 +100,11 @@ const formStyles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
   },
+  logoContainer: {
+    width: '100%',
+    marginTop: 40,
+    alignItems: 'center',
+  },
 });
 
 export {formStyles};
