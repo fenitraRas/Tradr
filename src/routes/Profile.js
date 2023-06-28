@@ -519,7 +519,7 @@ const styles = StyleSheet.create({
       height: 6,
     },
     shadowOpacity: 0.2,
-    shadowRadius: 5,
+    shadowRadius: 3,
   },
   infoText: {
     fontWeight: 500,
@@ -599,7 +599,7 @@ const styles = StyleSheet.create({
         shadowColor: '#090d6d',
         shadowOffset: {width: 0, height: 3},
         shadowOpacity: 0.3,
-        shadowRadius: 4,
+        shadowRadius: 3,
       },
       android: {
         elevation: 4,
@@ -637,7 +637,7 @@ const styles = StyleSheet.create({
       height: 6,
     },
     shadowOpacity: 0.2,
-    shadowRadius: 5,
+    shadowRadius: 3,
   },
   numberStatText: {
     fontWeight: 700,

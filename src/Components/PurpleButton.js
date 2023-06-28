@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
       height: 0,
     },
     shadowOpacity: 0.6,
-    shadowRadius: 14,
+    shadowRadius: 10,
   },
   buttonText: {
     fontFamily: 'Montserrat',

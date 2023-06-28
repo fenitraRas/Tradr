@@ -30,6 +30,7 @@ import PurpleButton from '../Components/PurpleButton';
 import {formStyles} from '../assets/css/form';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
+import { indexStyles } from '../assets/css';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
@@ -166,7 +167,7 @@ function EditProfileForm() {
 
 function EditProfileContent(props) {
   return (
-    <View style={[styles.editProfileContent, styles.shadowProp]}>
+    <View style={[styles.editProfileContent, indexStyles.shadowProp]}>
       <EditProfileTitle title="Modifier des informations" />
       <EditProfileForm />
       <View style={styles.saveButtonContainer}>
@@ -262,16 +263,6 @@ const styles = StyleSheet.create({
         ? Dimensions.get('window').height - 74
         : Dimensions.get('window').height - 109,
   },
-  shadowProp: {
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 20,
-    elevation: 2,
-  },
   informationContainer: {
     width: '100%',
   },
@@ -279,7 +270,6 @@ const styles = StyleSheet.create({
     height: 24,
     marginLeft: 5,
     alignSelf: 'center',
-    // maxWidth: 370,
     maxWidth: '100%',
   },
   informationCardTitle: {
@@ -298,14 +288,13 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: '#E9EDFC',
     alignSelf: 'center',
-    // maxWidth: 370,
     shadowColor: 'rgba(9, 13, 109, 0.4)',
     shadowOffset: {
       width: 0,
-      height: 30,
+      height: 6,
     },
-    shadowOpacity: 1,
-    shadowRadius: 40,
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
     elevation: Platform.OS === 'android' ? -35 : undefined,
   },
   cardInfoHeight: {
