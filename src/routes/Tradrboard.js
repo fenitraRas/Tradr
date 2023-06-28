@@ -205,22 +205,25 @@ function TradrBoardObjective({classes, title}) {
               <Text style={classes.progressText}>3</Text>
             </View>
           </View>
-          <View style={[indexStyles.horizontalFlex, styles.radioContent]}>
-            <UnseletedRadio width={28} height={28} />
+          <TouchableOpacity
+            style={[indexStyles.horizontalFlex, styles.radioContent]}>
+            <UnseletedRadio width={42} height={42} />
             <Text style={classes.radioText}>S'inscrire</Text>
-          </View>
-          <View style={[indexStyles.horizontalFlex, styles.radioContent]}>
-            <SeletedRadio width={28} height={28} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[indexStyles.horizontalFlex, styles.radioContent]}>
+            <SeletedRadio width={42} height={42} />
             <Text style={classes.radioText}>
               Visionner l'épisode accessible
             </Text>
-          </View>
-          <View style={[indexStyles.horizontalFlex, styles.radioContent]}>
-            <UnseletedRadio width={28} height={28} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[indexStyles.horizontalFlex, styles.radioContent]}>
+            <UnseletedRadio width={42} height={42} />
             <Text style={classes.radioText}>
               Accomplir les deux objectifs précédents
             </Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -355,9 +358,10 @@ const styles = StyleSheet.create({
   progressText: {
     textAlign: 'center',
     fontWeight: 500,
-    fontSize: 20,
-    lineHeight: 24,
     fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontSize: 22,
+    lineHeight: 27,
     color: theme.colors.text.$textLight,
   },
   progressTextDark: {
@@ -558,20 +562,14 @@ const styles = StyleSheet.create({
     height: 27,
     flexDirection: 'row',
     marginTop: 15,
-    paddingLeft: 25,
-    paddingRight: 25,
-    marginBottom: 5,
+    paddingLeft: 22,
+    paddingRight: 22,
+    marginBottom: 12,
   },
   progressNumber: {
     flex: 1,
-    maxWidth: 27,
-    minWidth: 27,
-    fontFamily: 'Montserrat',
-    fontStyle: 'normal',
-    // fontWeight: 500,
-    fontSize: 22,
-    lineHeight: 27,
-    color: '#1A2442',
+    maxWidth: 32,
+    minWidth: 32,
   },
   progressContent: {
     flex: 2,
@@ -580,7 +578,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     height: 13,
     borderRadius: 6.5,
-    marginTop: 4,
+    marginTop: 8,
     shadowColor: 'rgba(145, 84, 253, 0.8)',
     shadowOffset: {
       width: 0,
@@ -605,10 +603,11 @@ const styles = StyleSheet.create({
     }),
   },
   radioContent: {
-    marginLeft: 24,
+    marginLeft: 17,
+    marginTop: -10,
   },
   radioText: {
-    marginTop: 4,
+    marginTop: 12,
     fontFamily: 'Montserrat',
     fontWeight: 500,
     fontSize: 15,
