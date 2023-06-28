@@ -21,7 +21,6 @@ import {
 import Menu, {NavbarMenu} from './Menu';
 import React, {useRef, useState} from 'react';
 
-import ButtonAdd from '../assets/icons/buttonAdd.svg';
 import CardIndexDividers from '../assets/icons/cardIndexDividers.svg';
 import ChartIncreasing from '../assets/icons/chartIncreasing.svg';
 import Closed from '../assets/icons/closed.svg';
@@ -241,7 +240,9 @@ function ProfileDocumentContent() {
             <Text style={styles.addText}>Ajouter un document</Text>
           </View>
           <TouchableOpacity style={styles.addDocumentRight}>
-            <ButtonAdd width={36} height={36} />
+            <View style={styles.addButton}>
+              <Text style={styles.addButtonText}>+</Text>
+            </View>
           </TouchableOpacity>
         </View>
 
@@ -557,9 +558,28 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    // width: 26,
-    // height: 26,
     padding: 4,
+  },
+  addButton: {
+    width: 26,
+    height: 26,
+    alignItems: 'center',
+    marginRight: 10,
+    backgroundColor: '#9154FD',
+    borderRadius: 10,
+    elevation: 8,
+    shadowColor: '#9154FD',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.8,
+  },
+  addButtonText: {
+    color: '#FFFFFF',
+    fontWeight: 600,
+    fontSize: 18,
+    marginTop: 1,
   },
   arrangeHorizontally: {
     flexDirection: 'row',
