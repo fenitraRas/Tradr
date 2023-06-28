@@ -610,17 +610,14 @@ const styles = StyleSheet.create({
     padding: 4,
     backgroundColor: '#FFFFFF',
     borderRadius: 11,
-    ...Platform.select({
-      ios: {
-        shadowColor: '#090d6d',
-        shadowOffset: {width: 0, height: 8},
-        shadowOpacity: 0.4,
-        shadowRadius: 14,
-      },
-      android: {
-        elevation: 4,
-      },
-    }),
+    elevation: 8,
+    shadowColor: '#090d6d',
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
   },
   numberStatText: {
     fontWeight: 700,
