@@ -29,6 +29,7 @@ import WinkingFace from '../assets/icons/winkingFace.svg';
 import {formStyles} from '../assets/css/form';
 import theme from '../assets/theme';
 import {useSelector} from 'react-redux';
+import {indexStyles} from '../assets/css';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
@@ -60,7 +61,7 @@ function Navbar(props) {
 
 function InProgressAccompaniementContent(props) {
   return (
-    <View style={[props.classes.accompaniementContent, styles.shadowProp]}>
+    <View style={[props.classes.accompaniementContent, indexStyles.shadowProp]}>
       <View style={[styles.imgContainer]}>
         <Image
           source={require('../assets/video/maxime.jpg')}
@@ -206,11 +207,11 @@ function InProgressAccompaniementContent(props) {
 
 function ToBookAccompaniementContent(props) {
   return (
-    <View style={[props.classes.accompaniementContent, styles.shadowProp]}>
+    <View style={[props.classes.accompaniementContent, indexStyles.shadowProp]}>
       <View style={styles.toBookTitleContainer}>
         <Text style={props.classes.toBookTitle}>
           N'hésite plus et réserve ta séance !
-          <Calendar width={26} height={26} />
+          <Calendar width={26} height={26} style={{marginLeft: 10}} />
         </Text>
       </View>
       <ScrollView>
@@ -436,14 +437,14 @@ function ToBookAccompaniementContent(props) {
 
 function CompletedAccompaniementContent(props) {
   return (
-    <View style={[props.classes.accompaniementContent, styles.shadowProp]}>
+    <View style={[props.classes.accompaniementContent, indexStyles.shadowProp]}>
       <View style={styles.toBookTitleContainer}>
         <Text style={props.classes.toBookTitle}>
           Un historique de tes super cours !
-          <WinkingFace width={26} height={26} />
+          <WinkingFace width={26} height={26} style={{marginLeft: 10}} />
         </Text>
       </View>
-      <ScrollView>
+      <ScrollView style={{maxHeight: 260}}>
         <Text style={styles.tradingCardTitle}>Maxime Legrand</Text>
         <ScrollView horizontal style={[styles.toBookCardContainer]}>
           <View style={[props.classes.personCard]}>
@@ -503,7 +504,7 @@ function CompletedAccompaniementContent(props) {
         </ScrollView>
       </ScrollView>
 
-      <ScrollView>
+      <ScrollView style={{maxHeight: 260}}>
         <Text style={styles.tradingCardTitle}>Léna Forelle</Text>
         <ScrollView horizontal style={[styles.toBookCardContainer]}>
           <View style={[props.classes.personCard]}>
@@ -563,7 +564,7 @@ function CompletedAccompaniementContent(props) {
         </ScrollView>
       </ScrollView>
 
-      <ScrollView>
+      <ScrollView style={{maxHeight: 260}}>
         <Text style={styles.tradingCardTitle}>Inès Dore</Text>
         <ScrollView horizontal style={[styles.toBookCardContainer]}>
           <View style={[props.classes.personCard]}>
@@ -836,7 +837,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     paddingLeft: 10,
     paddingRight: 10,
-    // backgroundColor: theme.colors.background.$backgroundLightSecondaire,
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     marginTop: 5,
@@ -848,16 +849,6 @@ const styles = StyleSheet.create({
   },
   accompaniementContentDark: {
     backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
-  },
-  shadowProp: {
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 20,
-    elevation: 2,
   },
   navbarText: {
     textAlign: 'center',
@@ -897,7 +888,8 @@ const styles = StyleSheet.create({
     overflowX: 'scroll',
     marginTop: 20,
     width: Dimensions.get('window').width,
-    maxHeight: 92,
+    maxHeight: 102,
+    paddingBottom: 10,
   },
   stateCard: {
     width: 179,
@@ -910,10 +902,10 @@ const styles = StyleSheet.create({
         shadowColor: 'rgba(9, 13, 109, 0.4)',
         shadowOffset: {
           width: 0,
-          height: 15,
+          height: 4,
         },
-        shadowOpacity: 0.1,
-        shadowRadius: 20,
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
       },
       android: {
         elevation: 4,
@@ -947,9 +939,9 @@ const styles = StyleSheet.create({
     height: 51,
     elevation: 5,
     shadowColor: '#090d6d',
-    shadowOffset: {width: 0, height: 3},
-    shadowOpacity: 0.5,
-    shadowRadius: 8,
+    shadowOffset: {width: 0, height: 6},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
     borderRadius: 10,
     backgroundColor: theme.colors.background.$backgroundLightSecondaire,
   },
@@ -965,9 +957,9 @@ const styles = StyleSheet.create({
     height: 51,
     elevation: 5,
     shadowColor: '#090d6d',
-    shadowOffset: {width: 0, height: 3},
-    shadowOpacity: 0.5,
-    shadowRadius: 8,
+    shadowOffset: {width: 0, height: 6},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
     borderRadius: 10,
     backgroundColor: theme.colors.background.$backgroundLightSecondaire,
   },
@@ -999,9 +991,9 @@ const styles = StyleSheet.create({
     height: 37,
     elevation: 5,
     shadowColor: '#090d6d',
-    shadowOffset: {width: 0, height: 3},
-    shadowOpacity: 0.5,
-    shadowRadius: 8,
+    shadowOffset: {width: 0, height: 6},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
     borderRadius: 10,
     backgroundColor: theme.colors.background.$backgroundLightSecondaire,
   },
@@ -1035,7 +1027,7 @@ const styles = StyleSheet.create({
   personCardContainer: {
     flexDirection: 'row',
     overflowX: 'scroll',
-    marginTop: 35,
+    marginTop: 25,
     width: Dimensions.get('window').width,
   },
   toBookCardContainer: {
@@ -1043,6 +1035,7 @@ const styles = StyleSheet.create({
     overflowX: 'scroll',
     width: Dimensions.get('window').width,
     marginTop: 10,
+    paddingBottom: 10,
   },
   selectedPersonCard: {
     width: 350,
@@ -1079,13 +1072,13 @@ const styles = StyleSheet.create({
     marginRight: 10,
     ...Platform.select({
       ios: {
-        shadowColor: 'rgba(145, 84, 253, 0.4)',
+        shadowColor: '#090d6d',
         shadowOffset: {
           width: 0,
           height: 4,
         },
-        shadowOpacity: 1,
-        shadowRadius: 4,
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
       },
       android: {
         elevation: 8,
@@ -1103,9 +1096,9 @@ const styles = StyleSheet.create({
     height: 72,
     elevation: 5,
     shadowColor: '#090d6d',
-    shadowOffset: {width: 0, height: 3},
-    shadowOpacity: 0.5,
-    shadowRadius: 8,
+    shadowOffset: {width: 0, height: 6},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
     borderRadius: 10,
     backgroundColor: theme.colors.background.$backgroundLightSecondaire,
   },
@@ -1141,8 +1134,8 @@ const styles = StyleSheet.create({
       width: 0,
       height: 4,
     },
-    shadowOpacity: 1,
-    shadowRadius: 14,
+    shadowOpacity: 0.6,
+    shadowRadius: 3,
     elevation: 2,
   },
   orangeTopPersonCardContentRight: {
@@ -1156,8 +1149,8 @@ const styles = StyleSheet.create({
     elevation: 2,
     shadowColor: '#F8B940',
     shadowOffset: {width: 0, height: 4},
-    shadowOpacity: 1,
-    shadowRadius: 14,
+    shadowOpacity: 0.6,
+    shadowRadius: 3,
   },
   redTopPersonCardContentRight: {
     position: 'absolute',
@@ -1172,8 +1165,8 @@ const styles = StyleSheet.create({
       width: 0,
       height: 4,
     },
-    shadowOpacity: 1,
-    shadowRadius: 14,
+    shadowOpacity: 0.6,
+    shadowRadius: 3,
     elevation: 2,
   },
   topPersonCardContentRightText: {
@@ -1228,9 +1221,9 @@ const styles = StyleSheet.create({
     bottom: 1,
     elevation: 5,
     shadowColor: '#090d6d',
-    shadowOffset: {width: 0, height: 3},
-    shadowOpacity: 0.5,
-    shadowRadius: 8,
+    shadowOffset: {width: 0, height: 6},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
     borderRadius: 10,
     backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     height: 42,
@@ -1347,7 +1340,7 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 15,
     lineHeight: 18,
-    marginTop: 25,
+    marginTop: 15,
     marginLeft: 15,
   },
   topPersonCardContainerWithoutName: {
@@ -1358,9 +1351,9 @@ const styles = StyleSheet.create({
     height: 46,
     elevation: 5,
     shadowColor: '#090d6d',
-    shadowOffset: {width: 0, height: 3},
-    shadowOpacity: 0.5,
-    shadowRadius: 8,
+    shadowOffset: {width: 0, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
     borderRadius: 10,
     backgroundColor: theme.colors.background.$backgroundLightSecondaire,
   },
@@ -1380,9 +1373,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     elevation: 20,
     shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOffset: {width: 0, height: 15},
-    shadowOpacity: 1,
-    shadowRadius: 20,
+    shadowOffset: {width: 0, height: 4},
+    shadowOpacity: 0.8,
+    shadowRadius: 3,
   },
   sessionNumberContainerDark: {
     backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
@@ -1413,9 +1406,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     elevation: 20,
     shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOffset: {width: 0, height: 15},
-    shadowOpacity: 1,
-    shadowRadius: 20,
+    shadowOffset: {width: 0, height: 5},
+    shadowOpacity: 0.6,
+    shadowRadius: 3,
   },
   sessionDateContainerDark: {
     backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
@@ -1438,8 +1431,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     shadowColor: 'rgba(145, 84, 253, 0.6)',
     shadowOffset: {width: 0, height: 4},
-    shadowOpacity: 1,
-    shadowRadius: 14,
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
     elevation: 6,
     alignItems: 'center',
   },
