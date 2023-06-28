@@ -488,8 +488,8 @@ const styles = StyleSheet.create({
     elevation: 2,
     shadowColor: '#F8B940',
     shadowOffset: {width: 0, height: 4},
-    shadowOpacity: 1,
-    shadowRadius: 14,
+    shadowOpacity: 0.6,
+    shadowRadius: 3,
   },
   bottomCardContentRightText: {
     color: '#FFFFFF',
@@ -555,8 +555,8 @@ const styles = StyleSheet.create({
       width: 0,
       height: 4,
     },
-    shadowOpacity: 1,
-    shadowRadius: 14,
+    shadowOpacity: 0.6,
+    shadowRadius: 3,
     elevation: 2,
   },
   topPersonCardContentRightText: {
