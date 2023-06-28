@@ -564,7 +564,7 @@ const styles = StyleSheet.create({
     width: 26,
     height: 26,
     alignItems: 'center',
-    marginRight: 10,
+    marginRight: 6,
     backgroundColor: '#9154FD',
     borderRadius: 10,
     elevation: 8,
