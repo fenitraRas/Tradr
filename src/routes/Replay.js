@@ -32,6 +32,7 @@ import {formStyles} from '../assets/css/form';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import video from '../assets/video/video_test.mp4';
+import { indexStyles } from '../assets/css';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
@@ -65,7 +66,7 @@ function ReplayContent() {
   const navigation = useNavigation();
   const [isPlaying, setIsPlaying] = useState(false);
   return (
-    <View style={[styles.replayContent, styles.shadowProp]}>
+    <View style={[styles.replayContent, indexStyles.shadowProp]}>
       <View style={styles.replayTitleContainer}>
         <Text style={styles.replayTitle}>
           Visionne comme bon te semble.
@@ -240,16 +241,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
     paddingBottom: 64,
   },
-  shadowProp: {
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 20,
-    elevation: 2,
-  },
   navbarText: {
     textAlign: 'center',
     fontWeight: 500,
@@ -303,14 +294,20 @@ const styles = StyleSheet.create({
     height: 384,
     marginTop: 10,
     borderRadius: 20,
-    elevation: 40,
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOffset: {
-      width: 0,
-      height: 30,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 35,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   videoContainer: {
     width: '100%',
@@ -359,13 +356,14 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     fontFamily: 'Montserrat',
     marginLeft: 6,
-    marginTop: 30,
+    marginTop: 20,
   },
   videoListContainer: {
     flexDirection: 'row',
     overflowX: 'scroll',
     width: Dimensions.get('window').width,
     marginTop: 15,
+    paddingBottom: 10,
   },
   videoCard: {
     backgroundColor: '#E9EDFC',
@@ -376,11 +374,20 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingLeft: 5,
     paddingRight: 5,
-    // elevation: 8,
-    // shadowColor: 'rgba(9, 13, 109, 0.4)',
-    // shadowOffset: {width: 0, height: 30},
-    // shadowRadius: 40,
-    // shadowOpacity: 1,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   image: {
     width: '100%',
