@@ -186,6 +186,21 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingLeft: 10,
     paddingRight: 10,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 5,
+        },
+        shadowOpacity: 0.4,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
+    marginBottom: 20,
   },
   myQuizCardBottom: {
     position: 'absolute',
@@ -195,13 +210,20 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 51,
     backgroundColor: '#FFFFFF',
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 15,
-    // },
-    // shadowColor: 'rgba(9, 13, 109, 0.4)',
-    // shadowOpacity: 1,
-    shadowRadius: 20,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
     flexDirection: 'row',
   },
   myQuizCardBottomLeft: {

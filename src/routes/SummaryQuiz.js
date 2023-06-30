@@ -28,6 +28,7 @@ import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg
 import {formStyles} from '../assets/css/form';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
+import { indexStyles } from '../assets/css';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
@@ -67,7 +68,7 @@ function Navbar(props) {
 function SummaryQuizContent(props) {
   const navigation = useNavigation();
   return (
-    <View style={[styles.summaryQuizContent, styles.shadowProp]}>
+    <View style={[styles.summaryQuizContent, indexStyles.shadowProp]}>
       <View style={[styles.titleContainer]}>
         <Text style={styles.title}>
           Résumé
@@ -241,17 +242,7 @@ const styles = StyleSheet.create({
     height:
       Platform.OS === 'android'
         ? Dimensions.get('window').height - 74
-        : Dimensions.get('window').height - 109,
-  },
-  shadowProp: {
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 20,
-    elevation: 2,
+        : Dimensions.get('window').height,
   },
   titleContainer: {
     marginLeft: 5,
@@ -296,6 +287,11 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 10,
     backgroundColor: '#FFFFFF',
+    elevation: 2,
+    shadowColor: '#F8B940',
+    shadowOffset: {width: -3, height: 3},
+    shadowOpacity: 1,
+    shadowRadius: 23,
   },
   stateNumberText: {
     position: 'absolute',
@@ -326,6 +322,20 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: 84,
     width: '100%',
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   numberContent: {
     flexDirection: 'row',
@@ -346,10 +356,10 @@ const styles = StyleSheet.create({
     fontWeight: 600,
     fontSize: 16,
     lineHeight: 20,
-    width: 18.4,
+    width: 18.8,
     minWidth: 7.48,
-    height: 20,
-    marginLeft: 18,
+    height: 18,
+    marginLeft: 15,
     marginTop: 17,
   },
   cardStateContainer: {
@@ -378,14 +388,20 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 10,
     backgroundColor: '#FFFFFF',
-    elevation: 5,
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOffset: {
-      width: 0,
-      height: 15,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 20,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   cardStateLeft: {
     color: '#7AC84A',
@@ -427,6 +443,20 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 52,
     alignItems: 'center',
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   resultText: {
     color: '#9BA5BF',
@@ -445,6 +475,20 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingLeft: 10,
     paddingRight: 10,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   myQuizCardBottom: {
     position: 'absolute',
@@ -454,13 +498,20 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 51,
     backgroundColor: '#FFFFFF',
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 15,
-    // },
-    // shadowColor: 'rgba(9, 13, 109, 0.4)',
-    // shadowOpacity: 1,
-    shadowRadius: 20,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
     flexDirection: 'row',
   },
   myQuizCardBottomLeft: {

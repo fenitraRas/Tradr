@@ -31,6 +31,7 @@ import {ProgressBar} from 'react-native-paper';
 import {formStyles} from '../assets/css/form';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
+import { indexStyles } from '../assets/css';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
@@ -69,7 +70,7 @@ function Navbar(props) {
 function StepQuizContent(props) {
   const navigation = useNavigation();
   return (
-    <View style={[styles.stepQuizContent, styles.shadowProp]}>
+    <View style={[styles.stepQuizContent, indexStyles.shadowProp]}>
       <View style={[styles.topTitleContainer]}>
         <Text style={styles.topTitle}>
           Question 8
@@ -408,16 +409,6 @@ const styles = StyleSheet.create({
         ? Dimensions.get('window').height - 74
         : Dimensions.get('window').height - 109,
   },
-  shadowProp: {
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 20,
-    elevation: 2,
-  },
   topTitleContainer: {
     marginLeft: 5,
     marginTop: 15,
@@ -452,6 +443,20 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingLeft: 10,
     paddingRight: 10,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 5,
+        },
+        shadowOpacity: 0.4,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   numberTitle: {
     marginTop: 15,
@@ -471,7 +476,20 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: 84,
     width: '100%',
-    paddingLeft: 10,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   numberContent: {
     flexDirection: 'row',
@@ -495,11 +513,10 @@ const styles = StyleSheet.create({
     fontWeight: 600,
     fontSize: 16,
     lineHeight: 20,
-    width: 18.4,
+    width: 18.8,
     minWidth: 7.48,
-    height: 20,
-    marginLeft: 9,
-    marginRight: 9,
+    height: 18,
+    marginLeft: 15,
     marginTop: 17,
     textAlign: 'center',
   },
@@ -507,8 +524,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#9154FD',
     borderRadius: 5,
     marginTop: 12,
-    marginLeft: 5,
-    marginRight: 5,
+    marginLeft: 10,
+    marginRight: 0,
     height: 27,
     width: 27,
   },
@@ -534,6 +551,20 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingLeft: 10,
     paddingRight: 10,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 5,
+        },
+        shadowOpacity: 0.4,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   quizListTitle: {
     color: '#1A2442',
@@ -556,13 +587,13 @@ const styles = StyleSheet.create({
         shadowColor: 'rgba(9, 13, 109, 0.4)',
         shadowOffset: {
           width: 0,
-          height: 15,
+          height: 4,
         },
-        shadowOpacity: 1,
-        shadowRadius: 20,
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
       },
       android: {
-        elevation: 10,
+        elevation: 4,
       },
     }),
     marginBottom: 15,
@@ -589,14 +620,14 @@ const styles = StyleSheet.create({
       width: 0,
       height: 0,
     },
-    shadowOpacity: 0.6,
+    shadowOpacity: 0.8,
     shadowRadius: 30,
     marginBottom: 15,
   },
   selectedMaterialGoodText: {
     color: '#FFFFFF',
     marginLeft: 12,
-    marginTop: 18,
+    marginTop: 15,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 500,
