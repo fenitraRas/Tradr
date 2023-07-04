@@ -28,6 +28,8 @@ import {formStyles} from '../assets/css/form';
 import {indexStyles} from '../assets/css/index';
 import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
+import TradrLogo from '../assets/icons/tradrLogo.svg';
+import WhiteTradrLogo from '../assets/icons/whiteTradrLogo.svg';
 
 function Navbar({children}) {
   const navigation = useNavigation();
@@ -68,7 +70,7 @@ function ConnectForm({title}) {
     <View style={formStyles.formContainer}>
       <View style={[indexStyles.horizontalFlex, formStyles.titleContainer]}>
         <Text style={formStyles.title}>{title}</Text>
-        <WavingHand width={18} height={18} formStyles={styles.titleImg} />
+        <WavingHand width={18} height={18} />
       </View>
       <View style={formStyles.formContent}>
         <View style={formStyles.inputContainer}>
@@ -120,6 +122,11 @@ function Connection() {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+  let logo = isDarkMode ? (
+    <WhiteTradrLogo width={113.684} height={40} />
+  ) : (
+    <TradrLogo width={113.684} height={40} />
+  );
   return (
     <SafeAreaView>
       <StatusBar
@@ -129,12 +136,7 @@ function Connection() {
       <ScrollView>
         <View>
           <Navbar>Tradrboard</Navbar>
-          <View>
-            <Image
-              source={require('../assets/tradrLightLogo.png')}
-              style={formStyles.image}
-            />
-          </View>
+          <View style={formStyles.logoContainer}>{logo}</View>
           <ConnectToAppleButton>Continuer avec Apple</ConnectToAppleButton>
           <ConnectForm title="Ravi de vous revoir!" />
           <View style={styles.inscriptionContainer}>
@@ -185,6 +187,7 @@ const styles = StyleSheet.create({
     color: '#1A2442',
     width: 94,
     height: 24,
+    marginTop: 10,
   },
 });
 

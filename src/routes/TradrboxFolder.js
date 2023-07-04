@@ -32,6 +32,7 @@ import Search from '../assets/icons/search.svg';
 import {formStyles} from '../assets/css/form';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
+import { indexStyles } from '../assets/css';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
@@ -65,7 +66,7 @@ function TradrboxFolderContent() {
   const [text, onChangeText] = React.useState('Rechercher');
   const navigation = useNavigation();
   return (
-    <View style={[styles.tradrboxContent, styles.shadowProp]}>
+    <View style={[styles.tradrboxContent, indexStyles.shadowProp]}>
       <View style={styles.tradrboxTitleContainer}>
         <Text style={styles.tradrboxTitle}>
           Un petit peu d’aide ?
@@ -352,6 +353,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#E9EDFC',
     borderRadius: 16,
     marginVertical: Platform.OS === 'android' ? 11 : 15,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 3,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   folderImageContainer: {
     width: Platform.OS === 'android' ? 150 : 160,
@@ -395,11 +410,20 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 40,
     backgroundColor: '#FFFFFF',
-    elevation: 5,
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOffset: {width: 0, height: 15},
-    shadowOpacity: 1,
-    shadowRadius: 20,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   folderCardBottomLeft: {
     marginLeft: 15,

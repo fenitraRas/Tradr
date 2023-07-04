@@ -3,16 +3,14 @@ import {StyleSheet} from 'react-native';
 const formStyles = StyleSheet.create({
   connectToAppleButtonContainer: {
     width: '100%',
-    maxWidth: 350,
     alignSelf: 'center',
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   connectToAppleButton: {
     alignSelf: 'center',
     backgroundColor: '#000000',
     width: '100%',
-    maxWidth: 350,
     height: 49,
     marginTop: 60,
     borderRadius: 10,
@@ -89,6 +87,7 @@ const formStyles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 22,
     color: '#1A2442',
+    marginRight: 6,
   },
   titleImg: {
     marginLeft: 6,
@@ -98,9 +97,13 @@ const formStyles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 50,
     width: '100%',
-    maxWidth: 350,
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
+  logoContainer: {
+    width: '100%',
+    marginTop: 40,
+    alignItems: 'center',
   },
 });
 

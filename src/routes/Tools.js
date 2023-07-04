@@ -28,8 +28,6 @@ import ComponentAdd from '../assets/icons/componentAdd.svg';
 import ComponentRemove from '../assets/icons/componentRemove.svg';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
-import MyTextInput from '../Components/TextInput';
-import Rocket from '../assets/icons/rocket.svg';
 import {formStyles} from '../assets/css/form';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
@@ -1550,7 +1548,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderColor: '#9154FD',
     borderWidth: 1,
-    border: 'solod',
     marginRight: 15,
   },
   cardContentBottomLeftText: {

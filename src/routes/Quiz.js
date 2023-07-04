@@ -29,6 +29,7 @@ import WinkingFace from '../assets/icons/winkingFace.svg';
 import {formStyles} from '../assets/css/form';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
+import { indexStyles } from '../assets/css';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
@@ -61,11 +62,11 @@ function Navbar(props) {
 function MyQuiz() {
   const navigation = useNavigation();
   return (
-    <View style={[styles.quizContent, styles.shadowProp]}>
+    <View style={[styles.quizContent, indexStyles.shadowProp]}>
       <View style={styles.quizTitleContainer}>
         <Text style={styles.quizTitle}>
           Entraîne tes compétences pour être meilleur !
-          <WinkingFace width={26} height={26} />
+          <WinkingFace width={26} height={26} style={{marginLeft: 10}} />
         </Text>
       </View>
       <ScrollView>
@@ -261,11 +262,11 @@ function MyQuiz() {
 
 function InprogressQuiz() {
   return (
-    <View style={[styles.quizContent, styles.shadowProp]}>
+    <View style={[styles.quizContent, indexStyles.shadowProp]}>
       <View style={styles.quizTitleContainer}>
         <Text style={styles.quizTitle}>
           Entraîne tes compétences pour être meilleur !
-          <WinkingFace width={26} height={26} />
+          <WinkingFace width={26} height={26} style={{marginLeft: 10}} />
         </Text>
       </View>
       <ScrollView>
@@ -439,11 +440,15 @@ function InprogressQuiz() {
 
 function PremiumQuiz() {
   return (
-    <View style={[styles.quizContent, styles.shadowProp]}>
+    <View style={[styles.quizContent, indexStyles.shadowProp]}>
       <View style={styles.quizTitleContainer}>
         <Text style={styles.quizTitle}>
           Met à l’épreuve tes connaissances !
-          <SmilingFaceWithHorns width={26} height={26} />
+          <SmilingFaceWithHorns
+            width={26}
+            height={26}
+            style={{marginLeft: 10}}
+          />
         </Text>
       </View>
       <ScrollView>
@@ -677,16 +682,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
     paddingBottom: 14,
   },
-  shadowProp: {
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 20,
-    elevation: 2,
-  },
   navbarText: {
     textAlign: 'center',
     fontWeight: 500,
@@ -706,11 +701,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     shadowColor: '#7AC84A',
     shadowOffset: {
-      width: 0,
-      height: 4,
+      width: 12,
+      height: -14,
     },
     shadowOpacity: 1,
-    shadowRadius: 14,
+    shadowRadius: 26,
     elevation: 2,
   },
   orangeTopPersonCardContentRight: {
@@ -724,9 +719,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#F8B940',
     elevation: 2,
     shadowColor: '#F8B940',
-    shadowOffset: {width: 0, height: 4},
+    shadowOffset: {width: 12, height: -14},
     shadowOpacity: 1,
-    shadowRadius: 14,
+    shadowRadius: 26,
   },
   redTopPersonCardContentRight: {
     position: 'absolute',
@@ -739,11 +734,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     shadowColor: '#FF4141',
     shadowOffset: {
-      width: 0,
-      height: 4,
+      width: 12,
+      height: -14,
     },
     shadowOpacity: 1,
-    shadowRadius: 14,
+    shadowRadius: 26,
     elevation: 2,
   },
   bottomCardContentRightText: {
@@ -839,7 +834,7 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 15,
     lineHeight: 18,
-    marginTop: 25,
+    marginTop: 15,
     marginLeft: 5,
   },
   cardContainer: {
@@ -853,12 +848,13 @@ const styles = StyleSheet.create({
     height: 243,
     backgroundColor: '#E9EDFC',
     borderRadius: 20,
-    // shadowColor: 'rgba(9, 13, 109, 0.4)',
-    // shadowOffset: {width: 0, height: 30},
-    // shadowOpacity: 1,
-    // shadowRadius: 40,
-    // elevation: 8,
+    shadowColor: 'rgba(9, 13, 109, 0.4)',
+    shadowOffset: {width: 0, height: 3},
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
+    elevation: 8,
     marginRight: 15,
+    marginBottom: 10,
   },
   myQuizCardImgContainer: {
     maxWidth: 251,
@@ -889,13 +885,13 @@ const styles = StyleSheet.create({
     width: 231,
     height: 37,
     backgroundColor: '#FFFFFF',
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 15,
-    // },
-    // shadowColor: 'rgba(9, 13, 109, 0.4)',
-    // shadowOpacity: 1,
-    shadowRadius: 20,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowColor: 'rgba(9, 13, 109, 0.4)',
+    shadowOpacity: 0.6,
+    shadowRadius: 3,
   },
   myQuizCardBottomLeft: {
     flexDirection: 'row',

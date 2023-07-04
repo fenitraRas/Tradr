@@ -101,7 +101,7 @@ function Formation() {
         <View>
           <Text style={styles.coverTitle}>Reprendre</Text>
           <ScrollView horizontal style={styles.cover}>
-            <TouchableOpacity>
+            <TouchableOpacity style={styles.imageContainer}>
               <Image
                 source={require('../assets/video/trade.jpeg')}
                 style={styles.coverImage}
@@ -329,7 +329,7 @@ const styles = StyleSheet.create({
   },
   coverImage: {
     width: 152,
-    height: 215,
+    height: 220,
     left: -5,
     marginLeft: 15,
     flex: 1,
@@ -337,7 +337,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     ...Platform.select({
       android: {
-        // elevation: 10,
+        elevation: 10,
       },
       ios: {
         shadowColor: '#282A49',

@@ -74,7 +74,7 @@ function TradrboardContent(props) {
   const user = useSelector(state => state.userReducer.user);
   if (user) {
     return (
-      <View style={[props.classes.tradrboardContent, styles.shadowProp]}>
+      <View style={[props.classes.tradrboardContent, indexStyles.shadowProp]}>
         <View
           style={[
             styles.connectButton,
@@ -103,7 +103,7 @@ function TradrboardContent(props) {
     );
   }
   return (
-    <View style={[props.classes.tradrboardContent, styles.shadowProp]}>
+    <View style={[props.classes.tradrboardContent, indexStyles.shadowProp]}>
       <TouchableOpacity
         onPress={() => navigation.navigate('Connection')}
         style={styles.connectButton}>
@@ -205,22 +205,25 @@ function TradrBoardObjective({classes, title}) {
               <Text style={classes.progressText}>3</Text>
             </View>
           </View>
-          <View style={[indexStyles.horizontalFlex, styles.radioContent]}>
-            <UnseletedRadio width={28} height={28} />
+          <TouchableOpacity
+            style={[indexStyles.horizontalFlex, styles.radioContent]}>
+            <UnseletedRadio width={42} height={42} />
             <Text style={classes.radioText}>S'inscrire</Text>
-          </View>
-          <View style={[indexStyles.horizontalFlex, styles.radioContent]}>
-            <SeletedRadio width={28} height={28} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[indexStyles.horizontalFlex, styles.radioContent]}>
+            <SeletedRadio width={42} height={42} />
             <Text style={classes.radioText}>
               Visionner l'épisode accessible
             </Text>
-          </View>
-          <View style={[indexStyles.horizontalFlex, styles.radioContent]}>
-            <UnseletedRadio width={28} height={28} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[indexStyles.horizontalFlex, styles.radioContent]}>
+            <UnseletedRadio width={42} height={42} />
             <Text style={classes.radioText}>
               Accomplir les deux objectifs précédents
             </Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -355,9 +358,10 @@ const styles = StyleSheet.create({
   progressText: {
     textAlign: 'center',
     fontWeight: 500,
-    fontSize: 20,
-    lineHeight: 24,
     fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontSize: 22,
+    lineHeight: 27,
     color: theme.colors.text.$textLight,
   },
   progressTextDark: {
@@ -375,16 +379,6 @@ const styles = StyleSheet.create({
   tradrboardContentDark: {
     backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
-  shadowProp: {
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 20,
-    elevation: 2,
-  },
   connectButton: {
     width: 102,
     height: 21,
@@ -401,23 +395,9 @@ const styles = StyleSheet.create({
       width: 0,
       height: 0,
     },
-    shadowOpacity: 1,
+    shadowOpacity: 0.9,
     shadowRadius: 4,
-    elevation: 1,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'rgba(145, 84, 253, 0.6)',
-        shadowOffset: {
-          width: 0,
-          height: 0,
-        },
-        shadowOpacity: 1,
-        shadowRadius: 14,
-      },
-      android: {
-        elevation: 3,
-      },
-    }),
+    elevation: 3,
   },
   connectButtonText: {
     fontWeight: 500,
@@ -508,10 +488,10 @@ const styles = StyleSheet.create({
     shadowColor: 'rgba(9, 13, 109, 0.4)',
     shadowOffset: {
       width: 0,
-      height: 30,
+      height: 4,
     },
-    shadowOpacity: 1,
-    shadowRadius: 40,
+    shadowOpacity: 0.6,
+    shadowRadius: 4,
     elevation: Platform.OS === 'android' ? -35 : undefined,
   },
   tradrboardCardDark: {
@@ -545,11 +525,11 @@ const styles = StyleSheet.create({
     shadowColor: 'rgba(145, 84, 253, 0.7)',
     shadowOffset: {
       width: 0,
-      height: 4,
+      height: 0,
     },
-    shadowOpacity: 1,
-    shadowRadius: 20,
-    elevation: 4,
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
+    elevation: 3,
   },
   infoButtonText: {
     fontWeight: 500,
@@ -582,20 +562,14 @@ const styles = StyleSheet.create({
     height: 27,
     flexDirection: 'row',
     marginTop: 15,
-    paddingLeft: 25,
-    paddingRight: 25,
-    marginBottom: 5,
+    paddingLeft: 22,
+    paddingRight: 22,
+    marginBottom: 12,
   },
   progressNumber: {
     flex: 1,
-    maxWidth: 27,
-    minWidth: 27,
-    fontFamily: 'Montserrat',
-    fontStyle: 'normal',
-    // fontWeight: 500,
-    fontSize: 22,
-    lineHeight: 27,
-    color: '#1A2442',
+    maxWidth: 32,
+    minWidth: 32,
   },
   progressContent: {
     flex: 2,
@@ -604,7 +578,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     height: 13,
     borderRadius: 6.5,
-    marginTop: 4,
+    marginTop: 8,
     shadowColor: 'rgba(145, 84, 253, 0.8)',
     shadowOffset: {
       width: 0,
@@ -629,12 +603,12 @@ const styles = StyleSheet.create({
     }),
   },
   radioContent: {
-    marginLeft: 24,
+    marginLeft: 17,
+    marginTop: -10,
   },
   radioText: {
-    marginTop: 4,
+    marginTop: 12,
     fontFamily: 'Montserrat',
-    fontStyle: 'normal',
     fontWeight: 500,
     fontSize: 15,
     lineHeight: 18,
