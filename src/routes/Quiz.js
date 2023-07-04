@@ -27,6 +27,7 @@ import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg
 import SmilingFaceWithHorns from '../assets/icons/smilingFaceWithHorns.svg';
 import WinkingFace from '../assets/icons/winkingFace.svg';
 import {formStyles} from '../assets/css/form';
+import {indexStyles} from '../assets/css';
 import theme from '../assets/theme';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
@@ -62,11 +63,11 @@ function Navbar(props) {
 function MyQuiz(props) {
   const navigation = useNavigation();
   return (
-    <View style={[props.classes.quizContent, styles.shadowProp]}>
+    <View style={[props.classes.quizContent, indexStyles.shadowProp]}>
       <View style={props.classes.quizTitleContainer}>
         <Text style={props.classes.quizTitle}>
           Entraîne tes compétences pour être meilleur !
-          <WinkingFace width={26} height={26} />
+          <WinkingFace width={26} height={26} style={{marginLeft: 10}} />
         </Text>
       </View>
       <ScrollView>
@@ -262,11 +263,11 @@ function MyQuiz(props) {
 
 function InprogressQuiz(props) {
   return (
-    <View style={[props.classes.quizContent, styles.shadowProp]}>
+    <View style={[props.classes.quizContent, indexStyles.shadowProp]}>
       <View style={props.classes.quizTitleContainer}>
         <Text style={props.classes.quizTitle}>
           Entraîne tes compétences pour être meilleur !
-          <WinkingFace width={26} height={26} />
+          <WinkingFace width={26} height={26} style={{marginLeft: 10}} />
         </Text>
       </View>
       <ScrollView>
@@ -440,11 +441,15 @@ function InprogressQuiz(props) {
 
 function PremiumQuiz(props) {
   return (
-    <View style={[props.classes.quizContent, styles.shadowProp]}>
+    <View style={[props.classes.quizContent, indexStyles.shadowProp]}>
       <View style={props.classes.quizTitleContainer}>
         <Text style={props.classes.quizTitle}>
-          Met à l’épreuve tes connaissances !
-          <SmilingFaceWithHorns width={26} height={26} />
+          = Met à l’épreuve tes connaissances !
+          <SmilingFaceWithHorns
+            width={26}
+            height={26}
+            style={{marginLeft: 10}}
+          />
         </Text>
       </View>
       <ScrollView>
@@ -697,7 +702,7 @@ const styles = StyleSheet.create({
     height:
       Platform.OS === 'android'
         ? Dimensions.get('window').height + 130
-        : Dimensions.get('window').height,
+        : Dimensions.get('window').height + 220,
     paddingLeft: 10,
     paddingRight: 10,
     backgroundColor: theme.colors.background.$backgroundLightSecondaire,
@@ -706,6 +711,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     paddingBottom: 14,
   },
+
   quizContentDark: {
     backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
@@ -719,6 +725,7 @@ const styles = StyleSheet.create({
     shadowRadius: 20,
     elevation: 2,
   },
+
   navbarText: {
     textAlign: 'center',
     fontWeight: 500,
@@ -738,11 +745,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     shadowColor: '#7AC84A',
     shadowOffset: {
-      width: 0,
-      height: 4,
+      width: 12,
+      height: -14,
     },
     shadowOpacity: 1,
-    shadowRadius: 14,
+    shadowRadius: 26,
     elevation: 2,
   },
   orangeTopPersonCardContentRight: {
@@ -756,9 +763,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#F8B940',
     elevation: 2,
     shadowColor: '#F8B940',
-    shadowOffset: {width: 0, height: 4},
+    shadowOffset: {width: 12, height: -14},
     shadowOpacity: 1,
-    shadowRadius: 14,
+    shadowRadius: 26,
   },
   redTopPersonCardContentRight: {
     position: 'absolute',
@@ -771,11 +778,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     shadowColor: '#FF4141',
     shadowOffset: {
-      width: 0,
-      height: 4,
+      width: 12,
+      height: -14,
     },
     shadowOpacity: 1,
-    shadowRadius: 14,
+    shadowRadius: 26,
     elevation: 2,
   },
   bottomCardContentRightText: {
@@ -877,7 +884,7 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 15,
     lineHeight: 18,
-    marginTop: 25,
+    marginTop: 15,
     marginLeft: 5,
   },
   cardContainer: {
@@ -891,12 +898,13 @@ const styles = StyleSheet.create({
     height: 243,
     backgroundColor: theme.colors.component.$cardLight,
     borderRadius: 20,
-    // shadowColor: 'rgba(9, 13, 109, 0.4)',
-    // shadowOffset: {width: 0, height: 30},
-    // shadowOpacity: 1,
-    // shadowRadius: 40,
-    // elevation: 8,
+    shadowColor: 'rgba(9, 13, 109, 0.4)',
+    shadowOffset: {width: 0, height: 3},
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
+    elevation: 8,
     marginRight: 15,
+    marginBottom: 10,
   },
   myQuizCardContentDark: {
     backgroundColor: theme.colors.component.$cardDark,
@@ -932,14 +940,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: 231,
     height: 37,
+
     backgroundColor: theme.colors.background.$backgroundLightSecondaire,
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 15,
-    // },
-    // shadowColor: 'rgba(9, 13, 109, 0.4)',
-    // shadowOpacity: 1,
-    shadowRadius: 20,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowColor: 'rgba(9, 13, 109, 0.4)',
+    shadowOpacity: 0.6,
+    shadowRadius: 3,
   },
   myQuizCardBottomDark: {
     backgroundColor: theme.colors.background.$backgroundDarkSecondaire,

@@ -33,6 +33,7 @@ import Search from '../assets/icons/search.svg';
 import {formStyles} from '../assets/css/form';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
+import { indexStyles } from '../assets/css';
 
 function Navbar(props) {
   const navigation = useNavigation();
@@ -70,7 +71,7 @@ function Navbar(props) {
 function TradrboxFileContent() {
   const [text, onChangeText] = React.useState('Rechercher');
   return (
-    <View style={[styles.tradrboxContent, styles.shadowProp]}>
+    <View style={[styles.tradrboxContent, indexStyles.shadowProp]}>
       <View style={styles.tradrboxTitleContainer}>
         <TextInput
           style={styles.input}
@@ -304,30 +305,30 @@ const styles = StyleSheet.create({
     width: 'auto',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    paddingLeft: 3,
-    paddingRight: 3,
+    // paddingLeft: 3,
+    // paddingRight: 3,
     justifyContent: 'space-between',
-    marginHorizontal: Platform.OS === 'android' ? 5 : 15,
+    marginHorizontal: Platform.OS === 'android' ? 5 : 5,
   },
   fileCard: {
-    width: 175,
+    width: 170,
     height: 120,
     backgroundColor: '#E9EDFC',
     borderRadius: 20,
-    // ...Platform.select({
-    //   ios: {
-    //     shadowColor: 'rgba(9, 13, 109, 0.4)',
-    //     shadowOffset: {width: 0, height: 1},
-    //     shadowOpacity: 0.6,
-    //     shadowRadius: 5,
-    //   },
-    //   android: {
-    //     elevation: 8,
-    //     shadowColor: 'rgba(9, 13, 109, 0.4)',
-    //     shadowOffset: {width: 0, height: 1},
-    //     shadowRadius: 5,
-    //   },
-    // }),
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 3,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
     paddingLeft: 5,
     paddingRight: 5,
     marginVertical: Platform.OS === 'android' ? 11 : 15,
@@ -360,13 +361,20 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     height: 41,
     marginTop: 14,
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOffset: {
-      width: 0,
-      height: 15,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 20,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   fileCardButton: {
     backgroundColor: '#9154FD',

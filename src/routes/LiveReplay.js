@@ -31,6 +31,7 @@ import {formStyles} from '../assets/css/form';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import video from '../assets/video/video_test.mp4';
+import { indexStyles } from '../assets/css';
 
 function Navbar(props) {
   const navigation = useNavigation();
@@ -68,7 +69,7 @@ function Navbar(props) {
 function LiveReplayContent() {
   const [isPlaying, setIsPlaying] = useState(false);
   return (
-    <View style={[styles.replayContent, styles.shadowProp]}>
+    <View style={[styles.replayContent, indexStyles.shadowProp]}>
       <View style={styles.lastLiveCard}>
         <View style={styles.videoContainer}>
           <Video
@@ -131,7 +132,7 @@ function LiveReplayContent() {
 
 function LiveReplayContainer() {
   return (
-    <ScrollView style={{backgroundColor: '#FFFFFF'}}>
+    <ScrollView>
       <LiveReplayContent />
     </ScrollView>
   );
@@ -195,6 +196,7 @@ function LiveReplay() {
 const styles = StyleSheet.create({
   replayContent: {
     width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height - 95,
     paddingLeft: 10,
     paddingRight: 10,
     backgroundColor: '#FFFFFF',
@@ -202,16 +204,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     marginTop: 5,
     paddingBottom: 14,
-  },
-  shadowProp: {
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 20,
-    elevation: 2,
   },
   navbarText: {
     textAlign: 'center',
@@ -227,14 +219,20 @@ const styles = StyleSheet.create({
     height: 384,
     marginTop: 10,
     borderRadius: 20,
-    elevation: 40,
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOffset: {
-      width: 0,
-      height: 30,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 35,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   videoContainer: {
     width: '100%',
@@ -297,11 +295,20 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingLeft: 5,
     paddingRight: 5,
-    // elevation: 8,
-    // shadowColor: 'rgba(9, 13, 109, 0.4)',
-    // shadowOffset: {width: 0, height: 30},
-    // shadowRadius: 40,
-    // shadowOpacity: 1,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   image: {
     width: '100%',

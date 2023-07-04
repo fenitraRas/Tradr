@@ -30,6 +30,7 @@ import {indexStyles} from '../assets/css/index';
 import BackIcon from '../assets/icons/backIcon.svg';
 import LogoApple from '../assets/icons/logoApple.svg';
 import PartyingFace from '../assets/icons/partyingFace.svg';
+import TradrLogo from '../assets/icons/tradrLogo.svg';
 
 function Navbar({children}) {
   const navigation = useNavigation();
@@ -111,11 +112,8 @@ function NewPassword() {
       <ScrollView>
         <View>
           <Navbar>Tradrboard</Navbar>
-          <View>
-            <Image
-              source={require('../assets/tradrLightLogo.png')}
-              style={formStyles.image}
-            />
+          <View style={formStyles.logoContainer}>
+            <TradrLogo width={113.684} height={40} />
           </View>
           <ConnectToAppleButton>Continuer avec Apple</ConnectToAppleButton>
           <Form title="Un tout nouveau mot de passe !" />
@@ -161,6 +159,7 @@ const styles = StyleSheet.create({
     width: 165,
     height: 24,
     textAlign: 'center',
+    marginTop: 10,
   },
 });
 

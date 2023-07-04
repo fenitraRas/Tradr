@@ -21,7 +21,6 @@ import {
 import Menu, {NavbarMenu} from './Menu';
 import React, {useRef, useState} from 'react';
 
-import ButtonAdd from '../assets/icons/buttonAdd.svg';
 import CardIndexDividers from '../assets/icons/cardIndexDividers.svg';
 import ChartIncreasing from '../assets/icons/chartIncreasing.svg';
 import Closed from '../assets/icons/closed.svg';
@@ -67,7 +66,7 @@ function Navbar(props) {
 function ProfileContent(props) {
   const navigation = useNavigation();
   return (
-    <View style={[styles.profileContent, styles.shadowProp]}>
+    <View style={[styles.profileContent, indexStyles.shadowProp]}>
       <View style={styles.profil}>
         <Image
           style={{position: 'absolute'}}
@@ -139,7 +138,7 @@ function ProfileStatisticalContent() {
     <View style={[styles.informationCard, styles.cardStat]}>
       <View style={[styles.arrangeHorizontally, {paddingRight: 15}]}>
         <View style={[styles.infoItem, {marginLeft: -3, paddingRight: 5}]}>
-          <Text style={[styles.addText, {marginLeft: 8}]}>
+          <Text numberOfLines={1} style={[styles.addText, {marginLeft: 8}]}>
             Formations réalisées
           </Text>
           <View
@@ -241,7 +240,9 @@ function ProfileDocumentContent() {
             <Text style={styles.addText}>Ajouter un document</Text>
           </View>
           <TouchableOpacity style={styles.addDocumentRight}>
-            <ButtonAdd width={26} height={26} />
+            <View style={styles.addButton}>
+              <Text style={styles.addButtonText}>+</Text>
+            </View>
           </TouchableOpacity>
         </View>
 
@@ -362,6 +363,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     paddingLeft: 10,
     paddingRight: 10,
+    paddingBottom: 10,
     backgroundColor: '#FFFFFF',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
@@ -460,10 +462,10 @@ const styles = StyleSheet.create({
     shadowColor: 'rgba(9, 13, 109, 0.4)',
     shadowOffset: {
       width: 0,
-      height: 30,
+      height: 6,
     },
-    shadowOpacity: 1,
-    shadowRadius: 40,
+    shadowOpacity: 0.4,
+    shadowRadius: 4,
     elevation: Platform.OS === 'android' ? -35 : undefined,
   },
   cardInfoHeight: {
@@ -473,7 +475,7 @@ const styles = StyleSheet.create({
     height: 168,
   },
   cardStat: {
-    height: Platform.OS === 'android' ? 366 : 320,
+    height: Platform.OS === 'android' ? 366 : 'auto',
     marginBottom: 10,
   },
   informationCardContent: {
@@ -514,10 +516,10 @@ const styles = StyleSheet.create({
     shadowColor: '#090d6d',
     shadowOffset: {
       width: 0,
-      height: 15,
+      height: 6,
     },
-    shadowOpacity: 0.4,
-    shadowRadius: 20,
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   infoText: {
     fontWeight: 500,
@@ -528,7 +530,7 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
   },
   addDocumentContainer: {
-    marginTop: 10,
+    marginTop: 8,
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -540,6 +542,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     marginLeft: 15,
     paddingTop: 3,
+    minWidth: 100,
+    marginTop: 2,
   },
   addText: {
     fontWeight: 500,
@@ -554,9 +558,28 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
+    padding: 4,
+  },
+  addButton: {
     width: 26,
     height: 26,
-    padding: 10,
+    alignItems: 'center',
+    marginRight: 6,
+    backgroundColor: '#9154FD',
+    borderRadius: 10,
+    elevation: 8,
+    shadowColor: '#9154FD',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.8,
+  },
+  addButtonText: {
+    color: '#FFFFFF',
+    fontWeight: 600,
+    fontSize: 18,
+    marginTop: 1,
   },
   arrangeHorizontally: {
     flexDirection: 'row',
@@ -574,9 +597,9 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios: {
         shadowColor: '#090d6d',
-        shadowOffset: {width: 0, height: 8},
-        shadowOpacity: 0.4,
-        shadowRadius: 14,
+        shadowOffset: {width: 0, height: 3},
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
       },
       android: {
         elevation: 4,
@@ -607,17 +630,14 @@ const styles = StyleSheet.create({
     padding: 4,
     backgroundColor: '#FFFFFF',
     borderRadius: 11,
-    ...Platform.select({
-      ios: {
-        shadowColor: '#090d6d',
-        shadowOffset: {width: 0, height: 8},
-        shadowOpacity: 0.4,
-        shadowRadius: 14,
-      },
-      android: {
-        elevation: 4,
-      },
-    }),
+    elevation: 8,
+    shadowColor: '#090d6d',
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   numberStatText: {
     fontWeight: 700,

@@ -27,6 +27,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
 import {formStyles} from '../assets/css/form';
+import {indexStyles} from '../assets/css';
 import theme from '../assets/theme';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
@@ -73,7 +74,7 @@ function Navbar(props) {
 function SummaryQuizContent(props) {
   const navigation = useNavigation();
   return (
-    <View style={[props.classes.summaryQuizContent, styles.shadowProp]}>
+    <View style={[props.classes.summaryQuizContent, indexStyles.shadowProp]}>
       <View style={[styles.titleContainer]}>
         <Text style={props.classes.title}>
           Résumé
@@ -362,6 +363,11 @@ const styles = StyleSheet.create({
   },
   stateNumberDark: {
     backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+    elevation: 2,
+    shadowColor: '#F8B940',
+    shadowOffset: {width: -3, height: 3},
+    shadowOpacity: 1,
+    shadowRadius: 23,
   },
   stateNumberText: {
     position: 'absolute',
@@ -395,6 +401,20 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: 84,
     width: '100%',
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   numberContainerDark: {
     backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
@@ -418,10 +438,10 @@ const styles = StyleSheet.create({
     fontWeight: 600,
     fontSize: 16,
     lineHeight: 20,
-    width: 18.4,
+    width: 18.8,
     minWidth: 7.48,
-    height: 20,
-    marginLeft: 18,
+    height: 18,
+    marginLeft: 15,
     marginTop: 17,
   },
   cardStateContainer: {
@@ -449,15 +469,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 50,
     borderRadius: 10,
+
     backgroundColor: theme.colors.background.$backgroundLightSecondaire,
-    elevation: 5,
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOffset: {
-      width: 0,
-      height: 15,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 20,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   cardStateDark: {
     backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
@@ -505,6 +532,20 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 52,
     alignItems: 'center',
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   resultContentDark: {
     backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
@@ -526,6 +567,20 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingLeft: 10,
     paddingRight: 10,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   descriptionContainerDark: {
     backgroundColor: theme.colors.component.$cardDark,
@@ -537,14 +592,22 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: '100%',
     height: 51,
+
     backgroundColor: theme.colors.background.$backgroundLightSecondaire,
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 15,
-    // },
-    // shadowColor: 'rgba(9, 13, 109, 0.4)',
-    // shadowOpacity: 1,
-    shadowRadius: 20,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
     flexDirection: 'row',
   },
   myQuizCardBottomDark: {
@@ -583,8 +646,8 @@ const styles = StyleSheet.create({
     elevation: 2,
     shadowColor: '#F8B940',
     shadowOffset: {width: 0, height: 4},
-    shadowOpacity: 1,
-    shadowRadius: 14,
+    shadowOpacity: 0.6,
+    shadowRadius: 3,
   },
   bottomCardContentRightText: {
     color: '#FFFFFF',
