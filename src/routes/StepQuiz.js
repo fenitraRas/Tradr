@@ -23,15 +23,17 @@ import React, {useRef, useState} from 'react';
 import BarChart from '../assets/icons/barChart.svg';
 import {BlurView} from '@react-native-community/blur';
 import ChevronLeft from '../assets/icons/chevronLeft.svg';
+import ChevronLeftDark from '../assets/icons/chevronLeftDark.svg';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
 import PoliceCarLight from '../assets/icons/policeCarLight.svg';
 import {ProgressBar} from 'react-native-paper';
 import {formStyles} from '../assets/css/form';
+import {indexStyles} from '../assets/css';
+import theme from '../assets/theme';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
-import { indexStyles } from '../assets/css';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
@@ -40,7 +42,11 @@ function Navbar(props) {
     <View style={formStyles.navbarContainer}>
       <View style={formStyles.navbarIcon}>
         <TouchableOpacity onPress={() => props.setShowPopup(true)}>
-          <ChevronLeft width={30} height={20} />
+          {option === 'light' ? (
+            <ChevronLeft width={30} height={20} />
+          ) : (
+            <ChevronLeftDark width={30} height={20} />
+          )}
         </TouchableOpacity>
       </View>
       <View style={formStyles.navbarTextContainer}>
@@ -70,9 +76,9 @@ function Navbar(props) {
 function StepQuizContent(props) {
   const navigation = useNavigation();
   return (
-    <View style={[styles.stepQuizContent, indexStyles.shadowProp]}>
+    <View style={[props.classes.stepQuizContent, indexStyles.shadowProp]}>
       <View style={[styles.topTitleContainer]}>
-        <Text style={styles.topTitle}>
+        <Text style={props.classes.topTitle}>
           Question 8
           <PoliceCarLight width={18} height={18} style={{marginLeft: 6}} />
         </Text>
@@ -83,21 +89,23 @@ function StepQuizContent(props) {
       <View style={styles.progressContainer}>
         <View style={styles.progressContent}>
           <ProgressBar
-            style={styles.progress}
+            style={props.classes.progress}
             progress={0.33}
             color="#9154FD"
           />
         </View>
         <View style={styles.progressDuration}>
-          <Text style={styles.progressText}>3s</Text>
+          <Text style={props.classes.progressText}>3s</Text>
         </View>
       </View>
-      <View style={[styles.quizListContainer]}>
-        <Text style={styles.quizListTitle}>
+      <View style={[props.classes.quizListContainer]}>
+        <Text style={props.classes.quizListTitle}>
           La Pratique du Trading consiste à Acheter ou Vendre :
         </Text>
-        <View style={styles.materialGoodCard}>
-          <Text style={styles.materialGoodText}>Des biens matériels</Text>
+        <View style={props.classes.materialGoodCard}>
+          <Text style={props.classes.materialGoodText}>
+            Des biens matériels
+          </Text>
         </View>
         <TouchableOpacity
           onPress={() => navigation.navigate('SummaryEndQuiz')}
@@ -106,25 +114,25 @@ function StepQuizContent(props) {
             Des produits financiers
           </Text>
         </TouchableOpacity>
-        <View style={styles.materialGoodCard}>
-          <Text style={styles.materialGoodText}>Des services</Text>
+        <View style={props.classes.materialGoodCard}>
+          <Text style={props.classes.materialGoodText}>Des services</Text>
         </View>
-        <View style={styles.materialGoodCard}>
-          <Text style={styles.materialGoodText}>
+        <View style={props.classes.materialGoodCard}>
+          <Text style={props.classes.materialGoodText}>
             Uniquement des biens immobiliers
           </Text>
         </View>
       </View>
 
       <View style={[styles.titleContainer]}>
-        <Text style={styles.title}>
+        <Text style={props.classes.title}>
           Résumé
           <BarChart width={18} height={18} style={{marginLeft: 6}} />
         </Text>
       </View>
-      <View style={[styles.resultContainer]}>
-        <Text style={styles.numberTitle}>Actuellement</Text>
-        <View style={styles.numberContainer}>
+      <View style={[props.classes.resultContainer]}>
+        <Text style={props.classes.numberTitle}>Actuellement</Text>
+        <View style={props.classes.numberContainer}>
           <View style={styles.numberContent}>
             <Text style={[styles.numberText, styles.greenNumberText]}>1</Text>
             <Text style={[styles.numberText, styles.greenNumberText]}>2</Text>
@@ -155,15 +163,65 @@ function StepQuizContent(props) {
   );
 }
 
-function StepQuizContainer() {
+function StepQuizContainer(props) {
   return (
     <ScrollView>
-      <StepQuizContent />
+      <StepQuizContent classes={props.classes} />
     </ScrollView>
   );
 }
 
 function StepQuiz() {
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const classes = {
+    stepQuizContent: [
+      styles.stepQuizContent,
+      colorScheme === 'dark' && styles.stepQuizContentDark,
+    ],
+    quizListContainer: [
+      styles.quizListContainer,
+      colorScheme === 'dark' && styles.quizListContainerDark,
+    ],
+    materialGoodCard: [
+      styles.materialGoodCard,
+      colorScheme === 'dark' && styles.materialGoodCardDark,
+    ],
+    resultContainer: [
+      styles.resultContainer,
+      colorScheme === 'dark' && styles.resultContainerDark,
+    ],
+    numberContainer: [
+      styles.numberContainer,
+      colorScheme === 'dark' && styles.numberContainerDark,
+    ],
+    topTitle: [styles.topTitle, colorScheme === 'dark' && styles.topTitleDark],
+    progress: [styles.progress, colorScheme === 'dark' && styles.progressDark],
+    progressText: [
+      styles.progressText,
+      colorScheme === 'dark' && styles.progressTextDark,
+    ],
+    quizListTitle: [
+      styles.quizListTitle,
+      colorScheme === 'dark' && styles.quizListTitleDark,
+    ],
+    materialGoodText: [
+      styles.materialGoodText,
+      colorScheme === 'dark' && styles.materialGoodTextDark,
+    ],
+    title: [styles.title, colorScheme === 'dark' && styles.titleDark],
+    numberTitle: [
+      styles.numberTitle,
+      colorScheme === 'dark' && styles.numberTitleDark,
+    ],
+    popupContainer: [
+      styles.popupContainer,
+      colorScheme === 'dark' && styles.popupContainerDark,
+    ],
+    popupTitle: [
+      styles.popupTitle,
+      colorScheme === 'dark' && styles.popupTitleDark,
+    ],
+  };
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -215,7 +273,7 @@ function StepQuiz() {
           currentScreen="Tradrboard"
           handleScrollToLeft={() => handleScrollToLeft()}
         />
-        <StepQuizContainer />
+        <StepQuizContainer classes={classes} />
       </ScrollView>
       {showPopup ? (
         <BlurView
@@ -223,9 +281,9 @@ function StepQuiz() {
           blurType="light"
           blurAmount={10}
           reducedTransparencyFallbackColor="white">
-          <View style={styles.popupContainer}>
+          <View style={classes.popupContainer}>
             <View style={styles.popupTitleContainer}>
-              <Text style={styles.popupTitle}>
+              <Text style={classes.popupTitle}>
                 Veux-tu vraiment quitter le quiz ?
               </Text>
               <Text style={styles.popupSubtitle}>
@@ -284,7 +342,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 24,
     textAlign: 'center',
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
+  },
+  popupTitleDark: {
+    color: theme.colors.text.$textDark,
   },
   textButtonExit: {
     fontFamily: 'Montserrat',
@@ -358,6 +419,9 @@ const styles = StyleSheet.create({
     flexGrow: 0,
     top: 115,
   },
+  popupContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   popupContainer: {
     display: 'flex',
     flexDirection: 'column',
@@ -371,7 +435,7 @@ const styles = StyleSheet.create({
     height: 168,
     left: 30,
     top: 338,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     shadowColor: '#090D6D',
     shadowOffset: {
       width: 0,
@@ -400,7 +464,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     paddingLeft: 10,
     paddingRight: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     marginTop: 5,
@@ -408,6 +472,9 @@ const styles = StyleSheet.create({
       Platform.OS === 'android'
         ? Dimensions.get('window').height - 74
         : Dimensions.get('window').height - 109,
+  },
+  stepQuizContentDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   topTitleContainer: {
     marginLeft: 5,
@@ -420,23 +487,29 @@ const styles = StyleSheet.create({
   },
   topTitle: {
     marginTop: 10,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 500,
     fontSize: 20,
     lineHeight: 24,
+  },
+  topTitleDark: {
+    color: theme.colors.text.$textDark,
   },
   title: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 500,
     fontSize: 20,
     lineHeight: 24,
   },
+  titleDark: {
+    color: theme.colors.text.$textDark,
+  },
   resultContainer: {
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     height: 134,
     width: '100%',
     borderRadius: 20,
@@ -458,21 +531,27 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  resultContainerDark: {
+    backgroundColor: theme.colors.component.$cardDark,
+  },
   numberTitle: {
     marginTop: 15,
     marginLeft: 5,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 500,
     fontSize: 15,
     lineHeight: 18,
   },
+  numberTitleDark: {
+    color: theme.colors.text.$textDark,
+  },
   numberContainer: {
     position: 'absolute',
     left: 10,
     top: 40,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderRadius: 10,
     height: 84,
     width: '100%',
@@ -490,6 +569,9 @@ const styles = StyleSheet.create({
         elevation: 4,
       },
     }),
+  },
+  numberContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   numberContent: {
     flexDirection: 'row',
@@ -544,7 +626,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   quizListContainer: {
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     height: 341,
     width: '100%',
     borderRadius: 20,
@@ -566,8 +648,11 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  quizListContainerDark: {
+    backgroundColor: theme.colors.component.$cardDark,
+  },
   quizListTitle: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 500,
@@ -577,8 +662,11 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginBottom: 18,
   },
+  quizListTitleDark: {
+    color: theme.colors.text.$textDark,
+  },
   materialGoodCard: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderRadius: 10,
     height: 53,
     width: '100%',
@@ -598,8 +686,11 @@ const styles = StyleSheet.create({
     }),
     marginBottom: 15,
   },
+  materialGoodCardDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   materialGoodText: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     marginLeft: 12,
     marginTop: 18,
     fontFamily: 'Montserrat',
@@ -607,6 +698,9 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 14,
     lineHeight: 17,
+  },
+  materialGoodTextDark: {
+    color: theme.colors.text.$textDark,
   },
   selectedMaterialGoodCard: {
     backgroundColor: '#9154FD',
@@ -646,8 +740,11 @@ const styles = StyleSheet.create({
   progressContent: {
     flex: 2,
   },
+  progressDark: {
+    backgroundColor: theme.colors.text.$placeholderDark,
+  },
   progress: {
-    backgroundColor: '#D2D6E1',
+    backgroundColor: theme.colors.text.$placeholderLight,
     height: 8,
     borderRadius: 6.5,
     marginTop: 8,
@@ -685,8 +782,11 @@ const styles = StyleSheet.create({
     fontWeight: 400,
     fontSize: 18,
     lineHeight: 22,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     textAlign: 'right',
+  },
+  progressTextDark: {
+    color: theme.colors.text.$textDark,
   },
   greenTopPersonCardContentRight: {
     position: 'absolute',

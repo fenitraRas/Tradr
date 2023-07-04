@@ -26,7 +26,9 @@ import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg
 import Fire from '../assets/icons/fire.svg';
 import WhiteChevronLeft from '../assets/icons/whiteChevronLeft.svg';
 import {formStyles} from '../assets/css/form';
+import theme from '../assets/theme';
 import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
 const {StatusBarManager} = NativeModules;
 
@@ -56,13 +58,13 @@ function IntroductionQuizContent(props) {
   return (
     <View style={[styles.quizContent, styles.shadowProp]}>
       <View style={styles.quizTitleContainer}>
-        <Text style={styles.quizTitle}>
+        <Text style={props.classes.quizTitle}>
           Est-ce que tu es prêt ?
           <Fire width={26} height={26} />
         </Text>
       </View>
-      <View style={[styles.descriptionContainer]}>
-        <View style={styles.myQuizCardBottom}>
+      <View style={[props.classes.descriptionContainer]}>
+        <View style={props.classes.myQuizCardBottom}>
           <View style={styles.myQuizCardBottomLeft}>
             <Text style={styles.myQuizCardBottomLeftNumber}>20</Text>
             <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
@@ -72,7 +74,7 @@ function IntroductionQuizContent(props) {
           </View>
         </View>
         <Text style={styles.descriptionTitle}>Description</Text>
-        <Text style={styles.description}>
+        <Text style={props.classes.description}>
           Sorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu
           turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec
           fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus
@@ -89,21 +91,45 @@ function IntroductionQuizContent(props) {
   );
 }
 
-function IntroductionQuizContainer() {
+function IntroductionQuizContainer(props) {
   return (
     <ScrollView>
-      <IntroductionQuizContent />
+      <IntroductionQuizContent classes={props.classes} />
     </ScrollView>
   );
 }
 
 function IntroductionQuiz() {
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const classes = {
+    content: [styles.content, colorScheme === 'dark' && styles.contentDark],
+    container: [
+      styles.container,
+      colorScheme === 'dark' && styles.containerDark,
+    ],
+    quizTitle: [
+      styles.quizTitle,
+      colorScheme === 'dark' && styles.quizTitleDark,
+    ],
+    descriptionContainer: [
+      styles.descriptionContainer,
+      colorScheme === 'dark' && styles.descriptionContainerDark,
+    ],
+    description: [
+      styles.description,
+      colorScheme === 'dark' && styles.descriptionDark,
+    ],
+    myQuizCardBottom: [
+      styles.myQuizCardBottom,
+      colorScheme === 'dark' && styles.myQuizCardBottomDark,
+    ],
+  };
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={classes.container}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
@@ -118,8 +144,8 @@ function IntroductionQuiz() {
         <Navbar title="Titre du quiz" />
       </View>
 
-      <ScrollView style={styles.content}>
-        <IntroductionQuizContainer />
+      <ScrollView style={classes.content}>
+        <IntroductionQuizContainer classes={classes} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -137,7 +163,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
+  },
+  containerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   imgContainer: {
     width: '100%',
@@ -158,7 +187,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 898,
     left: 0,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     borderBottomRightRadius: 0,
@@ -166,11 +195,14 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
   },
+  contentDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   quizTitleContainer: {
     width: 'auto',
   },
   quizTitle: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     marginTop: 30,
     fontWeight: 600,
     fontSize: 26,
@@ -178,8 +210,11 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginRight: 15,
   },
+  quizTitleDark: {
+    color: theme.colors.text.$textDark,
+  },
   descriptionContainer: {
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     height: 364,
     width: '100%',
     borderRadius: 20,
@@ -202,6 +237,9 @@ const styles = StyleSheet.create({
     }),
     marginBottom: 20,
   },
+  descriptionContainerDark: {
+    backgroundColor: theme.colors.component.$cardDark,
+  },
   myQuizCardBottom: {
     position: 'absolute',
     top: 10,
@@ -209,7 +247,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: '100%',
     height: 51,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     ...Platform.select({
       ios: {
         shadowColor: 'rgba(9, 13, 109, 0.4)',
@@ -225,6 +263,9 @@ const styles = StyleSheet.create({
       },
     }),
     flexDirection: 'row',
+  },
+  myQuizCardBottomDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   myQuizCardBottomLeft: {
     flexDirection: 'row',
@@ -282,10 +323,13 @@ const styles = StyleSheet.create({
     left: 15,
     top: 100,
     right: 15,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontWeight: 400,
     fontSize: 13,
     lineHeight: 16,
+  },
+  descriptionDark: {
+    color: theme.colors.text.$textDark,
   },
   beginButton: {
     position: 'absolute',
