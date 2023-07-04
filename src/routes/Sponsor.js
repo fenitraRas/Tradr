@@ -31,6 +31,7 @@ import Share from '../assets/icons/share.svg';
 import {formStyles} from '../assets/css/form';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
+import {indexStyles} from '../assets/css';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
@@ -62,7 +63,7 @@ function Navbar(props) {
 
 function SponsorContent() {
   return (
-    <View style={[styles.sponsorContent, styles.shadowProp]}>
+    <View style={[styles.sponsorContent, indexStyles.shadowProp]}>
       <View style={styles.sponsorTitleContainer}>
         <Text style={styles.sponsorTitle}>
           Le succès les attend aussi !
@@ -250,16 +251,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
     paddingBottom: 34,
   },
-  shadowProp: {
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 20,
-    elevation: 2,
-  },
   navbarText: {
     textAlign: 'center',
     fontWeight: 500,
@@ -285,14 +276,23 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 190,
     borderRadius: 20,
-    elevation: 8,
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOffset: {width: 0, height: 30},
-    shadowOpacity: 1,
-    shadowRadius: 40,
     paddingLeft: 10,
     paddingRight: 10,
     marginTop: 30,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   sponsorLinkTitle: {
     marginTop: 15,
@@ -356,13 +356,20 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 10,
     elevation: 5,
-    shadowColor: '#090d6d',
-    shadowOffset: {
-      width: 0,
-      height: 15,
-    },
-    shadowOpacity: 0.4,
-    shadowRadius: 20,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   avatar: {
     width: 48,
@@ -430,14 +437,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#E9EDFC',
     borderRadius: 20,
     marginTop: 10,
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOffset: {
-      width: 0,
-      height: 15,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 20,
-    elevation: 5,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
     paddingLeft: 10,
     paddingRight: 10,
   },
