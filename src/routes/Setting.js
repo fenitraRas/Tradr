@@ -27,6 +27,7 @@ import IconGroup1 from '../assets/icons/iconGroup1.svg';
 import Linkedin from '../assets/icons/linkedin.svg';
 import Twitter from '../assets/icons/twitter.svg';
 import {formStyles} from '../assets/css/form';
+import theme from '../assets/theme';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 
@@ -58,31 +59,31 @@ function Navbar(props) {
   );
 }
 
-function SettingContent() {
+function SettingContent(props) {
   return (
-    <View style={[styles.settingContent, styles.shadowProp]}>
-      <TouchableOpacity style={styles.item}>
-        <Text style={styles.itemText}>Compte</Text>
+    <View style={[props.classes.settingContent, styles.shadowProp]}>
+      <TouchableOpacity style={props.classes.item}>
+        <Text style={props.classes.itemText}>Compte</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.item}>
-        <Text style={styles.itemText}>Notifications</Text>
+      <TouchableOpacity style={props.classes.item}>
+        <Text style={props.classes.itemText}>Notifications</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.item}>
-        <Text style={styles.itemText}>Langage</Text>
+      <TouchableOpacity style={props.classes.item}>
+        <Text style={props.classes.itemText}>Langage</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.item}>
-        <Text style={styles.itemText}>Support</Text>
+      <TouchableOpacity style={props.classes.item}>
+        <Text style={props.classes.itemText}>Support</Text>
       </TouchableOpacity>
       <TouchableOpacity>
-        <Text style={styles.itemText}>Contact</Text>
+        <Text style={props.classes.itemText}>Contact</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
-function SettingFooter() {
+function SettingFooter(props) {
   return (
-    <View style={[styles.settingFooter]}>
+    <View style={[props.classes.settingFooter]}>
       <View style={styles.iconContainer}>
         <TouchableOpacity>
           <IconGroup1 width={26} height={26} style={styles.icon} />
@@ -100,15 +101,28 @@ function SettingFooter() {
   );
 }
 
-function SettingContainer() {
+function SettingContainer(props) {
   return (
     <View style={styles.content}>
-      <SettingContent />
+      <SettingContent classes={props.classes} />
     </View>
   );
 }
 
 function Setting() {
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const classes = {
+    settingContent: [
+      styles.settingContent,
+      colorScheme === 'dark' && styles.settingContentDark,
+    ],
+    settingFooter: [
+      styles.settingFooter,
+      colorScheme === 'dark' && styles.settingFooterDark,
+    ],
+    itemText: [styles.itemText, colorScheme === 'dark' && styles.itemTextDark],
+    item: [styles.item, colorScheme === 'dark' && styles.itemDark],
+  };
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -157,9 +171,9 @@ function Setting() {
           currentScreen="Setting"
           handleScrollToLeft={() => handleScrollToLeft()}
         />
-        <SettingContainer />
+        <SettingContainer classes={classes} />
       </ScrollView>
-      {!scrollToMenu ? <SettingFooter /> : null}
+      {!scrollToMenu ? <SettingFooter classes={classes} /> : null}
     </SafeAreaView>
   );
 }
@@ -174,11 +188,14 @@ const styles = StyleSheet.create({
     paddingLeft: 28,
     paddingRight: 28,
     paddingTop: 20,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     marginTop: 5,
     paddingBottom: 14,
+  },
+  settingContentDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   shadowProp: {
     shadowColor: 'rgba(9, 13, 109, 0.4)',
@@ -206,25 +223,34 @@ const styles = StyleSheet.create({
   },
   item: {
     width: '100%',
-    borderBottomColor: '#D2D6E1',
+    borderBottomColor: theme.colors.text.$placeholderLight,
     borderBottomWidth: 1,
     borderBottomStyle: 'solid',
+  },
+  itemDark: {
+    borderBottomColor: theme.colors.text.$placeholderDark,
   },
   itemText: {
     height: 20,
     marginTop: 17,
     marginBottom: 17,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontSize: 16,
     fontFamily: 'Montserrat',
   },
+  itemTextDark: {
+    color: theme.colors.text.$textDark,
+  },
   settingFooter: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 21,
     left: 0,
     height: Platform.OS === 'android' ? 118 : 142,
     width: '100%',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
+  },
+  settingFooterDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   iconContainer: {
     flexDirection: 'row',
