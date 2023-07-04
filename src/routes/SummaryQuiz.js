@@ -22,10 +22,12 @@ import React, {useRef, useState} from 'react';
 
 import BarChart from '../assets/icons/barChart.svg';
 import ChevronLeft from '../assets/icons/chevronLeft.svg';
+import ChevronLeftDark from '../assets/icons/chevronLeftDark.svg';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
 import {formStyles} from '../assets/css/form';
+import theme from '../assets/theme';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 
@@ -37,7 +39,11 @@ function Navbar(props) {
     <View style={formStyles.navbarContainer}>
       <View style={formStyles.navbarIcon}>
         <TouchableOpacity onPress={() => navigation.navigate('Quiz')}>
-          <ChevronLeft width={30} height={20} />
+          {option === 'light' ? (
+            <ChevronLeft width={30} height={20} />
+          ) : (
+            <ChevronLeftDark width={30} height={20} />
+          )}
         </TouchableOpacity>
       </View>
       <View style={formStyles.navbarTextContainer}>
@@ -67,22 +73,22 @@ function Navbar(props) {
 function SummaryQuizContent(props) {
   const navigation = useNavigation();
   return (
-    <View style={[styles.summaryQuizContent, styles.shadowProp]}>
+    <View style={[props.classes.summaryQuizContent, styles.shadowProp]}>
       <View style={[styles.titleContainer]}>
-        <Text style={styles.title}>
+        <Text style={props.classes.title}>
           Résumé
           <BarChart width={18} height={18} style={{marginLeft: 6}} />
         </Text>
       </View>
-      <View style={[styles.resultContainer]}>
+      <View style={[props.classes.resultContainer]}>
         <View style={styles.stateNumberContainer}>
           <Text style={styles.stateText}>Nombre total de question</Text>
-          <View style={styles.stateNumber}>
+          <View style={props.classes.stateNumber}>
             <Text style={styles.stateNumberText}>20</Text>
           </View>
         </View>
-        <Text style={styles.numberTitle}>Vos réponses</Text>
-        <View style={styles.numberContainer}>
+        <Text style={props.classes.numberTitle}>Vos réponses</Text>
+        <View style={props.classes.numberContainer}>
           <View style={styles.numberContent}>
             <Text style={[styles.numberText, styles.greenNumberText]}>1</Text>
             <Text style={[styles.numberText, styles.greenNumberText]}>2</Text>
@@ -110,7 +116,7 @@ function SummaryQuizContent(props) {
           <View style={styles.cardStateContent}>
             <Text style={styles.cardStateText}>Correct</Text>
             <View style={{paddingRight: 5, width: '100%'}}>
-              <View style={styles.cardState}>
+              <View style={props.classes.cardState}>
                 <Text style={styles.cardStateLeft}>12</Text>
               </View>
             </View>
@@ -118,19 +124,19 @@ function SummaryQuizContent(props) {
           <View style={styles.cardStateContent}>
             <Text style={styles.cardStateText}>Incorrect</Text>
             <View style={{paddingLeft: 5, width: '100%'}}>
-              <View style={styles.cardState}>
+              <View style={props.classes.cardState}>
                 <Text style={styles.cardStateRight}>8</Text>
               </View>
             </View>
           </View>
         </View>
-        <Text style={styles.resultTitle}>Votre résultat</Text>
-        <View style={styles.resultContent}>
+        <Text style={props.classes.resultTitle}>Votre résultat</Text>
+        <View style={props.classes.resultContent}>
           <Text style={styles.resultText}>Vous avez réussi !</Text>
         </View>
       </View>
-      <View style={[styles.descriptionContainer]}>
-        <View style={styles.myQuizCardBottom}>
+      <View style={[props.classes.descriptionContainer]}>
+        <View style={props.classes.myQuizCardBottom}>
           <View style={styles.myQuizCardBottomLeft}>
             <Text style={styles.myQuizCardBottomLeftNumber}>20</Text>
             <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
@@ -140,7 +146,7 @@ function SummaryQuizContent(props) {
           </View>
         </View>
         <Text style={styles.descriptionTitle}>Description</Text>
-        <Text style={styles.description}>
+        <Text style={props.classes.description}>
           Sorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu
           turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec
           fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus
@@ -157,15 +163,63 @@ function SummaryQuizContent(props) {
   );
 }
 
-function SummaryQuizContainer() {
+function SummaryQuizContainer(props) {
   return (
     <ScrollView>
-      <SummaryQuizContent />
+      <SummaryQuizContent classes={props.classes} />
     </ScrollView>
   );
 }
 
 function SummaryQuiz() {
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const classes = {
+    summaryQuizContent: [
+      styles.summaryQuizContent,
+      colorScheme === 'dark' && styles.summaryQuizContentDark,
+    ],
+    resultContainer: [
+      styles.resultContainer,
+      colorScheme === 'dark' && styles.resultContainerDark,
+    ],
+    stateNumber: [
+      styles.stateNumber,
+      colorScheme === 'dark' && styles.stateNumberDark,
+    ],
+    numberContainer: [
+      styles.numberContainer,
+      colorScheme === 'dark' && styles.numberContainerDark,
+    ],
+    cardState: [
+      styles.cardState,
+      colorScheme === 'dark' && styles.cardStateDark,
+    ],
+    resultContent: [
+      styles.resultContent,
+      colorScheme === 'dark' && styles.resultContentDark,
+    ],
+    title: [styles.title, colorScheme === 'dark' && styles.titleDark],
+    numberTitle: [
+      styles.numberTitle,
+      colorScheme === 'dark' && styles.numberTitleDark,
+    ],
+    resultTitle: [
+      styles.resultTitle,
+      colorScheme === 'dark' && styles.resultTitleDark,
+    ],
+    descriptionContainer: [
+      styles.descriptionContainer,
+      colorScheme === 'dark' && styles.descriptionContainerDark,
+    ],
+    myQuizCardBottom: [
+      styles.myQuizCardBottom,
+      colorScheme === 'dark' && styles.myQuizCardBottomDark,
+    ],
+    description: [
+      styles.description,
+      colorScheme === 'dark' && styles.descriptionDark,
+    ],
+  };
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -215,7 +269,7 @@ function SummaryQuiz() {
           currentScreen="Tradrboard"
           handleScrollToLeft={() => handleScrollToLeft()}
         />
-        <SummaryQuizContainer />
+        <SummaryQuizContainer classes={classes} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -234,7 +288,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     paddingLeft: 10,
     paddingRight: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     marginTop: 5,
@@ -242,6 +296,9 @@ const styles = StyleSheet.create({
       Platform.OS === 'android'
         ? Dimensions.get('window').height - 74
         : Dimensions.get('window').height - 109,
+  },
+  summaryQuizContentDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   shadowProp: {
     shadowColor: 'rgba(9, 13, 109, 0.4)',
@@ -258,21 +315,27 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   title: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 500,
     fontSize: 20,
     lineHeight: 24,
   },
+  titleDark: {
+    color: theme.colors.text.$textDark,
+  },
   resultContainer: {
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     height: 369,
     width: '100%',
     borderRadius: 20,
     marginTop: 10,
     paddingLeft: 10,
     paddingRight: 10,
+  },
+  resultContainerDark: {
+    backgroundColor: theme.colors.component.$cardDark,
   },
   stateNumberContainer: {
     flexDirection: 'row',
@@ -295,7 +358,10 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
+  },
+  stateNumberDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   stateNumberText: {
     position: 'absolute',
@@ -311,21 +377,27 @@ const styles = StyleSheet.create({
   numberTitle: {
     marginTop: 70,
     marginLeft: 5,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 500,
     fontSize: 15,
     lineHeight: 18,
   },
+  numberTitleDark: {
+    color: theme.colors.text.$textDark,
+  },
   numberContainer: {
     position: 'absolute',
     left: 10,
     top: 98,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderRadius: 10,
     height: 84,
     width: '100%',
+  },
+  numberContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   numberContent: {
     flexDirection: 'row',
@@ -377,7 +449,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 50,
     borderRadius: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     elevation: 5,
     shadowColor: 'rgba(9, 13, 109, 0.4)',
     shadowOffset: {
@@ -386,6 +458,9 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 1,
     shadowRadius: 20,
+  },
+  cardStateDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   cardStateLeft: {
     color: '#7AC84A',
@@ -416,17 +491,23 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 15,
     lineHeight: 18,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
+  },
+  resultTitleDark: {
+    color: theme.colors.text.$textDark,
   },
   resultContent: {
     position: 'absolute',
     left: 10,
     top: 307,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderRadius: 10,
     width: '100%',
     height: 52,
     alignItems: 'center',
+  },
+  resultContentDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   resultText: {
     color: '#9BA5BF',
@@ -438,13 +519,16 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   descriptionContainer: {
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     height: 364,
     width: '100%',
     borderRadius: 20,
     marginTop: 20,
     paddingLeft: 10,
     paddingRight: 10,
+  },
+  descriptionContainerDark: {
+    backgroundColor: theme.colors.component.$cardDark,
   },
   myQuizCardBottom: {
     position: 'absolute',
@@ -453,7 +537,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: '100%',
     height: 51,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     // shadowOffset: {
     //   width: 0,
     //   height: 15,
@@ -462,6 +546,9 @@ const styles = StyleSheet.create({
     // shadowOpacity: 1,
     shadowRadius: 20,
     flexDirection: 'row',
+  },
+  myQuizCardBottomDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   myQuizCardBottomLeft: {
     flexDirection: 'row',
@@ -519,10 +606,13 @@ const styles = StyleSheet.create({
     left: 15,
     top: 100,
     right: 15,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontWeight: 400,
     fontSize: 13,
     lineHeight: 16,
+  },
+  descriptionDark: {
+    color: theme.colors.text.$textDark,
   },
   redoButton: {
     position: 'absolute',
