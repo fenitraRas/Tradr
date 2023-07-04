@@ -24,6 +24,7 @@ import React, {useRef, useState} from 'react';
 
 import Chat from '../assets/icons/chat.svg';
 import ChevronLeft from '../assets/icons/chevronLeft.svg';
+import ChevronLeftDark from '../assets/icons/chevronLeftDark.svg';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
@@ -31,9 +32,10 @@ import Download from '../assets/icons/download.svg';
 import PdfIcon from '../assets/icons/pdfIcon.svg';
 import Search from '../assets/icons/search.svg';
 import {formStyles} from '../assets/css/form';
+import {indexStyles} from '../assets/css';
+import theme from '../assets/theme';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
-import { indexStyles } from '../assets/css';
 
 function Navbar(props) {
   const navigation = useNavigation();
@@ -43,7 +45,11 @@ function Navbar(props) {
     <View style={formStyles.navbarContainer}>
       <View style={formStyles.navbarIcon}>
         <TouchableOpacity onPress={() => navigation.navigate('TradrboxFolder')}>
-          <ChevronLeft width={30} height={20} />
+          {option === 'light' ? (
+            <ChevronLeft width={30} height={20} />
+          ) : (
+            <ChevronLeftDark width={30} height={20} />
+          )}
         </TouchableOpacity>
       </View>
       <View style={formStyles.navbarTextContainer}>
@@ -68,13 +74,13 @@ function Navbar(props) {
   );
 }
 
-function TradrboxFileContent() {
+function TradrboxFileContent(props) {
   const [text, onChangeText] = React.useState('Rechercher');
   return (
-    <View style={[styles.tradrboxContent, indexStyles.shadowProp]}>
+    <View style={[props.classes.tradrboxContent, indexStyles.shadowProp]}>
       <View style={styles.tradrboxTitleContainer}>
         <TextInput
-          style={styles.input}
+          style={props.classes.input}
           onChangeText={onChangeText}
           value={text}
         />
@@ -82,96 +88,96 @@ function TradrboxFileContent() {
       </View>
       <ScrollView>
         <View style={styles.fileContainer}>
-          <View style={styles.fileCard}>
+          <View style={props.classes.fileCard}>
             <View style={styles.fileCardTop}>
               <Chat width={24} height={24} style={styles.fileCardTopImg} />
-              <Text style={styles.fileCardTopText}>
+              <Text style={props.classes.fileCardTopText}>
                 Épisode 01 - Bien commencer le trading
               </Text>
             </View>
-            <View style={styles.fileCardBottom}>
+            <View style={props.classes.fileCardBottom}>
               <TouchableOpacity style={styles.fileCardButton}>
                 <Text style={styles.fileCardButtonText}>Rejoindre</Text>
               </TouchableOpacity>
             </View>
           </View>
-          <View style={styles.fileCard}>
+          <View style={props.classes.fileCard}>
             <View style={styles.fileCardTop}>
               <PdfIcon width={24} height={24} style={styles.fileCardTopImg} />
-              <Text style={styles.fileCardTopText}>
+              <Text style={props.classes.fileCardTopText}>
                 Épisode 02 - Prendre le contrôle de son capital
               </Text>
             </View>
-            <View style={styles.fileCardBottom}>
-              <Text style={styles.fileCardText}>174 mo</Text>
+            <View style={props.classes.fileCardBottom}>
+              <Text style={props.classes.fileCardText}>174 mo</Text>
               <TouchableOpacity style={styles.fileCardDownloadButton}>
                 <Download width={15.09} height={13.33} />
               </TouchableOpacity>
             </View>
           </View>
-          <View style={styles.fileCard}>
+          <View style={props.classes.fileCard}>
             <View style={styles.fileCardTop}>
               <PdfIcon width={24} height={24} style={styles.fileCardTopImg} />
-              <Text style={styles.fileCardTopText}>
+              <Text style={props.classes.fileCardTopText}>
                 Comment devenir membre Tradr ?
               </Text>
             </View>
-            <View style={styles.fileCardBottom}>
-              <Text style={styles.fileCardText}>174 mo</Text>
+            <View style={props.classes.fileCardBottom}>
+              <Text style={props.classes.fileCardText}>174 mo</Text>
               <TouchableOpacity style={styles.fileCardDownloadButton}>
                 <Download width={15.09} height={13.33} />
               </TouchableOpacity>
             </View>
           </View>
-          <View style={styles.fileCard}>
+          <View style={props.classes.fileCard}>
             <View style={styles.fileCardTop}>
               <PdfIcon width={24} height={24} style={styles.fileCardTopImg} />
-              <Text style={styles.fileCardTopText}>
+              <Text style={props.classes.fileCardTopText}>
                 Épisode 02 - Prendre le contrôle de son capital
               </Text>
             </View>
-            <View style={styles.fileCardBottom}>
-              <Text style={styles.fileCardText}>174 mo</Text>
+            <View style={props.classes.fileCardBottom}>
+              <Text style={props.classes.fileCardText}>174 mo</Text>
               <TouchableOpacity style={styles.fileCardDownloadButton}>
                 <Download width={15.09} height={13.33} />
               </TouchableOpacity>
             </View>
           </View>
-          <View style={styles.fileCard}>
+          <View style={props.classes.fileCard}>
             <View style={styles.fileCardTop}>
               <PdfIcon width={24} height={24} style={styles.fileCardTopImg} />
-              <Text style={styles.fileCardTopText}>
+              <Text style={props.classes.fileCardTopText}>
                 Épisode 01 - Bien commencer le trading
               </Text>
             </View>
-            <View style={styles.fileCardBottom}>
-              <Text style={styles.fileCardText}>174 mo</Text>
+            <View style={props.classes.fileCardBottom}>
+              <Text style={props.classes.fileCardText}>174 mo</Text>
               <TouchableOpacity style={styles.fileCardDownloadButton}>
                 <Download width={15.09} height={13.33} />
               </TouchableOpacity>
             </View>
           </View>
-          <View style={styles.fileCard}>
+          <View style={props.classes.fileCard}>
             <View style={styles.fileCardTop}>
               <Chat width={24} height={24} style={styles.fileCardTopImg} />
-              <Text style={styles.fileCardTopText}>
+              <Text style={props.classes.fileCardTopText}>
                 Prises de positions de nos traders
               </Text>
             </View>
-            <View style={styles.fileCardBottom}>
+            <View style={props.classes.fileCardBottom}>
               <TouchableOpacity style={styles.fileCardButton}>
                 <Text style={styles.fileCardButtonText}>Rejoindre</Text>
               </TouchableOpacity>
             </View>
           </View>
-          <View style={styles.fileCard}>
+          <View style={props.classes.fileCard}>
             <View style={styles.fileCardTop}>
               <Chat width={24} height={24} style={styles.fileCardTopImg} />
-              <Text style={styles.fileCardTopText}>
+              <Text style={props.classes.fileCardTopText}>
                 Comment devenir membre Tradr ?
               </Text>
             </View>
-            <View style={styles.fileCardBottom}>
+            <View style={props.classes.fileCardBottom}>
               <TouchableOpacity style={styles.fileCardButton}>
                 <Text style={styles.fileCardButtonText}>Rejoindre</Text>
               </TouchableOpacity>
@@ -183,15 +189,36 @@ function TradrboxFileContent() {
   );
 }
 
-function TradrboxFileContainer() {
+function TradrboxFileContainer(props) {
   return (
     <ScrollView>
-      <TradrboxFileContent />
+      <TradrboxFileContent classes={props.classes} />
     </ScrollView>
   );
 }
 
 function TradrboxFile() {
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const classes = {
+    tradrboxContent: [
+      styles.tradrboxContent,
+      colorScheme === 'dark' && styles.tradrboxContentDark,
+    ],
+    input: [styles.input, colorScheme === 'dark' && styles.inputDark],
+    fileCard: [styles.fileCard, colorScheme === 'dark' && styles.fileCardDark],
+    fileCardBottom: [
+      styles.fileCardBottom,
+      colorScheme === 'dark' && styles.fileCardBottomCard,
+    ],
+    fileCardTopText: [
+      styles.fileCardTopText,
+      colorScheme === 'dark' && styles.fileCardTopTextDark,
+    ],
+    fileCardText: [
+      styles.fileCardText,
+      colorScheme === 'dark' && styles.fileCardTextDark,
+    ],
+  };
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -240,18 +267,21 @@ function TradrboxFile() {
           currentScreen="TradrboxFile"
           handleScrollToLeft={() => handleScrollToLeft()}
         />
-        <TradrboxFileContainer />
+        <TradrboxFileContainer classes={classes} />
       </ScrollView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  tradrboxContentDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   tradrboxContent: {
     width: Dimensions.get('window').width,
     paddingLeft: 10,
     paddingRight: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     marginTop: 5,
@@ -282,13 +312,16 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
     color: '#1A2442',
   },
+  inputDark: {
+    backgroundColor: theme.colors.component.$cardDark,
+  },
   input: {
     width: '100%',
     height: Platform.OS === 'android' ? 35 : 27,
     borderWidth: 0,
     marginTop: 30,
     marginBottom: 20,
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     borderRadius: 20,
     paddingLeft: 30,
     color: '#9BA5BF',
@@ -310,10 +343,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginHorizontal: Platform.OS === 'android' ? 5 : 5,
   },
+  fileCardDark: {
+    backgroundColor: theme.colors.component.$cardDark,
+  },
   fileCard: {
     width: 170,
     height: 120,
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     borderRadius: 20,
     ...Platform.select({
       ios: {
@@ -342,8 +378,11 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 11,
   },
+  fileCardTopTextDark: {
+    color: theme.colors.text.$textDark,
+  },
   fileCardTopText: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontWeight: 400,
     fontSize: 12,
     lineHeight: 15,
@@ -354,9 +393,12 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginRight: 5,
   },
+  fileCardBottomCard: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   fileCardBottom: {
     flexDirection: 'row',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     width: '100%',
     borderRadius: 15,
     height: 41,
@@ -406,8 +448,11 @@ const styles = StyleSheet.create({
     top: 12.33,
     right: 15.33,
   },
+  fileCardTextDark: {
+    color: theme.colors.text.$textDark,
+  },
   fileCardText: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontWeight: 500,
     fontSize: 12,
     lineHeight: 15,
