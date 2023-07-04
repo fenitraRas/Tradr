@@ -444,7 +444,7 @@ function PremiumQuiz(props) {
     <View style={[props.classes.quizContent, indexStyles.shadowProp]}>
       <View style={props.classes.quizTitleContainer}>
         <Text style={props.classes.quizTitle}>
-          = Met à l’épreuve tes connaissances !
+          Met à l’épreuve tes connaissances !
           <SmilingFaceWithHorns
             width={26}
             height={26}
