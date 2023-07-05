@@ -27,6 +27,7 @@ import IconGroup1 from '../assets/icons/iconGroup1.svg';
 import Linkedin from '../assets/icons/linkedin.svg';
 import Twitter from '../assets/icons/twitter.svg';
 import {formStyles} from '../assets/css/form';
+import {indexStyles} from '../assets/css';
 import theme from '../assets/theme';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
@@ -61,7 +62,7 @@ function Navbar(props) {
 
 function SettingContent(props) {
   return (
-    <View style={[props.classes.settingContent, styles.shadowProp]}>
+    <View style={[props.classes.settingContent, indexStyles.shadowProp]}>
       <TouchableOpacity style={props.classes.item}>
         <Text style={props.classes.itemText}>Compte</Text>
       </TouchableOpacity>

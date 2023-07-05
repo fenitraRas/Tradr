@@ -24,13 +24,12 @@ import ChevronLeft from '../assets/icons/chevronLeft.svg';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
-import MyTextInput from '../Components/TextInput';
 import MyTextInputWithBorder from '../Components/TextInputWithBorder';
 import PurpleButton from '../Components/PurpleButton';
 import {formStyles} from '../assets/css/form';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
-import { indexStyles } from '../assets/css';
+import {indexStyles} from '../assets/css';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
