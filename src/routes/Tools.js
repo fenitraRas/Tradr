@@ -27,9 +27,10 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
 import {formStyles} from '../assets/css/form';
+import {indexStyles} from '../assets/css';
+import theme from '../assets/theme';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
-import {indexStyles} from '../assets/css';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
@@ -59,16 +60,20 @@ function Navbar(props) {
   );
 }
 
-function TradingPlan() {
+function TradingPlan(props) {
   return (
-    <View style={[styles.toolsContent, indexStyles.shadowProp]}>
+    <View style={[props.classes.toolsContent, indexStyles.shadowProp]}>
       <View style={styles.toolsTitleContainer}>
-        <Text style={styles.toolsTitle2}>À faire avant chaque session</Text>
+        <Text style={props.classes.toolsTitle2}>
+          À faire avant chaque session
+        </Text>
       </View>
-      <View style={styles.tendencyCard}>
-        <Text style={styles.tendencyCardTitle}>Déterminer une tendance</Text>
+      <View style={props.classes.tendencyCard}>
+        <Text style={props.classes.tendencyCardTitle}>
+          Déterminer une tendance
+        </Text>
         <View style={styles.tendencyContainer}>
-          <View style={[styles.inputContainer]}>
+          <View style={[props.classes.inputContainer]}>
             <RNTextInput
               style={styles.inputStyle}
               placeholder="Déterminer la tendance de fond"
@@ -85,7 +90,7 @@ function TradingPlan() {
             </View>
           </TouchableOpacity>
         </View>
-        <Text style={styles.tendencyCardTitle}>Vos tendances</Text>
+        <Text style={props.classes.tendencyCardTitle}>Vos tendances</Text>
         <View style={styles.tendencyContainer}>
           <View style={styles.tendencyItem}>
             <Text style={styles.tendencyItemText}>
@@ -93,7 +98,7 @@ function TradingPlan() {
             </Text>
           </View>
           <TouchableOpacity style={styles.addDocumentRight}>
-            <View style={styles.removeButton}>
+            <View style={props.classes.removeButton}>
               <Text style={styles.removeButtonText}>-</Text>
             </View>
           </TouchableOpacity>
@@ -105,7 +110,7 @@ function TradingPlan() {
             </Text>
           </View>
           <TouchableOpacity style={styles.addDocumentRight}>
-            <View style={styles.removeButton}>
+            <View style={props.classes.removeButton}>
               <Text style={styles.removeButtonText}>-</Text>
             </View>
           </TouchableOpacity>
@@ -117,57 +122,57 @@ function TradingPlan() {
           <Text style={styles.stepTitleText}>Étape 1</Text>
         </View>
       </View>
-      <Text style={styles.toolsTitle2}>
+      <Text style={props.classes.toolsTitle2}>
         Votre objectif de gestion de risque
       </Text>
-      <View style={styles.objectiveCard}>
+      <View style={props.classes.objectiveCard}>
         <View style={styles.objectiveItemContainer}>
           <View style={styles.objectiveItemLeft}>
-            <Text style={styles.objectiveItemLeftTopText}>
+            <Text style={props.classes.objectiveItemLeftTopText}>
               Objectif de gains journalier
             </Text>
             <Text style={styles.objectiveItemLeftBottomText}>
               (1% de mon capital, 20 pips ...)
             </Text>
           </View>
-          <View style={styles.percentageItemContainer}>
-            <Text style={styles.percentageItemText}>1%</Text>
+          <View style={props.classes.percentageItemContainer}>
+            <Text style={props.classes.percentageItemText}>1%</Text>
           </View>
         </View>
         <View style={styles.objectiveItemContainer}>
           <View style={styles.objectiveItemLeft}>
-            <Text style={styles.objectiveItemLeftTopText}>
+            <Text style={props.classes.objectiveItemLeftTopText}>
               Taille de position - Niveau de risque par trade
             </Text>
             <Text style={styles.objectiveItemLeftBottomText}>
               (0.5%, 1% du capital ...)
             </Text>
           </View>
-          <View style={styles.percentageItemContainer}>
-            <Text style={styles.percentageItemText}>0.5%</Text>
+          <View style={props.classes.percentageItemContainer}>
+            <Text style={props.classes.percentageItemText}>0.5%</Text>
           </View>
         </View>
         <View style={styles.objectiveItemContainer}>
           <View style={styles.objectiveItemLeft}>
-            <Text style={styles.objectiveItemLeftTopText}>
+            <Text style={props.classes.objectiveItemLeftTopText}>
               Nombre de pertes consécutives acceptables
             </Text>
             <Text style={styles.objectiveItemLeftBottomText}>
               (entre 3 et 10)
             </Text>
           </View>
-          <View style={styles.percentageItemContainer}>
-            <Text style={styles.percentageItemText}>4%</Text>
+          <View style={props.classes.percentageItemContainer}>
+            <Text style={props.classes.percentageItemText}>4%</Text>
           </View>
         </View>
         <View style={styles.objectiveItemContainer}>
           <View style={styles.objectiveItemLeft}>
-            <Text style={styles.objectiveItemLeftTopText}>
+            <Text style={props.classes.objectiveItemLeftTopText}>
               Arrêt de la session de trading si perte supérieur à X% du capital
             </Text>
           </View>
-          <View style={styles.percentageItemContainer}>
-            <Text style={styles.percentageItemText}>2%</Text>
+          <View style={props.classes.percentageItemContainer}>
+            <Text style={props.classes.percentageItemText}>2%</Text>
           </View>
         </View>
       </View>
@@ -178,14 +183,16 @@ function TradingPlan() {
           <Text style={styles.stepTitleText}>Étape 2</Text>
         </View>
       </View>
-      <Text style={styles.toolsTitle2}>Règle de votre stratégie gagnante</Text>
-      <View style={styles.ruleCard}>
-        <Text style={styles.tendencyCardTitle}>
+      <Text style={props.classes.toolsTitle2}>
+        Règle de votre stratégie gagnante
+      </Text>
+      <View style={props.classes.ruleCard}>
+        <Text style={props.classes.tendencyCardTitle}>
           Quelle stratégie utilisez-vous?
         </Text>
-        <View style={[styles.fullInputContainer]}>
+        <View style={[props.classes.fullInputContainer]}>
           <RNTextInput
-            style={styles.fullInputStyle}
+            style={props.classes.fullInputStyle}
             autoCapitalize="none"
             keyboardAppearance="dark"
             returnKeyType="next"
@@ -194,11 +201,11 @@ function TradingPlan() {
           />
         </View>
 
-        <Text style={styles.tendencyCardTitle}>
+        <Text style={props.classes.tendencyCardTitle}>
           Quels indicaterr(s) technique(s) ?
         </Text>
         <View style={styles.tendencyContainer}>
-          <View style={[styles.inputContainer]}>
+          <View style={[props.classes.inputContainer]}>
             <RNTextInput
               style={styles.inputStyle}
               placeholder="DAYTRADR PRO"
@@ -220,19 +227,19 @@ function TradingPlan() {
             <Text style={styles.tendencyItemText}>DAYTRADR PRO</Text>
           </View>
           <TouchableOpacity style={styles.addDocumentRight}>
-            <View style={styles.removeButton}>
+            <View style={props.classes.removeButton}>
               <Text style={styles.removeButtonText}>-</Text>
             </View>
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.tendencyCardTitle}>
+        <Text style={props.classes.tendencyCardTitle}>
           Sur Quelle unité de temps allez-vous trader ?
         </Text>
         <Text style={styles.indication}>(M1, M15, H1, H4...)</Text>
-        <View style={[styles.fullInputContainer]}>
+        <View style={[props.classes.fullInputContainer]}>
           <RNTextInput
-            style={styles.fullInputStyle}
+            style={props.classes.fullInputStyle}
             autoCapitalize="none"
             keyboardAppearance="dark"
             returnKeyType="next"
@@ -241,10 +248,10 @@ function TradingPlan() {
           />
         </View>
 
-        <Text style={styles.tendencyCardTitle}>Valeur d'un Pips</Text>
-        <View style={[styles.fullInputContainer]}>
+        <Text style={props.classes.tendencyCardTitle}>Valeur d'un Pips</Text>
+        <View style={[props.classes.fullInputContainer]}>
           <RNTextInput
-            style={styles.fullInputStyle}
+            style={props.classes.fullInputStyle}
             autoCapitalize="none"
             keyboardAppearance="dark"
             returnKeyType="next"
@@ -253,11 +260,11 @@ function TradingPlan() {
           />
         </View>
 
-        <Text style={styles.tendencyCardTitle}>Horaires de session</Text>
+        <Text style={props.classes.tendencyCardTitle}>Horaires de session</Text>
         <View style={styles.timeRangeContainer}>
-          <View style={[styles.litleInputContainer]}>
+          <View style={[props.classes.litleInputContainer]}>
             <RNTextInput
-              style={styles.litleInputStyle}
+              style={props.classes.litleInputStyle}
               autoCapitalize="none"
               keyboardAppearance="dark"
               returnKeyType="next"
@@ -267,14 +274,14 @@ function TradingPlan() {
           </View>
           <Text
             style={[
-              styles.tendencyCardTitle,
+              props.classes.tendencyCardTitle,
               {marginRight: 10, marginTop: 20},
             ]}>
             à
           </Text>
-          <View style={[styles.litleInputContainer]}>
+          <View style={[props.classes.litleInputContainer]}>
             <RNTextInput
-              style={styles.litleInputStyle}
+              style={props.classes.litleInputStyle}
               autoCapitalize="none"
               keyboardAppearance="dark"
               returnKeyType="next"
@@ -293,17 +300,17 @@ function TradingPlan() {
             <Text style={styles.litleTendencyItemText}>10h30-12h30</Text>
           </View>
           <TouchableOpacity style={styles.addDocumentRight}>
-            <View style={styles.removeButton}>
+            <View style={props.classes.removeButton}>
               <Text style={styles.removeButtonText}>-</Text>
             </View>
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.tendencyCardTitle}>Sens de vos trades</Text>
+        <Text style={props.classes.tendencyCardTitle}>Sens de vos trades</Text>
         <Text style={styles.indication}>(tendance ou contre-tendance)</Text>
-        <View style={[styles.fullInputContainer]}>
+        <View style={[props.classes.fullInputContainer]}>
           <RNTextInput
-            style={styles.fullInputStyle}
+            style={props.classes.fullInputStyle}
             autoCapitalize="none"
             keyboardAppearance="dark"
             returnKeyType="next"
@@ -312,12 +319,12 @@ function TradingPlan() {
           />
         </View>
 
-        <Text style={styles.tendencyCardTitle}>
+        <Text style={props.classes.tendencyCardTitle}>
           Utilisation d'un Stop Loss de Protection ?
         </Text>
-        <View style={[styles.fullInputContainer]}>
+        <View style={[props.classes.fullInputContainer]}>
           <RNTextInput
-            style={styles.fullInputStyle}
+            style={props.classes.fullInputStyle}
             autoCapitalize="none"
             keyboardAppearance="dark"
             returnKeyType="next"
@@ -334,12 +341,14 @@ function TradingPlan() {
         </View>
       </View>
       <View style={styles.toolsTitleContainer}>
-        <Text style={styles.toolsTitle2}>Règle d'ouverture d'un trade</Text>
+        <Text style={props.classes.toolsTitle2}>
+          Règle d'ouverture d'un trade
+        </Text>
       </View>
-      <View style={styles.tendencyCard2}>
-        <Text style={styles.tendencyCardTitle}>Conditions d'achats</Text>
+      <View style={props.classes.tendencyCard2}>
+        <Text style={props.classes.tendencyCardTitle}>Conditions d'achats</Text>
         <View style={styles.tendencyContainer}>
-          <View style={[styles.inputContainer]}>
+          <View style={[props.classes.inputContainer]}>
             <RNTextInput
               style={styles.inputStyle}
               placeholder="Ajouter votre règle"
@@ -361,15 +370,17 @@ function TradingPlan() {
             <Text style={styles.tendencyItemText}>Une condition d'achat</Text>
           </View>
           <TouchableOpacity style={styles.addDocumentRight}>
-            <View style={styles.removeButton}>
+            <View style={props.classes.removeButton}>
               <Text style={styles.removeButtonText}>-</Text>
             </View>
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.tendencyCardTitle}>Conditions de ventes</Text>
+        <Text style={props.classes.tendencyCardTitle}>
+          Conditions de ventes
+        </Text>
         <View style={styles.tendencyContainer}>
-          <View style={[styles.inputContainer]}>
+          <View style={[props.classes.inputContainer]}>
             <RNTextInput
               style={styles.inputStyle}
               placeholder="Ajouter votre règle"
@@ -391,7 +402,7 @@ function TradingPlan() {
             <Text style={styles.tendencyItemText}>Une condition de vente</Text>
           </View>
           <TouchableOpacity style={styles.addDocumentRight}>
-            <View style={styles.removeButton}>
+            <View style={props.classes.removeButton}>
               <Text style={styles.removeButtonText}>-</Text>
             </View>
           </TouchableOpacity>
@@ -405,12 +416,14 @@ function TradingPlan() {
         </View>
       </View>
       <View style={styles.toolsTitleContainer}>
-        <Text style={styles.toolsTitle2}>Règle de clôture d'un trade</Text>
+        <Text style={props.classes.toolsTitle2}>
+          Règle de clôture d'un trade
+        </Text>
       </View>
-      <View style={styles.tendencyCard2}>
-        <Text style={styles.tendencyCardTitle}>Type d'objectif</Text>
+      <View style={props.classes.tendencyCard2}>
+        <Text style={props.classes.tendencyCardTitle}>Type d'objectif</Text>
         <View style={styles.tendencyContainer}>
-          <View style={[styles.inputContainer]}>
+          <View style={[props.classes.inputContainer]}>
             <RNTextInput
               style={styles.inputStyle}
               placeholder="Ajouter votre règle"
@@ -432,15 +445,15 @@ function TradingPlan() {
             <Text style={styles.tendencyItemText}>Un type d'objectif</Text>
           </View>
           <TouchableOpacity style={styles.addDocumentRight}>
-            <View style={styles.removeButton}>
+            <View style={props.classes.removeButton}>
               <Text style={styles.removeButtonText}>-</Text>
             </View>
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.tendencyCardTitle}>Fermeture en perte</Text>
+        <Text style={props.classes.tendencyCardTitle}>Fermeture en perte</Text>
         <View style={styles.tendencyContainer}>
-          <View style={[styles.inputContainer]}>
+          <View style={[props.classes.inputContainer]}>
             <RNTextInput
               style={styles.inputStyle}
               placeholder="Ajouter votre règle"
@@ -462,7 +475,7 @@ function TradingPlan() {
             <Text style={styles.tendencyItemText}>Une fermeture en perte</Text>
           </View>
           <TouchableOpacity style={styles.addDocumentRight}>
-            <View style={styles.removeButton}>
+            <View style={props.classes.removeButton}>
               <Text style={styles.removeButtonText}>-</Text>
             </View>
           </TouchableOpacity>
@@ -472,128 +485,130 @@ function TradingPlan() {
   );
 }
 
-function Calculator() {
+function Calculator(props) {
   return (
-    <View style={[styles.toolsContent, indexStyles.shadowProp]}>
-      <View style={styles.traderCard}>
-        <View style={styles.traderTextContainer}>
-          <Text style={styles.traderText}>TRADER</Text>
+    <View style={[props.classes.toolsContent, indexStyles.shadowProp]}>
+      <View style={props.classes.traderCard}>
+        <View style={props.classes.traderTextContainer}>
+          <Text style={props.classes.traderText}>TRADER</Text>
         </View>
 
         <View style={styles.traderCardContent}>
           <View style={styles.traderCardContentLeft}>
             <Text style={styles.traderSubtitle}>Courtier</Text>
-            <View style={styles.litleTraderTextContainer}>
-              <Text style={styles.litleTraderText}>FTMO</Text>
+            <View style={props.classes.litleTraderTextContainer}>
+              <Text style={props.classes.litleTraderText}>FTMO</Text>
             </View>
           </View>
           <View style={styles.traderCardContentRight}>
             <Text style={styles.traderSubtitle}>Instrument</Text>
-            <View style={styles.litleTraderTextContainer}>
-              <Text style={styles.litleTraderText}>GER40</Text>
+            <View style={props.classes.litleTraderTextContainer}>
+              <Text style={props.classes.litleTraderText}>GER40</Text>
             </View>
           </View>
         </View>
       </View>
 
-      <View style={[styles.traderCard, {marginTop: 30}]}>
-        <View style={styles.traderTextContainer}>
-          <Text style={styles.traderText}>Mon Capital</Text>
+      <View style={[props.classes.traderCard, {marginTop: 30}]}>
+        <View style={props.classes.traderTextContainer}>
+          <Text style={props.classes.traderText}>Mon Capital</Text>
         </View>
         <View style={styles.fullTraderCardContent}>
           <Text style={styles.traderSubtitle}>Montant du capital €</Text>
-          <View style={styles.litleTraderTextContainer}>
-            <Text style={styles.litleTraderText}>5000 €</Text>
+          <View style={props.classes.litleTraderTextContainer}>
+            <Text style={props.classes.litleTraderText}>5000 €</Text>
           </View>
         </View>
       </View>
 
-      <View style={[styles.traderCard, {marginTop: 30}]}>
-        <View style={styles.traderTextContainer}>
-          <Text style={styles.traderText}>Stop Loss de Protection</Text>
+      <View style={[props.classes.traderCard, {marginTop: 30}]}>
+        <View style={props.classes.traderTextContainer}>
+          <Text style={props.classes.traderText}>Stop Loss de Protection</Text>
         </View>
         <View style={styles.fullTraderCardContent}>
           <Text style={styles.traderSubtitle}>Stop placé à X points/pips</Text>
-          <View style={styles.litleTraderTextContainer}>
-            <Text style={styles.litleTraderText}>11 points</Text>
+          <View style={props.classes.litleTraderTextContainer}>
+            <Text style={props.classes.litleTraderText}>11 points</Text>
           </View>
         </View>
       </View>
 
-      <View style={[styles.traderCard, {marginTop: 30}]}>
-        <View style={styles.traderTextContainer}>
-          <Text style={styles.traderText}>Le Risque</Text>
+      <View style={[props.classes.traderCard, {marginTop: 30}]}>
+        <View style={props.classes.traderTextContainer}>
+          <Text style={props.classes.traderText}>Le Risque</Text>
         </View>
         <View style={styles.fullTraderCardContent}>
           <Text style={styles.traderSubtitle}>% du risque accepté</Text>
-          <View style={styles.litleTraderTextContainer}>
-            <Text style={styles.litleTraderText}>1 %</Text>
+          <View style={props.classes.litleTraderTextContainer}>
+            <Text style={props.classes.litleTraderText}>1 %</Text>
           </View>
         </View>
       </View>
 
-      <View style={[styles.traderCard, {marginTop: 30, height: 213}]}>
-        <View style={styles.traderTextContainer}>
-          <Text style={styles.traderText}>Nombre de Micro Lots</Text>
+      <View style={[props.classes.traderCard, {marginTop: 30, height: 213}]}>
+        <View style={props.classes.traderTextContainer}>
+          <Text style={props.classes.traderText}>Nombre de Micro Lots</Text>
         </View>
         <View style={styles.fullTraderCardContent}>
           <Text style={styles.traderSubtitle}>Valeur du points/pip €</Text>
-          <View style={styles.litleTraderTextContainer}>
-            <Text style={styles.litleTraderText}>0.10 €</Text>
+          <View style={props.classes.litleTraderTextContainer}>
+            <Text style={props.classes.litleTraderText}>0.10 €</Text>
           </View>
         </View>
         <View style={styles.fullTraderCardContent}>
           <Text style={styles.traderSubtitle}>
             Nombre de micro lots à prendre
           </Text>
-          <View style={styles.litleTraderTextContainer}>
-            <Text style={styles.litleTraderText}>45.5</Text>
+          <View style={props.classes.litleTraderTextContainer}>
+            <Text style={props.classes.litleTraderText}>45.5</Text>
           </View>
         </View>
       </View>
 
-      <View style={[styles.traderCard, {marginTop: 30, height: 213}]}>
-        <View style={styles.traderTextContainer}>
-          <Text style={styles.traderText}>Objectif</Text>
+      <View style={[props.classes.traderCard, {marginTop: 30, height: 213}]}>
+        <View style={props.classes.traderTextContainer}>
+          <Text style={props.classes.traderText}>Objectif</Text>
         </View>
         <View style={styles.fullTraderCardContent}>
           <Text style={styles.traderSubtitle}>Objectif à (en points)</Text>
-          <View style={styles.litleTraderTextContainer}>
-            <Text style={styles.litleTraderText}>95 points</Text>
+          <View style={props.classes.litleTraderTextContainer}>
+            <Text style={props.classes.litleTraderText}>95 points</Text>
           </View>
         </View>
         <View style={styles.fullTraderCardContent}>
           <Text style={styles.traderSubtitle}>Présantant / € le point</Text>
-          <View style={styles.litleTraderTextContainer}>
-            <Text style={styles.litleTraderText}>4.545</Text>
+          <View style={props.classes.litleTraderTextContainer}>
+            <Text style={props.classes.litleTraderText}>4.545</Text>
           </View>
         </View>
       </View>
 
-      <Text style={styles.traderBigText}>Impact / Performances</Text>
-      <View style={[styles.traderCard, {marginTop: 10, height: 195}]}>
+      <Text style={props.classes.traderBigText}>Impact / Performances</Text>
+      <View style={[props.classes.traderCard, {marginTop: 10, height: 195}]}>
         <View style={styles.impactSectionContainer}>
-          <Text style={styles.impactTextLeft}>Gain prévisionnel €</Text>
-          <View style={styles.impactSectionContainerRight}>
-            <Text style={styles.percentageItemText}>500.00 €</Text>
+          <Text style={props.classes.impactTextLeft}>Gain prévisionnel €</Text>
+          <View style={props.classes.impactSectionContainerRight}>
+            <Text style={props.classes.percentageItemText}>500.00 €</Text>
           </View>
         </View>
         <View style={styles.impactSectionContainer}>
-          <Text style={styles.impactTextLeft}>Perte prévisionnel €</Text>
-          <View style={styles.impactSectionContainerRight}>
-            <Text style={styles.percentageItemText}>-50.00 €</Text>
+          <Text style={props.classes.impactTextLeft}>Perte prévisionnel €</Text>
+          <View style={props.classes.impactSectionContainerRight}>
+            <Text style={props.classes.percentageItemText}>-50.00 €</Text>
           </View>
         </View>
         <View style={styles.impactSectionContainer}>
-          <Text style={styles.impactTextLeft}>Niveau de Risk Rendement</Text>
-          <View style={styles.impactSectionContainerRight}>
-            <Text style={styles.percentageItemText}>8.6</Text>
+          <Text style={props.classes.impactTextLeft}>
+            Niveau de Risk Rendement
+          </Text>
+          <View style={props.classes.impactSectionContainerRight}>
+            <Text style={props.classes.percentageItemText}>8.6</Text>
           </View>
         </View>
         <View style={styles.impactSectionContainer}>
-          <Text style={styles.impactTextLeft}>Évolution Capital %</Text>
-          <View style={styles.impactSectionContainerRight}>
-            <Text style={styles.percentageItemText}>8.6 %</Text>
+          <Text style={props.classes.impactTextLeft}>Évolution Capital %</Text>
+          <View style={props.classes.impactSectionContainerRight}>
+            <Text style={props.classes.percentageItemText}>8.6 %</Text>
           </View>
         </View>
       </View>
@@ -601,44 +616,45 @@ function Calculator() {
         <Text style={styles.saveButtonText}>Sauvegarder</Text>
       </TouchableOpacity>
 
-      <Text style={styles.traderBigText}>Placement du Stop</Text>
-      <View style={[styles.traderCard, {marginTop: 10, height: 295}]}></View>
+      <Text style={props.classes.traderBigText}>Placement du Stop</Text>
+      <View
+        style={[props.classes.traderCard, {marginTop: 10, height: 295}]}></View>
     </View>
   );
 }
 
-function Simulator() {
+function Simulator(props) {
   return (
-    <View style={[styles.toolsContent, indexStyles.shadowProp]}>
+    <View style={[props.classes.toolsContent, indexStyles.shadowProp]}>
       {/* Etape 1 */}
       <View style={[styles.stepTitleContainer, {marginTop: 30}]}>
         <View style={styles.stepTitle}>
           <Text style={styles.stepTitleText}>Étape 1</Text>
         </View>
       </View>
-      <Text style={styles.toolsTitle2}>
+      <Text style={props.classes.toolsTitle2}>
         Configurez votre projection de gains sur les marchés financiers
       </Text>
-      <View style={[styles.traderCard, {height: 150}]}>
+      <View style={[props.classes.traderCard, {height: 150}]}>
         <View style={styles.cardSection}>
           <View style={styles.cardContentLeft}>
-            <Text style={styles.objectiveItemLeftTopText}>
+            <Text style={props.classes.objectiveItemLeftTopText}>
               Montant de votre capital €
             </Text>
           </View>
-          <View style={styles.percentageItemContainer}>
-            <Text style={styles.percentageItemText}>3000 €</Text>
+          <View style={props.classes.percentageItemContainer}>
+            <Text style={props.classes.percentageItemText}>3000 €</Text>
           </View>
         </View>
-        <Text style={styles.sectionText}>
+        <Text style={props.classes.sectionText}>
           Augmentation prévisionnelle du capital*
         </Text>
         <Text style={styles.sectionInfo}>
           *Par jour : veuillez entrer une valeur comprise entre 0.5 et 5 %
         </Text>
         <View style={[styles.cardSection, {marginTop: 11}]}>
-          <View style={styles.cardContentBottomLeft}>
-            <Text style={styles.cardContentBottomLeftText}>1.00</Text>
+          <View style={props.classes.cardContentBottomLeft}>
+            <Text style={props.classes.cardContentBottomLeftText}>1.00</Text>
           </View>
           <View style={styles.cardContentBottomRight}>
             <Text style={styles.cardContentBottomRightText}>
@@ -655,13 +671,13 @@ function Simulator() {
           <Text style={styles.stepTitleText}>Étape 2</Text>
         </View>
       </View>
-      <Text style={styles.toolsTitle2}>
+      <Text style={props.classes.toolsTitle2}>
         Tes revenues potentiels grâce aux marchés financiers
       </Text>
-      <View style={[styles.traderCard, styles.simulator]}>
+      <View style={[props.classes.traderCard, styles.simulator]}>
         <View style={styles.cardSubtitleSection}>
           <View style={styles.subtitleSectionLeft}>
-            <Text style={styles.subtitleSectionLeftText}>
+            <Text style={props.classes.subtitleSectionLeftText}>
               Voici ce que les marchés vous rapporteraient en seulement
             </Text>
           </View>
@@ -669,9 +685,11 @@ function Simulator() {
             <Text style={styles.cardSubtitleSectionRightText}>1 an</Text>
           </View>
         </View>
-        <View style={styles.innerCardSection}>
+        <View style={props.classes.innerCardSection}>
           <View style={styles.innerCardSubtitleContainer}>
-            <Text style={styles.innerCardSubtitleText}>Marchés financiers</Text>
+            <Text style={props.classes.innerCardSubtitleText}>
+              Marchés financiers
+            </Text>
           </View>
           <View style={styles.innerCardContent}>
             <View style={styles.innerCardContentLeft}>
@@ -688,9 +706,11 @@ function Simulator() {
             </View>
           </View>
         </View>
-        <View style={[styles.innerCardSection, {marginTop: 10}]}>
+        <View style={[props.classes.innerCardSection, {marginTop: 10}]}>
           <View style={styles.innerCardSubtitleContainer}>
-            <Text style={styles.innerCardSubtitleText}>Marchés financiers</Text>
+            <Text style={props.classes.innerCardSubtitleText}>
+              Marchés financiers
+            </Text>
           </View>
           <View style={styles.innerCardContent}>
             <View style={styles.innerCardContentLeft}>
@@ -708,14 +728,16 @@ function Simulator() {
           </View>
         </View>
 
-        <View style={[styles.innerCardSection, styles.graphSection]}>
-          <Text>GRAPHIQUE A INSERER</Text>
+        <View style={[props.classes.innerCardSection, styles.graphSection]}>
+          <Text style={props.classes.innerCardSubtitleText}>
+            GRAPHIQUE A INSERER
+          </Text>
         </View>
 
         {/* 2 ans */}
         <View style={[styles.cardSubtitleSection, {marginTop: 30}]}>
           <View style={styles.subtitleSectionLeft2}>
-            <Text style={styles.subtitleSectionLeftText}>
+            <Text style={props.classes.subtitleSectionLeftText}>
               Voici ce que les marchés vous rapporteraient en seulement
             </Text>
           </View>
@@ -723,9 +745,11 @@ function Simulator() {
             <Text style={styles.cardSubtitleSectionRightText}>2 ans</Text>
           </View>
         </View>
-        <View style={styles.innerCardSection}>
+        <View style={props.classes.innerCardSection}>
           <View style={styles.innerCardSubtitleContainer}>
-            <Text style={styles.innerCardSubtitleText}>Marchés financiers</Text>
+            <Text style={props.classes.innerCardSubtitleText}>
+              Marchés financiers
+            </Text>
           </View>
           <View style={styles.innerCardContent}>
             <View style={styles.innerCardContentLeft}>
@@ -742,9 +766,11 @@ function Simulator() {
             </View>
           </View>
         </View>
-        <View style={[styles.innerCardSection, {marginTop: 10}]}>
+        <View style={[props.classes.innerCardSection, {marginTop: 10}]}>
           <View style={styles.innerCardSubtitleContainer}>
-            <Text style={styles.innerCardSubtitleText}>Marchés financiers</Text>
+            <Text style={props.classes.innerCardSubtitleText}>
+              Marchés financiers
+            </Text>
           </View>
           <View style={styles.innerCardContent}>
             <View style={styles.innerCardContentLeft}>
@@ -766,28 +792,153 @@ function Simulator() {
   );
 }
 
-function ToolsContainer({selectedFooter}) {
+function ToolsContainer({classes, selectedFooter}) {
   if (selectedFooter === 'calculator') {
     return (
       <ScrollView style={styles.tabContent}>
-        <Calculator />
+        <Calculator classes={classes} />
       </ScrollView>
     );
   } else if (selectedFooter === 'simulator') {
     return (
       <ScrollView style={styles.tabContent}>
-        <Simulator />
+        <Simulator classes={classes} />
       </ScrollView>
     );
   }
   return (
     <ScrollView style={styles.tabContent}>
-      <TradingPlan />
+      <TradingPlan classes={classes} />
     </ScrollView>
   );
 }
 
 function Tools() {
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const classes = {
+    footer: [styles.footer, colorScheme === 'dark' && styles.footerDark],
+    separator: [
+      styles.separator,
+      colorScheme === 'dark' && styles.separatorDark,
+    ],
+    toolsContent: [
+      styles.toolsContent,
+      colorScheme === 'dark' && styles.toolsContentDark,
+    ],
+    toolsTitle2: [
+      styles.toolsTitle2,
+      colorScheme === 'dark' && styles.toolsTitle2Dark,
+    ],
+    tendencyCard: [
+      styles.tendencyCard,
+      colorScheme === 'dark' && styles.tendencyCardDark,
+    ],
+    tendencyCardTitle: [
+      styles.tendencyCardTitle,
+      colorScheme === 'dark' && styles.tendencyCardTitleDark,
+    ],
+    inputContainer: [
+      styles.inputContainer,
+      colorScheme === 'dark' && styles.inputContainerDark,
+    ],
+    removeButton: [
+      styles.removeButton,
+      colorScheme === 'dark' && styles.removeButtonDark,
+    ],
+    objectiveCard: [
+      styles.objectiveCard,
+      colorScheme === 'dark' && styles.objectiveCardDark,
+    ],
+    objectiveItemLeftTopText: [
+      styles.objectiveItemLeftTopText,
+      colorScheme === 'dark' && styles.objectiveItemLeftTopTextDark,
+    ],
+    percentageItemContainer: [
+      styles.percentageItemContainer,
+      colorScheme === 'dark' && styles.percentageItemContainerDark,
+    ],
+    percentageItemText: [
+      styles.percentageItemText,
+      colorScheme === 'dark' && styles.percentageItemTextDark,
+    ],
+    ruleCard: [styles.ruleCard, colorScheme === 'dark' && styles.ruleCardDark],
+    fullInputContainer: [
+      styles.fullInputContainer,
+      colorScheme === 'dark' && styles.fullInputContainerDark,
+    ],
+    fullInputStyle: [
+      styles.fullInputStyle,
+      colorScheme === 'dark' && styles.fullInputStyleDark,
+    ],
+    litleInputContainer: [
+      styles.litleInputContainer,
+      colorScheme === 'dark' && styles.litleInputContainerDark,
+    ],
+    litleInputStyle: [
+      styles.litleInputStyle,
+      colorScheme === 'dark' && styles.litleInputStyleDark,
+    ],
+    tendencyCard2: [
+      styles.tendencyCard2,
+      colorScheme === 'dark' && styles.tendencyCard2Dark,
+    ],
+    traderCard: [
+      styles.traderCard,
+      colorScheme === 'dark' && styles.traderCardDark,
+    ],
+    litleTraderTextContainer: [
+      styles.litleTraderTextContainer,
+      colorScheme === 'dark' && styles.litleTraderTextContainerDark,
+    ],
+    traderTextContainer: [
+      styles.traderTextContainer,
+      colorScheme === 'dark' && styles.traderTextContainerDark,
+    ],
+    litleTraderText: [
+      styles.litleTraderText,
+      colorScheme === 'dark' && styles.litleTraderTextDark,
+    ],
+    traderText: [
+      styles.traderText,
+      colorScheme === 'dark' && styles.traderTextDark,
+    ],
+    traderBigText: [
+      styles.traderBigText,
+      colorScheme === 'dark' && styles.traderBigTextDark,
+    ],
+    impactTextLeft: [
+      styles.impactTextLeft,
+      colorScheme === 'dark' && styles.impactTextLeftDark,
+    ],
+    impactSectionContainerRight: [
+      styles.impactSectionContainerRight,
+      colorScheme === 'dark' && styles.impactSectionContainerRightDark,
+    ],
+    sectionText: [
+      styles.sectionText,
+      colorScheme === 'dark' && styles.sectionTextDark,
+    ],
+    cardContentBottomLeft: [
+      styles.cardContentBottomLeft,
+      colorScheme === 'dark' && styles.cardContentBottomLeftDark,
+    ],
+    cardContentBottomLeftText: [
+      styles.cardContentBottomLeftText,
+      colorScheme === 'dark' && styles.cardContentBottomLeftTextDark,
+    ],
+    subtitleSectionLeftText: [
+      styles.subtitleSectionLeftText,
+      colorScheme === 'dark' && styles.subtitleSectionLeftTextDark,
+    ],
+    innerCardSection: [
+      styles.innerCardSection,
+      colorScheme === 'dark' && styles.innerCardSectionDark,
+    ],
+    innerCardSubtitleText: [
+      styles.innerCardSubtitleText,
+      colorScheme === 'dark' && styles.innerCardSubtitleTextDark,
+    ],
+  };
   const isDarkMode = useColorScheme() === 'dark';
   const [selectedFooter, setSelectedFooter] = useState('trading_plan');
   const backgroundStyle = {
@@ -838,10 +989,10 @@ function Tools() {
           currentScreen="Tools"
           handleScrollToLeft={() => handleScrollToLeft()}
         />
-        <ToolsContainer selectedFooter={selectedFooter} />
+        <ToolsContainer classes={classes} selectedFooter={selectedFooter} />
       </ScrollView>
       {!scrollToMenu ? (
-        <View style={styles.footer}>
+        <View style={classes.footer}>
           <TouchableOpacity
             style={
               selectedFooter === 'trading_plan'
@@ -882,7 +1033,7 @@ function Tools() {
               Forex/Indices
             </Text>
           </TouchableOpacity>
-          <Text style={styles.separator}>|</Text>
+          <Text style={classes.separator}>|</Text>
           <TouchableOpacity
             style={
               selectedFooter === 'simulator'
@@ -906,12 +1057,15 @@ function Tools() {
 }
 
 const styles = StyleSheet.create({
+  toolsContentDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   toolsContent: {
     width: Dimensions.get('window').width,
     height: '100%',
     paddingLeft: 10,
     paddingRight: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     marginTop: 5,
@@ -947,14 +1101,20 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginRight: 15,
   },
+  toolsTitle2Dark: {
+    color: theme.colors.text.$textDark,
+  },
   toolsTitle2: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     marginTop: 15,
     fontWeight: 500,
     fontSize: 20,
     lineHeight: 24,
     marginLeft: 5,
     marginRight: 5,
+  },
+  footerDark: {
+    backgroundColor: theme.colors.component.$cardDark,
   },
   footer: {
     position: 'absolute',
@@ -963,7 +1123,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: 74,
     flexDirection: 'row',
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     borderBottomLeftRadius: 0,
@@ -1037,6 +1197,9 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     color: '#9BA5BF',
   },
+  separatorDark: {
+    color: '#545458',
+  },
   separator: {
     marginTop: 12,
     fontWeight: 500,
@@ -1044,10 +1207,13 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     color: '#9BA5BF',
   },
+  tendencyCardDark: {
+    backgroundColor: theme.colors.component.$cardDark,
+  },
   tendencyCard: {
     width: '100%',
     height: 215,
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     borderRadius: 20,
     ...Platform.select({
       ios: {
@@ -1067,10 +1233,13 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
   },
+  tendencyCardTitleDark: {
+    color: theme.colors.text.$textDark,
+  },
   tendencyCardTitle: {
     marginLeft: 5,
     marginTop: 15,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontWeight: 500,
     fontSize: 13,
     lineHeight: 16,
@@ -1081,11 +1250,14 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 46,
   },
+  inputContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   inputContainer: {
     width: Dimensions.get('window').width - 78,
     height: 36,
     marginTop: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderRadius: 10,
     justifyContent: 'center',
     borderWidth: 1,
@@ -1100,11 +1272,14 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 2,
   },
+  fullInputContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   fullInputContainer: {
     width: Dimensions.get('window').width - 40,
     height: 36,
     marginTop: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderRadius: 10,
     justifyContent: 'center',
     borderWidth: 1,
@@ -1127,12 +1302,15 @@ const styles = StyleSheet.create({
     color: '#9BA5BF',
     marginLeft: 10,
   },
+  fullInputStyleDark: {
+    color: theme.colors.text.$textDark,
+  },
   fullInputStyle: {
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontSize: 13,
     lineHeight: 16,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     marginLeft: 10,
   },
   addItem: {
@@ -1225,10 +1403,13 @@ const styles = StyleSheet.create({
     fontSize: 17,
     lineHeight: 21,
   },
+  objectiveCardDark: {
+    backgroundColor: theme.colors.component.$cardDark,
+  },
   objectiveCard: {
     height: 220,
     width: '100%',
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     borderRadius: 20,
     marginTop: 10,
     marginBottom: 10,
@@ -1257,8 +1438,11 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     justifyContent: 'center',
   },
+  objectiveItemLeftTopTextDark: {
+    color: theme.colors.text.$textDark,
+  },
   objectiveItemLeftTopText: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 500,
@@ -1273,9 +1457,12 @@ const styles = StyleSheet.create({
     fontSize: 10,
     lineHeight: 12,
   },
+  percentageItemContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   percentageItemContainer: {
     width: 100,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     marginLeft: 15,
     marginTop: 15,
     height: 36,
@@ -1295,8 +1482,11 @@ const styles = StyleSheet.create({
     borderColor: '#9154FD',
     borderStyle: 'solid',
   },
+  percentageItemTextDark: {
+    color: theme.colors.text.$textDark,
+  },
   percentageItemText: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 500,
@@ -1304,10 +1494,13 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     textAlign: 'right',
   },
+  ruleCardDark: {
+    backgroundColor: theme.colors.component.$cardDark,
+  },
   ruleCard: {
     height: 684,
     width: '100%',
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     borderRadius: 20,
     marginTop: 10,
     marginBottom: 10,
@@ -1340,11 +1533,14 @@ const styles = StyleSheet.create({
   timeRangeContainer: {
     flexDirection: 'row',
   },
+  litleInputContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   litleInputContainer: {
     width: 68,
     height: 36,
     marginTop: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -1361,17 +1557,23 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     marginRight: 10,
   },
+  litleInputStyleDark: {
+    color: theme.colors.text.$textDark,
+  },
   litleInputStyle: {
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontSize: 13,
     lineHeight: 16,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
+  },
+  tendencyCard2Dark: {
+    backgroundColor: theme.colors.component.$cardDark,
   },
   tendencyCard2: {
     height: 260,
     width: '100%',
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     borderRadius: 20,
     marginTop: 10,
     marginBottom: 10,
@@ -1392,8 +1594,11 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  traderCardDark: {
+    backgroundColor: theme.colors.component.$cardDark,
+  },
   traderCard: {
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     borderRadius: 20,
     height: 138,
     width: '100%',
@@ -1416,11 +1621,14 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  traderTextContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   traderTextContainer: {
     width: Dimensions.get('window').width - 40,
     height: 43,
     marginTop: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderRadius: 10,
     shadowOffset: {
       width: 0,
@@ -1431,8 +1639,11 @@ const styles = StyleSheet.create({
     shadowRadius: 13,
     elevation: 0,
   },
+  traderTextDark: {
+    color: theme.colors.text.$textDark,
+  },
   traderText: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 600,
@@ -1441,8 +1652,11 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginLeft: 10,
   },
+  traderBigTextDark: {
+    color: theme.colors.text.$textDark,
+  },
   traderBigText: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 600,
@@ -1481,6 +1695,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingTop: 0,
   },
+  impactTextLeftDark: {
+    color: theme.colors.text.$textDark,
+  },
   impactTextLeft: {
     width: Dimensions.get('window').width - 180,
     marginTop: 18,
@@ -1492,10 +1709,14 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 13,
     lineHeight: 16,
+    color: theme.colors.text.$textLight,
+  },
+  impactSectionContainerRightDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   impactSectionContainerRight: {
     width: 120,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     marginLeft: 15,
     marginTop: 10,
     height: 36,
@@ -1511,11 +1732,14 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     paddingLeft: 10,
   },
+  litleTraderTextContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   litleTraderTextContainer: {
     width: '100%',
     height: 36,
     marginTop: 6,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderRadius: 10,
     shadowOffset: {
       width: 0,
@@ -1529,8 +1753,11 @@ const styles = StyleSheet.create({
     borderColor: '#9154FD',
     borderStyle: 'solid',
   },
+  litleTraderTextDark: {
+    color: theme.colors.text.$textDark,
+  },
   litleTraderText: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 500,
@@ -1575,8 +1802,11 @@ const styles = StyleSheet.create({
   cardContentRight: {
     width: 100,
   },
+  sectionTextDark: {
+    color: theme.colors.text.$textDark,
+  },
   sectionText: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 500,
@@ -1594,11 +1824,14 @@ const styles = StyleSheet.create({
     lineHeight: 12,
     marginLeft: 5,
   },
+  cardContentBottomLeftDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   cardContentBottomLeft: {
     width: Dimensions.get('window').width - 155,
     height: 36,
     borderRadius: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderColor: '#9154FD',
     borderWidth: 1,
     marginRight: 15,
@@ -1611,8 +1844,11 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 0,
   },
+  cardContentBottomLeftTextDark: {
+    color: theme.colors.text.$textDark,
+  },
   cardContentBottomLeftText: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 500,
@@ -1660,8 +1896,11 @@ const styles = StyleSheet.create({
   subtitleSectionLeft2: {
     width: Dimensions.get('window').width - 98,
   },
+  subtitleSectionLeftTextDark: {
+    color: theme.colors.text.$textDark,
+  },
   subtitleSectionLeftText: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 500,
@@ -1692,10 +1931,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 2,
   },
+  innerCardSectionDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   innerCardSection: {
     width: '100%',
     height: 120,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderRadius: 10,
     marginTop: 15,
     elevation: 8,
@@ -1713,8 +1955,11 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 15,
   },
+  innerCardSubtitleTextDark: {
+    color: theme.colors.text.$textDark,
+  },
   innerCardSubtitleText: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 500,
@@ -1780,12 +2025,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginTop: 1,
   },
+  removeButtonDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   removeButton: {
     width: 26,
     height: 26,
     alignItems: 'center',
     marginRight: 6,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderRadius: 10,
   },
   removeButtonText: {
