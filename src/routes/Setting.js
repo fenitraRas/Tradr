@@ -29,6 +29,7 @@ import Twitter from '../assets/icons/twitter.svg';
 import {formStyles} from '../assets/css/form';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
+import {indexStyles} from '../assets/css';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
@@ -60,7 +61,7 @@ function Navbar(props) {
 
 function SettingContent() {
   return (
-    <View style={[styles.settingContent, styles.shadowProp]}>
+    <View style={[styles.settingContent, indexStyles.shadowProp]}>
       <TouchableOpacity style={styles.item}>
         <Text style={styles.itemText}>Compte</Text>
       </TouchableOpacity>
@@ -179,16 +180,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     marginTop: 5,
     paddingBottom: 14,
-  },
-  shadowProp: {
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 20,
-    elevation: 2,
   },
   content: {
     height:

@@ -24,13 +24,12 @@ import React, {useRef, useState} from 'react';
 
 import ArrowDesc from '../assets/icons/arrowDesc.svg';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import ComponentAdd from '../assets/icons/componentAdd.svg';
-import ComponentRemove from '../assets/icons/componentRemove.svg';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
 import {formStyles} from '../assets/css/form';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
+import {indexStyles} from '../assets/css';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
@@ -62,7 +61,7 @@ function Navbar(props) {
 
 function TradingPlan() {
   return (
-    <ScrollView style={[styles.toolsContent, styles.shadowProp]}>
+    <View style={[styles.toolsContent, indexStyles.shadowProp]}>
       <View style={styles.toolsTitleContainer}>
         <Text style={styles.toolsTitle2}>À faire avant chaque session</Text>
       </View>
@@ -80,8 +79,10 @@ function TradingPlan() {
               returnKeyLabel="next"
             />
           </View>
-          <TouchableOpacity>
-            <ComponentAdd width={48} height={48} style={styles.addItem} />
+          <TouchableOpacity style={styles.addDocumentRight}>
+            <View style={styles.addButton}>
+              <Text style={styles.addButtonText}>+</Text>
+            </View>
           </TouchableOpacity>
         </View>
         <Text style={styles.tendencyCardTitle}>Vos tendances</Text>
@@ -91,8 +92,10 @@ function TradingPlan() {
               Déterminer la tendance de fond
             </Text>
           </View>
-          <TouchableOpacity>
-            <ComponentRemove width={35} height={35} style={styles.removeItem} />
+          <TouchableOpacity style={styles.addDocumentRight}>
+            <View style={styles.removeButton}>
+              <Text style={styles.removeButtonText}>-</Text>
+            </View>
           </TouchableOpacity>
         </View>
         <View style={styles.tendencyContainer}>
@@ -101,8 +104,10 @@ function TradingPlan() {
               Déterminer la tendance de fond
             </Text>
           </View>
-          <TouchableOpacity>
-            <ComponentRemove width={35} height={35} style={styles.removeItem} />
+          <TouchableOpacity style={styles.addDocumentRight}>
+            <View style={styles.removeButton}>
+              <Text style={styles.removeButtonText}>-</Text>
+            </View>
           </TouchableOpacity>
         </View>
       </View>
@@ -204,16 +209,20 @@ function TradingPlan() {
               returnKeyLabel="next"
             />
           </View>
-          <TouchableOpacity>
-            <ComponentAdd width={48} height={48} style={styles.addItem} />
+          <TouchableOpacity style={styles.addDocumentRight}>
+            <View style={styles.addButton}>
+              <Text style={styles.addButtonText}>+</Text>
+            </View>
           </TouchableOpacity>
         </View>
         <View style={styles.tendencyContainer}>
           <View style={styles.tendencyItem}>
             <Text style={styles.tendencyItemText}>DAYTRADR PRO</Text>
           </View>
-          <TouchableOpacity>
-            <ComponentRemove width={35} height={35} style={styles.removeItem} />
+          <TouchableOpacity style={styles.addDocumentRight}>
+            <View style={styles.removeButton}>
+              <Text style={styles.removeButtonText}>-</Text>
+            </View>
           </TouchableOpacity>
         </View>
 
@@ -273,20 +282,20 @@ function TradingPlan() {
               value="14h30"
             />
           </View>
-          <TouchableOpacity>
-            <ComponentAdd
-              width={48}
-              height={48}
-              style={[styles.addItem, {marginLeft: -10}]}
-            />
+          <TouchableOpacity style={[styles.addDocumentRight, {marginLeft: 2}]}>
+            <View style={styles.addButton}>
+              <Text style={styles.addButtonText}>+</Text>
+            </View>
           </TouchableOpacity>
         </View>
         <View style={styles.tendencyContainer}>
           <View style={styles.litleTendencyItem}>
             <Text style={styles.litleTendencyItemText}>10h30-12h30</Text>
           </View>
-          <TouchableOpacity>
-            <ComponentRemove width={35} height={35} style={styles.removeItem} />
+          <TouchableOpacity style={styles.addDocumentRight}>
+            <View style={styles.removeButton}>
+              <Text style={styles.removeButtonText}>-</Text>
+            </View>
           </TouchableOpacity>
         </View>
 
@@ -341,16 +350,20 @@ function TradingPlan() {
               returnKeyLabel="next"
             />
           </View>
-          <TouchableOpacity>
-            <ComponentAdd width={48} height={48} style={styles.addItem} />
+          <TouchableOpacity style={styles.addDocumentRight}>
+            <View style={styles.addButton}>
+              <Text style={styles.addButtonText}>+</Text>
+            </View>
           </TouchableOpacity>
         </View>
         <View style={styles.tendencyContainer}>
           <View style={styles.tendencyItem}>
             <Text style={styles.tendencyItemText}>Une condition d'achat</Text>
           </View>
-          <TouchableOpacity>
-            <ComponentRemove width={35} height={35} style={styles.removeItem} />
+          <TouchableOpacity style={styles.addDocumentRight}>
+            <View style={styles.removeButton}>
+              <Text style={styles.removeButtonText}>-</Text>
+            </View>
           </TouchableOpacity>
         </View>
 
@@ -367,16 +380,20 @@ function TradingPlan() {
               returnKeyLabel="next"
             />
           </View>
-          <TouchableOpacity>
-            <ComponentAdd width={48} height={48} style={styles.addItem} />
+          <TouchableOpacity style={styles.addDocumentRight}>
+            <View style={styles.addButton}>
+              <Text style={styles.addButtonText}>+</Text>
+            </View>
           </TouchableOpacity>
         </View>
         <View style={styles.tendencyContainer}>
           <View style={styles.tendencyItem}>
             <Text style={styles.tendencyItemText}>Une condition de vente</Text>
           </View>
-          <TouchableOpacity>
-            <ComponentRemove width={35} height={35} style={styles.removeItem} />
+          <TouchableOpacity style={styles.addDocumentRight}>
+            <View style={styles.removeButton}>
+              <Text style={styles.removeButtonText}>-</Text>
+            </View>
           </TouchableOpacity>
         </View>
       </View>
@@ -404,16 +421,20 @@ function TradingPlan() {
               returnKeyLabel="next"
             />
           </View>
-          <TouchableOpacity>
-            <ComponentAdd width={48} height={48} style={styles.addItem} />
+          <TouchableOpacity style={styles.addDocumentRight}>
+            <View style={styles.addButton}>
+              <Text style={styles.addButtonText}>+</Text>
+            </View>
           </TouchableOpacity>
         </View>
         <View style={styles.tendencyContainer}>
           <View style={styles.tendencyItem}>
             <Text style={styles.tendencyItemText}>Un type d'objectif</Text>
           </View>
-          <TouchableOpacity>
-            <ComponentRemove width={35} height={35} style={styles.removeItem} />
+          <TouchableOpacity style={styles.addDocumentRight}>
+            <View style={styles.removeButton}>
+              <Text style={styles.removeButtonText}>-</Text>
+            </View>
           </TouchableOpacity>
         </View>
 
@@ -430,26 +451,30 @@ function TradingPlan() {
               returnKeyLabel="next"
             />
           </View>
-          <TouchableOpacity>
-            <ComponentAdd width={48} height={48} style={styles.addItem} />
+          <TouchableOpacity style={styles.addDocumentRight}>
+            <View style={styles.addButton}>
+              <Text style={styles.addButtonText}>+</Text>
+            </View>
           </TouchableOpacity>
         </View>
         <View style={styles.tendencyContainer}>
           <View style={styles.tendencyItem}>
             <Text style={styles.tendencyItemText}>Une fermeture en perte</Text>
           </View>
-          <TouchableOpacity>
-            <ComponentRemove width={35} height={35} style={styles.removeItem} />
+          <TouchableOpacity style={styles.addDocumentRight}>
+            <View style={styles.removeButton}>
+              <Text style={styles.removeButtonText}>-</Text>
+            </View>
           </TouchableOpacity>
         </View>
       </View>
-    </ScrollView>
+    </View>
   );
 }
 
 function Calculator() {
   return (
-    <ScrollView style={[styles.toolsContent, styles.shadowProp]}>
+    <View style={[styles.toolsContent, indexStyles.shadowProp]}>
       <View style={styles.traderCard}>
         <View style={styles.traderTextContainer}>
           <Text style={styles.traderText}>TRADER</Text>
@@ -578,13 +603,13 @@ function Calculator() {
 
       <Text style={styles.traderBigText}>Placement du Stop</Text>
       <View style={[styles.traderCard, {marginTop: 10, height: 295}]}></View>
-    </ScrollView>
+    </View>
   );
 }
 
 function Simulator() {
   return (
-    <ScrollView style={[styles.toolsContent, styles.shadowProp]}>
+    <View style={[styles.toolsContent, indexStyles.shadowProp]}>
       {/* Etape 1 */}
       <View style={[styles.stepTitleContainer, {marginTop: 30}]}>
         <View style={styles.stepTitle}>
@@ -737,7 +762,7 @@ function Simulator() {
           </View>
         </View>
       </View>
-    </ScrollView>
+    </View>
   );
 }
 
@@ -901,16 +926,6 @@ const styles = StyleSheet.create({
   simulator: {
     height: Platform.OS === 'android' ? 920 : 940,
   },
-  shadowProp: {
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 20,
-    elevation: 2,
-  },
   navbarText: {
     textAlign: 'center',
     fontWeight: 500,
@@ -980,8 +995,8 @@ const styles = StyleSheet.create({
     shadowColor: '#9154fd',
     shadowOffset: {width: 0, height: 4},
     shadowOpacity: 0.6,
-    shadowRadius: 14,
-    elevation: 5,
+    shadowRadius: 4,
+    elevation: 4,
     paddingTop: 6,
   },
   selectedFooterCenter: {
@@ -1000,11 +1015,8 @@ const styles = StyleSheet.create({
   unselectedFooterCenter: {
     width: '33%',
     alignItems: 'center',
-    // borderRightWidth: 1,
-    // height: 16,
     height: 44,
     marginTop: 6,
-    // borderColor: '#9BA5BF',
   },
   unselectedFooter: {
     width: '33%',
@@ -1037,14 +1049,20 @@ const styles = StyleSheet.create({
     height: 215,
     backgroundColor: '#E9EDFC',
     borderRadius: 20,
-    // elevation: 8,
-    // shadowColor: "rgba(9, 13, 109, 0.4)",
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 30,
-    // },
-    // shadowRadius: 40,
-    // shadowOpacity: 1,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 3,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
     marginTop: 10,
     paddingLeft: 10,
     paddingRight: 10,
@@ -1073,14 +1091,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#9154FD',
     borderStyle: 'solid',
-    elevation: 8,
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
+    elevation: 4,
+    shadowColor: 'rgba(145, 84, 253, 0.8)',
     shadowOffset: {
       width: 0,
-      height: 15,
+      height: 2,
     },
-    shadowRadius: 20,
-    shadowOpacity: 1,
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
   },
   fullInputContainer: {
     width: Dimensions.get('window').width - 40,
@@ -1092,14 +1110,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#9154FD',
     borderStyle: 'solid',
-    elevation: 8,
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
+    elevation: 4,
+    shadowColor: 'rgba(145, 84, 253, 0.8)',
     shadowOffset: {
       width: 0,
-      height: 15,
+      height: 2,
     },
-    shadowRadius: 20,
-    shadowOpacity: 1,
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
   },
   inputStyle: {
     fontFamily: 'Montserrat',
@@ -1129,12 +1147,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     shadowOffset: {
       width: 0,
-      height: 15,
+      height: 2,
     },
     shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOpacity: 1,
-    shadowRadius: 20,
-    elevation: 8,
+    shadowOpacity: 0.6,
+    shadowRadius: 2,
+    elevation: 3,
   },
   litleTendencyItem: {
     width: 130,
@@ -1146,16 +1164,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     shadowOffset: {
       width: 0,
-      height: 15,
+      height: 2,
     },
     shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOpacity: 1,
-    shadowRadius: 20,
-    elevation: 8,
-  },
-  removeItem: {
-    marginTop: 17,
-    marginLeft: 8,
+    shadowOpacity: 0.6,
+    shadowRadius: 2,
+    elevation: 3,
   },
   tendencyItemText: {
     color: '#FFFFFF',
@@ -1188,6 +1202,20 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     justifyContent: 'center',
     alignItems: 'center',
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(145, 84, 253, 0.7)',
+        shadowOffset: {
+          width: 0,
+          height: 3,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   stepTitleText: {
     color: '#FFFFFF',
@@ -1204,14 +1232,20 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginTop: 10,
     marginBottom: 10,
-    // elevation: 8,
-    // shadowColor: "rgba(9, 13, 109, 0.4)",
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 30,
-    // },
-    // shadowRadius: 40,
-    // shadowOpacity: 1,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 3,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   objectiveItemContainer: {
     flexDirection: 'row',
@@ -1248,11 +1282,12 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     shadowOffset: {
       width: 0,
-      height: 15,
+      height: 2,
     },
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOpacity: 1,
-    shadowRadius: 20,
+    shadowColor: 'rgba(9, 13, 109, 0.45)',
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
+    elevation: 0,
     justifyContent: 'center',
     paddingRight: 10,
     paddingLeft: 10,
@@ -1278,14 +1313,20 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingRight: 10,
     paddingLeft: 10,
-    // elevation: 8,
-    // shadowColor: "rgba(9, 13, 109, 0.4)",
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 30,
-    // },
-    // shadowRadius: 40,
-    // shadowOpacity: 1,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 3,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   indication: {
     color: '#9154FD',
@@ -1310,14 +1351,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#9154FD',
     borderStyle: 'solid',
-    elevation: 8,
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
+    elevation: 4,
+    shadowColor: 'rgba(145, 84, 253, 0.8)',
     shadowOffset: {
       width: 0,
-      height: 15,
+      height: 2,
     },
-    shadowRadius: 20,
-    shadowOpacity: 1,
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
     marginRight: 10,
   },
   litleInputStyle: {
@@ -1336,14 +1377,20 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingRight: 10,
     paddingLeft: 10,
-    // elevation: 8,
-    // shadowColor: "rgba(9, 13, 109, 0.4)",
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 30,
-    // },
-    // shadowRadius: 40,
-    // shadowOpacity: 1,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 3,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   traderCard: {
     backgroundColor: '#E9EDFC',
@@ -1354,14 +1401,20 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingRight: 10,
     paddingLeft: 10,
-    // elevation: 8,
-    // shadowColor: "rgba(9, 13, 109, 0.4)",
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 30,
-    // },
-    // shadowRadius: 40,
-    // shadowOpacity: 1,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'rgba(9, 13, 109, 0.4)',
+        shadowOffset: {
+          width: 0,
+          height: 3,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   traderTextContainer: {
     width: Dimensions.get('window').width - 40,
@@ -1371,11 +1424,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     shadowOffset: {
       width: 0,
-      height: 15,
+      height: 3,
     },
     shadowColor: 'rgba(9, 13, 109, 0.45)',
-    shadowOpacity: 1,
-    shadowRadius: 40,
+    shadowOpacity: 0.8,
+    shadowRadius: 13,
     elevation: 0,
   },
   traderText: {
@@ -1449,11 +1502,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     shadowOffset: {
       width: 0,
-      height: 15,
+      height: 4,
     },
     shadowColor: 'rgba(9, 13, 109, 0.4)',
-    shadowOpacity: 1,
-    shadowRadius: 20,
+    shadowOpacity: 0.6,
+    shadowRadius: 3,
     justifyContent: 'center',
     paddingRight: 10,
     paddingLeft: 10,
@@ -1466,11 +1519,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     shadowOffset: {
       width: 0,
-      height: 15,
+      height: 2,
     },
     shadowColor: 'rgba(9, 13, 109, 0.45)',
-    shadowOpacity: 1,
-    shadowRadius: 40,
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
     elevation: 0,
     borderWidth: 1,
     borderColor: '#9154FD',
@@ -1549,6 +1602,14 @@ const styles = StyleSheet.create({
     borderColor: '#9154FD',
     borderWidth: 1,
     marginRight: 15,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowColor: 'rgba(9, 13, 109, 0.45)',
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
+    elevation: 0,
   },
   cardContentBottomLeftText: {
     color: '#1A2442',
@@ -1571,8 +1632,8 @@ const styles = StyleSheet.create({
       width: 0,
       height: 0,
     },
-    shadowOpacity: 1,
-    shadowRadius: 14,
+    shadowOpacity: 0.8,
+    shadowRadius: 13,
     elevation: 4,
     paddingTop: 10,
   },
@@ -1641,10 +1702,10 @@ const styles = StyleSheet.create({
     shadowColor: 'rgba(9, 13, 109, 0.45)',
     shadowOffset: {
       width: 0,
-      height: 15,
+      height: 5,
     },
-    shadowOpacity: 1,
-    shadowRadius: 40,
+    shadowOpacity: 0.8,
+    shadowRadius: 8,
   },
   innerCardSubtitleContainer: {
     width: '100%',
@@ -1693,6 +1754,44 @@ const styles = StyleSheet.create({
     height: 260,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  addDocumentRight: {
+    marginLeft: 12,
+    marginTop: 15,
+  },
+  addButton: {
+    width: 26,
+    height: 26,
+    alignItems: 'center',
+    marginRight: 6,
+    backgroundColor: '#9154FD',
+    borderRadius: 10,
+    elevation: 8,
+    shadowColor: '#9154FD',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.8,
+  },
+  addButtonText: {
+    color: '#FFFFFF',
+    fontWeight: 600,
+    fontSize: 18,
+    marginTop: 1,
+  },
+  removeButton: {
+    width: 26,
+    height: 26,
+    alignItems: 'center',
+    marginRight: 6,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+  },
+  removeButtonText: {
+    color: '#9154FD',
+    fontWeight: 600,
+    fontSize: 20,
   },
 });
 
