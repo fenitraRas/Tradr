@@ -210,19 +210,19 @@ function TradrBoardObjective({classes, title}) {
           </View>
           <TouchableOpacity
             style={[indexStyles.horizontalFlex, styles.radioContent]}>
-            <UnseletedRadio width={42} height={42} />
+            <UnseletedRadio width={42} height={42} style={styles.radio} />
             <Text style={classes.radioText}>S'inscrire</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[indexStyles.horizontalFlex, styles.radioContent]}>
-            <SeletedRadio width={42} height={42} />
+            <SeletedRadio width={42} height={42} style={styles.radio} />
             <Text style={classes.radioText}>
               Visionner l'épisode accessible
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[indexStyles.horizontalFlex, styles.radioContent]}>
-            <UnseletedRadio width={42} height={42} />
+            <UnseletedRadio width={42} height={42} style={styles.radio} />
             <Text style={classes.radioText}>
               Accomplir les deux objectifs précédents
             </Text>
@@ -382,6 +382,16 @@ const styles = StyleSheet.create({
   tradrboardContentDark: {
     backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
+  radio: {
+    shadowColor: 'rgba(145, 84, 253, 0.8)',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 5,
+    elevation: 5,
+  },
   connectButton: {
     width: 102,
     height: 21,
@@ -449,8 +459,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontSize: 20,
-    lineHeight: 24,
     color: theme.colors.text.$textLight,
+    fontWeight: 500,
   },
   cardTitleDark: {
     color: theme.colors.text.$textDark,
@@ -611,11 +621,12 @@ const styles = StyleSheet.create({
   },
   radioText: {
     marginTop: 12,
-    fontFamily: 'Montserrat',
-    fontWeight: 500,
-    fontSize: 15,
-    lineHeight: 18,
     color: theme.colors.text.$textLight,
+    fontSize: 15,
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    lineHeight: 21,
   },
   radioTextDark: {
     color: theme.colors.text.$textDark,
