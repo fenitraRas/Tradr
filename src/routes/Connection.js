@@ -143,7 +143,7 @@ function Connection() {
   return (
     <SafeAreaView>
       <StatusBar
-        barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'}
+        barStyle={colorScheme === 'dark' ? 'dark-content' : 'light-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <ScrollView>

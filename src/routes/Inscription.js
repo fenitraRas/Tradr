@@ -23,15 +23,19 @@ import React, {useState} from 'react';
 import BackIcon from '../assets/icons/backIcon.svg';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Eye from '../assets/icons/eye.svg';
+import EyeDark from '../assets/icons/eyeDark.svg';
 import FoldedHands from '../assets/icons/foldedHands.svg';
 import {Formik} from 'formik';
 import LogoApple from '../assets/icons/logoApple.svg';
 import MyButton from '../Components/Button';
 import MyTextInput from '../Components/TextInput';
+import TradrLogo from '../assets/icons/tradrLogo.svg';
+import WhiteTradrLogo from '../assets/icons/whiteTradrLogo.svg';
 import {formStyles} from '../assets/css/form';
 import {indexStyles} from '../assets/css/index';
+import theme from '../assets/theme';
 import {useNavigation} from '@react-navigation/native';
-import TradrLogo from '../assets/icons/tradrLogo.svg';
+import {useSelector} from 'react-redux';
 
 function Navbar({children}) {
   const navigation = useNavigation();
@@ -65,7 +69,8 @@ function ConnectToAppleButton({children}) {
     </View>
   );
 }
-function InscriptionForm({title}) {
+function InscriptionForm({classes, title}) {
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
   const [isPasswordTextSecured, setIsPasswordTextSecured] = useState(true);
   const [isButtonSubmitClicked, setIsButtonSubmitClicked] = useState(false);
   function isValidate(values) {
@@ -98,7 +103,7 @@ function InscriptionForm({title}) {
       {({handleChange, handleBlur, handleSubmit, values}) => (
         <View style={styles.inscriptionFormContainer}>
           <View style={[indexStyles.horizontalFlex, formStyles.titleContainer]}>
-            <Text style={formStyles.title}>{title}</Text>
+            <Text style={classes.title}>{title}</Text>
             <FoldedHands width={18} height={18} style={formStyles.titleImg} />
           </View>
           <View style={formStyles.formContent}>
@@ -167,8 +172,8 @@ function InscriptionForm({title}) {
               <View
                 style={
                   values.password === '' && isButtonSubmitClicked
-                    ? [styles.inputIcon, {borderColor: 'red', borderWidth: 2}]
-                    : styles.inputIcon
+                    ? [classes.inputIcon, {borderColor: 'red', borderWidth: 2}]
+                    : classes.inputIcon
                 }>
                 <TextInput
                   placeholder="Mot de passe*"
@@ -178,14 +183,18 @@ function InscriptionForm({title}) {
                   keyboardAppearance="dark"
                   onChangeText={handleChange('password')}
                   value={values.password}
-                  style={styles.inputStyle}
-                  placeholderTextColor="#1A2442"
+                  style={classes.inputStyle}
+                  placeholderTextColor={classes.placeholder}
                 />
                 <TouchableOpacity
                   onPress={() =>
                     setIsPasswordTextSecured(!isPasswordTextSecured)
                   }>
-                  <Eye width={22} height={14} />
+                  {colorScheme === 'dark' ? (
+                    <EyeDark width={22} height={14} />
+                  ) : (
+                    <Eye width={22} height={14} />
+                  )}
                 </TouchableOpacity>
               </View>
 
@@ -205,26 +214,49 @@ function InscriptionForm({title}) {
 }
 
 function Inscription() {
-  const isDarkMode = useColorScheme() === 'dark';
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const classes = {
+    title: [styles.title, colorScheme === 'dark' && styles.titleDark],
+    inscriptionTitle: [
+      styles.inscriptionTitle,
+      colorScheme === 'dark' && styles.inscriptionTitleDark,
+    ],
+    inputStyle: [
+      styles.inputStyle,
+      colorScheme === 'dark' && styles.inputStyleDark,
+    ],
+    placeholder:
+      colorScheme === 'dark'
+        ? theme.colors.text.$placeholderDark
+        : theme.colors.text.$placeholderLight,
+    inputIcon: [
+      styles.inputIcon,
+      colorScheme === 'dark' && styles.inputIconDark,
+    ],
   };
+  const backgroundStyle = {
+    backgroundColor: colorScheme === 'dark' ? Colors.darker : Colors.lighter,
+  };
+  let logo =
+    colorScheme === 'dark' ? (
+      <WhiteTradrLogo width={113.684} height={40} />
+    ) : (
+      <TradrLogo width={113.684} height={40} />
+    );
   return (
     <SafeAreaView>
       <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        barStyle={colorScheme === 'dark' ? 'dark-content' : 'light-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <View>
         <Navbar>Tradrboard</Navbar>
         <ScrollView>
-          <View style={formStyles.logoContainer}>
-            <TradrLogo width={113.684} height={40} />
-          </View>
+          <View style={formStyles.logoContainer}>{logo}</View>
           <ConnectToAppleButton>Continuer avec Apple</ConnectToAppleButton>
-          <InscriptionForm title="Un tout nouveau membre !" />
+          <InscriptionForm classes={classes} title="Un tout nouveau membre !" />
           <View style={styles.inscriptionContainer}>
-            <Text style={styles.inscriptionTitle}>
+            <Text style={classes.inscriptionTitle}>
               Vous êtes déjà un membre Tradr ?
             </Text>
           </View>
@@ -235,6 +267,19 @@ function Inscription() {
 }
 
 const styles = StyleSheet.create({
+  titleDark: {
+    color: theme.colors.text.$textDark,
+  },
+  title: {
+    height: 24,
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    fontSize: 18,
+    lineHeight: 22,
+    color: theme.colors.text.$textLight,
+    marginRight: 6,
+  },
   inscriptionFormContainer: {
     alignSelf: 'center',
     marginTop: 50,
@@ -250,6 +295,9 @@ const styles = StyleSheet.create({
     height: 52,
     marginTop: 70,
   },
+  inscriptionTitleDark: {
+    color: theme.colors.text.$textDark,
+  },
   inscriptionTitle: {
     height: 18,
     fontFamily: 'Montserrat',
@@ -257,7 +305,10 @@ const styles = StyleSheet.create({
     fontWeight: 400,
     fontSize: 15,
     lineHeight: 18,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
+  },
+  inputIconDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   inputIcon: {
     flex: 1,
@@ -267,23 +318,26 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 49,
     marginTop: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderRadius: 10,
-    shadowColor: 'rgba(9, 13, 109, 0.4)',
+    elevation: 8,
+    shadowColor: '#090d6d',
     shadowOffset: {
       width: 0,
-      height: 15,
+      height: 6,
     },
-    shadowOpacity: 1,
-    shadowRadius: 20,
-    elevation: Platform.OS === 'android' ? -15 : undefined,
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+  },
+  inputStyleDark: {
+    color: theme.colors.text.$textDark,
   },
   inputStyle: {
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontSize: 17,
     lineHeight: 21,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     marginLeft: 15,
     width: '83%',
   },
