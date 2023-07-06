@@ -214,6 +214,7 @@ function InscriptionForm({classes, title}) {
 }
 
 function Inscription() {
+  const navigation = useNavigation();
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
   const classes = {
     title: [styles.title, colorScheme === 'dark' && styles.titleDark],
@@ -255,11 +256,13 @@ function Inscription() {
           <View style={formStyles.logoContainer}>{logo}</View>
           <ConnectToAppleButton>Continuer avec Apple</ConnectToAppleButton>
           <InscriptionForm classes={classes} title="Un tout nouveau membre !" />
-          <View style={styles.inscriptionContainer}>
+          <TouchableOpacity
+            style={styles.inscriptionContainer}
+            onPress={() => navigation.navigate('Connection')}>
             <Text style={classes.inscriptionTitle}>
               Vous êtes déjà un membre Tradr ?
             </Text>
-          </View>
+          </TouchableOpacity>
         </ScrollView>
       </View>
     </SafeAreaView>
