@@ -6,19 +6,36 @@ import {
 } from 'react-native';
 
 import React from 'react';
+import theme from '../assets/theme';
+import {useSelector} from 'react-redux';
 
 export default function TextInput({error, ...otherProps}) {
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const classes = {
+    inputContainer: [
+      styles.inputContainer,
+      colorScheme === 'dark' && styles.inputContainerDark,
+    ],
+    inputStyle: [
+      styles.inputStyle,
+      colorScheme === 'dark' && styles.inputStyleDark,
+    ],
+  };
   return (
     <View
       style={
         error
-          ? [styles.inputContainer, {borderColor: 'red', borderWidth: 2}]
-          : styles.inputContainer
+          ? [classes.inputContainer, {borderColor: 'red', borderWidth: 2}]
+          : classes.inputContainer
       }>
       <RNTextInput
-        style={styles.inputStyle}
+        style={classes.inputStyle}
         // underlineColorAndroid='transparent'
-        placeholderTextColor="#1A2442"
+        placeholderTextColor={
+          colorScheme === 'dark'
+            ? theme.colors.text.$placeholderDark
+            : theme.colors.text.$placeholderLight
+        }
         {...otherProps}
       />
     </View>
@@ -26,11 +43,14 @@ export default function TextInput({error, ...otherProps}) {
 }
 
 const styles = StyleSheet.create({
+  inputContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   inputContainer: {
     width: '100%',
     height: 49,
     marginTop: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderRadius: 10,
     elevation: 8,
     shadowColor: '#090d6d',
@@ -42,12 +62,15 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     justifyContent: 'center',
   },
+  inputStyleDark: {
+    color: theme.colors.text.$textDark,
+  },
   inputStyle: {
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontSize: 17,
     lineHeight: 21,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     marginLeft: 15,
   },
 });
