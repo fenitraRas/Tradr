@@ -30,7 +30,7 @@ import {formStyles} from '../assets/css/form';
 import {indexStyles} from '../assets/css/index';
 import theme from '../assets/theme';
 import {useNavigation} from '@react-navigation/native';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 
 function Navbar({children}) {
   const navigation = useNavigation();

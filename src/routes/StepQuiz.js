@@ -88,11 +88,13 @@ function StepQuizContent(props) {
       </View>
       <View style={styles.progressContainer}>
         <View style={styles.progressContent}>
-          <ProgressBar
+          <View style={styles.progressbar} />
+          <View style={styles.progress} />
+          {/* <ProgressBar
             style={props.classes.progress}
             progress={0.33}
             color="#9154FD"
-          />
+          /> */}
         </View>
         <View style={styles.progressDuration}>
           <Text style={props.classes.progressText}>3s</Text>
@@ -743,34 +745,34 @@ const styles = StyleSheet.create({
   progressDark: {
     backgroundColor: theme.colors.text.$placeholderDark,
   },
-  progress: {
-    backgroundColor: theme.colors.text.$placeholderLight,
-    height: 8,
-    borderRadius: 6.5,
-    marginTop: 8,
-    shadowColor: 'rgba(145, 84, 253, 0.8)',
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 4,
-    elevation: 1,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'rgba(145, 84, 253, 0.8)',
-        shadowOffset: {
-          width: 0,
-          height: 0,
-        },
-        shadowOpacity: 0.6,
-        shadowRadius: 14,
-      },
-      android: {
-        elevation: 4,
-      },
-    }),
-  },
+  // progress: {
+  //   backgroundColor: theme.colors.text.$placeholderLight,
+  //   height: 8,
+  //   borderRadius: 6.5,
+  //   marginTop: 8,
+  //   shadowColor: 'rgba(145, 84, 253, 0.8)',
+  //   shadowOffset: {
+  //     width: 0,
+  //     height: 0,
+  //   },
+  //   shadowOpacity: 1,
+  //   shadowRadius: 4,
+  //   elevation: 1,
+  //   ...Platform.select({
+  //     ios: {
+  //       shadowColor: 'rgba(145, 84, 253, 0.8)',
+  //       shadowOffset: {
+  //         width: 0,
+  //         height: 0,
+  //       },
+  //       shadowOpacity: 0.6,
+  //       shadowRadius: 14,
+  //     },
+  //     android: {
+  //       elevation: 4,
+  //     },
+  //   }),
+  // },
   progressDuration: {
     flex: 1,
     maxWidth: 36,
@@ -811,6 +813,39 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 14,
     lineHeight: 17,
+  },
+  progressbar: {
+    position: 'absolute',
+    width: '100%',
+    height: 8,
+    marginTop: 8,
+    borderRadius: 6.5,
+    backgroundColor: '#FFFFFF',
+    justifyContent: 'center',
+    shadowColor: 'rgba(9, 13, 109, 0.50)',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 15,
+    elevation: 5,
+  },
+  progress: {
+    position: 'absolute',
+    width: '66.66%',
+    height: 8,
+    marginTop: 8,
+    borderRadius: 6.5,
+    backgroundColor: '#9154FD',
+    shadowColor: 'rgba(145, 84, 253, 0.60)',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 14,
+    elevation: 5,
   },
 });
 
