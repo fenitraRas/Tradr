@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
     width: 240,
     height: 52,
     // marginTop: 137,
-    marginTop: 107,
+    marginTop: 207,
   },
   inscriptionTitleDark: {
     color: theme.colors.text.$textDark,

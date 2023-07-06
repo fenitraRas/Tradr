@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     width: 230,
     height: 52,
     // marginTop: 333,
-    marginTop: 200,
+    marginTop: 300,
   },
   connectTitleDark: {
     color: theme.colors.text.$textDark,

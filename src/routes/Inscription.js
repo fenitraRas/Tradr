@@ -296,7 +296,7 @@ const styles = StyleSheet.create({
     padding: 0,
     width: '100%',
     height: 52,
-    marginTop: 70,
+    marginTop: 130,
   },
   inscriptionTitleDark: {
     color: theme.colors.text.$textDark,
