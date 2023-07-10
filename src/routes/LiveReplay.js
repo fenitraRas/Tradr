@@ -22,16 +22,18 @@ import Menu, {NavbarMenu} from './Menu';
 import React, {useRef, useState} from 'react';
 
 import ChevronLeft from '../assets/icons/chevronLeft.svg';
+import ChevronLeftDark from '../assets/icons/chevronLeftDark.svg';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
 import PlayButton from '../assets/icons/playButton.svg';
 import Video from 'react-native-video';
 import {formStyles} from '../assets/css/form';
+import {indexStyles} from '../assets/css';
+import theme from '../assets/theme';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import video from '../assets/video/video_test.mp4';
-import { indexStyles } from '../assets/css';
 
 function Navbar(props) {
   const navigation = useNavigation();
@@ -41,7 +43,11 @@ function Navbar(props) {
     <View style={formStyles.navbarContainer}>
       <View style={formStyles.navbarIcon}>
         <TouchableOpacity onPress={() => navigation.navigate('Replay')}>
-          <ChevronLeft width={30} height={20} />
+          {option === 'light' ? (
+            <ChevronLeft width={30} height={20} />
+          ) : (
+            <ChevronLeftDark width={30} height={20} />
+          )}
         </TouchableOpacity>
       </View>
       <View style={formStyles.navbarTextContainer}>
@@ -66,11 +72,11 @@ function Navbar(props) {
   );
 }
 
-function LiveReplayContent() {
+function LiveReplayContent(props) {
   const [isPlaying, setIsPlaying] = useState(false);
   return (
-    <View style={[styles.replayContent, indexStyles.shadowProp]}>
-      <View style={styles.lastLiveCard}>
+    <View style={[props.classes.replayContent, indexStyles.shadowProp]}>
+      <View style={props.classes.lastLiveCard}>
         <View style={styles.videoContainer}>
           <Video
             source={video}
@@ -85,9 +91,9 @@ function LiveReplayContent() {
             title={isPlaying ? 'Stop' : 'Play'}
           />
         </View>
-        <Text style={styles.videoTitle}>Live Trading</Text>
-        <Text style={styles.videoSubtitle}>01 Jan 2023</Text>
-        <Text style={styles.videoDescription}>
+        <Text style={props.classes.videoTitle}>Live Trading</Text>
+        <Text style={props.classes.videoSubtitle}>01 Jan 2023</Text>
+        <Text style={props.classes.videoDescription}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
           vulputate libero et velit interdum, ac aliquet odio mattis. Class
           aptent taciti sociosqu ad litora torquent per conubia nostra, per
@@ -99,7 +105,7 @@ function LiveReplayContent() {
         Sélectionné pour toi
       </Text>
       <ScrollView horizontal style={styles.videoListContainer}>
-        <View style={styles.videoCard}>
+        <View style={props.classes.videoCard}>
           <Image
             source={require('../assets/formationBg.jpg')}
             style={styles.image}
@@ -109,10 +115,10 @@ function LiveReplayContent() {
               <PlayButton width={36} height={36} />
             </View>
           </View>
-          <Text style={styles.imgTitle}>Live Trading</Text>
-          <Text style={styles.imgDate}>24 Novembre 2022</Text>
+          <Text style={props.classes.imgTitle}>Live Trading</Text>
+          <Text style={props.classes.imgDate}>24 Novembre 2022</Text>
         </View>
-        <View style={styles.videoCard}>
+        <View style={props.classes.videoCard}>
           <Image
             source={require('../assets/formationBg.jpg')}
             style={styles.image}
@@ -122,23 +128,52 @@ function LiveReplayContent() {
               <PlayButton width={36} height={36} />
             </View>
           </View>
-          <Text style={styles.imgTitle}>Live Trading</Text>
-          <Text style={styles.imgDate}>24 Novembre 2022</Text>
+          <Text style={props.classes.imgTitle}>Live Trading</Text>
+          <Text style={props.classes.imgDate}>24 Novembre 2022</Text>
         </View>
       </ScrollView>
     </View>
   );
 }
 
-function LiveReplayContainer() {
+function LiveReplayContainer(props) {
   return (
     <ScrollView>
-      <LiveReplayContent />
+      <LiveReplayContent classes={props.classes} />
     </ScrollView>
   );
 }
 
 function LiveReplay() {
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const classes = {
+    replayContent: [
+      styles.replayContent,
+      colorScheme === 'dark' && styles.replayContentDark,
+    ],
+    lastLiveCard: [
+      styles.lastLiveCard,
+      colorScheme === 'dark' && styles.lastLiveCardDark,
+    ],
+    videoTitle: [
+      styles.videoTitle,
+      colorScheme === 'dark' && styles.videoTitleDark,
+    ],
+    videoSubtitle: [
+      styles.videoSubtitle,
+      colorScheme === 'dark' && styles.videoSubtitleDark,
+    ],
+    videoDescription: [
+      styles.videoDescription,
+      colorScheme === 'dark' && styles.videoDescriptionDark,
+    ],
+    videoCard: [
+      styles.videoCard,
+      colorScheme === 'dark' && styles.videoCardDark,
+    ],
+    imgTitle: [styles.imgTitle, colorScheme === 'dark' && styles.imgTitleDark],
+    imgDate: [styles.imgDate, colorScheme === 'dark' && styles.imgDateDark],
+  };
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -187,7 +222,7 @@ function LiveReplay() {
           currentScreen="LiveReplay"
           handleScrollToLeft={() => handleScrollToLeft()}
         />
-        <LiveReplayContainer />
+        <LiveReplayContainer classes={classes} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -199,11 +234,14 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height - 95,
     paddingLeft: 10,
     paddingRight: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     marginTop: 5,
     paddingBottom: 14,
+  },
+  replayContentDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   navbarText: {
     textAlign: 'center',
@@ -213,8 +251,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
     color: '#1A2442',
   },
+  lastLiveCardDark: {
+    backgroundColor: theme.colors.component.$cardDark,
+  },
   lastLiveCard: {
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     width: '100%',
     height: 384,
     marginTop: 10,
@@ -244,7 +285,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   videoTitle: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontWeight: 600,
     fontSize: 28,
     lineHeight: 34,
@@ -252,16 +293,25 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginTop: 13,
   },
+  videoTitleDark: {
+    color: theme.colors.text.$textDark,
+  },
+  videoSubtitleDark: {
+    color: theme.colors.text.$textDark,
+  },
   videoSubtitle: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontWeight: 400,
     fontSize: 13,
     lineHeight: 16,
     fontFamily: 'Montserrat',
     marginLeft: 15,
   },
+  videoDescriptionDark: {
+    color: theme.colors.text.$textDark,
+  },
   videoDescription: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontWeight: 400,
     fontSize: 13,
     lineHeight: 16,
@@ -286,8 +336,11 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     marginTop: 15,
   },
+  videoCardDark: {
+    backgroundColor: theme.colors.component.$cardDark,
+  },
   videoCard: {
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     borderRadius: 20,
     width: 210,
     height: 169,
@@ -322,8 +375,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  imgTitleDark: {
+    color: theme.colors.text.$textDark,
+  },
   imgTitle: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 600,
@@ -332,10 +388,13 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginLeft: 10,
   },
+  imgDateDark: {
+    color: theme.colors.text.$textDark,
+  },
   imgDate: {
     marginTop: 2,
     marginLeft: 10,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 400,

@@ -27,9 +27,10 @@ import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg
 import SmilingFaceWithHorns from '../assets/icons/smilingFaceWithHorns.svg';
 import WinkingFace from '../assets/icons/winkingFace.svg';
 import {formStyles} from '../assets/css/form';
+import {indexStyles} from '../assets/css';
+import theme from '../assets/theme';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
-import { indexStyles } from '../assets/css';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
@@ -59,12 +60,12 @@ function Navbar(props) {
   );
 }
 
-function MyQuiz() {
+function MyQuiz(props) {
   const navigation = useNavigation();
   return (
-    <View style={[styles.quizContent, indexStyles.shadowProp]}>
-      <View style={styles.quizTitleContainer}>
-        <Text style={styles.quizTitle}>
+    <View style={[props.classes.quizContent, indexStyles.shadowProp]}>
+      <View style={props.classes.quizTitleContainer}>
+        <Text style={props.classes.quizTitle}>
           Entraîne tes compétences pour être meilleur !
           <WinkingFace width={26} height={26} style={{marginLeft: 10}} />
         </Text>
@@ -73,7 +74,7 @@ function MyQuiz() {
         <Text style={styles.cardTitle}>Réussi</Text>
         <ScrollView horizontal style={[styles.cardContainer]}>
           <TouchableOpacity
-            style={styles.myQuizCardContent}
+            style={props.classes.myQuizCardContent}
             onPress={() => navigation.navigate('SummaryQuiz')}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
@@ -81,10 +82,10 @@ function MyQuiz() {
                 style={styles.myQuizCardImg}
               />
             </View>
-            <Text style={styles.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={styles.myQuizCardBottom}>
+            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
+            <View style={props.classes.myQuizCardBottom}>
               <View style={styles.myQuizCardBottomLeft}>
-                <Text style={styles.myQuizCardBottomLeftNumber}>20</Text>
+                <Text style={props.classes.myQuizCardBottomLeftNumber}>20</Text>
                 <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
               </View>
               <View style={[styles.orangeTopPersonCardContentRight]}>
@@ -95,17 +96,17 @@ function MyQuiz() {
             </View>
           </TouchableOpacity>
 
-          <View style={styles.myQuizCardContent}>
+          <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
                 source={require('../assets/video/maxime.jpg')}
                 style={styles.myQuizCardImg}
               />
             </View>
-            <Text style={styles.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={styles.myQuizCardBottom}>
+            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
+            <View style={props.classes.myQuizCardBottom}>
               <View style={styles.myQuizCardBottomLeft}>
-                <Text style={styles.myQuizCardBottomLeftNumber}>15</Text>
+                <Text style={props.classes.myQuizCardBottomLeftNumber}>15</Text>
                 <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
               </View>
               <View style={[styles.greenTopPersonCardContentRight]}>
@@ -114,17 +115,17 @@ function MyQuiz() {
             </View>
           </View>
 
-          <View style={styles.myQuizCardContent}>
+          <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
                 source={require('../assets/video/maxime.jpg')}
                 style={styles.myQuizCardImg}
               />
             </View>
-            <Text style={styles.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={styles.myQuizCardBottom}>
+            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
+            <View style={props.classes.myQuizCardBottom}>
               <View style={styles.myQuizCardBottomLeft}>
-                <Text style={styles.myQuizCardBottomLeftNumber}>16</Text>
+                <Text style={props.classes.myQuizCardBottomLeftNumber}>16</Text>
                 <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
               </View>
               <View style={[styles.redTopPersonCardContentRight]}>
@@ -136,17 +137,17 @@ function MyQuiz() {
 
         <Text style={styles.cardTitle}>Échoué</Text>
         <ScrollView horizontal style={[styles.cardContainer]}>
-          <View style={styles.myQuizCardContent}>
+          <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
                 source={require('../assets/video/images.jpeg')}
                 style={styles.myQuizCardImg}
               />
             </View>
-            <Text style={styles.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={styles.myQuizCardBottom}>
+            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
+            <View style={props.classes.myQuizCardBottom}>
               <View style={styles.myQuizCardBottomLeft}>
-                <Text style={styles.myQuizCardBottomLeftNumber}>10</Text>
+                <Text style={props.classes.myQuizCardBottomLeftNumber}>10</Text>
                 <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
               </View>
               <View style={[styles.redTopPersonCardContentRight]}>
@@ -155,17 +156,17 @@ function MyQuiz() {
             </View>
           </View>
 
-          <View style={styles.myQuizCardContent}>
+          <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
                 source={require('../assets/video/maxime.jpg')}
                 style={styles.myQuizCardImg}
               />
             </View>
-            <Text style={styles.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={styles.myQuizCardBottom}>
+            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
+            <View style={props.classes.myQuizCardBottom}>
               <View style={styles.myQuizCardBottomLeft}>
-                <Text style={styles.myQuizCardBottomLeftNumber}>15</Text>
+                <Text style={props.classes.myQuizCardBottomLeftNumber}>15</Text>
                 <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
               </View>
               <View style={[styles.greenTopPersonCardContentRight]}>
@@ -174,17 +175,17 @@ function MyQuiz() {
             </View>
           </View>
 
-          <View style={styles.myQuizCardContent}>
+          <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
                 source={require('../assets/video/maxime.jpg')}
                 style={styles.myQuizCardImg}
               />
             </View>
-            <Text style={styles.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={styles.myQuizCardBottom}>
+            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
+            <View style={props.classes.myQuizCardBottom}>
               <View style={styles.myQuizCardBottomLeft}>
-                <Text style={styles.myQuizCardBottomLeftNumber}>20</Text>
+                <Text style={props.classes.myQuizCardBottomLeftNumber}>20</Text>
                 <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
               </View>
               <View style={[styles.redTopPersonCardContentRight]}>
@@ -196,17 +197,17 @@ function MyQuiz() {
 
         <Text style={styles.cardTitle}>À refaire</Text>
         <ScrollView horizontal style={[styles.cardContainer]}>
-          <View style={styles.myQuizCardContent}>
+          <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
                 source={require('../assets/video/images.jpeg')}
                 style={styles.myQuizCardImg}
               />
             </View>
-            <Text style={styles.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={styles.myQuizCardBottom}>
+            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
+            <View style={props.classes.myQuizCardBottom}>
               <View style={styles.myQuizCardBottomLeft}>
-                <Text style={styles.myQuizCardBottomLeftNumber}>10</Text>
+                <Text style={props.classes.myQuizCardBottomLeftNumber}>10</Text>
                 <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
               </View>
               <View style={[styles.orangeTopPersonCardContentRight]}>
@@ -217,17 +218,17 @@ function MyQuiz() {
             </View>
           </View>
 
-          <View style={styles.myQuizCardContent}>
+          <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
                 source={require('../assets/video/maxime.jpg')}
                 style={styles.myQuizCardImg}
               />
             </View>
-            <Text style={styles.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={styles.myQuizCardBottom}>
+            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
+            <View style={props.classes.myQuizCardBottom}>
               <View style={styles.myQuizCardBottomLeft}>
-                <Text style={styles.myQuizCardBottomLeftNumber}>15</Text>
+                <Text style={props.classes.myQuizCardBottomLeftNumber}>15</Text>
                 <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
               </View>
               <View style={[styles.redTopPersonCardContentRight]}>
@@ -236,17 +237,17 @@ function MyQuiz() {
             </View>
           </View>
 
-          <View style={styles.myQuizCardContent}>
+          <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
                 source={require('../assets/emoji.png')}
                 style={styles.myQuizCardImg}
               />
             </View>
-            <Text style={styles.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={styles.myQuizCardBottom}>
+            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
+            <View style={props.classes.myQuizCardBottom}>
               <View style={styles.myQuizCardBottomLeft}>
-                <Text style={styles.myQuizCardBottomLeftNumber}>20</Text>
+                <Text style={props.classes.myQuizCardBottomLeftNumber}>20</Text>
                 <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
               </View>
               <View style={[styles.greenTopPersonCardContentRight]}>
@@ -260,11 +261,11 @@ function MyQuiz() {
   );
 }
 
-function InprogressQuiz() {
+function InprogressQuiz(props) {
   return (
-    <View style={[styles.quizContent, indexStyles.shadowProp]}>
-      <View style={styles.quizTitleContainer}>
-        <Text style={styles.quizTitle}>
+    <View style={[props.classes.quizContent, indexStyles.shadowProp]}>
+      <View style={props.classes.quizTitleContainer}>
+        <Text style={props.classes.quizTitle}>
           Entraîne tes compétences pour être meilleur !
           <WinkingFace width={26} height={26} style={{marginLeft: 10}} />
         </Text>
@@ -272,17 +273,17 @@ function InprogressQuiz() {
       <ScrollView>
         <Text style={styles.cardTitle}>Débutant</Text>
         <ScrollView horizontal style={[styles.cardContainer]}>
-          <View style={styles.myQuizCardContent}>
+          <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
                 source={require('../assets/video/maxime.jpg')}
                 style={styles.myQuizCardImg}
               />
             </View>
-            <Text style={styles.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={styles.myQuizCardBottom}>
+            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
+            <View style={props.classes.myQuizCardBottom}>
               <View style={styles.myQuizCardBottomLeft}>
-                <Text style={styles.myQuizCardBottomLeftNumber}>10</Text>
+                <Text style={props.classes.myQuizCardBottomLeftNumber}>10</Text>
                 <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
               </View>
               <View style={[styles.greenTopPersonCardContentRight]}>
@@ -290,17 +291,17 @@ function InprogressQuiz() {
               </View>
             </View>
           </View>
-          <View style={styles.myQuizCardContent}>
+          <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
                 source={require('../assets/video/maxime.jpg')}
                 style={styles.myQuizCardImg}
               />
             </View>
-            <Text style={styles.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={styles.myQuizCardBottom}>
+            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
+            <View style={props.classes.myQuizCardBottom}>
               <View style={styles.myQuizCardBottomLeft}>
-                <Text style={styles.myQuizCardBottomLeftNumber}>15</Text>
+                <Text style={props.classes.myQuizCardBottomLeftNumber}>15</Text>
                 <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
               </View>
               <View style={[styles.greenTopPersonCardContentRight]}>
@@ -308,17 +309,17 @@ function InprogressQuiz() {
               </View>
             </View>
           </View>
-          <View style={styles.myQuizCardContent}>
+          <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
                 source={require('../assets/video/images.jpeg')}
                 style={styles.myQuizCardImg}
               />
             </View>
-            <Text style={styles.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={styles.myQuizCardBottom}>
+            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
+            <View style={props.classes.myQuizCardBottom}>
               <View style={styles.myQuizCardBottomLeft}>
-                <Text style={styles.myQuizCardBottomLeftNumber}>20</Text>
+                <Text style={props.classes.myQuizCardBottomLeftNumber}>20</Text>
                 <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
               </View>
               <View style={[styles.greenTopPersonCardContentRight]}>
@@ -330,17 +331,17 @@ function InprogressQuiz() {
 
         <Text style={styles.cardTitle}>Intermédiaire</Text>
         <ScrollView horizontal style={[styles.cardContainer]}>
-          <View style={styles.myQuizCardContent}>
+          <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
                 source={require('../assets/video/images.jpeg')}
                 style={styles.myQuizCardImg}
               />
             </View>
-            <Text style={styles.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={styles.myQuizCardBottom}>
+            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
+            <View style={props.classes.myQuizCardBottom}>
               <View style={styles.myQuizCardBottomLeft}>
-                <Text style={styles.myQuizCardBottomLeftNumber}>10</Text>
+                <Text style={props.classes.myQuizCardBottomLeftNumber}>10</Text>
                 <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
               </View>
               <View style={[styles.orangeTopPersonCardContentRight]}>
@@ -350,17 +351,17 @@ function InprogressQuiz() {
               </View>
             </View>
           </View>
-          <View style={styles.myQuizCardContent}>
+          <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
                 source={require('../assets/video/images.jpeg')}
                 style={styles.myQuizCardImg}
               />
             </View>
-            <Text style={styles.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={styles.myQuizCardBottom}>
+            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
+            <View style={props.classes.myQuizCardBottom}>
               <View style={styles.myQuizCardBottomLeft}>
-                <Text style={styles.myQuizCardBottomLeftNumber}>20</Text>
+                <Text style={props.classes.myQuizCardBottomLeftNumber}>20</Text>
                 <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
               </View>
               <View style={[styles.orangeTopPersonCardContentRight]}>
@@ -374,17 +375,17 @@ function InprogressQuiz() {
 
         <Text style={styles.cardTitle}>À refaire</Text>
         <ScrollView horizontal style={[styles.cardContainer]}>
-          <View style={styles.myQuizCardContent}>
+          <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
                 source={require('../assets/video/images.jpeg')}
                 style={styles.myQuizCardImg}
               />
             </View>
-            <Text style={styles.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={styles.myQuizCardBottom}>
+            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
+            <View style={props.classes.myQuizCardBottom}>
               <View style={styles.myQuizCardBottomLeft}>
-                <Text style={styles.myQuizCardBottomLeftNumber}>10</Text>
+                <Text style={props.classes.myQuizCardBottomLeftNumber}>10</Text>
                 <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
               </View>
               <View style={[styles.orangeTopPersonCardContentRight]}>
@@ -395,17 +396,17 @@ function InprogressQuiz() {
             </View>
           </View>
 
-          <View style={styles.myQuizCardContent}>
+          <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
                 source={require('../assets/video/maxime.jpg')}
                 style={styles.myQuizCardImg}
               />
             </View>
-            <Text style={styles.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={styles.myQuizCardBottom}>
+            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
+            <View style={props.classes.myQuizCardBottom}>
               <View style={styles.myQuizCardBottomLeft}>
-                <Text style={styles.myQuizCardBottomLeftNumber}>15</Text>
+                <Text style={props.classes.myQuizCardBottomLeftNumber}>15</Text>
                 <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
               </View>
               <View style={[styles.redTopPersonCardContentRight]}>
@@ -414,17 +415,17 @@ function InprogressQuiz() {
             </View>
           </View>
 
-          <View style={styles.myQuizCardContent}>
+          <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
                 source={require('../assets/video/images.jpeg')}
                 style={styles.myQuizCardImg}
               />
             </View>
-            <Text style={styles.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={styles.myQuizCardBottom}>
+            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
+            <View style={props.classes.myQuizCardBottom}>
               <View style={styles.myQuizCardBottomLeft}>
-                <Text style={styles.myQuizCardBottomLeftNumber}>20</Text>
+                <Text style={props.classes.myQuizCardBottomLeftNumber}>20</Text>
                 <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
               </View>
               <View style={[styles.greenTopPersonCardContentRight]}>
@@ -438,11 +439,11 @@ function InprogressQuiz() {
   );
 }
 
-function PremiumQuiz() {
+function PremiumQuiz(props) {
   return (
-    <View style={[styles.quizContent, indexStyles.shadowProp]}>
-      <View style={styles.quizTitleContainer}>
-        <Text style={styles.quizTitle}>
+    <View style={[props.classes.quizContent, indexStyles.shadowProp]}>
+      <View style={props.classes.quizTitleContainer}>
+        <Text style={props.classes.quizTitle}>
           Met à l’épreuve tes connaissances !
           <SmilingFaceWithHorns
             width={26}
@@ -454,17 +455,17 @@ function PremiumQuiz() {
       <ScrollView>
         <Text style={styles.cardTitle}>Niveau Pro</Text>
         <ScrollView horizontal style={[styles.cardContainer]}>
-          <View style={styles.myQuizCardContent}>
+          <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
                 source={require('../assets/video/maxime.jpg')}
                 style={styles.myQuizCardImg}
               />
             </View>
-            <Text style={styles.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={styles.myQuizCardBottom}>
+            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
+            <View style={props.classes.myQuizCardBottom}>
               <View style={styles.myQuizCardBottomLeft}>
-                <Text style={styles.myQuizCardBottomLeftNumber}>16</Text>
+                <Text style={props.classes.myQuizCardBottomLeftNumber}>16</Text>
                 <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
               </View>
               <View style={[styles.redTopPersonCardContentRight]}>
@@ -472,17 +473,17 @@ function PremiumQuiz() {
               </View>
             </View>
           </View>
-          <View style={styles.myQuizCardContent}>
+          <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
                 source={require('../assets/video/images.jpeg')}
                 style={styles.myQuizCardImg}
               />
             </View>
-            <Text style={styles.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={styles.myQuizCardBottom}>
+            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
+            <View style={props.classes.myQuizCardBottom}>
               <View style={styles.myQuizCardBottomLeft}>
-                <Text style={styles.myQuizCardBottomLeftNumber}>20</Text>
+                <Text style={props.classes.myQuizCardBottomLeftNumber}>20</Text>
                 <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
               </View>
               <View style={[styles.redTopPersonCardContentRight]}>
@@ -494,17 +495,17 @@ function PremiumQuiz() {
 
         <Text style={styles.cardTitle}>Réessayer</Text>
         <ScrollView horizontal style={[styles.cardContainer]}>
-          <View style={styles.myQuizCardContent}>
+          <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
                 source={require('../assets/video/maxime.jpg')}
                 style={styles.myQuizCardImg}
               />
             </View>
-            <Text style={styles.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={styles.myQuizCardBottom}>
+            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
+            <View style={props.classes.myQuizCardBottom}>
               <View style={styles.myQuizCardBottomLeft}>
-                <Text style={styles.myQuizCardBottomLeftNumber}>12</Text>
+                <Text style={props.classes.myQuizCardBottomLeftNumber}>12</Text>
                 <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
               </View>
               <View style={[styles.redTopPersonCardContentRight]}>
@@ -512,17 +513,17 @@ function PremiumQuiz() {
               </View>
             </View>
           </View>
-          <View style={styles.myQuizCardContent}>
+          <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
                 source={require('../assets/video/images.jpeg')}
                 style={styles.myQuizCardImg}
               />
             </View>
-            <Text style={styles.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={styles.myQuizCardBottom}>
+            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
+            <View style={props.classes.myQuizCardBottom}>
               <View style={styles.myQuizCardBottomLeft}>
-                <Text style={styles.myQuizCardBottomLeftNumber}>10</Text>
+                <Text style={props.classes.myQuizCardBottomLeftNumber}>10</Text>
                 <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
               </View>
               <View style={[styles.redTopPersonCardContentRight]}>
@@ -536,28 +537,56 @@ function PremiumQuiz() {
   );
 }
 
-function QuizContainer({selectedFooter}) {
+function QuizContainer({classes, selectedFooter}) {
   if (selectedFooter === 'inprogress') {
     return (
       <ScrollView>
-        <InprogressQuiz />
+        <InprogressQuiz classes={classes} />
       </ScrollView>
     );
   } else if (selectedFooter === 'premium') {
     return (
       <ScrollView>
-        <PremiumQuiz />
+        <PremiumQuiz classes={classes} />
       </ScrollView>
     );
   }
   return (
     <ScrollView>
-      <MyQuiz />
+      <MyQuiz classes={classes} />
     </ScrollView>
   );
 }
 
 function Quiz() {
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const classes = {
+    footer: [styles.footer, colorScheme === 'dark' && styles.footerDark],
+    quizContent: [
+      styles.quizContent,
+      colorScheme === 'dark' && styles.quizContentDark,
+    ],
+    quizTitle: [
+      styles.quizTitle,
+      colorScheme === 'dark' && styles.quizTitleDark,
+    ],
+    myQuizCardContent: [
+      styles.myQuizCardContent,
+      colorScheme === 'dark' && styles.myQuizCardContentDark,
+    ],
+    myQuizCardTitle: [
+      styles.myQuizCardTitle,
+      colorScheme === 'dark' && styles.myQuizCardTitleDark,
+    ],
+    myQuizCardBottom: [
+      styles.myQuizCardBottom,
+      colorScheme === 'dark' && styles.myQuizCardBottomDark,
+    ],
+    myQuizCardBottomLeftNumber: [
+      styles.myQuizCardBottomLeftNumber,
+      colorScheme === 'dark' && styles.myQuizCardBottomLeftNumberDark,
+    ],
+  };
   const isDarkMode = useColorScheme() === 'dark';
   const [selectedFooter, setSelectedFooter] = useState('my_quiz');
   const backgroundStyle = {
@@ -609,10 +638,10 @@ function Quiz() {
           currentScreen="Quiz"
           handleScrollToLeft={() => handleScrollToLeft()}
         />
-        <QuizContainer selectedFooter={selectedFooter} />
+        <QuizContainer classes={classes} selectedFooter={selectedFooter} />
       </ScrollView>
       {!scrollToMenu ? (
-        <View style={styles.footer}>
+        <View style={classes.footer}>
           <TouchableOpacity
             style={
               selectedFooter === 'my_quiz'
@@ -676,12 +705,27 @@ const styles = StyleSheet.create({
         : Dimensions.get('window').height + 220,
     paddingLeft: 10,
     paddingRight: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     marginTop: 5,
     paddingBottom: 14,
   },
+
+  quizContentDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
+  shadowProp: {
+    shadowColor: 'rgba(9, 13, 109, 0.4)',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 20,
+    elevation: 2,
+  },
+
   navbarText: {
     textAlign: 'center',
     fontWeight: 500,
@@ -755,7 +799,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: 74,
     flexDirection: 'row',
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     borderBottomLeftRadius: 0,
@@ -777,6 +821,9 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     paddingRight: 5,
     paddingTop: 6,
+  },
+  footerDark: {
+    backgroundColor: theme.colors.component.$cardDark,
   },
   selectedFooter: {
     width: '33%',
@@ -821,13 +868,16 @@ const styles = StyleSheet.create({
     width: 'auto',
   },
   quizTitle: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     marginTop: 30,
     fontWeight: 600,
     fontSize: 26,
     lineHeight: 32,
     marginLeft: 5,
     marginRight: 5,
+  },
+  quizTitleDark: {
+    color: theme.colors.text.$textDark,
   },
   cardTitle: {
     color: '#9BA5BF',
@@ -846,7 +896,7 @@ const styles = StyleSheet.create({
   myQuizCardContent: {
     width: 251,
     height: 243,
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     borderRadius: 20,
     shadowColor: 'rgba(9, 13, 109, 0.4)',
     shadowOffset: {width: 0, height: 3},
@@ -855,6 +905,9 @@ const styles = StyleSheet.create({
     elevation: 8,
     marginRight: 15,
     marginBottom: 10,
+  },
+  myQuizCardContentDark: {
+    backgroundColor: theme.colors.component.$cardDark,
   },
   myQuizCardImgContainer: {
     maxWidth: 251,
@@ -869,13 +922,16 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   myQuizCardTitle: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontWeight: 600,
     fontSize: 20,
     lineHeight: 24,
     marginTop: 5,
     marginLeft: 15,
+  },
+  myQuizCardTitleDark: {
+    color: theme.colors.text.$textDark,
   },
   myQuizCardBottom: {
     position: 'absolute',
@@ -884,7 +940,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: 231,
     height: 37,
-    backgroundColor: '#FFFFFF',
+
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     shadowOffset: {
       width: 0,
       height: 4,
@@ -893,17 +950,24 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.6,
     shadowRadius: 3,
   },
+  myQuizCardBottomDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   myQuizCardBottomLeft: {
     flexDirection: 'row',
     marginTop: 5,
     marginLeft: 9,
   },
   myQuizCardBottomLeftNumber: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontWeight: 600,
     fontSize: 22,
     lineHeight: 27,
+    marginRight: 2,
+  },
+  myQuizCardBottomLeftNumberDark: {
+    color: theme.colors.text.$textDark,
   },
   myQuizCardBottomLeftText: {
     color: '#9BA5BF',

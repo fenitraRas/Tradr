@@ -30,9 +30,10 @@ import GrayHeart from '../assets/icons/grayHeart.svg';
 import RedHeart from '../assets/icons/redHeart.svg';
 import Search from '../assets/icons/search.svg';
 import {formStyles} from '../assets/css/form';
+import {indexStyles} from '../assets/css';
+import theme from '../assets/theme';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
-import { indexStyles } from '../assets/css';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
@@ -62,18 +63,18 @@ function Navbar(props) {
   );
 }
 
-function TradrboxFolderContent() {
+function TradrboxFolderContent(props) {
   const [text, onChangeText] = React.useState('Rechercher');
   const navigation = useNavigation();
   return (
-    <View style={[styles.tradrboxContent, indexStyles.shadowProp]}>
+    <View style={[props.classes.tradrboxContent, indexStyles.shadowProp]}>
       <View style={styles.tradrboxTitleContainer}>
-        <Text style={styles.tradrboxTitle}>
+        <Text style={props.classes.tradrboxTitle}>
           Un petit peu d’aide ?
-          <FlexedBiceps width={26} height={26} />
+          <FlexedBiceps width={26} height={26} marginLeft={2} />
         </Text>
         <TextInput
-          style={styles.input}
+          style={props.classes.input}
           onChangeText={onChangeText}
           value={text}
         />
@@ -85,18 +86,20 @@ function TradrboxFolderContent() {
             onPress={() => {
               navigation.navigate('TradrboxFile');
             }}
-            style={styles.folderCard}>
+            style={props.classes.folderCard}>
             <View style={styles.folderImageContainer}>
               <Image
                 source={require('../assets/video/images.jpeg')}
                 style={styles.folderImage}
               />
             </View>
-            <Text style={styles.folderCardTitle}>Titre du dossier</Text>
+            <Text style={props.classes.folderCardTitle}>Titre du dossier</Text>
             <Text style={styles.folderCardSubTitle}>Sous-titre du dossier</Text>
             <View style={styles.folderCardBottomContainer}>
-              <View style={styles.folderCardBottom}>
-                <Text style={styles.folderCardBottomLeft}>2 fichiers</Text>
+              <View style={props.classes.folderCardBottom}>
+                <Text style={props.classes.folderCardBottomLeft}>
+                  2 fichiers
+                </Text>
                 <GrayHeart
                   width={16}
                   height={14}
@@ -105,18 +108,20 @@ function TradrboxFolderContent() {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.folderCard}>
+          <TouchableOpacity style={props.classes.folderCard}>
             <View style={styles.folderImageContainer}>
               <Image
                 source={require('../assets/video/images.jpeg')}
                 style={styles.folderImage}
               />
             </View>
-            <Text style={styles.folderCardTitle}>Titre du dossier</Text>
+            <Text style={props.classes.folderCardTitle}>Titre du dossier</Text>
             <Text style={styles.folderCardSubTitle}>Sous-titre du dossier</Text>
             <View style={styles.folderCardBottomContainer}>
-              <View style={styles.folderCardBottom}>
-                <Text style={styles.folderCardBottomLeft}>2 fichiers</Text>
+              <View style={props.classes.folderCardBottom}>
+                <Text style={props.classes.folderCardBottomLeft}>
+                  2 fichiers
+                </Text>
                 <RedHeart
                   width={16}
                   height={14}
@@ -125,18 +130,20 @@ function TradrboxFolderContent() {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.folderCard}>
+          <TouchableOpacity style={props.classes.folderCard}>
             <View style={styles.folderImageContainer}>
               <Image
                 source={require('../assets/video/images.jpeg')}
                 style={styles.folderImage}
               />
             </View>
-            <Text style={styles.folderCardTitle}>Titre du dossier</Text>
+            <Text style={props.classes.folderCardTitle}>Titre du dossier</Text>
             <Text style={styles.folderCardSubTitle}>Sous-titre du dossier</Text>
             <View style={styles.folderCardBottomContainer}>
-              <View style={styles.folderCardBottom}>
-                <Text style={styles.folderCardBottomLeft}>2 fichiers</Text>
+              <View style={props.classes.folderCardBottom}>
+                <Text style={props.classes.folderCardBottomLeft}>
+                  2 fichiers
+                </Text>
                 <RedHeart
                   width={16}
                   height={14}
@@ -145,18 +152,20 @@ function TradrboxFolderContent() {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.folderCard}>
+          <TouchableOpacity style={props.classes.folderCard}>
             <View style={styles.folderImageContainer}>
               <Image
                 source={require('../assets/video/images.jpeg')}
                 style={styles.folderImage}
               />
             </View>
-            <Text style={styles.folderCardTitle}>Titre du dossier</Text>
+            <Text style={props.classes.folderCardTitle}>Titre du dossier</Text>
             <Text style={styles.folderCardSubTitle}>Sous-titre du dossier</Text>
             <View style={styles.folderCardBottomContainer}>
-              <View style={styles.folderCardBottom}>
-                <Text style={styles.folderCardBottomLeft}>2 fichiers</Text>
+              <View style={props.classes.folderCardBottom}>
+                <Text style={props.classes.folderCardBottomLeft}>
+                  2 fichiers
+                </Text>
                 <GrayHeart
                   width={16}
                   height={14}
@@ -165,18 +174,20 @@ function TradrboxFolderContent() {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.folderCard}>
+          <TouchableOpacity style={props.classes.folderCard}>
             <View style={styles.folderImageContainer}>
               <Image
                 source={require('../assets/video/images.jpeg')}
                 style={styles.folderImage}
               />
             </View>
-            <Text style={styles.folderCardTitle}>Titre du dossier</Text>
+            <Text style={props.classes.folderCardTitle}>Titre du dossier</Text>
             <Text style={styles.folderCardSubTitle}>Sous-titre du dossier</Text>
             <View style={styles.folderCardBottomContainer}>
-              <View style={styles.folderCardBottom}>
-                <Text style={styles.folderCardBottomLeft}>2 fichiers</Text>
+              <View style={props.classes.folderCardBottom}>
+                <Text style={props.classes.folderCardBottomLeft}>
+                  2 fichiers
+                </Text>
                 <RedHeart
                   width={16}
                   height={14}
@@ -185,18 +196,20 @@ function TradrboxFolderContent() {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.folderCard}>
+          <TouchableOpacity style={props.classes.folderCard}>
             <View style={styles.folderImageContainer}>
               <Image
                 source={require('../assets/video/images.jpeg')}
                 style={styles.folderImage}
               />
             </View>
-            <Text style={styles.folderCardTitle}>Titre du dossier</Text>
+            <Text style={props.classes.folderCardTitle}>Titre du dossier</Text>
             <Text style={styles.folderCardSubTitle}>Sous-titre du dossier</Text>
             <View style={styles.folderCardBottomContainer}>
-              <View style={styles.folderCardBottom}>
-                <Text style={styles.folderCardBottomLeft}>2 fichiers</Text>
+              <View style={props.classes.folderCardBottom}>
+                <Text style={props.classes.folderCardBottomLeft}>
+                  2 fichiers
+                </Text>
                 <RedHeart
                   width={16}
                   height={14}
@@ -211,15 +224,43 @@ function TradrboxFolderContent() {
   );
 }
 
-function TradrboxFolderContainer() {
+function TradrboxFolderContainer(props) {
   return (
     <ScrollView>
-      <TradrboxFolderContent />
+      <TradrboxFolderContent classes={props.classes} />
     </ScrollView>
   );
 }
 
 function TradrboxFolder() {
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const classes = {
+    tradrboxContent: [
+      styles.tradrboxContent,
+      colorScheme === 'dark' && styles.tradrboxContentDark,
+    ],
+    input: [styles.input, colorScheme === 'dark' && styles.inputDark],
+    folderCard: [
+      styles.folderCard,
+      colorScheme === 'dark' && styles.folderCardDark,
+    ],
+    folderCardBottom: [
+      styles.folderCardBottom,
+      colorScheme === 'dark' && styles.folderCardBottomDark,
+    ],
+    tradrboxTitle: [
+      styles.tradrboxTitle,
+      colorScheme === 'dark' && styles.tradrboxTitleDark,
+    ],
+    folderCardTitle: [
+      styles.folderCardTitle,
+      colorScheme === 'dark' && styles.folderCardTitleDark,
+    ],
+    folderCardBottomLeft: [
+      styles.folderCardBottomLeft,
+      colorScheme === 'dark' && styles.folderCardBottomLeftDark,
+    ],
+  };
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -268,7 +309,7 @@ function TradrboxFolder() {
           currentScreen="TradrboxFolder"
           handleScrollToLeft={() => handleScrollToLeft()}
         />
-        <TradrboxFolderContainer />
+        <TradrboxFolderContainer classes={classes} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -283,11 +324,14 @@ const styles = StyleSheet.create({
         : Dimensions.get('window').height,
     paddingLeft: 10,
     paddingRight: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     marginTop: 5,
     paddingBottom: 14,
+  },
+  tradrboxContentDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   shadowProp: {
     shadowColor: 'rgba(9, 13, 109, 0.4)',
@@ -310,14 +354,17 @@ const styles = StyleSheet.create({
   tradrboxTitleContainer: {
     width: 'auto',
   },
+  tradrboxTitleDark: {
+    color: theme.colors.text.$textDark,
+  },
   tradrboxTitle: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     marginTop: 30,
     fontWeight: 600,
     fontSize: 26,
     lineHeight: 32,
     marginLeft: 5,
-    marginRight: 5,
+    marginRight: 10,
   },
   input: {
     width: '100%',
@@ -325,13 +372,16 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     marginTop: 30,
     marginBottom: 20,
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     borderRadius: 20,
     paddingLeft: 30,
     color: '#9BA5BF',
     fontSize: 12,
     lineHeight: 15,
     fontFamily: 'Montserrat',
+  },
+  inputDark: {
+    backgroundColor: theme.colors.component.$cardDark,
   },
   searchIcon: {
     position: 'absolute',
@@ -347,10 +397,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginHorizontal: Platform.OS === 'android' ? 5 : 5,
   },
+  folderCardDark: {
+    backgroundColor: theme.colors.component.$cardDark,
+  },
   folderCard: {
     width: Platform.OS === 'android' ? 160 : 170,
     height: 194,
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     borderRadius: 16,
     marginVertical: Platform.OS === 'android' ? 11 : 15,
     ...Platform.select({
@@ -380,6 +433,9 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
+  folderCardTitleDark: {
+    color: theme.colors.text.$textDark,
+  },
   folderCardTitle: {
     marginTop: 14,
     marginLeft: 15,
@@ -387,7 +443,7 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 12,
     lineHeight: 15,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
   },
   folderCardSubTitle: {
     fontFamily: 'Montserrat',
@@ -403,13 +459,16 @@ const styles = StyleSheet.create({
     padding: 5,
     height: 40,
   },
+  folderCardBottomDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   folderCardBottom: {
     flexDirection: 'row',
     borderRadius: 15,
     marginTop: 10,
     width: '100%',
     height: 40,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     ...Platform.select({
       ios: {
         shadowColor: 'rgba(9, 13, 109, 0.4)',
@@ -425,6 +484,9 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  folderCardBottomLeftDark: {
+    color: theme.colors.text.$textDark,
+  },
   folderCardBottomLeft: {
     marginLeft: 15,
     marginTop: 13,
@@ -432,7 +494,7 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 12,
     lineHeight: 15,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
   },
   folderCardBottomRight: {
     position: 'absolute',

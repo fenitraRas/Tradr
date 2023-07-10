@@ -29,9 +29,10 @@ import FoldedHands from '../assets/icons/foldedHands.svg';
 import Rocket from '../assets/icons/rocket.svg';
 import Share from '../assets/icons/share.svg';
 import {formStyles} from '../assets/css/form';
+import {indexStyles} from '../assets/css';
+import theme from '../assets/theme';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
-import {indexStyles} from '../assets/css';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
@@ -61,18 +62,20 @@ function Navbar(props) {
   );
 }
 
-function SponsorContent() {
+function SponsorContent(props) {
   return (
-    <View style={[styles.sponsorContent, indexStyles.shadowProp]}>
+    <View style={[props.classes.sponsorContent, indexStyles.shadowProp]}>
       <View style={styles.sponsorTitleContainer}>
-        <Text style={styles.sponsorTitle}>
+        <Text style={props.classes.sponsorTitle}>
           Le succès les attend aussi !
-          <Rocket width={26} height={26} />
+          <Rocket width={26} height={26} marginLeft={15} />
         </Text>
       </View>
 
-      <View style={styles.sponsorCard}>
-        <Text style={styles.sponsorLinkTitle}>Mon lien de parrainage</Text>
+      <View style={props.classes.sponsorCard}>
+        <Text style={props.classes.sponsorLinkTitle}>
+          Mon lien de parrainage
+        </Text>
         <View style={styles.sponsorLinkContainer}>
           <View style={styles.sponsorLinkContent}>
             <View style={styles.linkContainer}>
@@ -88,63 +91,67 @@ function SponsorContent() {
             </TouchableOpacity>
           </View>
         </View>
-        <Text style={styles.sponsorLabel}>Mon parrain</Text>
-        <View style={styles.sponsorNameContainer}>
+        <Text style={props.classes.sponsorLabel}>Mon parrain</Text>
+        <View style={props.classes.sponsorNameContainer}>
           <Image
             source={require('../assets/avatar.png')}
             style={styles.avatar}
           />
           <View style={styles.sponsorLeftText}>
-            <Text style={styles.firstName}>Julien</Text>
-            <Text style={styles.name}>Lenoir</Text>
+            <Text style={props.classes.firstName}>Julien</Text>
+            <Text style={props.classes.name}>Lenoir</Text>
           </View>
           <View style={styles.sponsorRightText}>
             <Text style={styles.dateLabel}>Date de parrainage</Text>
-            <Text style={styles.date}>15 Mar. 2023</Text>
+            <Text style={props.classes.date}>15 Mar. 2023</Text>
           </View>
         </View>
       </View>
 
-      <Text style={styles.contactTitle}>
+      <Text style={props.classes.contactTitle}>
         Mes contacts
         <FoldedHands width={15} height={15} style={styles.contactTitleImg} />
       </Text>
-      <View style={styles.contactCard}>
+      <View style={props.classes.contactCard}>
         <View>
-          <Text style={styles.contactSubtitle}>Mes contacts parrainés</Text>
-          <View style={styles.sponsorNameContainer}>
+          <Text style={props.classes.contactSubtitle}>
+            Mes contacts parrainés
+          </Text>
+          <View style={props.classes.sponsorNameContainer}>
             <Image
               source={require('../assets/avatar.png')}
               style={styles.avatar}
             />
             <View style={styles.sponsorLeftText}>
-              <Text style={styles.firstName}>Jean-mathieu</Text>
-              <Text style={styles.name}>Valberg</Text>
+              <Text style={props.classes.firstName}>Jean-mathieu</Text>
+              <Text style={props.classes.name}>Valberg</Text>
             </View>
             <View style={styles.sponsorRightText}>
               <Text style={styles.dateLabel}>Date de parrainage</Text>
-              <Text style={styles.date}>08 Mar. 2023</Text>
+              <Text style={props.classes.date}>08 Mar. 2023</Text>
             </View>
           </View>
-          <View style={styles.sponsorNameContainer}>
+          <View style={props.classes.sponsorNameContainer}>
             <Image
               source={require('../assets/avatar.png')}
               style={styles.avatar}
             />
             <View style={styles.sponsorLeftText}>
-              <Text style={styles.firstName}>Émilia</Text>
-              <Text style={styles.name}>Detroit</Text>
+              <Text style={props.classes.firstName}>Émilia</Text>
+              <Text style={props.classes.name}>Detroit</Text>
             </View>
             <View style={styles.sponsorRightText}>
               <Text style={styles.dateLabel}>Date de parrainage</Text>
-              <Text style={styles.date}>02 Jan. 2023</Text>
+              <Text style={props.classes.date}>02 Jan. 2023</Text>
             </View>
           </View>
         </View>
 
         <View style={styles.invitationContainer}>
-          <Text style={styles.contactSubtitle}>Mes invitations restantes</Text>
-          <View style={styles.sponsorNameContainer}>
+          <Text style={props.classes.contactSubtitle}>
+            Mes invitations restantes
+          </Text>
+          <View style={props.classes.sponsorNameContainer}>
             <Image
               source={require('../assets/person.png')}
               style={styles.avatar}
@@ -153,7 +160,7 @@ function SponsorContent() {
               <Text style={styles.invitationLabel}>Invitation restante</Text>
             </View>
           </View>
-          <View style={styles.sponsorNameContainer}>
+          <View style={props.classes.sponsorNameContainer}>
             <Image
               source={require('../assets/person.png')}
               style={styles.avatar}
@@ -162,7 +169,7 @@ function SponsorContent() {
               <Text style={styles.invitationLabel}>Invitation restante</Text>
             </View>
           </View>
-          <View style={styles.sponsorNameContainer}>
+          <View style={props.classes.sponsorNameContainer}>
             <Image
               source={require('../assets/person.png')}
               style={styles.avatar}
@@ -177,15 +184,60 @@ function SponsorContent() {
   );
 }
 
-function SponsorContainer() {
+function SponsorContainer(props) {
   return (
     <ScrollView>
-      <SponsorContent />
+      <SponsorContent classes={props.classes} />
     </ScrollView>
   );
 }
 
 function Sponsor() {
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const classes = {
+    sponsorContent: [
+      styles.sponsorContent,
+      colorScheme === 'dark' && styles.sponsorContentDark,
+    ],
+    sponsorTitle: [
+      styles.sponsorTitle,
+      colorScheme === 'dark' && styles.sponsorTitleDark,
+    ],
+    sponsorCard: [
+      styles.sponsorCard,
+      colorScheme === 'dark' && styles.sponsorCardDark,
+    ],
+    sponsorLinkTitle: [
+      styles.sponsorLinkTitle,
+      colorScheme === 'dark' && styles.sponsorLinkTitleDark,
+    ],
+    sponsorLabel: [
+      styles.sponsorLabel,
+      colorScheme === 'dark' && styles.sponsorLabelDark,
+    ],
+    sponsorNameContainer: [
+      styles.sponsorNameContainer,
+      colorScheme === 'dark' && styles.sponsorNameContainerDark,
+    ],
+    firstName: [
+      styles.firstName,
+      colorScheme === 'dark' && styles.firstNameDark,
+    ],
+    name: [styles.name, colorScheme === 'dark' && styles.nameDark],
+    date: [styles.date, colorScheme === 'dark' && styles.dateDark],
+    contactTitle: [
+      styles.contactTitle,
+      colorScheme === 'dark' && styles.contactTitleDark,
+    ],
+    contactCard: [
+      styles.contactCard,
+      colorScheme === 'dark' && styles.contactCardDark,
+    ],
+    contactSubtitle: [
+      styles.contactSubtitle,
+      colorScheme === 'dark' && styles.contactSubtitleDark,
+    ],
+  };
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -234,18 +286,21 @@ function Sponsor() {
           currentScreen="Sponsor"
           handleScrollToLeft={() => handleScrollToLeft()}
         />
-        <SponsorContainer />
+        <SponsorContainer classes={classes} />
       </ScrollView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  sponsorContentDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   sponsorContent: {
     width: Dimensions.get('window').width,
     paddingLeft: 10,
     paddingRight: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     marginTop: 5,
@@ -262,8 +317,11 @@ const styles = StyleSheet.create({
   sponsorTitleContainer: {
     width: 'auto',
   },
+  sponsorTitleDark: {
+    color: theme.colors.text.$textDark,
+  },
   sponsorTitle: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     marginTop: 30,
     fontWeight: 600,
     fontSize: 26,
@@ -271,8 +329,11 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginRight: 15,
   },
+  sponsorCardDark: {
+    backgroundColor: theme.colors.component.$cardDark,
+  },
   sponsorCard: {
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     width: '100%',
     height: 190,
     borderRadius: 20,
@@ -294,10 +355,13 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  sponsorLinkTitleDark: {
+    color: theme.colors.text.$textDark,
+  },
   sponsorLinkTitle: {
     marginTop: 15,
     marginLeft: 5,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontWeight: 500,
     fontSize: 15,
     lineHeight: 18,
@@ -339,8 +403,11 @@ const styles = StyleSheet.create({
     marginLeft: 14,
     marginTop: 4,
   },
+  sponsorLabelDark: {
+    color: theme.colors.text.$textDark,
+  },
   sponsorLabel: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontWeight: 500,
     fontSize: 15,
     lineHeight: 18,
@@ -348,9 +415,12 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginTop: 20,
   },
+  sponsorNameContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   sponsorNameContainer: {
     flexDirection: 'row',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     width: '100%',
     height: 60,
     borderRadius: 10,
@@ -382,16 +452,22 @@ const styles = StyleSheet.create({
     marginTop: 12,
     width: '48%',
   },
+  firstNameDark: {
+    color: theme.colors.text.$textDark,
+  },
   firstName: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontWeight: 500,
     fontSize: 15,
     lineHeight: 18,
     fontFamily: 'Montserrat',
   },
+  nameDark: {
+    color: theme.colors.text.$textDark,
+  },
   name: {
     marginTop: 2,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontWeight: 400,
     fontSize: 15,
     lineHeight: 18,
@@ -410,31 +486,40 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
     textAlign: 'right',
   },
+  dateDark: {
+    color: theme.colors.text.$textDark,
+  },
   date: {
     marginTop: 3,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontWeight: 400,
     fontSize: 15,
     lineHeight: 18,
     fontFamily: 'Montserrat',
     textAlign: 'right',
   },
+  contactTitleDark: {
+    color: theme.colors.text.$textDark,
+  },
   contactTitle: {
     marginTop: 30,
     marginLeft: 15,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontWeight: 500,
     fontSize: 20,
     lineHeight: 24,
     fontFamily: 'Montserrat',
   },
   contactTitleImg: {
-    marginLeft: 6,
+    marginLeft: 15,
+  },
+  contactCardDark: {
+    backgroundColor: theme.colors.component.$cardDark,
   },
   contactCard: {
     height: 431,
     width: '100%',
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     borderRadius: 20,
     marginTop: 10,
     ...Platform.select({
@@ -454,8 +539,11 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
   },
+  contactSubtitleDark: {
+    color: theme.colors.text.$textDark,
+  },
   contactSubtitle: {
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontWeight: 500,
     fontSize: 15,
     lineHeight: 18,

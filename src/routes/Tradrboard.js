@@ -194,12 +194,15 @@ function TradrBoardObjective({classes, title}) {
             <View style={styles.progressNumber}>
               <Text style={classes.progressText}>0</Text>
             </View>
+
             <View style={styles.progressContent}>
-              <ProgressBar
+              <View style={styles.progressbar} />
+              <View style={styles.progress} />
+              {/* <ProgressBar
                 style={styles.progress}
                 progress={0.33}
                 color="#9154FD"
-              />
+              /> */}
             </View>
             <View style={styles.progressNumber}>
               <Text style={classes.progressText}>3</Text>
@@ -207,19 +210,19 @@ function TradrBoardObjective({classes, title}) {
           </View>
           <TouchableOpacity
             style={[indexStyles.horizontalFlex, styles.radioContent]}>
-            <UnseletedRadio width={42} height={42} />
+            <UnseletedRadio width={42} height={42} style={styles.radio} />
             <Text style={classes.radioText}>S'inscrire</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[indexStyles.horizontalFlex, styles.radioContent]}>
-            <SeletedRadio width={42} height={42} />
+            <SeletedRadio width={42} height={42} style={styles.radio} />
             <Text style={classes.radioText}>
               Visionner l'épisode accessible
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[indexStyles.horizontalFlex, styles.radioContent]}>
-            <UnseletedRadio width={42} height={42} />
+            <UnseletedRadio width={42} height={42} style={styles.radio} />
             <Text style={classes.radioText}>
               Accomplir les deux objectifs précédents
             </Text>
@@ -379,6 +382,16 @@ const styles = StyleSheet.create({
   tradrboardContentDark: {
     backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
+  radio: {
+    shadowColor: 'rgba(145, 84, 253, 0.8)',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 5,
+    elevation: 5,
+  },
   connectButton: {
     width: 102,
     height: 21,
@@ -446,8 +459,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontSize: 20,
-    lineHeight: 24,
     color: theme.colors.text.$textLight,
+    fontWeight: 500,
   },
   cardTitleDark: {
     color: theme.colors.text.$textDark,
@@ -574,48 +587,82 @@ const styles = StyleSheet.create({
   progressContent: {
     flex: 2,
   },
-  progress: {
-    backgroundColor: '#FFFFFF',
-    height: 13,
-    borderRadius: 6.5,
-    marginTop: 8,
-    shadowColor: 'rgba(145, 84, 253, 0.8)',
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 4,
-    elevation: 1,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'rgba(145, 84, 253, 0.6)',
-        shadowOffset: {
-          width: 0,
-          height: 0,
-        },
-        shadowOpacity: 1,
-        shadowRadius: 14,
-      },
-      android: {
-        elevation: 3,
-      },
-    }),
-  },
+  // progress: {
+  //   backgroundColor: '#FFFFFF',
+  //   height: 13,
+  //   borderRadius: 6.5,
+  //   marginTop: 8,
+  //   shadowColor: 'rgba(145, 84, 253, 0.8)',
+  //   shadowOffset: {
+  //     width: 0,
+  //     height: 0,
+  //   },
+  //   shadowOpacity: 1,
+  //   shadowRadius: 4,
+  //   elevation: 1,
+  //   ...Platform.select({
+  //     ios: {
+  //       shadowColor: 'rgba(145, 84, 253, 0.6)',
+  //       shadowOffset: {
+  //         width: 0,
+  //         height: 0,
+  //       },
+  //       shadowOpacity: 1,
+  //       shadowRadius: 14,
+  //     },
+  //     android: {
+  //       elevation: 3,
+  //     },
+  //   }),
+  // },
   radioContent: {
     marginLeft: 17,
     marginTop: -10,
   },
   radioText: {
     marginTop: 12,
-    fontFamily: 'Montserrat',
-    fontWeight: 500,
-    fontSize: 15,
-    lineHeight: 18,
     color: theme.colors.text.$textLight,
+    fontSize: 15,
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    lineHeight: 21,
   },
   radioTextDark: {
     color: theme.colors.text.$textDark,
+  },
+  progressbar: {
+    position: 'absolute',
+    width: '100%',
+    height: 13,
+    marginTop: 8,
+    borderRadius: 6.5,
+    backgroundColor: '#FFFFFF',
+    justifyContent: 'center',
+    shadowColor: 'rgba(9, 13, 109, 0.50)',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 15,
+    elevation: 5,
+  },
+  progress: {
+    position: 'absolute',
+    width: '33.33%',
+    height: 13,
+    marginTop: 8,
+    borderRadius: 6.5,
+    backgroundColor: '#9154FD',
+    shadowColor: 'rgba(145, 84, 253, 0.60)',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 14,
+    elevation: 5,
   },
 });
 
