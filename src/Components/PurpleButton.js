@@ -1,5 +1,6 @@
+import {Platform, StyleSheet, Text, TouchableOpacity} from 'react-native';
+
 import React from 'react';
-import {TouchableOpacity, Text, StyleSheet, Platform} from 'react-native';
 
 export default function PurpleButton({label, onPress}) {
   return (
@@ -12,7 +13,7 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 10,
     height: 49,
-    maxWidth: 370,
+    // maxWidth: 370,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
