@@ -30,6 +30,7 @@ import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg
 import Sparkles from '../assets/icons/sparkles.svg';
 import {formStyles} from '../assets/css/form';
 import {indexStyles} from '../assets/css/index';
+import theme from '../assets/theme';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 
@@ -66,14 +67,14 @@ function Navbar(props) {
 function ProfileContent(props) {
   const navigation = useNavigation();
   return (
-    <View style={[styles.profileContent, indexStyles.shadowProp]}>
+    <View style={[props.classes.profileContent, indexStyles.shadowProp]}>
       <View style={styles.profil}>
         <Image
           style={{position: 'absolute'}}
           source={require('../assets/profil.png')}
         />
       </View>
-      <Text style={styles.name} numberOfLines={1}>
+      <Text style={props.classes.name} numberOfLines={1}>
         Kévin Clément
       </Text>
       <TouchableOpacity
@@ -81,22 +82,22 @@ function ProfileContent(props) {
         style={styles.buttonProfil}>
         <Text style={styles.profilText}>Modifier mes informations</Text>
       </TouchableOpacity>
-      <ProfileInformation title="Mes informations" />
-      <ProfileInformationContent />
-      <ProfileDocument title="Mes documents" />
-      <ProfileDocumentContent />
-      <ProfileStatistical title="Mes statistiques" />
-      <ProfileStatisticalContent />
+      <ProfileInformation classes={props.classes} title="Mes informations" />
+      <ProfileInformationContent classes={props.classes} />
+      <ProfileDocument classes={props.classes} title="Mes documents" />
+      <ProfileDocumentContent classes={props.classes} />
+      <ProfileStatistical classes={props.classes} title="Mes statistiques" />
+      <ProfileStatisticalContent classes={props.classes} />
     </View>
   );
 }
 
-function ProfileInformation({title}) {
+function ProfileInformation({classes, title}) {
   return (
     <View style={[styles.informationContainer, {marginTop: 119}]}>
       <View
         style={[indexStyles.horizontalFlex, styles.informationTitleContainer]}>
-        <Text style={[styles.informationCardTitle, styles.informationTitle]}>
+        <Text style={[styles.informationCardTitle, classes.informationTitle]}>
           {title}
         </Text>
         <Sparkles width={18} height={18} style={styles.imageTitle} />
@@ -105,12 +106,12 @@ function ProfileInformation({title}) {
   );
 }
 
-function ProfileDocument({title}) {
+function ProfileDocument({classes, title}) {
   return (
     <View style={[styles.informationContainer, {marginTop: 30}]}>
       <View
         style={[indexStyles.horizontalFlex, styles.informationTitleContainer]}>
-        <Text style={[styles.informationCardTitle, styles.documentTitle]}>
+        <Text style={[styles.informationCardTitle, classes.documentTitle]}>
           {title}
         </Text>
         <CardIndexDividers width={18} height={18} style={styles.imageTitle} />
@@ -119,12 +120,12 @@ function ProfileDocument({title}) {
   );
 }
 
-function ProfileStatistical({title}) {
+function ProfileStatistical({classes, title}) {
   return (
     <View style={[styles.informationContainer, {marginTop: 30}]}>
       <View
         style={[indexStyles.horizontalFlex, styles.informationTitleContainer]}>
-        <Text style={[styles.informationCardTitle, styles.statisticalTitle]}>
+        <Text style={[styles.informationCardTitle, classes.statisticalTitle]}>
           {title}
         </Text>
         <ChartIncreasing width={18} height={18} style={styles.imageTitle} />
@@ -133,27 +134,31 @@ function ProfileStatistical({title}) {
   );
 }
 
-function ProfileStatisticalContent() {
+function ProfileStatisticalContent(props) {
   return (
-    <View style={[styles.informationCard, styles.cardStat]}>
+    <View style={[props.classes.informationCard, styles.cardStat]}>
       <View style={[styles.arrangeHorizontally, {paddingRight: 15}]}>
         <View style={[styles.infoItem, {marginLeft: -3, paddingRight: 5}]}>
-          <Text numberOfLines={1} style={[styles.addText, {marginLeft: 8}]}>
+          <Text
+            numberOfLines={1}
+            style={[props.classes.addText, {marginLeft: 8}]}>
             Formations réalisées
           </Text>
           <View
             style={[
-              styles.numberStatContainer,
+              props.classes.numberStatContainer,
               {width: '100%', marginTop: 15, marginLeft: 8},
             ]}>
             <Text style={styles.numberStatText}>5</Text>
           </View>
         </View>
         <View style={[styles.infoItem, {paddingLeft: 5}]}>
-          <Text style={[styles.addText, {marginLeft: 8}]}>Épisodes vues</Text>
+          <Text style={[props.classes.addText, {marginLeft: 8}]}>
+            Épisodes vues
+          </Text>
           <View
             style={[
-              styles.numberStatContainer,
+              props.classes.numberStatContainer,
               {width: '100%', marginTop: 15, marginLeft: 8},
             ]}>
             <Text style={styles.numberStatText}>63</Text>
@@ -162,7 +167,7 @@ function ProfileStatisticalContent() {
       </View>
 
       <View>
-        <Text style={[styles.addText, {marginTop: 15, marginLeft: 10}]}>
+        <Text style={[props.classes.addText, {marginTop: 15, marginLeft: 10}]}>
           Quiz réussi
         </Text>
       </View>
@@ -170,7 +175,7 @@ function ProfileStatisticalContent() {
         <View style={[{marginLeft: -3, paddingRight: 5, width: '33%'}]}>
           <View
             style={[
-              styles.numberStatContainer,
+              props.classes.numberStatContainer,
               {width: '100%', marginTop: 10, marginLeft: 8},
             ]}>
             <Text style={styles.numberStatText}>25</Text>
@@ -179,7 +184,7 @@ function ProfileStatisticalContent() {
         <View style={[{paddingLeft: 5, paddingRight: 5, width: '33%'}]}>
           <View
             style={[
-              styles.numberStatContainer,
+              props.classes.numberStatContainer,
               {width: '100%', marginTop: 10, marginLeft: 8},
             ]}>
             <Text style={styles.numberStatText}>17</Text>
@@ -188,7 +193,7 @@ function ProfileStatisticalContent() {
         <View style={[{paddingLeft: 5, width: '33%'}]}>
           <View
             style={[
-              styles.numberStatContainer,
+              props.classes.numberStatContainer,
               {width: '100%', marginTop: 10, marginLeft: 8},
             ]}>
             <Text style={styles.numberStatText}>13</Text>
@@ -198,20 +203,24 @@ function ProfileStatisticalContent() {
 
       <View style={[styles.arrangeHorizontally, {paddingRight: 15}]}>
         <View style={[styles.infoItem, {marginLeft: -3, paddingRight: 5}]}>
-          <Text style={[styles.addText, {marginLeft: 8}]}>Objectif réussi</Text>
+          <Text style={[props.classes.addText, {marginLeft: 8}]}>
+            Objectif réussi
+          </Text>
           <View
             style={[
-              styles.numberStatContainer,
+              props.classes.numberStatContainer,
               {width: '100%', marginTop: 15, marginLeft: 8},
             ]}>
             <Text style={styles.numberStatText}>32</Text>
           </View>
         </View>
         <View style={[styles.infoItem, {paddingLeft: 5}]}>
-          <Text style={[styles.addText, {marginLeft: 8}]}>Certificats</Text>
+          <Text style={[props.classes.addText, {marginLeft: 8}]}>
+            Certificats
+          </Text>
           <View
             style={[
-              styles.numberStatContainer,
+              props.classes.numberStatContainer,
               {width: '100%', marginTop: 15, marginLeft: 8},
             ]}>
             <Text style={styles.numberStatText}>6</Text>
@@ -222,7 +231,7 @@ function ProfileStatisticalContent() {
   );
 }
 
-function ProfileDocumentContent() {
+function ProfileDocumentContent(props) {
   const values = [
     'CV 20022-23.pdf',
     'newspaper.pdf',
@@ -233,11 +242,11 @@ function ProfileDocumentContent() {
     'document.pdf',
   ];
   return (
-    <View style={[styles.informationCard, styles.cardDocHeight]}>
+    <View style={[props.classes.informationCard, styles.cardDocHeight]}>
       <View>
         <View style={styles.addDocumentContainer}>
           <View style={styles.addDocumentLeft}>
-            <Text style={styles.addText}>Ajouter un document</Text>
+            <Text style={props.classes.addText}>Ajouter un document</Text>
           </View>
           <TouchableOpacity style={styles.addDocumentRight}>
             <View style={styles.addButton}>
@@ -248,8 +257,8 @@ function ProfileDocumentContent() {
 
         <View style={[styles.arrangeHorizontally, {maxHeight: 130}]}>
           {values.map(value => (
-            <View key={value} style={[styles.pdfContainer]}>
-              <Text style={styles.pdfText}>{value}</Text>
+            <View key={value} style={[props.classes.pdfContainer]}>
+              <Text style={props.classes.pdfText}>{value}</Text>
               <TouchableOpacity style={styles.imageClosed}>
                 <Closed width={6} height={6} />
               </TouchableOpacity>
@@ -261,32 +270,32 @@ function ProfileDocumentContent() {
   );
 }
 
-function ProfileInformationContent() {
+function ProfileInformationContent(props) {
   return (
-    <View style={[styles.informationCard, styles.cardInfoHeight]}>
+    <View style={[props.classes.informationCard, styles.cardInfoHeight]}>
       <View style={styles.informationCardContent}>
         <View style={[styles.infoItem, {paddingRight: 5}]}>
-          <Text style={[styles.textInfo]}>Prénom</Text>
-          <View style={[styles.infoTextContainer]}>
-            <Text style={styles.infoText}>Kévin</Text>
+          <Text style={[props.classes.textInfo]}>Prénom</Text>
+          <View style={[props.classes.infoTextContainer]}>
+            <Text style={props.classes.infoText}>Kévin</Text>
           </View>
         </View>
         <View style={[styles.infoItem, {paddingLeft: 5}]}>
-          <Text style={[styles.textInfo]}>Nom</Text>
-          <View style={[styles.infoTextContainer]}>
-            <Text style={styles.infoText}>Clément</Text>
+          <Text style={[props.classes.textInfo]}>Nom</Text>
+          <View style={[props.classes.infoTextContainer]}>
+            <Text style={props.classes.infoText}>Clément</Text>
           </View>
         </View>
         <View style={[styles.fullInfoItem]}>
-          <Text style={[styles.textInfo]}>Email</Text>
-          <View style={[styles.infoTextContainer]}>
-            <Text style={styles.infoText}>pleiades@trad.com</Text>
+          <Text style={[props.classes.textInfo]}>Email</Text>
+          <View style={[props.classes.infoTextContainer]}>
+            <Text style={props.classes.infoText}>pleiades@trad.com</Text>
           </View>
         </View>
         <View style={[styles.fullInfoItem]}>
-          <Text style={[styles.textInfo]}>Téléphone</Text>
-          <View style={[styles.infoTextContainer]}>
-            <Text style={styles.infoText}>0633445566</Text>
+          <Text style={[props.classes.textInfo]}>Téléphone</Text>
+          <View style={[props.classes.infoTextContainer]}>
+            <Text style={props.classes.infoText}>0633445566</Text>
           </View>
         </View>
       </View>
@@ -294,18 +303,57 @@ function ProfileInformationContent() {
   );
 }
 
-function ProfileContainer() {
+function ProfileContainer(props) {
   return (
-    <ScrollView>
-      <ProfileContent />
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <ProfileContent classes={props.classes} />
     </ScrollView>
   );
 }
 
 function Profile() {
-  const isDarkMode = useColorScheme() === 'dark';
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const classes = {
+    profileContent: [
+      styles.profileContent,
+      colorScheme === 'dark' && styles.profileContentDark,
+    ],
+    informationCard: [
+      styles.informationCard,
+      colorScheme === 'dark' && styles.informationCardDark,
+    ],
+    infoTextContainer: [
+      styles.infoTextContainer,
+      colorScheme === 'dark' && styles.infoTextContainerDark,
+    ],
+    pdfContainer: [
+      styles.pdfContainer,
+      colorScheme === 'dark' && styles.pdfContainerDark,
+    ],
+    numberStatContainer: [
+      styles.numberStatContainer,
+      colorScheme === 'dark' && styles.numberStatContainerDark,
+    ],
+    name: [styles.name, colorScheme === 'dark' && styles.nameDark],
+    informationTitle: [
+      styles.informationTitle,
+      colorScheme === 'dark' && styles.informationTitleDark,
+    ],
+    textInfo: [styles.textInfo, colorScheme === 'dark' && styles.textInfoDark],
+    infoText: [styles.infoText, colorScheme === 'dark' && styles.infoTextDark],
+    documentTitle: [
+      styles.documentTitle,
+      colorScheme === 'dark' && styles.documentTitleDark,
+    ],
+    addText: [styles.addText, colorScheme === 'dark' && styles.addTextDark],
+    pdfText: [styles.pdfText, colorScheme === 'dark' && styles.pdfTextDark],
+    statisticalTitle: [
+      styles.statisticalTitle,
+      colorScheme === 'dark' && styles.statisticalTitleDark,
+    ],
+  };
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    backgroundColor: colorScheme === 'dark' ? Colors.darker : Colors.lighter,
   };
   const scrollViewRef = useRef(null);
   const [scrollToMenu, setScrollToMenu] = useState(false);
@@ -331,7 +379,7 @@ function Profile() {
   return (
     <SafeAreaView>
       <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        barStyle={colorScheme ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
       {scrollToMenu ? (
@@ -345,6 +393,7 @@ function Profile() {
       <ScrollView
         ref={scrollViewRef}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         scrollEnabled={false}
         onContentSizeChange={handleContentSizeChange}
         contentOffset={{x: 0, y: 0}}>
@@ -352,19 +401,22 @@ function Profile() {
           currentScreen="Profile"
           handleScrollToLeft={() => handleScrollToLeft()}
         />
-        <ProfileContainer />
+        <ProfileContainer classes={classes} />
       </ScrollView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  profileContentDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   profileContent: {
     width: Dimensions.get('window').width,
     paddingLeft: 10,
     paddingRight: 10,
     paddingBottom: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     marginTop: 5,
@@ -384,13 +436,16 @@ const styles = StyleSheet.create({
     marginLeft: 9,
     marginTop: 15,
   },
+  nameDark: {
+    color: theme.colors.text.$textDark,
+  },
   name: {
     position: 'absolute',
     width: Dimensions.get('window').width - 128,
     height: 29,
     left: 112,
     top: 26,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontWeight: 600,
@@ -443,22 +498,34 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontSize: 20,
     lineHeight: 24,
+    fontWeight: 500,
+  },
+  informationTitleDark: {
+    color: theme.colors.text.$textDark,
   },
   informationTitle: {
     width: Platform.OS === 'android' ? 167 : 186,
+    color: theme.colors.text.$textLight,
+  },
+  documentTitleDark: {
+    color: theme.colors.text.$textDark,
   },
   documentTitle: {
     width: Platform.OS === 'android' ? 155 : 174,
+    color: theme.colors.text.$textLight,
   },
   imageTitle: {
     marginTop: 2,
+  },
+  informationCardDark: {
+    backgroundColor: theme.colors.component.$cardDark,
   },
   informationCard: {
     width: '100%',
     marginTop: 10,
     alignItems: 'flex-start',
     borderRadius: 20,
-    backgroundColor: '#E9EDFC',
+    backgroundColor: theme.colors.component.$cardLight,
     shadowColor: 'rgba(9, 13, 109, 0.4)',
     shadowOffset: {
       width: 0,
@@ -494,6 +561,9 @@ const styles = StyleSheet.create({
     width: '100%',
     marginTop: 10,
   },
+  textInfoDark: {
+    color: theme.colors.text.$textDarkSecondaire,
+  },
   textInfo: {
     height: 16,
     fontFamily: 'Montserrat',
@@ -501,8 +571,11 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 15,
     lineHeight: 18,
-    color: '#1A2442',
+    color: theme.colors.text.$textLightSecondaire,
     marginLeft: 5,
+  },
+  infoTextContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   infoTextContainer: {
     width: '100%',
@@ -510,7 +583,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingLeft: 10,
     marginTop: 4,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderRadius: 10,
     elevation: 8,
     shadowColor: '#090d6d',
@@ -521,11 +594,14 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 3,
   },
+  infoTextDark: {
+    color: theme.colors.text.$textDark,
+  },
   infoText: {
     fontWeight: 500,
     fontSize: 20,
     lineHeight: 24,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
   },
@@ -545,9 +621,12 @@ const styles = StyleSheet.create({
     minWidth: 100,
     marginTop: 2,
   },
+  addTextDark: {
+    color: theme.colors.text.$textDark,
+  },
   addText: {
     fontWeight: 500,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     fontSize: 15,
@@ -587,12 +666,15 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     padding: 5,
   },
+  pdfContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   pdfContainer: {
     margin: 5,
     width: 'auto',
     height: 29,
     padding: 4,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderRadius: 4,
     ...Platform.select({
       ios: {
@@ -606,11 +688,14 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  pdfTextDark: {
+    color: theme.colors.text.$textDark,
+  },
   pdfText: {
     fontWeight: 400,
     fontSize: 17,
     lineHeight: 21,
-    color: '#1A2442',
+    color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     marginRight: 12,
@@ -620,15 +705,22 @@ const styles = StyleSheet.create({
     top: 5,
     right: 5,
   },
+  statisticalTitleDark: {
+    color: theme.colors.text.$textDark,
+  },
   statisticalTitle: {
     width: Platform.OS === 'android' ? 158 : 177,
+    color: theme.colors.text.$textLight,
+  },
+  numberStatContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
   },
   numberStatContainer: {
     margin: 5,
     width: 'auto',
     height: 46,
     padding: 4,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
     borderRadius: 11,
     elevation: 8,
     shadowColor: '#090d6d',

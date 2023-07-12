@@ -252,7 +252,7 @@ function Inscription() {
       />
       <View>
         <Navbar>Tradrboard</Navbar>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <View style={formStyles.logoContainer}>{logo}</View>
           <ConnectToAppleButton>Continuer avec Apple</ConnectToAppleButton>
           <InscriptionForm classes={classes} title="Un tout nouveau membre !" />

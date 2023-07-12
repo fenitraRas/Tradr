@@ -186,7 +186,7 @@ function SponsorContent(props) {
 
 function SponsorContainer(props) {
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <SponsorContent classes={props.classes} />
     </ScrollView>
   );
@@ -279,6 +279,7 @@ function Sponsor() {
       <ScrollView
         ref={scrollViewRef}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         scrollEnabled={false}
         onContentSizeChange={handleContentSizeChange}
         contentOffset={{x: 0, y: 0}}>

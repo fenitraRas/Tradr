@@ -80,7 +80,7 @@ function TradrboxFolderContent(props) {
         />
         <Search width={11} height={11} style={styles.searchIcon} />
       </View>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.folderContainer}>
           <TouchableOpacity
             onPress={() => {
@@ -302,6 +302,7 @@ function TradrboxFolder() {
       <ScrollView
         ref={scrollViewRef}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         scrollEnabled={false}
         onContentSizeChange={handleContentSizeChange}
         contentOffset={{x: 0, y: 0}}>

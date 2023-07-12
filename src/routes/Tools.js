@@ -795,19 +795,23 @@ function Simulator(props) {
 function ToolsContainer({classes, selectedFooter}) {
   if (selectedFooter === 'calculator') {
     return (
-      <ScrollView style={styles.tabContent}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={styles.tabContent}>
         <Calculator classes={classes} />
       </ScrollView>
     );
   } else if (selectedFooter === 'simulator') {
     return (
-      <ScrollView style={styles.tabContent}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={styles.tabContent}>
         <Simulator classes={classes} />
       </ScrollView>
     );
   }
   return (
-    <ScrollView style={styles.tabContent}>
+    <ScrollView showsVerticalScrollIndicator={false} style={styles.tabContent}>
       <TradingPlan classes={classes} />
     </ScrollView>
   );
@@ -982,6 +986,7 @@ function Tools() {
       <ScrollView
         ref={scrollViewRef}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         scrollEnabled={false}
         onContentSizeChange={handleContentSizeChange}
         contentOffset={{x: 0, y: 0}}>

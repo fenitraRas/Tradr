@@ -142,7 +142,9 @@ function FormationPlayerContent(props) {
           expanded={expanded}
           setExpanded={v => setExpanded(v)}>
           {expanded ? (
-            <ScrollView style={props.classes.accordBody}>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              style={props.classes.accordBody}>
               {files.map(file => {
                 return (
                   <View key={file.id} style={styles.fileListContainer}>
@@ -197,7 +199,9 @@ function VideoCardHeader() {
 function VideoCardList({classes, files}) {
   const [selectedVideo, setSelectedVideo] = useState(2);
   return (
-    <ScrollView style={classes.videoCardListContainer}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      style={classes.videoCardListContainer}>
       {files.map(file => {
         return (
           <TouchableOpacity
@@ -267,7 +271,7 @@ function AccordionItem({children, classes, title, expanded, setExpanded}) {
 
 function FormationPlayerContainer(props) {
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <FormationPlayerContent classes={props.classes} />
     </ScrollView>
   );
@@ -363,6 +367,7 @@ function FormationPlayer() {
       <ScrollView
         ref={scrollViewRef}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         scrollEnabled={false}
         onContentSizeChange={handleContentSizeChange}
         contentOffset={{x: 0, y: 0}}>

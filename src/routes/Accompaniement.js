@@ -27,9 +27,9 @@ import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
 import WinkingFace from '../assets/icons/winkingFace.svg';
 import {formStyles} from '../assets/css/form';
+import {indexStyles} from '../assets/css';
 import theme from '../assets/theme';
 import {useSelector} from 'react-redux';
-import {indexStyles} from '../assets/css';
 
 function Navbar(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
@@ -70,7 +70,10 @@ function InProgressAccompaniementContent(props) {
         <Text style={styles.imgName}>Maxime Legrand</Text>
         <Image source={require('../assets/emoji.png')} style={styles.emoji} />
       </View>
-      <ScrollView horizontal style={[styles.stateCardContainer]}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={[styles.stateCardContainer]}>
         <View style={[props.classes.stateCard]}>
           <Text style={props.classes.stateTitle}>Prochaine séance</Text>
           <View style={[styles.stateCardContent]}>
@@ -113,7 +116,10 @@ function InProgressAccompaniementContent(props) {
           </View>
         </View>
       </ScrollView>
-      <ScrollView horizontal style={[styles.personCardContainer]}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={[styles.personCardContainer]}>
         <TouchableOpacity style={[props.classes.selectedPersonCard]}>
           <View style={[props.classes.topPersonCardContainer]}>
             <View style={[styles.topPersonCardContent]}>
@@ -214,9 +220,12 @@ function ToBookAccompaniementContent(props) {
           <Calendar width={26} height={26} style={{marginLeft: 10}} />
         </Text>
       </View>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.tradingCardTitle}>Pour bien commencer</Text>
-        <ScrollView horizontal style={[styles.toBookCardContainer]}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={[styles.toBookCardContainer]}>
           <View style={[props.classes.personCard]}>
             <View style={[props.classes.topPersonCardContainerWithoutName]}>
               <View style={[styles.topPersonCardContent]}>
@@ -272,7 +281,10 @@ function ToBookAccompaniementContent(props) {
         {/* intermediaire */}
 
         <Text style={styles.tradingCardTitle}>Des séances avancées</Text>
-        <ScrollView horizontal style={[styles.toBookCardContainer]}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={[styles.toBookCardContainer]}>
           <View style={[props.classes.personCard]}>
             <View style={[props.classes.topPersonCardContainerWithoutName]}>
               <View style={[styles.topPersonCardContent]}>
@@ -353,7 +365,10 @@ function ToBookAccompaniementContent(props) {
         {/* Confirmé */}
 
         <Text style={styles.tradingCardTitle}>Pour les plus compétiteurs</Text>
-        <ScrollView horizontal style={[styles.toBookCardContainer]}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={[styles.toBookCardContainer]}>
           <View style={[props.classes.personCard]}>
             <View style={[props.classes.topPersonCardContainerWithoutName]}>
               <View style={[styles.topPersonCardContent]}>
@@ -444,9 +459,12 @@ function CompletedAccompaniementContent(props) {
           <WinkingFace width={26} height={26} style={{marginLeft: 10}} />
         </Text>
       </View>
-      <ScrollView style={{maxHeight: 260}}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{maxHeight: 260}}>
         <Text style={styles.tradingCardTitle}>Maxime Legrand</Text>
-        <ScrollView horizontal style={[styles.toBookCardContainer]}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={[styles.toBookCardContainer]}>
           <View style={[props.classes.personCard]}>
             <View style={[props.classes.topPersonCardContainerWithoutName]}>
               <View style={[styles.topPersonCardContent]}>
@@ -504,9 +522,12 @@ function CompletedAccompaniementContent(props) {
         </ScrollView>
       </ScrollView>
 
-      <ScrollView style={{maxHeight: 260}}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{maxHeight: 260}}>
         <Text style={styles.tradingCardTitle}>Léna Forelle</Text>
-        <ScrollView horizontal style={[styles.toBookCardContainer]}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={[styles.toBookCardContainer]}>
           <View style={[props.classes.personCard]}>
             <View style={[props.classes.topPersonCardContainerWithoutName]}>
               <View style={[styles.topPersonCardContent]}>
@@ -564,9 +585,12 @@ function CompletedAccompaniementContent(props) {
         </ScrollView>
       </ScrollView>
 
-      <ScrollView style={{maxHeight: 260}}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{maxHeight: 260}}>
         <Text style={styles.tradingCardTitle}>Inès Dore</Text>
-        <ScrollView horizontal style={[styles.toBookCardContainer]}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={[styles.toBookCardContainer]}>
           <View style={[props.classes.personCard]}>
             <View style={[props.classes.topPersonCardContainerWithoutName]}>
               <View style={[styles.topPersonCardContent]}>
@@ -630,19 +654,19 @@ function CompletedAccompaniementContent(props) {
 function AccompaniementContainer({classes, selectedFooter}) {
   if (selectedFooter === 'tobook') {
     return (
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <ToBookAccompaniementContent classes={classes} />
       </ScrollView>
     );
   } else if (selectedFooter === 'completed') {
     return (
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <CompletedAccompaniementContent classes={classes} />
       </ScrollView>
     );
   }
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <InProgressAccompaniementContent classes={classes} />
     </ScrollView>
   );
@@ -764,6 +788,7 @@ function Accompaniement() {
       <ScrollView
         ref={scrollViewRef}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         scrollEnabled={false}
         onContentSizeChange={handleContentSizeChange}
         contentOffset={{x: 0, y: 0}}>
