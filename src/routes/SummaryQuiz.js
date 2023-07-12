@@ -166,7 +166,7 @@ function SummaryQuizContent(props) {
 
 function SummaryQuizContainer(props) {
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <SummaryQuizContent classes={props.classes} />
     </ScrollView>
   );
@@ -263,6 +263,7 @@ function SummaryQuiz() {
       <ScrollView
         ref={scrollViewRef}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         scrollEnabled={false}
         onContentSizeChange={handleContentSizeChange}
         contentOffset={{x: 0, y: 0}}>

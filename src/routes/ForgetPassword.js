@@ -124,7 +124,7 @@ function ForgetPassword() {
         barStyle={colorScheme === 'dark' ? 'dark-content' : 'light-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View>
           <Navbar>Tradrboard</Navbar>
           <View style={formStyles.logoContainer}>{logo}</View>

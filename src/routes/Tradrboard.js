@@ -262,7 +262,7 @@ function TradrBoardVideo({classes, title}) {
 
 export function TradrboardContainer(props) {
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <TradrboardContent classes={props.classes} title="Se connecter" />
     </ScrollView>
   );
@@ -336,6 +336,7 @@ function Tradrboard() {
       <ScrollView
         ref={scrollViewRef}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         scrollEnabled={false}
         onContentSizeChange={handleContentSizeChange}
         contentOffset={{x: 0, y: 0}}>

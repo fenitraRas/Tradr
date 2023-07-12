@@ -167,7 +167,7 @@ function StepQuizContent(props) {
 
 function StepQuizContainer(props) {
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <StepQuizContent classes={props.classes} />
     </ScrollView>
   );

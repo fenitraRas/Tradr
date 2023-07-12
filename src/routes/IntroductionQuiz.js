@@ -93,7 +93,7 @@ function IntroductionQuizContent(props) {
 
 function IntroductionQuizContainer(props) {
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <IntroductionQuizContent classes={props.classes} />
     </ScrollView>
   );
@@ -144,7 +144,7 @@ function IntroductionQuiz() {
         <Navbar title="Titre du quiz" />
       </View>
 
-      <ScrollView style={classes.content}>
+      <ScrollView showsVerticalScrollIndicator={false} style={classes.content}>
         <IntroductionQuizContainer classes={classes} />
       </ScrollView>
     </SafeAreaView>

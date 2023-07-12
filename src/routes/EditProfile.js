@@ -210,7 +210,7 @@ function EditProfileContent(props) {
 
 function EditProfileContainer(props) {
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <EditProfileContent classes={props.classes} />
     </ScrollView>
   );
@@ -286,6 +286,7 @@ function EditProfile() {
       <ScrollView
         ref={scrollViewRef}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         scrollEnabled={false}
         onContentSizeChange={handleContentSizeChange}
         contentOffset={{x: 0, y: 0}}>

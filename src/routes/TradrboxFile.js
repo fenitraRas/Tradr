@@ -86,7 +86,7 @@ function TradrboxFileContent(props) {
         />
         <Search width={11} height={11} style={styles.searchIcon} />
       </View>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.fileContainer}>
           <View style={props.classes.fileCard}>
             <View style={styles.fileCardTop}>
@@ -191,7 +191,7 @@ function TradrboxFileContent(props) {
 
 function TradrboxFileContainer(props) {
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <TradrboxFileContent classes={props.classes} />
     </ScrollView>
   );
@@ -260,6 +260,7 @@ function TradrboxFile() {
       <ScrollView
         ref={scrollViewRef}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         scrollEnabled={false}
         onContentSizeChange={handleContentSizeChange}
         contentOffset={{x: 0, y: 0}}>

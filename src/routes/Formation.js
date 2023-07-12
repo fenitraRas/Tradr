@@ -97,10 +97,13 @@ function Formation() {
         <Navbar title="Formation" />
       </View>
 
-      <ScrollView style={classes.content}>
+      <ScrollView showsVerticalScrollIndicator={false} style={classes.content}>
         <View>
           <Text style={styles.coverTitle}>Reprendre</Text>
-          <ScrollView horizontal style={styles.cover}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={styles.cover}>
             <TouchableOpacity style={styles.imageContainer}>
               <Image
                 source={require('../assets/video/trade.jpeg')}
@@ -117,7 +120,10 @@ function Formation() {
         </View>
         <View>
           <Text style={styles.coverTitle}>Découvrir</Text>
-          <ScrollView horizontal style={styles.cover}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={styles.cover}>
             <TouchableOpacity>
               <Image
                 source={require('../assets/video/discover1.jpeg')}
@@ -140,7 +146,10 @@ function Formation() {
         </View>
         <View>
           <Text style={styles.coverTitle}>Accès Premium</Text>
-          <ScrollView horizontal style={styles.cover}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={styles.cover}>
             <TouchableOpacity>
               <Image
                 source={require('../assets/formationBg.jpg')}

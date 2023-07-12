@@ -104,7 +104,10 @@ function LiveReplayContent(props) {
       <Text style={[styles.replaySubtitleWithoutImg]}>
         Sélectionné pour toi
       </Text>
-      <ScrollView horizontal style={styles.videoListContainer}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={styles.videoListContainer}>
         <View style={props.classes.videoCard}>
           <Image
             source={require('../assets/formationBg.jpg')}
@@ -138,7 +141,7 @@ function LiveReplayContent(props) {
 
 function LiveReplayContainer(props) {
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <LiveReplayContent classes={props.classes} />
     </ScrollView>
   );
@@ -215,6 +218,7 @@ function LiveReplay() {
       <ScrollView
         ref={scrollViewRef}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         scrollEnabled={false}
         onContentSizeChange={handleContentSizeChange}
         contentOffset={{x: 0, y: 0}}>

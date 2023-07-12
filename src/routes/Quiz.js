@@ -70,9 +70,12 @@ function MyQuiz(props) {
           <WinkingFace width={26} height={26} style={{marginLeft: 10}} />
         </Text>
       </View>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.cardTitle}>Réussi</Text>
-        <ScrollView horizontal style={[styles.cardContainer]}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={[styles.cardContainer]}>
           <TouchableOpacity
             style={props.classes.myQuizCardContent}
             onPress={() => navigation.navigate('SummaryQuiz')}>
@@ -136,7 +139,10 @@ function MyQuiz(props) {
         </ScrollView>
 
         <Text style={styles.cardTitle}>Échoué</Text>
-        <ScrollView horizontal style={[styles.cardContainer]}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={[styles.cardContainer]}>
           <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
@@ -196,7 +202,10 @@ function MyQuiz(props) {
         </ScrollView>
 
         <Text style={styles.cardTitle}>À refaire</Text>
-        <ScrollView horizontal style={[styles.cardContainer]}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={[styles.cardContainer]}>
           <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
@@ -270,9 +279,12 @@ function InprogressQuiz(props) {
           <WinkingFace width={26} height={26} style={{marginLeft: 10}} />
         </Text>
       </View>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.cardTitle}>Débutant</Text>
-        <ScrollView horizontal style={[styles.cardContainer]}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={[styles.cardContainer]}>
           <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
@@ -330,7 +342,10 @@ function InprogressQuiz(props) {
         </ScrollView>
 
         <Text style={styles.cardTitle}>Intermédiaire</Text>
-        <ScrollView horizontal style={[styles.cardContainer]}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={[styles.cardContainer]}>
           <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
@@ -374,7 +389,10 @@ function InprogressQuiz(props) {
         </ScrollView>
 
         <Text style={styles.cardTitle}>À refaire</Text>
-        <ScrollView horizontal style={[styles.cardContainer]}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={[styles.cardContainer]}>
           <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
@@ -452,9 +470,12 @@ function PremiumQuiz(props) {
           />
         </Text>
       </View>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.cardTitle}>Niveau Pro</Text>
-        <ScrollView horizontal style={[styles.cardContainer]}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={[styles.cardContainer]}>
           <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
@@ -494,7 +515,10 @@ function PremiumQuiz(props) {
         </ScrollView>
 
         <Text style={styles.cardTitle}>Réessayer</Text>
-        <ScrollView horizontal style={[styles.cardContainer]}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={[styles.cardContainer]}>
           <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
@@ -540,19 +564,19 @@ function PremiumQuiz(props) {
 function QuizContainer({classes, selectedFooter}) {
   if (selectedFooter === 'inprogress') {
     return (
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <InprogressQuiz classes={classes} />
       </ScrollView>
     );
   } else if (selectedFooter === 'premium') {
     return (
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <PremiumQuiz classes={classes} />
       </ScrollView>
     );
   }
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <MyQuiz classes={classes} />
     </ScrollView>
   );
@@ -631,6 +655,7 @@ function Quiz() {
       <ScrollView
         ref={scrollViewRef}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         scrollEnabled={false}
         onContentSizeChange={handleContentSizeChange}
         contentOffset={{x: 0, y: 0}}>

@@ -305,7 +305,7 @@ function ProfileInformationContent(props) {
 
 function ProfileContainer(props) {
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <ProfileContent classes={props.classes} />
     </ScrollView>
   );
@@ -393,6 +393,7 @@ function Profile() {
       <ScrollView
         ref={scrollViewRef}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         scrollEnabled={false}
         onContentSizeChange={handleContentSizeChange}
         contentOffset={{x: 0, y: 0}}>

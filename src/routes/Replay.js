@@ -104,7 +104,10 @@ function ReplayContent(props) {
       </View>
 
       <Text style={[styles.replaySubtitleWithoutImg]}>Visionner</Text>
-      <ScrollView horizontal style={styles.videoListContainer}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={styles.videoListContainer}>
         <TouchableOpacity
           style={props.classes.videoCard}
           onPress={() => navigation.navigate('LiveReplay')}>
@@ -136,7 +139,10 @@ function ReplayContent(props) {
       </ScrollView>
 
       <Text style={[styles.replaySubtitleWithoutImg]}>Live Archivé</Text>
-      <ScrollView horizontal style={styles.videoListContainer}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={styles.videoListContainer}>
         <View style={props.classes.videoCard}>
           <Image
             source={require('../assets/formationBg.jpg')}
@@ -170,7 +176,7 @@ function ReplayContent(props) {
 
 function ReplayContainer(props) {
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <ReplayContent classes={props.classes} />
     </ScrollView>
   );
@@ -251,6 +257,7 @@ function Replay() {
       <ScrollView
         ref={scrollViewRef}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         scrollEnabled={false}
         onContentSizeChange={handleContentSizeChange}
         contentOffset={{x: 0, y: 0}}>
