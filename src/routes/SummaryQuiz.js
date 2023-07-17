@@ -294,10 +294,11 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     marginTop: 5,
+    paddingBottom: 10,
     height:
       Platform.OS === 'android'
         ? Dimensions.get('window').height - 74
-        : Dimensions.get('window').height - 109,
+        : Dimensions.get('window').height,
   },
   summaryQuizContentDark: {
     backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
