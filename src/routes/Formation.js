@@ -304,6 +304,11 @@ const styles = StyleSheet.create({
     top: 352,
     borderRadius: 6.5,
     backgroundColor: '#FFFFFF',
+    elevation: 2,
+    shadowColor: '#FFFFFF',
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 1,
+    shadowRadius: 23,
   },
   rewind: {
     position: 'absolute',

@@ -488,6 +488,7 @@ const styles = StyleSheet.create({
   },
   imageTitle: {
     marginTop: 2,
+    marginLeft: 6,
   },
   tradrboardCard: {
     width: '100%',
