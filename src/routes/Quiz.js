@@ -102,7 +102,7 @@ function MyQuiz(props) {
           <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
-                source={require('../assets/video/maxime.jpg')}
+                source={require('../assets/video/maxime.png')}
                 style={styles.myQuizCardImg}
               />
             </View>
@@ -121,7 +121,7 @@ function MyQuiz(props) {
           <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
-                source={require('../assets/video/maxime.jpg')}
+                source={require('../assets/video/maxime.png')}
                 style={styles.myQuizCardImg}
               />
             </View>
@@ -165,7 +165,7 @@ function MyQuiz(props) {
           <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
-                source={require('../assets/video/maxime.jpg')}
+                source={require('../assets/video/maxime.png')}
                 style={styles.myQuizCardImg}
               />
             </View>
@@ -184,7 +184,7 @@ function MyQuiz(props) {
           <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
-                source={require('../assets/video/maxime.jpg')}
+                source={require('../assets/video/maxime.png')}
                 style={styles.myQuizCardImg}
               />
             </View>
@@ -230,7 +230,7 @@ function MyQuiz(props) {
           <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
-                source={require('../assets/video/maxime.jpg')}
+                source={require('../assets/video/maxime.png')}
                 style={styles.myQuizCardImg}
               />
             </View>
@@ -288,7 +288,7 @@ function InprogressQuiz(props) {
           <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
-                source={require('../assets/video/maxime.jpg')}
+                source={require('../assets/video/maxime.png')}
                 style={styles.myQuizCardImg}
               />
             </View>
@@ -306,7 +306,7 @@ function InprogressQuiz(props) {
           <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
-                source={require('../assets/video/maxime.jpg')}
+                source={require('../assets/video/maxime.png')}
                 style={styles.myQuizCardImg}
               />
             </View>
@@ -417,7 +417,7 @@ function InprogressQuiz(props) {
           <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
-                source={require('../assets/video/maxime.jpg')}
+                source={require('../assets/video/maxime.png')}
                 style={styles.myQuizCardImg}
               />
             </View>
@@ -479,7 +479,7 @@ function PremiumQuiz(props) {
           <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
-                source={require('../assets/video/maxime.jpg')}
+                source={require('../assets/video/maxime.png')}
                 style={styles.myQuizCardImg}
               />
             </View>
@@ -522,7 +522,7 @@ function PremiumQuiz(props) {
           <View style={props.classes.myQuizCardContent}>
             <View style={styles.myQuizCardImgContainer}>
               <Image
-                source={require('../assets/video/maxime.jpg')}
+                source={require('../assets/video/maxime.png')}
                 style={styles.myQuizCardImg}
               />
             </View>

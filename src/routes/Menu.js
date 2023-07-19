@@ -170,10 +170,7 @@ function MenuConnected(props) {
   return (
     <View style={props.classes.menuContainer}>
       <View style={styles.profil}>
-        <Image
-          style={{position: 'absolute'}}
-          source={require('../assets/profil.png')}
-        />
+        <Image style={styles.img} source={require('../assets/profil.png')} />
       </View>
       <Text style={props.classes.name}>Kévin Clément</Text>
       <TouchableOpacity
@@ -473,7 +470,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: Dimensions.get('window').width - 140 - 53,
     height: 22,
-    left: 118,
+    left: 103,
     top: 25,
     color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
@@ -490,7 +487,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: 81,
     height: 21,
-    left: 118,
+    left: 104,
     top: 57,
     backgroundColor: '#9154FD',
     borderRadius: 4,
@@ -575,6 +572,16 @@ const styles = StyleSheet.create({
   },
   disconnectTextDark: {
     color: theme.colors.text.$textDark,
+  },
+  img: {
+    display: 'flex',
+    position: 'absolute',
+    width: 74,
+    height: 74,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexShrink: 0,
+    borderRadius: 15,
   },
 });
 

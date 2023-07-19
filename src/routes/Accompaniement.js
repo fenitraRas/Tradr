@@ -64,7 +64,7 @@ function InProgressAccompaniementContent(props) {
     <View style={[props.classes.accompaniementContent, indexStyles.shadowProp]}>
       <View style={[styles.imgContainer]}>
         <Image
-          source={require('../assets/video/maxime.jpg')}
+          source={require('../assets/video/maxime.png')}
           style={styles.image}
         />
         <Text style={styles.imgName}>Maxime Legrand</Text>
