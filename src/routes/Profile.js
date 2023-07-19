@@ -69,10 +69,7 @@ function ProfileContent(props) {
   return (
     <View style={[props.classes.profileContent, indexStyles.shadowProp]}>
       <View style={styles.profil}>
-        <Image
-          style={{position: 'absolute'}}
-          source={require('../assets/profil.png')}
-        />
+        <Image style={styles.img} source={require('../assets/profil.png')} />
       </View>
       <Text style={props.classes.name} numberOfLines={1}>
         Kévin Clément
@@ -433,7 +430,7 @@ const styles = StyleSheet.create({
   },
   profil: {
     position: 'absolute',
-    marginLeft: 9,
+    marginLeft: 15,
     marginTop: 15,
   },
   nameDark: {
@@ -443,8 +440,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: Dimensions.get('window').width - 128,
     height: 29,
-    left: 112,
-    top: 26,
+    left: 104,
+    top: 18,
     color: theme.colors.text.$textLight,
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
@@ -456,8 +453,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: Platform.OS === 'android' ? 180 : 197,
     height: 21,
-    left: 112,
-    top: 65,
+    left: 105,
+    top: 55,
     padding: 2,
     backgroundColor: '#9154FD',
     borderRadius: 4,
@@ -739,6 +736,16 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
     fontStyle: 'normal',
     textAlign: 'center',
+  },
+  img: {
+    display: 'flex',
+    position: 'absolute',
+    width: 74,
+    height: 74,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexShrink: 0,
+    borderRadius: 15,
   },
 });
 
