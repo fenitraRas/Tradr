@@ -320,13 +320,13 @@ const styles = StyleSheet.create({
     marginRight: 7,
     marginTop: 6,
     marginLeft: 6,
-    shadowColor: 'rgba(240, 6, 6, 0.25)',
+    shadowColor: '#F00606',
     shadowOffset: {
       width: 0,
       height: 0,
     },
     shadowOpacity: 1,
-    shadowRadius: 10,
+    shadowRadius: 6,
   },
   replaySubtitle: {
     fontWeight: 500,

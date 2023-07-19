@@ -506,13 +506,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 14,
     right: 12,
-    shadowColor: '#EE536F',
+    // shadowColor: '#EE536F',
+    shadowColor: 'red',
     shadowOffset: {
       width: 2,
       height: -4,
     },
     shadowOpacity: 1,
-    shadowRadius: 6,
+    shadowRadius: 9,
     elevation: 2,
   },
 });
