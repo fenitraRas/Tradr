@@ -449,7 +449,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     borderRadius: 20,
     backgroundColor: theme.colors.component.$cardLight,
-    // backgroundColor: 'red',
     shadowColor: 'rgba(9, 13, 109, 0.4)',
     shadowOffset: {
       width: 0,
@@ -606,6 +605,7 @@ const styles = StyleSheet.create({
     paddingLeft: 4,
     paddingRight: 4,
     width: '95%',
+    height: 275,
     margin: 10,
     paddingTop: 2,
     backgroundColor: theme.colors.background.$backgroundLightSecondaire,

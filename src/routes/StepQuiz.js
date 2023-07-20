@@ -838,13 +838,13 @@ const styles = StyleSheet.create({
     marginTop: 8,
     borderRadius: 6.5,
     backgroundColor: '#9154FD',
-    shadowColor: 'rgba(145, 84, 253, 0.60)',
+    shadowColor: '#9154FD',
     shadowOffset: {
       width: 0,
       height: 0,
     },
-    shadowOpacity: 1,
-    shadowRadius: 14,
+    shadowOpacity: 0.8,
+    shadowRadius: 3,
     elevation: 5,
   },
 });
