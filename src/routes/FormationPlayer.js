@@ -142,32 +142,36 @@ function FormationPlayerContent(props) {
           expanded={expanded}
           setExpanded={v => setExpanded(v)}>
           {expanded ? (
-            <ScrollView
-              showsVerticalScrollIndicator={false}
-              style={props.classes.accordBody}>
-              {files.map(file => {
-                return (
-                  <View key={file.id} style={styles.fileListContainer}>
-                    <TouchableOpacity>
-                      <Download
-                        width={15}
-                        height={14}
-                        style={{marginTop: 8, marginLeft: 10}}
+            <SafeAreaView>
+              <ScrollView
+                showsVerticalScrollIndicator={false}
+                style={props.classes.accordBody}>
+                {files.map(file => {
+                  return (
+                    <View key={file.id} style={styles.fileListContainer}>
+                      <TouchableOpacity>
+                        <Download
+                          width={15}
+                          height={14}
+                          style={{marginTop: 8, marginLeft: 10}}
+                        />
+                      </TouchableOpacity>
+                      <PdfIcon
+                        width={23}
+                        height={30}
+                        style={{marginLeft: 10, marginRight: 7}}
                       />
-                    </TouchableOpacity>
-                    <PdfIcon
-                      width={23}
-                      height={30}
-                      style={{marginLeft: 10, marginRight: 7}}
-                    />
-                    <View>
-                      <Text style={styles.itemId}>Épisode {file.id}</Text>
-                      <Text style={props.classes.itemTitle}>{file.title}</Text>
+                      <View>
+                        <Text style={styles.itemId}>Épisode {file.id}</Text>
+                        <Text style={props.classes.itemTitle}>
+                          {file.title}
+                        </Text>
+                      </View>
                     </View>
-                  </View>
-                );
-              })}
-            </ScrollView>
+                  );
+                })}
+              </ScrollView>
+            </SafeAreaView>
           ) : null}
         </AccordionItem>
       </View>
@@ -558,12 +562,13 @@ const styles = StyleSheet.create({
   },
   accordBody: {
     backgroundColor: theme.colors.background.$backgroundLightSecondaire,
-    flexDirection: 'row',
+    // flexDirection: 'row',
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
     height: 161,
+    maxHeight: 161,
     paddingTop: 12,
   },
   accordBodyDark: {
@@ -606,6 +611,7 @@ const styles = StyleSheet.create({
     paddingRight: 4,
     width: '95%',
     height: 275,
+    maxHeight: 275,
     margin: 10,
     paddingTop: 2,
     backgroundColor: theme.colors.background.$backgroundLightSecondaire,

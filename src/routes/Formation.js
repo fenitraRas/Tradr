@@ -351,7 +351,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     ...Platform.select({
       android: {
-        elevation: 10,
+        // elevation: 10,
       },
       ios: {
         shadowColor: '#282A49',
