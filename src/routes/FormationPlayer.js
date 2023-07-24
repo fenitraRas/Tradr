@@ -562,7 +562,6 @@ const styles = StyleSheet.create({
   },
   accordBody: {
     backgroundColor: theme.colors.background.$backgroundLightSecondaire,
-    // flexDirection: 'row',
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
     borderBottomLeftRadius: 15,
