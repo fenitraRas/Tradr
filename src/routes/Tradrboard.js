@@ -27,7 +27,7 @@ import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
 import HighVoltage from '../assets/icons/highVoltage.svg';
 import Locked from '../assets/icons/locked.svg';
-import {ProgressBar} from 'react-native-paper';
+import Cap from '../assets/icons/cap.svg';
 import SeletedRadio from '../assets/icons/selectedRadio.svg';
 import UnseletedRadio from '../assets/icons/unselectedRadio.svg';
 import Video from 'react-native-video';
@@ -95,9 +95,9 @@ function TradrboardContent(props) {
           classes={props.classes}
           title="Objectifs à compléter"
         />
-        <TradrBoardVideo
+        <TradrboardCardList
           classes={props.classes}
-          title="Episode en libre accès"
+          title="Accompagnements à venir"
         />
       </View>
     );
@@ -121,6 +121,102 @@ function TradrboardContent(props) {
         title="Objectifs à compléter"
       />
       <TradrBoardVideo classes={props.classes} title="Episode en libre accès" />
+    </View>
+  );
+}
+
+function TradrboardCardList({classes, title}) {
+  return (
+    <View style={styles.tradrboardCardContainer}>
+      <View style={[indexStyles.horizontalFlex, styles.cardTitleContainer]}>
+        <Text style={[classes.cardTitle, styles.cardListTitle]}>{title}</Text>
+        <Cap width={18} height={18} style={styles.imageTitle} />
+      </View>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={[styles.personCardContainer]}>
+        <TouchableOpacity style={[classes.personCard]}>
+          <View style={[classes.topPersonCardContainer]}>
+            <View style={[styles.topPersonCardContent]}>
+              <Text style={classes.topPersonCardContentLeft}>Trading</Text>
+              <View style={[styles.greenTopPersonCardContentRight]}>
+                <Text style={styles.topPersonCardContentRightText}>
+                  Débutant
+                </Text>
+              </View>
+              <Text style={styles.topPersonCardContentName}>
+                Maxime Legrand
+              </Text>
+            </View>
+          </View>
+          <Text style={classes.infoPersonCard}>
+            Session individuelle de 45 minutes.
+          </Text>
+          <View style={[styles.bottomPersonCard]}>
+            <Text style={classes.bottomPersonCardLeft}>
+              Plan d'action simplifié
+            </Text>
+            <View style={[classes.bottomPersonCardRight]}>
+              <Text style={styles.bottomPersonCardDate}>23 . 03 . 2023</Text>
+              <Text style={styles.bottomPersonCardDate}> à </Text>
+              <Text style={styles.bottomPersonCardTime}>10h00</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={[classes.personCard]}>
+          <View style={[classes.topPersonCardContainer]}>
+            <View style={[styles.topPersonCardContent]}>
+              <Text style={classes.topPersonCardContentLeft}>Économie</Text>
+              <View style={[styles.orangeTopPersonCardContentRight]}>
+                <Text style={styles.topPersonCardContentRightText}>
+                  Intermédiaire
+                </Text>
+              </View>
+              <Text style={styles.topPersonCardContentName}>Léna Forelle</Text>
+            </View>
+          </View>
+          <Text style={classes.infoPersonCard}>
+            Session individuelle de 1 heure.
+          </Text>
+          <View style={[styles.bottomPersonCard]}>
+            <Text style={classes.bottomPersonCardLeft}>
+              Plan d'action avancé
+            </Text>
+            <View style={[classes.bottomPersonCardRight]}>
+              <Text style={styles.bottomPersonCardDate}>25 . 03 . 2023</Text>
+              <Text style={styles.bottomPersonCardDate}> à </Text>
+              <Text style={styles.bottomPersonCardTime}>15h00</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={[classes.personCard]}>
+          <View style={[classes.topPersonCardContainer]}>
+            <View style={[styles.topPersonCardContent]}>
+              <Text style={classes.topPersonCardContentLeft}>Placement</Text>
+              <View style={[styles.redTopPersonCardContentRight]}>
+                <Text style={styles.topPersonCardContentRightText}>
+                  Confirmé
+                </Text>
+              </View>
+              <Text style={styles.topPersonCardContentName}>Inès Dore</Text>
+            </View>
+          </View>
+          <Text style={classes.infoPersonCard}>
+            Session individuelle de 1 heure et 30 minutes.
+          </Text>
+          <View style={[styles.bottomPersonCard]}>
+            <Text style={classes.bottomPersonCardLeft}>
+              Plan d'action personnalisé
+            </Text>
+            <View style={[classes.bottomPersonCardRight]}>
+              <Text style={styles.bottomPersonCardDate}>26 . 03 . 2023</Text>
+              <Text style={styles.bottomPersonCardDate}> à </Text>
+              <Text style={styles.bottomPersonCardTime}>17h00</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 }
@@ -254,7 +350,6 @@ function TradrBoardVideo({classes, title}) {
           onPress={() => setIsPlaying(p => !p)}
           title={isPlaying ? 'Stop' : 'Play'}
         />
-        {/* <Image source={require('../assets/video.png')} style={styles.video} /> */}
       </View>
     </View>
   );
@@ -292,6 +387,30 @@ function Tradrboard() {
     radioText: [
       styles.radioText,
       colorScheme === 'dark' && styles.radioTextDark,
+    ],
+    personCard: [
+      styles.personCard,
+      colorScheme === 'dark' && styles.personCardDark,
+    ],
+    topPersonCardContainer: [
+      styles.topPersonCardContainer,
+      colorScheme === 'dark' && styles.topPersonCardContainerDark,
+    ],
+    topPersonCardContentLeft: [
+      styles.topPersonCardContentLeft,
+      colorScheme === 'dark' && styles.topPersonCardContentLeftDark,
+    ],
+    infoPersonCard: [
+      styles.infoPersonCard,
+      colorScheme === 'dark' && styles.infoPersonCardDark,
+    ],
+    bottomPersonCardLeft: [
+      styles.bottomPersonCardLeft,
+      colorScheme === 'dark' && styles.bottomPersonCardLeftDark,
+    ],
+    bottomPersonCardRight: [
+      styles.bottomPersonCardRight,
+      colorScheme === 'dark' && styles.bottomPersonCardRightDark,
     ],
   };
 
@@ -379,6 +498,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     marginTop: 5,
+    paddingBottom: 20,
   },
   tradrboardContentDark: {
     backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
@@ -391,7 +511,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 1,
     shadowRadius: 5,
-    elevation: 5,
   },
   connectButton: {
     width: 102,
@@ -471,6 +590,9 @@ const styles = StyleSheet.create({
   },
   objectiveTitle: {
     width: Platform.OS === 'android' ? 200 : 219,
+  },
+  cardListTitle: {
+    width: Platform.OS === 'android' ? 250 : 279,
   },
   videoTitle: {
     width: Platform.OS === 'android' ? 210 : 225,
@@ -665,6 +787,196 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 14,
     elevation: 5,
+  },
+  personCardContainer: {
+    flexDirection: 'row',
+    overflowX: 'scroll',
+    marginTop: 12,
+    marginBottom: 20,
+    paddingBottom: 15,
+    width: Dimensions.get('window').width,
+  },
+  personCard: {
+    width: 350,
+    height: 209,
+    backgroundColor: theme.colors.component.$cardLight,
+    borderRadius: 20,
+    marginRight: 10,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#090d6d',
+        shadowOffset: {
+          width: 0,
+          height: 4,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+      },
+      android: {},
+    }),
+  },
+  personCardDark: {
+    backgroundColor: theme.colors.component.$cardDark,
+  },
+  topPersonCardContainer: {
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    width: 326,
+    height: 72,
+    elevation: 5,
+    shadowColor: '#090d6d',
+    shadowOffset: {width: 0, height: 6},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    borderRadius: 10,
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
+  },
+  topPersonCardContainerDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
+  topPersonCardContent: {
+    flexDirection: 'row',
+    marginTop: 12,
+  },
+  topPersonCardContentLeft: {
+    position: 'absolute',
+    left: 15,
+    color: theme.colors.text.$textLight,
+    fontWeight: 600,
+    fontSize: 28,
+    lineHeight: 28,
+    textTransform: 'uppercase',
+  },
+  topPersonCardContentLeftDark: {
+    color: theme.colors.text.$textDark,
+  },
+  greenTopPersonCardContentRight: {
+    position: 'absolute',
+    right: 10,
+    width: 77,
+    height: 21,
+    backgroundColor: '#7AC84A',
+    borderRadius: 4,
+    alignItems: 'center',
+    shadowColor: '#7AC84A',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.6,
+    shadowRadius: 3,
+    elevation: 2,
+  },
+  orangeTopPersonCardContentRight: {
+    position: 'absolute',
+    right: 10,
+    width: 105,
+    height: 21,
+    borderRadius: 4,
+    alignItems: 'center',
+    backgroundColor: '#F8B940',
+    elevation: 2,
+    shadowColor: '#F8B940',
+    shadowOffset: {width: 0, height: 4},
+    shadowOpacity: 0.6,
+    shadowRadius: 3,
+  },
+  redTopPersonCardContentRight: {
+    position: 'absolute',
+    right: 10,
+    width: 75,
+    height: 21,
+    backgroundColor: '#FF4141',
+    borderRadius: 4,
+    alignItems: 'center',
+    shadowColor: '#FF4141',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.6,
+    shadowRadius: 3,
+    elevation: 2,
+  },
+  topPersonCardContentRightText: {
+    marginTop: 2,
+    color: '#FFFFFF',
+    fontWeight: 500,
+    fontSize: 14,
+    lineHeight: 17,
+  },
+  topPersonCardContentName: {
+    marginTop: 30,
+    marginLeft: 15,
+    color: '#9BA5BF',
+    fontWeight: 600,
+    fontSize: 16,
+    lineHeight: 20,
+  },
+  infoPersonCard: {
+    marginTop: 15,
+    marginLeft: 14,
+    color: theme.colors.text.$textLight,
+    fontWeight: 500,
+    fontSize: 15,
+    lineHeight: 18,
+  },
+  infoPersonCardDark: {
+    color: theme.colors.text.$textDark,
+  },
+  bottomPersonCard: {
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: 10,
+    width: '100%',
+    height: 30,
+  },
+  bottomPersonCardLeft: {
+    position: 'absolute',
+    left: 14,
+    bottom: 6,
+    width: 100,
+    fontWeight: 400,
+    fontSize: 12,
+    lineHeight: 14,
+    color: theme.colors.text.$textLight,
+  },
+  bottomPersonCardLeftDark: {
+    color: theme.colors.text.$textDark,
+  },
+  bottomPersonCardRight: {
+    position: 'absolute',
+    right: 10,
+    bottom: 1,
+    elevation: 5,
+    shadowColor: '#090d6d',
+    shadowOffset: {width: 0, height: 6},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    borderRadius: 10,
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
+    height: 42,
+    width: 198,
+    flexDirection: 'row',
+    paddingLeft: 12,
+  },
+  bottomPersonCardRightDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
+  bottomPersonCardDate: {
+    fontWeight: 500,
+    fontSize: 16,
+    lineHeight: 16,
+    color: '#9154FD',
+    marginTop: 15,
+  },
+  bottomPersonCardTime: {
+    fontWeight: 600,
+    fontSize: 18,
+    lineHeight: 18,
+    color: '#9154FD',
+    marginTop: 15,
   },
 });
 
