@@ -350,9 +350,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: '#fff',
     ...Platform.select({
-      android: {
-        elevation: 10,
-      },
+      android: {},
       ios: {
         shadowColor: '#282A49',
         shadowOffset: {width: 0, height: 30},
