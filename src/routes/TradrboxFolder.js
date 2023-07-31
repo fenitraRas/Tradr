@@ -71,15 +71,15 @@ function TradrboxFolderContent(props) {
       <View style={styles.tradrboxTitleContainer}>
         <Text style={props.classes.tradrboxTitle}>
           Un petit peu d’aide ?
-          <FlexedBiceps width={26} height={26} marginLeft={2} />
+          <FlexedBiceps width={26} height={26} style={{marginLeft: 10}} />
         </Text>
-        <TextInput
-          style={props.classes.input}
-          onChangeText={onChangeText}
-          value={text}
-        />
-        <Search width={11} height={11} style={styles.searchIcon} />
       </View>
+      <TextInput
+        style={props.classes.input}
+        onChangeText={onChangeText}
+        value={text}
+      />
+      <Search width={11} height={11} style={styles.searchIcon} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.folderContainer}>
           <TouchableOpacity
@@ -387,7 +387,7 @@ const styles = StyleSheet.create({
   searchIcon: {
     position: 'absolute',
     top: Platform.OS === 'android' ? 104 : 100,
-    left: 10,
+    left: 20,
   },
   folderContainer: {
     width: 'auto',
