@@ -155,18 +155,33 @@ function Formation() {
                 source={require('../assets/formationBg.jpg')}
                 style={styles.coverImage}
               />
+              <View style={styles.coverImageTextContainer}>
+                <View style={styles.coverImageTextContent}>
+                  <Text style={styles.coverImageText}>Débloquer</Text>
+                </View>
+              </View>
             </TouchableOpacity>
             <TouchableOpacity>
               <Image
                 source={require('../assets/formationBg.jpg')}
                 style={styles.coverImage}
               />
+              <View style={styles.coverImageTextContainer}>
+                <View style={styles.coverImageTextContent}>
+                  <Text style={styles.coverImageText}>Débloquer</Text>
+                </View>
+              </View>
             </TouchableOpacity>
             <TouchableOpacity>
               <Image
                 source={require('../assets/formationBg.jpg')}
                 style={styles.coverImage}
               />
+              <View style={styles.coverImageTextContainer}>
+                <View style={styles.coverImageTextContent}>
+                  <Text style={styles.coverImageText}>Débloquer</Text>
+                </View>
+              </View>
             </TouchableOpacity>
           </ScrollView>
         </View>
@@ -358,6 +373,29 @@ const styles = StyleSheet.create({
         shadowRadius: 50,
       },
     }),
+  },
+  coverImageTextContainer: {
+    width: '100%',
+    position: 'absolute',
+    top: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 24,
+  },
+  coverImageTextContent: {
+    height: 22,
+    padding: 3,
+    width: 84,
+    borderRadius: 4,
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+  },
+  coverImageText: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    fontSize: 14,
+    lineHeight: 17,
+    color: '#FFFFFF',
   },
 });
 
