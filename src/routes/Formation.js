@@ -51,6 +51,10 @@ function Navbar(props) {
   );
 }
 
+function get_files_by_category(list, category) {
+  return list.filter(elm => elm.category === category);
+}
+
 function Formation() {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
   const classes = {
@@ -65,6 +69,57 @@ function Formation() {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
   const navigation = useNavigation();
+  const formations = [
+    {
+      id: 1,
+      title: 'Trade',
+      category: 'to_resume',
+      image_path: '../assets/video/trade.jpeg',
+    },
+    {
+      id: 2,
+      title: 'A BEAUTIFUL MIND',
+      category: 'to_resume',
+      image_path: '../assets/video/the_economist.jpg',
+    },
+    {
+      id: 3,
+      title: 'Trading Place',
+      category: 'discover',
+      image_path: '../assets/video/discover1.jpeg',
+    },
+    {
+      id: 4,
+      title: 'The Trade',
+      category: 'discover',
+      image_path: '../assets/video/discover2.jpeg',
+    },
+    {
+      id: 5,
+      title: 'Trading Place',
+      category: 'discover',
+      image_path: '../assets/video/discover3.jpeg',
+    },
+    {
+      id: 6,
+      title: 'My Trading 1',
+      category: 'premium',
+      image_path: '../assets/formationBg.jpg',
+    },
+    {
+      id: 7,
+      title: 'My Trading 2',
+      category: 'premium',
+      image_path: '../assets/formationBg.jpg',
+    },
+    {
+      id: 8,
+      title: 'My Trading 3',
+      category: 'premium',
+      image_path: '../assets/formationBg.jpg',
+    },
+  ];
+
   return (
     <SafeAreaView style={classes.container}>
       <StatusBar
@@ -104,18 +159,16 @@ function Formation() {
             horizontal
             showsHorizontalScrollIndicator={false}
             style={styles.cover}>
-            <TouchableOpacity style={styles.imageContainer}>
-              <Image
-                source={require('../assets/video/trade.jpeg')}
-                style={styles.coverImage}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Image
-                source={require('../assets/video/the_economist.jpg')}
-                style={styles.coverImage}
-              />
-            </TouchableOpacity>
+            {get_files_by_category(formations, 'to_resume').map(file => {
+              return (
+                <TouchableOpacity key={file.id} style={styles.imageContainer}>
+                  <Image
+                    source={require('../assets/video/trade.jpeg')}
+                    style={styles.coverImage}
+                  />
+                </TouchableOpacity>
+              );
+            })}
           </ScrollView>
         </View>
         <View>
@@ -124,24 +177,16 @@ function Formation() {
             horizontal
             showsHorizontalScrollIndicator={false}
             style={styles.cover}>
-            <TouchableOpacity>
-              <Image
-                source={require('../assets/video/discover1.jpeg')}
-                style={styles.coverImage}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Image
-                source={require('../assets/video/discover2.jpeg')}
-                style={styles.coverImage}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Image
-                source={require('../assets/video/discover3.jpeg')}
-                style={styles.coverImage}
-              />
-            </TouchableOpacity>
+            {get_files_by_category(formations, 'discover').map(file => {
+              return (
+                <TouchableOpacity key={file.id} style={styles.imageContainer}>
+                  <Image
+                    source={require('../assets/video/discover1.jpeg')}
+                    style={styles.coverImage}
+                  />
+                </TouchableOpacity>
+              );
+            })}
           </ScrollView>
         </View>
         <View>
@@ -150,39 +195,21 @@ function Formation() {
             horizontal
             showsHorizontalScrollIndicator={false}
             style={styles.cover}>
-            <TouchableOpacity>
-              <Image
-                source={require('../assets/formationBg.jpg')}
-                style={styles.coverImage}
-              />
-              <View style={styles.coverImageTextContainer}>
-                <View style={styles.coverImageTextContent}>
-                  <Text style={styles.coverImageText}>Débloquer</Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Image
-                source={require('../assets/formationBg.jpg')}
-                style={styles.coverImage}
-              />
-              <View style={styles.coverImageTextContainer}>
-                <View style={styles.coverImageTextContent}>
-                  <Text style={styles.coverImageText}>Débloquer</Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Image
-                source={require('../assets/formationBg.jpg')}
-                style={styles.coverImage}
-              />
-              <View style={styles.coverImageTextContainer}>
-                <View style={styles.coverImageTextContent}>
-                  <Text style={styles.coverImageText}>Débloquer</Text>
-                </View>
-              </View>
-            </TouchableOpacity>
+            {get_files_by_category(formations, 'premium').map(file => {
+              return (
+                <TouchableOpacity key={file.id} style={styles.imageContainer}>
+                  <Image
+                    source={require('../assets/formationBg.jpg')}
+                    style={styles.coverImage}
+                  />
+                  <View style={styles.coverImageTextContainer}>
+                    <View style={styles.coverImageTextContent}>
+                      <Text style={styles.coverImageText}>Débloquer</Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              );
+            })}
           </ScrollView>
         </View>
       </ScrollView>
