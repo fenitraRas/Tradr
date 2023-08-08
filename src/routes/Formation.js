@@ -55,7 +55,7 @@ function getSelectedVideo(list, id) {
   return list.find(el => el.id === id);
 }
 
-function get_files_by_category(list, category) {
+function getFilesByCategory(list, category) {
   return list.filter(elm => elm.category === category);
 }
 
@@ -179,7 +179,7 @@ function Formation() {
             horizontal
             showsHorizontalScrollIndicator={false}
             style={styles.cover}>
-            {get_files_by_category(videos, 'to_resume').map(file => {
+            {getFilesByCategory(videos, 'to_resume').map(file => {
               return (
                 <TouchableOpacity
                   key={file.id}
@@ -200,7 +200,7 @@ function Formation() {
             horizontal
             showsHorizontalScrollIndicator={false}
             style={styles.cover}>
-            {get_files_by_category(videos, 'discover').map(file => {
+            {getFilesByCategory(videos, 'discover').map(file => {
               return (
                 <TouchableOpacity
                   key={file.id}
@@ -221,7 +221,7 @@ function Formation() {
             horizontal
             showsHorizontalScrollIndicator={false}
             style={styles.cover}>
-            {get_files_by_category(videos, 'premium').map(file => {
+            {getFilesByCategory(videos, 'premium').map(file => {
               return (
                 <TouchableOpacity
                   key={file.id}
