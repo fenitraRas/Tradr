@@ -269,7 +269,69 @@ function InProgressAccompaniementContent(props) {
   );
 }
 
+function getAccompaniementsByType(list, type) {
+  return list.filter(elm => elm.type === type);
+}
+
 function ToBookAccompaniementContent(props) {
+  const toBookAccompaniements = [
+    {
+      id: 1,
+      name: 'TRADING',
+      type: 'beginner',
+      description: 'Session individuelle de 45 minutes avec un coach.',
+      session_number: 4,
+    },
+    {
+      id: 2,
+      name: 'TRADING',
+      type: 'beginner',
+      description: 'Session individuelle de 45 minutes avec un coach.',
+      session_number: 6,
+    },
+    {
+      id: 3,
+      name: 'ECONOMIE',
+      type: 'Intermediate',
+      description: 'Session individuelle de 1 heure avec un coach.',
+      session_number: 5,
+    },
+    {
+      id: 4,
+      name: 'PLACEMENT',
+      type: 'Intermediate',
+      description: 'Session individuelle de 1 heure avec un coach.',
+      session_number: 5,
+    },
+    {
+      id: 5,
+      name: 'TRADING',
+      type: 'Intermediate',
+      description: 'Session individuelle de 1 heure avec un coach.',
+      session_number: 8,
+    },
+    {
+      id: 6,
+      name: 'FOREX',
+      type: 'confirmed',
+      description: 'Session individuelle de 1 heure avec un coach.',
+      session_number: 4,
+    },
+    {
+      id: 7,
+      name: 'FTMO TRADER',
+      type: 'confirmed',
+      description: 'Session individuelle de 1 heure avec un coach.',
+      session_number: 3,
+    },
+    {
+      id: 8,
+      name: 'PLACEMENT',
+      type: 'confirmed',
+      description: 'Session individuelle de 1 heure avec un coach.',
+      session_number: 6,
+    },
+  ];
   return (
     <View style={[props.classes.accompaniementContent, indexStyles.shadowProp]}>
       <View style={styles.toBookTitleContainer}>
@@ -284,56 +346,40 @@ function ToBookAccompaniementContent(props) {
           horizontal
           showsHorizontalScrollIndicator={false}
           style={[styles.toBookCardContainer]}>
-          <View style={[props.classes.personCard]}>
-            <View style={[props.classes.topPersonCardContainerWithoutName]}>
-              <View style={[styles.topPersonCardContent]}>
-                <Text style={props.classes.topPersonCardContentLeft}>
-                  Trading
-                </Text>
-                <View style={[styles.greenTopPersonCardContentRight]}>
-                  <Text style={styles.topPersonCardContentRightText}>
-                    Débutant
+          {getAccompaniementsByType(toBookAccompaniements, 'beginner').map(
+            e => {
+              return (
+                <View key={e.id} style={[props.classes.personCard]}>
+                  <View
+                    style={[props.classes.topPersonCardContainerWithoutName]}>
+                    <View style={[styles.topPersonCardContent]}>
+                      <Text style={props.classes.topPersonCardContentLeft}>
+                        {e.name}
+                      </Text>
+                      <View style={[styles.greenTopPersonCardContentRight]}>
+                        <Text style={styles.topPersonCardContentRightText}>
+                          Débutant
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                  <Text style={props.classes.infoPersonCard}>
+                    {e.description}
                   </Text>
+                  <View style={[styles.bottomPersonCard]}>
+                    <View style={[props.classes.sessionNumberContainer]}>
+                      <Text style={styles.sessionNumber}>
+                        {e.session_number} séances
+                      </Text>
+                    </View>
+                    <TouchableOpacity style={[styles.toBookButton]}>
+                      <Text style={styles.toBookButtonText}>Réserver</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
-              </View>
-            </View>
-            <Text style={props.classes.infoPersonCard}>
-              Session individuelle de 45 minutes avec un coach.
-            </Text>
-            <View style={[styles.bottomPersonCard]}>
-              <View style={[props.classes.sessionNumberContainer]}>
-                <Text style={styles.sessionNumber}>4 séances</Text>
-              </View>
-              <TouchableOpacity style={[styles.toBookButton]}>
-                <Text style={styles.toBookButtonText}>Réserver</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={[props.classes.personCard]}>
-            <View style={[props.classes.topPersonCardContainerWithoutName]}>
-              <View style={[styles.topPersonCardContent]}>
-                <Text style={props.classes.topPersonCardContentLeft}>
-                  Trading
-                </Text>
-                <View style={[styles.greenTopPersonCardContentRight]}>
-                  <Text style={styles.topPersonCardContentRightText}>
-                    Débutant
-                  </Text>
-                </View>
-              </View>
-            </View>
-            <Text style={props.classes.infoPersonCard}>
-              Session individuelle de 45 minutes avec un coach.
-            </Text>
-            <View style={[styles.bottomPersonCard]}>
-              <View style={[props.classes.sessionNumberContainer]}>
-                <Text style={styles.sessionNumber}>6 séances</Text>
-              </View>
-              <TouchableOpacity style={[styles.toBookButton]}>
-                <Text style={styles.toBookButtonText}>Réserver</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+              );
+            },
+          )}
         </ScrollView>
 
         {/* intermediaire */}
@@ -343,81 +389,40 @@ function ToBookAccompaniementContent(props) {
           horizontal
           showsHorizontalScrollIndicator={false}
           style={[styles.toBookCardContainer]}>
-          <View style={[props.classes.personCard]}>
-            <View style={[props.classes.topPersonCardContainerWithoutName]}>
-              <View style={[styles.topPersonCardContent]}>
-                <Text style={props.classes.topPersonCardContentLeft}>
-                  Économie
-                </Text>
-                <View style={[styles.orangeTopPersonCardContentRight]}>
-                  <Text style={styles.topPersonCardContentRightText}>
-                    Intermédiaire
+          {getAccompaniementsByType(toBookAccompaniements, 'Intermediate').map(
+            e => {
+              return (
+                <View key={e.id} style={[props.classes.personCard]}>
+                  <View
+                    style={[props.classes.topPersonCardContainerWithoutName]}>
+                    <View style={[styles.topPersonCardContent]}>
+                      <Text style={props.classes.topPersonCardContentLeft}>
+                        {e.name}
+                      </Text>
+                      <View style={[styles.orangeTopPersonCardContentRight]}>
+                        <Text style={styles.topPersonCardContentRightText}>
+                          Intermédiaire
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                  <Text style={props.classes.infoPersonCard}>
+                    {e.description}
                   </Text>
+                  <View style={[styles.bottomPersonCard]}>
+                    <View style={[props.classes.sessionNumberContainer]}>
+                      <Text style={styles.sessionNumber}>
+                        {e.session_number} séances
+                      </Text>
+                    </View>
+                    <TouchableOpacity style={[styles.toBookButton]}>
+                      <Text style={styles.toBookButtonText}>Réserver</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
-              </View>
-            </View>
-            <Text style={props.classes.infoPersonCard}>
-              Session individuelle de 1 heure avec un coach.
-            </Text>
-            <View style={[styles.bottomPersonCard]}>
-              <View style={[props.classes.sessionNumberContainer]}>
-                <Text style={styles.sessionNumber}>5 séances</Text>
-              </View>
-              <TouchableOpacity style={[styles.toBookButton]}>
-                <Text style={styles.toBookButtonText}>Réserver</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={[props.classes.personCard]}>
-            <View style={[props.classes.topPersonCardContainerWithoutName]}>
-              <View style={[styles.topPersonCardContent]}>
-                <Text style={props.classes.topPersonCardContentLeft}>
-                  Placement
-                </Text>
-                <View style={[styles.orangeTopPersonCardContentRight]}>
-                  <Text style={styles.topPersonCardContentRightText}>
-                    Intermédiaire
-                  </Text>
-                </View>
-              </View>
-            </View>
-            <Text style={props.classes.infoPersonCard}>
-              Session individuelle de 1 heure avec un coach.
-            </Text>
-            <View style={[styles.bottomPersonCard]}>
-              <View style={[props.classes.sessionNumberContainer]}>
-                <Text style={styles.sessionNumber}>5 séances</Text>
-              </View>
-              <TouchableOpacity style={[styles.toBookButton]}>
-                <Text style={styles.toBookButtonText}>Réserver</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={[props.classes.personCard]}>
-            <View style={[props.classes.topPersonCardContainerWithoutName]}>
-              <View style={[styles.topPersonCardContent]}>
-                <Text style={props.classes.topPersonCardContentLeft}>
-                  Trading
-                </Text>
-                <View style={[styles.orangeTopPersonCardContentRight]}>
-                  <Text style={styles.topPersonCardContentRightText}>
-                    Intermédiaire
-                  </Text>
-                </View>
-              </View>
-            </View>
-            <Text style={props.classes.infoPersonCard}>
-              Session individuelle de 1 heure avec un coach.
-            </Text>
-            <View style={[styles.bottomPersonCard]}>
-              <View style={[props.classes.sessionNumberContainer]}>
-                <Text style={styles.sessionNumber}>8 séances</Text>
-              </View>
-              <TouchableOpacity style={[styles.toBookButton]}>
-                <Text style={styles.toBookButtonText}>Réserver</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+              );
+            },
+          )}
         </ScrollView>
 
         {/* Confirmé */}
@@ -427,81 +432,40 @@ function ToBookAccompaniementContent(props) {
           horizontal
           showsHorizontalScrollIndicator={false}
           style={[styles.toBookCardContainer]}>
-          <View style={[props.classes.personCard]}>
-            <View style={[props.classes.topPersonCardContainerWithoutName]}>
-              <View style={[styles.topPersonCardContent]}>
-                <Text style={props.classes.topPersonCardContentLeft}>
-                  Forex
-                </Text>
-                <View style={[styles.redTopPersonCardContentRight]}>
-                  <Text style={styles.topPersonCardContentRightText}>
-                    Confirmé
+          {getAccompaniementsByType(toBookAccompaniements, 'confirmed').map(
+            e => {
+              return (
+                <View key={e.id} style={[props.classes.personCard]}>
+                  <View
+                    style={[props.classes.topPersonCardContainerWithoutName]}>
+                    <View style={[styles.topPersonCardContent]}>
+                      <Text style={props.classes.topPersonCardContentLeft}>
+                        {e.name}
+                      </Text>
+                      <View style={[styles.redTopPersonCardContentRight]}>
+                        <Text style={styles.topPersonCardContentRightText}>
+                          Confirmé
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                  <Text style={props.classes.infoPersonCard}>
+                    {e.description}
                   </Text>
+                  <View style={[styles.bottomPersonCard]}>
+                    <View style={[props.classes.sessionNumberContainer]}>
+                      <Text style={styles.sessionNumber}>
+                        {e.session_number} séances
+                      </Text>
+                    </View>
+                    <TouchableOpacity style={[styles.toBookButton]}>
+                      <Text style={styles.toBookButtonText}>Premium</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
-              </View>
-            </View>
-            <Text style={props.classes.infoPersonCard}>
-              Session individuelle de 1 heure avec un coach.
-            </Text>
-            <View style={[styles.bottomPersonCard]}>
-              <View style={[props.classes.sessionNumberContainer]}>
-                <Text style={styles.sessionNumber}>4 séances</Text>
-              </View>
-              <TouchableOpacity style={[styles.toBookButton]}>
-                <Text style={styles.toBookButtonText}>Premium</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={[props.classes.personCard]}>
-            <View style={[props.classes.topPersonCardContainerWithoutName]}>
-              <View style={[styles.topPersonCardContent]}>
-                <Text style={props.classes.topPersonCardContentLeft}>
-                  Ftmo Trader
-                </Text>
-                <View style={[styles.redTopPersonCardContentRight]}>
-                  <Text style={styles.topPersonCardContentRightText}>
-                    Confirmé
-                  </Text>
-                </View>
-              </View>
-            </View>
-            <Text style={props.classes.infoPersonCard}>
-              Session individuelle de 1 heure avec un coach.
-            </Text>
-            <View style={[styles.bottomPersonCard]}>
-              <View style={[props.classes.sessionNumberContainer]}>
-                <Text style={styles.sessionNumber}>3 séances</Text>
-              </View>
-              <TouchableOpacity style={[styles.toBookButton]}>
-                <Text style={styles.toBookButtonText}>Premium</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={[props.classes.personCard]}>
-            <View style={[props.classes.topPersonCardContainerWithoutName]}>
-              <View style={[styles.topPersonCardContent]}>
-                <Text style={props.classes.topPersonCardContentLeft}>
-                  Placement
-                </Text>
-                <View style={[styles.redTopPersonCardContentRight]}>
-                  <Text style={styles.topPersonCardContentRightText}>
-                    Confirmé
-                  </Text>
-                </View>
-              </View>
-            </View>
-            <Text style={props.classes.infoPersonCard}>
-              Session individuelle de 1 heure avec un coach.
-            </Text>
-            <View style={[styles.bottomPersonCard]}>
-              <View style={[props.classes.sessionNumberContainer]}>
-                <Text style={styles.sessionNumber}>6 séances</Text>
-              </View>
-              <TouchableOpacity style={[styles.toBookButton]}>
-                <Text style={styles.toBookButtonText}>Premium</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+              );
+            },
+          )}
         </ScrollView>
       </ScrollView>
     </View>
