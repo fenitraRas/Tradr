@@ -185,17 +185,23 @@ function FormationPlayerContent(props) {
 }
 
 function VideoCardHeader() {
+  const [selectedTab, setTab] = useState(1);
   return (
     <View style={styles.videoCardHeaderContainer}>
-      <TouchableOpacity>
-        <Text style={styles.selectedVideoCardHeaderText}>Saison 1</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.videoCardHeaderText}>Saison 2</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.videoCardHeaderText}>Saison 3</Text>
-      </TouchableOpacity>
+      {[1, 2, 3].map(i => {
+        return (
+          <TouchableOpacity key={i} onPress={() => setTab(i)}>
+            <Text
+              style={
+                selectedTab === i
+                  ? styles.selectedVideoCardHeaderText
+                  : styles.videoCardHeaderText
+              }>
+              Saison {i}
+            </Text>
+          </TouchableOpacity>
+        );
+      })}
     </View>
   );
 }

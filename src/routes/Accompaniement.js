@@ -191,6 +191,7 @@ function InProgressAccompaniementContent(props) {
             {[1, 2, 3, 4, 5].map(i => {
               return (
                 <View
+                  key={i}
                   style={
                     selectedAccompaniement.current_exercise === i
                       ? props.classes.selectedStateCardNumberContainer
