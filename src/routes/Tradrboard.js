@@ -126,6 +126,7 @@ function TradrboardContent(props) {
 }
 
 function TradrboardCardList({classes, title}) {
+  const navigation = useNavigation();
   return (
     <View style={styles.tradrboardCardContainer}>
       <View style={[indexStyles.horizontalFlex, styles.cardTitleContainer]}>
@@ -136,7 +137,9 @@ function TradrboardCardList({classes, title}) {
         horizontal
         showsHorizontalScrollIndicator={false}
         style={[styles.personCardContainer]}>
-        <TouchableOpacity style={[classes.personCard]}>
+        <TouchableOpacity
+          style={[classes.personCard]}
+          onPress={() => navigation.navigate('Accompaniement')}>
           <View style={[classes.topPersonCardContainer]}>
             <View style={[styles.topPersonCardContent]}>
               <Text style={classes.topPersonCardContentLeft}>Trading</Text>

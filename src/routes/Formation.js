@@ -51,6 +51,19 @@ function Navbar(props) {
   );
 }
 
+function getSelectedVideo(list, id) {
+  return list.find(el => el.id === id);
+}
+
+function getFilesByCategory(list, category) {
+  return list.filter(elm => elm.category === category);
+}
+
+function unlockVideo(id) {
+  alert('Video ' + id + ' unlocked');
+  return 0;
+}
+
 function Formation() {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
   const classes = {
@@ -65,6 +78,68 @@ function Formation() {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
   const navigation = useNavigation();
+  const [selectedVideoId, setVideoId] = useState(1);
+  const videos = [
+    {
+      id: 1,
+      title: 'Trade',
+      category: 'to_resume',
+      locked: true,
+      image_path: '../assets/video/trade.jpeg',
+    },
+    {
+      id: 2,
+      title: 'A BEAUTIFUL MIND',
+      category: 'to_resume',
+      locked: true,
+      image_path: '../assets/video/the_economist.jpg',
+    },
+    {
+      id: 3,
+      title: 'Trading Place',
+      category: 'discover',
+      locked: true,
+      image_path: '../assets/video/discover1.jpeg',
+    },
+    {
+      id: 4,
+      title: 'The Trade',
+      category: 'discover',
+      locked: true,
+      image_path: '../assets/video/discover2.jpeg',
+    },
+    {
+      id: 5,
+      title: 'Trading Place',
+      category: 'discover',
+      locked: true,
+      image_path: '../assets/video/discover3.jpeg',
+    },
+    {
+      id: 6,
+      title: 'My Trading 1',
+      category: 'premium',
+      locked: true,
+      image_path: '../assets/formationBg.jpg',
+    },
+    {
+      id: 7,
+      title: 'My Trading 2',
+      category: 'premium',
+      locked: true,
+      image_path: '../assets/formationBg.jpg',
+    },
+    {
+      id: 8,
+      title: 'My Trading 3',
+      category: 'premium',
+      locked: true,
+      image_path: '../assets/formationBg.jpg',
+    },
+  ];
+
+  const selectedVideo = getSelectedVideo(videos, selectedVideoId);
+
   return (
     <SafeAreaView style={classes.container}>
       <StatusBar
@@ -82,7 +157,7 @@ function Formation() {
             <PlayButton width={46} height={46} />
           </TouchableOpacity>
         </View>
-        <Text style={styles.videoTitle}>Titre video</Text>
+        <Text style={styles.videoTitle}>{selectedVideo.title}</Text>
         <Text style={styles.videoEpisode}>Episode 3 Saison 1</Text>
         <View style={styles.caption}>
           <Text style={styles.videoStatus}>En cours</Text>
@@ -104,18 +179,19 @@ function Formation() {
             horizontal
             showsHorizontalScrollIndicator={false}
             style={styles.cover}>
-            <TouchableOpacity style={styles.imageContainer}>
-              <Image
-                source={require('../assets/video/trade.jpeg')}
-                style={styles.coverImage}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Image
-                source={require('../assets/video/the_economist.jpg')}
-                style={styles.coverImage}
-              />
-            </TouchableOpacity>
+            {getFilesByCategory(videos, 'to_resume').map(file => {
+              return (
+                <TouchableOpacity
+                  key={file.id}
+                  style={styles.imageContainer}
+                  onPress={() => setVideoId(file.id)}>
+                  <Image
+                    source={require('../assets/video/trade.jpeg')}
+                    style={styles.coverImage}
+                  />
+                </TouchableOpacity>
+              );
+            })}
           </ScrollView>
         </View>
         <View>
@@ -124,24 +200,19 @@ function Formation() {
             horizontal
             showsHorizontalScrollIndicator={false}
             style={styles.cover}>
-            <TouchableOpacity>
-              <Image
-                source={require('../assets/video/discover1.jpeg')}
-                style={styles.coverImage}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Image
-                source={require('../assets/video/discover2.jpeg')}
-                style={styles.coverImage}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Image
-                source={require('../assets/video/discover3.jpeg')}
-                style={styles.coverImage}
-              />
-            </TouchableOpacity>
+            {getFilesByCategory(videos, 'discover').map(file => {
+              return (
+                <TouchableOpacity
+                  key={file.id}
+                  style={styles.imageContainer}
+                  onPress={() => setVideoId(file.id)}>
+                  <Image
+                    source={require('../assets/video/discover1.jpeg')}
+                    style={styles.coverImage}
+                  />
+                </TouchableOpacity>
+              );
+            })}
           </ScrollView>
         </View>
         <View>
@@ -150,24 +221,26 @@ function Formation() {
             horizontal
             showsHorizontalScrollIndicator={false}
             style={styles.cover}>
-            <TouchableOpacity>
-              <Image
-                source={require('../assets/formationBg.jpg')}
-                style={styles.coverImage}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Image
-                source={require('../assets/formationBg.jpg')}
-                style={styles.coverImage}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Image
-                source={require('../assets/formationBg.jpg')}
-                style={styles.coverImage}
-              />
-            </TouchableOpacity>
+            {getFilesByCategory(videos, 'premium').map(file => {
+              return (
+                <TouchableOpacity
+                  key={file.id}
+                  style={styles.imageContainer}
+                  onPress={() => unlockVideo(file.id)}>
+                  <Image
+                    source={require('../assets/formationBg.jpg')}
+                    style={styles.coverImage}
+                  />
+                  {selectedVideo.locked ? (
+                    <View style={styles.coverImageTextContainer}>
+                      <View style={styles.coverImageTextContent}>
+                        <Text style={styles.coverImageText}>Débloquer</Text>
+                      </View>
+                    </View>
+                  ) : null}
+                </TouchableOpacity>
+              );
+            })}
           </ScrollView>
         </View>
       </ScrollView>
@@ -358,6 +431,29 @@ const styles = StyleSheet.create({
         shadowRadius: 50,
       },
     }),
+  },
+  coverImageTextContainer: {
+    width: '100%',
+    position: 'absolute',
+    top: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 24,
+  },
+  coverImageTextContent: {
+    height: 22,
+    padding: 3,
+    width: 84,
+    borderRadius: 4,
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+  },
+  coverImageText: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    fontSize: 14,
+    lineHeight: 17,
+    color: '#FFFFFF',
   },
 });
 
