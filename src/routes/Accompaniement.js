@@ -68,7 +68,7 @@ function buttonByType(type) {
         </View>
       );
       break;
-    case 'Intermediate':
+    case 'intermediate':
       return (
         <View style={[styles.orangeTopPersonCardContentRight]}>
           <Text style={styles.topPersonCardContentRightText}>
@@ -98,7 +98,7 @@ function subtitleByType(type) {
     case 'beginner':
       return "Plan d'action simplifié";
       break;
-    case 'Intermediate':
+    case 'intermediate':
       return "Plan d'action avancé";
       break;
     case 'confirmed':
@@ -118,6 +118,7 @@ function InProgressAccompaniementContent(props) {
   const accompaniements = [
     {
       id: 1,
+      owner_id: 1,
       owner: 'Maxime Legrand',
       name: 'TRADING',
       type: 'beginner',
@@ -130,9 +131,10 @@ function InProgressAccompaniementContent(props) {
     },
     {
       id: 2,
+      owner_id: 2,
       owner: 'Léna Forelle',
       name: 'ECONOMIE',
-      type: 'Intermediate',
+      type: 'intermediate',
       description: 'Session individuelle de 1 heure.',
       at: {date: '26.03.2023', time: '11h00'},
       next_session: {date: '27.03.2023', time: '12h'},
@@ -142,6 +144,7 @@ function InProgressAccompaniementContent(props) {
     },
     {
       id: 3,
+      owner_id: 3,
       owner: 'Inès Dore',
       name: 'PLACEMENT',
       type: 'confirmed',
@@ -292,21 +295,21 @@ function ToBookAccompaniementContent(props) {
     {
       id: 3,
       name: 'ECONOMIE',
-      type: 'Intermediate',
+      type: 'intermediate',
       description: 'Session individuelle de 1 heure avec un coach.',
       session_number: 5,
     },
     {
       id: 4,
       name: 'PLACEMENT',
-      type: 'Intermediate',
+      type: 'intermediate',
       description: 'Session individuelle de 1 heure avec un coach.',
       session_number: 5,
     },
     {
       id: 5,
       name: 'TRADING',
-      type: 'Intermediate',
+      type: 'intermediate',
       description: 'Session individuelle de 1 heure avec un coach.',
       session_number: 8,
     },
@@ -389,7 +392,7 @@ function ToBookAccompaniementContent(props) {
           horizontal
           showsHorizontalScrollIndicator={false}
           style={[styles.toBookCardContainer]}>
-          {getAccompaniementsByType(toBookAccompaniements, 'Intermediate').map(
+          {getAccompaniementsByType(toBookAccompaniements, 'intermediate').map(
             e => {
               return (
                 <View key={e.id} style={[props.classes.personCard]}>
@@ -472,7 +475,73 @@ function ToBookAccompaniementContent(props) {
   );
 }
 
+function getAccompaniementsByOwner(list, owner_id) {
+  return list.filter(elm => elm.owner_id === owner_id);
+}
+
 function CompletedAccompaniementContent(props) {
+  const completedAccompaniements = [
+    {
+      id: 1,
+      owner_id: 1,
+      name: 'TRADING',
+      type: 'beginner',
+      description: 'Session individuelle de 45 minutes avec un coach.',
+      session_number: 4,
+      current_session: 2,
+      date: '12.03.2023',
+    },
+    {
+      id: 2,
+      owner_id: 1,
+      name: 'TRADING',
+      type: 'beginner',
+      description: 'Session individuelle de 45 minutes avec un coach.',
+      session_number: 6,
+      current_session: 1,
+      date: '22.03.2023',
+    },
+    {
+      id: 3,
+      owner_id: 2,
+      name: 'ECONOMIE',
+      type: 'intermediate',
+      description: 'Session individuelle de 1 heure',
+      session_number: 5,
+      current_session: 4,
+      date: '22.03.2023',
+    },
+    {
+      id: 4,
+      owner_id: 2,
+      name: 'ECONOMIE',
+      type: 'intermediate',
+      description: 'Session individuelle de 1 heure',
+      session_number: 6,
+      current_session: 1,
+      date: '11.03.2023',
+    },
+    {
+      id: 5,
+      owner_id: 3,
+      name: 'PLACEMENT',
+      type: 'confirmed',
+      description: 'Session individuelle de 1 heure',
+      session_number: 5,
+      current_session: 2,
+      date: '18.03.2023',
+    },
+    {
+      id: 6,
+      owner_id: 3,
+      name: 'PLACEMENT',
+      type: 'confirmed',
+      description: 'Session individuelle de 1 heure',
+      session_number: 5,
+      current_session: 1,
+      date: '10.03.2023',
+    },
+  ];
   return (
     <View style={[props.classes.accompaniementContent, indexStyles.shadowProp]}>
       <View style={styles.toBookTitleContainer}>
@@ -487,60 +556,38 @@ function CompletedAccompaniementContent(props) {
           horizontal
           showsHorizontalScrollIndicator={false}
           style={[styles.toBookCardContainer]}>
-          <View style={[props.classes.personCard]}>
-            <View style={[props.classes.topPersonCardContainerWithoutName]}>
-              <View style={[styles.topPersonCardContent]}>
-                <Text style={props.classes.topPersonCardContentLeft}>
-                  Trading
+          {getAccompaniementsByOwner(completedAccompaniements, 1).map(e => {
+            return (
+              <View key={e.id} style={[props.classes.personCard]}>
+                <View style={[props.classes.topPersonCardContainerWithoutName]}>
+                  <View style={[styles.topPersonCardContent]}>
+                    <Text style={props.classes.topPersonCardContentLeft}>
+                      {e.name}
+                    </Text>
+                    {buttonByType(e.type)}
+                  </View>
+                </View>
+                <Text style={props.classes.infoPersonCard}>
+                  {e.description}
                 </Text>
-                <View style={[styles.greenTopPersonCardContentRight]}>
-                  <Text style={styles.topPersonCardContentRightText}>
-                    Débutant
-                  </Text>
+                <View style={[styles.bottomPersonCard]}>
+                  <View style={[props.classes.sessionNumberContainer]}>
+                    <Text style={styles.sessionNumber}>Séances </Text>
+                    <Text style={styles.boldSessionNumber}>
+                      {e.current_session}
+                    </Text>
+                    <Text style={styles.sessionNumber}>
+                      {' '}
+                      /{e.session_number}
+                    </Text>
+                  </View>
+                  <View style={[props.classes.sessionDateContainer]}>
+                    <Text style={styles.sessionDate}>{e.date}</Text>
+                  </View>
                 </View>
               </View>
-            </View>
-            <Text style={props.classes.infoPersonCard}>
-              Session individuelle de 45 minutes avec un coach.
-            </Text>
-            <View style={[styles.bottomPersonCard]}>
-              <View style={[props.classes.sessionNumberContainer]}>
-                <Text style={styles.sessionNumber}>Séances </Text>
-                <Text style={styles.boldSessionNumber}>2</Text>
-                <Text style={styles.sessionNumber}> /6</Text>
-              </View>
-              <View style={[props.classes.sessionDateContainer]}>
-                <Text style={styles.sessionDate}>12 . 03 . 2023</Text>
-              </View>
-            </View>
-          </View>
-          <View style={[props.classes.personCard]}>
-            <View style={[props.classes.topPersonCardContainerWithoutName]}>
-              <View style={[styles.topPersonCardContent]}>
-                <Text style={props.classes.topPersonCardContentLeft}>
-                  Trading
-                </Text>
-                <View style={[styles.greenTopPersonCardContentRight]}>
-                  <Text style={styles.topPersonCardContentRightText}>
-                    Débutant
-                  </Text>
-                </View>
-              </View>
-            </View>
-            <Text style={props.classes.infoPersonCard}>
-              Session individuelle de 45 minutes avec un coach.
-            </Text>
-            <View style={[styles.bottomPersonCard]}>
-              <View style={[props.classes.sessionNumberContainer]}>
-                <Text style={styles.sessionNumber}>Séances </Text>
-                <Text style={styles.boldSessionNumber}>1</Text>
-                <Text style={styles.sessionNumber}> /6</Text>
-              </View>
-              <View style={[props.classes.sessionDateContainer]}>
-                <Text style={styles.sessionDate}>22 . 03 . 2023</Text>
-              </View>
-            </View>
-          </View>
+            );
+          })}
         </ScrollView>
       </ScrollView>
 
@@ -550,60 +597,38 @@ function CompletedAccompaniementContent(props) {
           horizontal
           showsHorizontalScrollIndicator={false}
           style={[styles.toBookCardContainer]}>
-          <View style={[props.classes.personCard]}>
-            <View style={[props.classes.topPersonCardContainerWithoutName]}>
-              <View style={[styles.topPersonCardContent]}>
-                <Text style={props.classes.topPersonCardContentLeft}>
-                  Économie
+          {getAccompaniementsByOwner(completedAccompaniements, 2).map(e => {
+            return (
+              <View key={e.id} style={[props.classes.personCard]}>
+                <View style={[props.classes.topPersonCardContainerWithoutName]}>
+                  <View style={[styles.topPersonCardContent]}>
+                    <Text style={props.classes.topPersonCardContentLeft}>
+                      {e.name}
+                    </Text>
+                    {buttonByType(e.type)}
+                  </View>
+                </View>
+                <Text style={props.classes.infoPersonCard}>
+                  {e.description}
                 </Text>
-                <View style={[styles.orangeTopPersonCardContentRight]}>
-                  <Text style={styles.topPersonCardContentRightText}>
-                    Intermédiaire
-                  </Text>
+                <View style={[styles.bottomPersonCard]}>
+                  <View style={[props.classes.sessionNumberContainer]}>
+                    <Text style={styles.sessionNumber}>Séances </Text>
+                    <Text style={styles.boldSessionNumber}>
+                      {e.current_session}
+                    </Text>
+                    <Text style={styles.sessionNumber}>
+                      {' '}
+                      /{e.session_number}
+                    </Text>
+                  </View>
+                  <View style={[props.classes.sessionDateContainer]}>
+                    <Text style={styles.sessionDate}>{e.date}</Text>
+                  </View>
                 </View>
               </View>
-            </View>
-            <Text style={props.classes.infoPersonCard}>
-              Session individuelle de 1 heure.
-            </Text>
-            <View style={[styles.bottomPersonCard]}>
-              <View style={[props.classes.sessionNumberContainer]}>
-                <Text style={styles.sessionNumber}>Séances </Text>
-                <Text style={styles.boldSessionNumber}>4</Text>
-                <Text style={styles.sessionNumber}> /5</Text>
-              </View>
-              <View style={[props.classes.sessionDateContainer]}>
-                <Text style={styles.sessionDate}>22 . 03 . 2023</Text>
-              </View>
-            </View>
-          </View>
-          <View style={[props.classes.personCard]}>
-            <View style={[props.classes.topPersonCardContainerWithoutName]}>
-              <View style={[styles.topPersonCardContent]}>
-                <Text style={props.classes.topPersonCardContentLeft}>
-                  Économie
-                </Text>
-                <View style={[styles.orangeTopPersonCardContentRight]}>
-                  <Text style={styles.topPersonCardContentRightText}>
-                    Intermédiaire
-                  </Text>
-                </View>
-              </View>
-            </View>
-            <Text style={props.classes.infoPersonCard}>
-              Session individuelle de 1 heure.
-            </Text>
-            <View style={[styles.bottomPersonCard]}>
-              <View style={[props.classes.sessionNumberContainer]}>
-                <Text style={styles.sessionNumber}>Séances </Text>
-                <Text style={styles.boldSessionNumber}>1</Text>
-                <Text style={styles.sessionNumber}> /6</Text>
-              </View>
-              <View style={[props.classes.sessionDateContainer]}>
-                <Text style={styles.sessionDate}>11 . 03 . 2023</Text>
-              </View>
-            </View>
-          </View>
+            );
+          })}
         </ScrollView>
       </ScrollView>
 
@@ -613,60 +638,38 @@ function CompletedAccompaniementContent(props) {
           horizontal
           showsHorizontalScrollIndicator={false}
           style={[styles.toBookCardContainer]}>
-          <View style={[props.classes.personCard]}>
-            <View style={[props.classes.topPersonCardContainerWithoutName]}>
-              <View style={[styles.topPersonCardContent]}>
-                <Text style={props.classes.topPersonCardContentLeft}>
-                  Placement
+          {getAccompaniementsByOwner(completedAccompaniements, 3).map(e => {
+            return (
+              <View key={e.id} style={[props.classes.personCard]}>
+                <View style={[props.classes.topPersonCardContainerWithoutName]}>
+                  <View style={[styles.topPersonCardContent]}>
+                    <Text style={props.classes.topPersonCardContentLeft}>
+                      {e.name}
+                    </Text>
+                    {buttonByType(e.type)}
+                  </View>
+                </View>
+                <Text style={props.classes.infoPersonCard}>
+                  {e.description}
                 </Text>
-                <View style={[styles.redTopPersonCardContentRight]}>
-                  <Text style={styles.topPersonCardContentRightText}>
-                    Confirmé
-                  </Text>
+                <View style={[styles.bottomPersonCard]}>
+                  <View style={[props.classes.sessionNumberContainer]}>
+                    <Text style={styles.sessionNumber}>Séances </Text>
+                    <Text style={styles.boldSessionNumber}>
+                      {e.current_session}
+                    </Text>
+                    <Text style={styles.sessionNumber}>
+                      {' '}
+                      /{e.session_number}
+                    </Text>
+                  </View>
+                  <View style={[props.classes.sessionDateContainer]}>
+                    <Text style={styles.sessionDate}>{e.date}</Text>
+                  </View>
                 </View>
               </View>
-            </View>
-            <Text style={props.classes.infoPersonCard}>
-              Session individuelle de 1 heure et 30 minutes.
-            </Text>
-            <View style={[styles.bottomPersonCard]}>
-              <View style={[props.classes.sessionNumberContainer]}>
-                <Text style={styles.sessionNumber}>Séances </Text>
-                <Text style={styles.boldSessionNumber}>2</Text>
-                <Text style={styles.sessionNumber}> /5</Text>
-              </View>
-              <View style={[props.classes.sessionDateContainer]}>
-                <Text style={styles.sessionDate}>18 . 03 . 2023</Text>
-              </View>
-            </View>
-          </View>
-          <View style={[props.classes.personCard]}>
-            <View style={[props.classes.topPersonCardContainerWithoutName]}>
-              <View style={[styles.topPersonCardContent]}>
-                <Text style={props.classes.topPersonCardContentLeft}>
-                  Placement
-                </Text>
-                <View style={[styles.redTopPersonCardContentRight]}>
-                  <Text style={styles.topPersonCardContentRightText}>
-                    Confirmé
-                  </Text>
-                </View>
-              </View>
-            </View>
-            <Text style={props.classes.infoPersonCard}>
-              Session individuelle de 1 heure et 30 minutes.
-            </Text>
-            <View style={[styles.bottomPersonCard]}>
-              <View style={[props.classes.sessionNumberContainer]}>
-                <Text style={styles.sessionNumber}>Séances </Text>
-                <Text style={styles.boldSessionNumber}>1</Text>
-                <Text style={styles.sessionNumber}> /5</Text>
-              </View>
-              <View style={[props.classes.sessionDateContainer]}>
-                <Text style={styles.sessionDate}>10 . 03 . 2023</Text>
-              </View>
-            </View>
-          </View>
+            );
+          })}
         </ScrollView>
       </ScrollView>
     </View>
