@@ -100,6 +100,18 @@ function getQuizsByType(list, type) {
   return list.filter(elm => elm.type === type);
 }
 
+function getSucceededPremiumQuiz(list) {
+  return list.filter(
+    elm => elm.status === 'succeeded' && elm.type === 'confirmed',
+  );
+}
+
+function getUnsucceededPremiumQuiz(list) {
+  return list.filter(
+    elm => elm.status !== 'succeeded' && elm.type === 'confirmed',
+  );
+}
+
 function MyQuiz(props) {
   const navigation = useNavigation();
   return (
@@ -343,6 +355,7 @@ function InprogressQuiz(props) {
 }
 
 function PremiumQuiz(props) {
+  const navigation = useNavigation();
   return (
     <View style={[props.classes.quizContent, indexStyles.shadowProp]}>
       <View style={props.classes.quizTitleContainer}>
@@ -361,42 +374,37 @@ function PremiumQuiz(props) {
           horizontal
           showsHorizontalScrollIndicator={false}
           style={[styles.cardContainer]}>
-          <View style={props.classes.myQuizCardContent}>
-            <View style={styles.myQuizCardImgContainer}>
-              <Image
-                source={require('../assets/video/maxime.png')}
-                style={styles.myQuizCardImg}
-              />
-            </View>
-            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={props.classes.myQuizCardBottom}>
-              <View style={styles.myQuizCardBottomLeft}>
-                <Text style={props.classes.myQuizCardBottomLeftNumber}>16</Text>
-                <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
-              </View>
-              <View style={[styles.redTopPersonCardContentRight]}>
-                <Text style={styles.bottomCardContentRightText}>Confirmé</Text>
-              </View>
-            </View>
-          </View>
-          <View style={props.classes.myQuizCardContent}>
-            <View style={styles.myQuizCardImgContainer}>
-              <Image
-                source={require('../assets/video/images.jpeg')}
-                style={styles.myQuizCardImg}
-              />
-            </View>
-            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={props.classes.myQuizCardBottom}>
-              <View style={styles.myQuizCardBottomLeft}>
-                <Text style={props.classes.myQuizCardBottomLeftNumber}>20</Text>
-                <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
-              </View>
-              <View style={[styles.redTopPersonCardContentRight]}>
-                <Text style={styles.bottomCardContentRightText}>Confirmé</Text>
-              </View>
-            </View>
-          </View>
+          {getSucceededPremiumQuiz(props.quiz).map(e => {
+            return (
+              <TouchableOpacity
+                style={props.classes.myQuizCardContent}
+                key={e.id}
+                onPress={() => navigation.navigate('SummaryQuiz')}>
+                <View style={styles.myQuizCardImgContainer}>
+                  <Image
+                    source={require('../assets/video/images.jpeg')}
+                    style={styles.myQuizCardImg}
+                  />
+                </View>
+                <Text style={props.classes.myQuizCardTitle}>{e.title}</Text>
+                <View style={props.classes.myQuizCardBottom}>
+                  <View style={styles.myQuizCardBottomLeft}>
+                    <Text style={props.classes.myQuizCardBottomLeftNumber}>
+                      {e.quiz_number}
+                    </Text>
+                    <Text style={styles.myQuizCardBottomLeftText}>
+                      Questions
+                    </Text>
+                  </View>
+                  <View style={[styles.redTopPersonCardContentRight]}>
+                    <Text style={styles.bottomCardContentRightText}>
+                      Confirmé
+                    </Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            );
+          })}
         </ScrollView>
 
         <Text style={styles.cardTitle}>Réessayer</Text>
@@ -404,42 +412,37 @@ function PremiumQuiz(props) {
           horizontal
           showsHorizontalScrollIndicator={false}
           style={[styles.cardContainer]}>
-          <View style={props.classes.myQuizCardContent}>
-            <View style={styles.myQuizCardImgContainer}>
-              <Image
-                source={require('../assets/video/maxime.png')}
-                style={styles.myQuizCardImg}
-              />
-            </View>
-            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={props.classes.myQuizCardBottom}>
-              <View style={styles.myQuizCardBottomLeft}>
-                <Text style={props.classes.myQuizCardBottomLeftNumber}>12</Text>
-                <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
-              </View>
-              <View style={[styles.redTopPersonCardContentRight]}>
-                <Text style={styles.bottomCardContentRightText}>Confirmé</Text>
-              </View>
-            </View>
-          </View>
-          <View style={props.classes.myQuizCardContent}>
-            <View style={styles.myQuizCardImgContainer}>
-              <Image
-                source={require('../assets/video/images.jpeg')}
-                style={styles.myQuizCardImg}
-              />
-            </View>
-            <Text style={props.classes.myQuizCardTitle}>TITRE DU QUIZ</Text>
-            <View style={props.classes.myQuizCardBottom}>
-              <View style={styles.myQuizCardBottomLeft}>
-                <Text style={props.classes.myQuizCardBottomLeftNumber}>10</Text>
-                <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
-              </View>
-              <View style={[styles.redTopPersonCardContentRight]}>
-                <Text style={styles.bottomCardContentRightText}>Confirmé</Text>
-              </View>
-            </View>
-          </View>
+          {getUnsucceededPremiumQuiz(props.quiz).map(e => {
+            return (
+              <TouchableOpacity
+                style={props.classes.myQuizCardContent}
+                key={e.id}
+                onPress={() => navigation.navigate('SummaryQuiz')}>
+                <View style={styles.myQuizCardImgContainer}>
+                  <Image
+                    source={require('../assets/video/images.jpeg')}
+                    style={styles.myQuizCardImg}
+                  />
+                </View>
+                <Text style={props.classes.myQuizCardTitle}>{e.title}</Text>
+                <View style={props.classes.myQuizCardBottom}>
+                  <View style={styles.myQuizCardBottomLeft}>
+                    <Text style={props.classes.myQuizCardBottomLeftNumber}>
+                      {e.quiz_number}
+                    </Text>
+                    <Text style={styles.myQuizCardBottomLeftText}>
+                      Questions
+                    </Text>
+                  </View>
+                  <View style={[styles.redTopPersonCardContentRight]}>
+                    <Text style={styles.bottomCardContentRightText}>
+                      Confirmé
+                    </Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            );
+          })}
         </ScrollView>
       </ScrollView>
     </View>
