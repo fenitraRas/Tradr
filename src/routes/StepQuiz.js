@@ -110,7 +110,9 @@ function StepQuizContent(props) {
           </Text>
         </View>
         <TouchableOpacity
-          onPress={() => navigation.navigate('SummaryEndQuiz')}
+          onPress={() =>
+            navigation.navigate('SummaryEndQuiz', {id: props.quizId})
+          }
           style={styles.selectedMaterialGoodCard}>
           <Text style={styles.selectedMaterialGoodText}>
             Des produits financiers
@@ -168,12 +170,13 @@ function StepQuizContent(props) {
 function StepQuizContainer(props) {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <StepQuizContent classes={props.classes} />
+      <StepQuizContent classes={props.classes} quizId={props.quizId} />
     </ScrollView>
   );
 }
 
-function StepQuiz() {
+function StepQuiz({route}) {
+  const {id} = route.params;
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
   const classes = {
     stepQuizContent: [
@@ -275,7 +278,7 @@ function StepQuiz() {
           currentScreen="Tradrboard"
           handleScrollToLeft={() => handleScrollToLeft()}
         />
-        <StepQuizContainer classes={classes} />
+        <StepQuizContainer classes={classes} quizId={id} />
       </ScrollView>
       {showPopup ? (
         <BlurView

@@ -133,7 +133,7 @@ function MyQuiz(props) {
               <TouchableOpacity
                 style={props.classes.myQuizCardContent}
                 key={e.id}
-                onPress={() => navigation.navigate('SummaryQuiz')}>
+                onPress={() => navigation.navigate('SummaryQuiz', {id: e.id})}>
                 <View style={styles.myQuizCardImgContainer}>
                   <Image
                     source={require('../assets/video/images.jpeg')}
@@ -167,7 +167,7 @@ function MyQuiz(props) {
               <TouchableOpacity
                 style={props.classes.myQuizCardContent}
                 key={e.id}
-                onPress={() => navigation.navigate('SummaryQuiz')}>
+                onPress={() => navigation.navigate('SummaryQuiz', {id: e.id})}>
                 <View style={styles.myQuizCardImgContainer}>
                   <Image
                     source={require('../assets/video/maxime.png')}
@@ -201,7 +201,7 @@ function MyQuiz(props) {
               <TouchableOpacity
                 style={props.classes.myQuizCardContent}
                 key={e.id}
-                onPress={() => navigation.navigate('SummaryQuiz')}>
+                onPress={() => navigation.navigate('SummaryQuiz', {id: e.id})}>
                 <View style={styles.myQuizCardImgContainer}>
                   <Image
                     source={require('../assets/video/images.jpeg')}
@@ -250,7 +250,9 @@ function InprogressQuiz(props) {
               <TouchableOpacity
                 style={props.classes.myQuizCardContent}
                 key={e.id}
-                onPress={() => navigation.navigate('IntroductionQuiz')}>
+                onPress={() =>
+                  navigation.navigate('IntroductionQuiz', {id: e.id})
+                }>
                 <View style={styles.myQuizCardImgContainer}>
                   <Image
                     source={require('../assets/video/images.jpeg')}
@@ -288,7 +290,9 @@ function InprogressQuiz(props) {
               <TouchableOpacity
                 style={props.classes.myQuizCardContent}
                 key={e.id}
-                onPress={() => navigation.navigate('IntroductionQuiz')}>
+                onPress={() =>
+                  navigation.navigate('IntroductionQuiz', {id: e.id})
+                }>
                 <View style={styles.myQuizCardImgContainer}>
                   <Image
                     source={require('../assets/video/images.jpeg')}
@@ -326,7 +330,9 @@ function InprogressQuiz(props) {
               <TouchableOpacity
                 style={props.classes.myQuizCardContent}
                 key={e.id}
-                onPress={() => navigation.navigate('IntroductionQuiz')}>
+                onPress={() =>
+                  navigation.navigate('IntroductionQuiz', {id: e.id})
+                }>
                 <View style={styles.myQuizCardImgContainer}>
                   <Image
                     source={require('../assets/video/images.jpeg')}
@@ -379,7 +385,7 @@ function PremiumQuiz(props) {
               <TouchableOpacity
                 style={props.classes.myQuizCardContent}
                 key={e.id}
-                onPress={() => navigation.navigate('SummaryQuiz')}>
+                onPress={() => navigation.navigate('SummaryQuiz', {id: e.id})}>
                 <View style={styles.myQuizCardImgContainer}>
                   <Image
                     source={require('../assets/video/images.jpeg')}
@@ -417,7 +423,7 @@ function PremiumQuiz(props) {
               <TouchableOpacity
                 style={props.classes.myQuizCardContent}
                 key={e.id}
-                onPress={() => navigation.navigate('SummaryQuiz')}>
+                onPress={() => navigation.navigate('SummaryQuiz', {id: e.id})}>
                 <View style={styles.myQuizCardImgContainer}>
                   <Image
                     source={require('../assets/video/images.jpeg')}

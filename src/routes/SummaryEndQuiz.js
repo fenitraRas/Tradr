@@ -39,7 +39,8 @@ function Navbar(props) {
   return (
     <View style={formStyles.navbarContainer}>
       <View style={formStyles.navbarIcon}>
-        <TouchableOpacity onPress={() => navigation.navigate('StepQuiz')}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('StepQuiz', {id: props.quizId})}>
           {option === 'light' ? (
             <ChevronLeft width={30} height={20} />
           ) : (
@@ -163,7 +164,8 @@ function SummaryEndQuizContainer(props) {
 //   );
 // }
 
-function SummaryEndQuiz() {
+function SummaryEndQuiz({route}) {
+  const {id} = route.params;
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
   const classes = {
     resultContainer: [
@@ -241,6 +243,7 @@ function SummaryEndQuiz() {
         <Navbar
           handleScrollToRight={() => handleScrollToRight()}
           title="Titre du quiz"
+          quizId={id}
         />
       )}
       <ScrollView

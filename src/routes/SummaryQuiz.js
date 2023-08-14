@@ -156,7 +156,9 @@ function SummaryQuizContent(props) {
         </Text>
         <TouchableOpacity
           style={styles.redoButton}
-          onPress={() => navigation.navigate('IntroductionQuiz')}>
+          onPress={() =>
+            navigation.navigate('IntroductionQuiz', {id: props.quizId})
+          }>
           <Text style={styles.redoButtonText}>Refaire</Text>
         </TouchableOpacity>
       </View>
@@ -167,12 +169,13 @@ function SummaryQuizContent(props) {
 function SummaryQuizContainer(props) {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <SummaryQuizContent classes={props.classes} />
+      <SummaryQuizContent classes={props.classes} quizId={props.quizId} />
     </ScrollView>
   );
 }
 
-function SummaryQuiz() {
+function SummaryQuiz({route}) {
+  const {id} = route.params;
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
   const classes = {
     summaryQuizContent: [
@@ -271,7 +274,7 @@ function SummaryQuiz() {
           currentScreen="Tradrboard"
           handleScrollToLeft={() => handleScrollToLeft()}
         />
-        <SummaryQuizContainer classes={classes} />
+        <SummaryQuizContainer classes={classes} quizId={id} />
       </ScrollView>
     </SafeAreaView>
   );
