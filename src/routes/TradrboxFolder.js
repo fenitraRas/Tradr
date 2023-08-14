@@ -66,6 +66,50 @@ function Navbar(props) {
 function TradrboxFolderContent(props) {
   const [text, onChangeText] = React.useState('Rechercher');
   const navigation = useNavigation();
+  const folders = [
+    {
+      id: 1,
+      title: 'DOSSIER 1',
+      subtitle: 'Sous-titre du dossier 1',
+      file_number: 8,
+      category: 1,
+    },
+    {
+      id: 2,
+      title: 'DOSSIER 2',
+      subtitle: 'Sous-titre du dossier 2',
+      file_number: 4,
+      category: 1,
+    },
+    {
+      id: 3,
+      title: 'DOSSIER 3',
+      subtitle: 'Sous-titre du dossier 3',
+      file_number: 3,
+      category: 2,
+    },
+    {
+      id: 4,
+      title: 'DOSSIER 4',
+      subtitle: 'Sous-titre du dossier 4',
+      file_number: 5,
+      category: 2,
+    },
+    {
+      id: 5,
+      title: 'DOSSIER 5',
+      subtitle: 'Sous-titre du dossier 5',
+      file_number: 6,
+      category: 1,
+    },
+    {
+      id: 6,
+      title: 'DOSSIER 6',
+      subtitle: 'Sous-titre du dossier 6',
+      file_number: 6,
+      category: 2,
+    },
+  ];
   return (
     <View style={[props.classes.tradrboxContent, indexStyles.shadowProp]}>
       <View style={styles.tradrboxTitleContainer}>
@@ -82,142 +126,45 @@ function TradrboxFolderContent(props) {
       <Search width={11} height={11} style={styles.searchIcon} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.folderContainer}>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('TradrboxFile');
-            }}
-            style={props.classes.folderCard}>
-            <View style={styles.folderImageContainer}>
-              <Image
-                source={require('../assets/video/images.jpeg')}
-                style={styles.folderImage}
-              />
-            </View>
-            <Text style={props.classes.folderCardTitle}>Titre du dossier</Text>
-            <Text style={styles.folderCardSubTitle}>Sous-titre du dossier</Text>
-            <View style={styles.folderCardBottomContainer}>
-              <View style={props.classes.folderCardBottom}>
-                <Text style={props.classes.folderCardBottomLeft}>
-                  2 fichiers
-                </Text>
-                <GrayHeart
-                  width={16}
-                  height={14}
-                  style={styles.folderCardBottomRight}
-                />
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={props.classes.folderCard}>
-            <View style={styles.folderImageContainer}>
-              <Image
-                source={require('../assets/video/images.jpeg')}
-                style={styles.folderImage}
-              />
-            </View>
-            <Text style={props.classes.folderCardTitle}>Titre du dossier</Text>
-            <Text style={styles.folderCardSubTitle}>Sous-titre du dossier</Text>
-            <View style={styles.folderCardBottomContainer}>
-              <View style={props.classes.folderCardBottom}>
-                <Text style={props.classes.folderCardBottomLeft}>
-                  2 fichiers
-                </Text>
-                <RedHeart
-                  width={16}
-                  height={14}
-                  style={styles.redFolderCardBottomRight}
-                />
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={props.classes.folderCard}>
-            <View style={styles.folderImageContainer}>
-              <Image
-                source={require('../assets/video/images.jpeg')}
-                style={styles.folderImage}
-              />
-            </View>
-            <Text style={props.classes.folderCardTitle}>Titre du dossier</Text>
-            <Text style={styles.folderCardSubTitle}>Sous-titre du dossier</Text>
-            <View style={styles.folderCardBottomContainer}>
-              <View style={props.classes.folderCardBottom}>
-                <Text style={props.classes.folderCardBottomLeft}>
-                  2 fichiers
-                </Text>
-                <RedHeart
-                  width={16}
-                  height={14}
-                  style={styles.redFolderCardBottomRight}
-                />
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={props.classes.folderCard}>
-            <View style={styles.folderImageContainer}>
-              <Image
-                source={require('../assets/video/images.jpeg')}
-                style={styles.folderImage}
-              />
-            </View>
-            <Text style={props.classes.folderCardTitle}>Titre du dossier</Text>
-            <Text style={styles.folderCardSubTitle}>Sous-titre du dossier</Text>
-            <View style={styles.folderCardBottomContainer}>
-              <View style={props.classes.folderCardBottom}>
-                <Text style={props.classes.folderCardBottomLeft}>
-                  2 fichiers
-                </Text>
-                <GrayHeart
-                  width={16}
-                  height={14}
-                  style={styles.folderCardBottomRight}
-                />
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={props.classes.folderCard}>
-            <View style={styles.folderImageContainer}>
-              <Image
-                source={require('../assets/video/images.jpeg')}
-                style={styles.folderImage}
-              />
-            </View>
-            <Text style={props.classes.folderCardTitle}>Titre du dossier</Text>
-            <Text style={styles.folderCardSubTitle}>Sous-titre du dossier</Text>
-            <View style={styles.folderCardBottomContainer}>
-              <View style={props.classes.folderCardBottom}>
-                <Text style={props.classes.folderCardBottomLeft}>
-                  2 fichiers
-                </Text>
-                <RedHeart
-                  width={16}
-                  height={14}
-                  style={styles.redFolderCardBottomRight}
-                />
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={props.classes.folderCard}>
-            <View style={styles.folderImageContainer}>
-              <Image
-                source={require('../assets/video/images.jpeg')}
-                style={styles.folderImage}
-              />
-            </View>
-            <Text style={props.classes.folderCardTitle}>Titre du dossier</Text>
-            <Text style={styles.folderCardSubTitle}>Sous-titre du dossier</Text>
-            <View style={styles.folderCardBottomContainer}>
-              <View style={props.classes.folderCardBottom}>
-                <Text style={props.classes.folderCardBottomLeft}>
-                  2 fichiers
-                </Text>
-                <RedHeart
-                  width={16}
-                  height={14}
-                  style={styles.redFolderCardBottomRight}
-                />
-              </View>
-            </View>
-          </TouchableOpacity>
+          {folders.map(f => {
+            return (
+              <TouchableOpacity
+                key={f.id}
+                onPress={() => {
+                  navigation.navigate('TradrboxFile');
+                }}
+                style={props.classes.folderCard}>
+                <View style={styles.folderImageContainer}>
+                  <Image
+                    source={require('../assets/video/images.jpeg')}
+                    style={styles.folderImage}
+                  />
+                </View>
+                <Text style={props.classes.folderCardTitle}>{f.title}</Text>
+                <Text style={styles.folderCardSubTitle}>{f.subtitle}</Text>
+                <View style={styles.folderCardBottomContainer}>
+                  <View style={props.classes.folderCardBottom}>
+                    <Text style={props.classes.folderCardBottomLeft}>
+                      {f.file_number} fichiers
+                    </Text>
+                    {f.category === 1 ? (
+                      <GrayHeart
+                        width={16}
+                        height={14}
+                        style={styles.folderCardBottomRight}
+                      />
+                    ) : (
+                      <RedHeart
+                        width={16}
+                        height={14}
+                        style={styles.redFolderCardBottomRight}
+                      />
+                    )}
+                  </View>
+                </View>
+              </TouchableOpacity>
+            );
+          })}
         </View>
       </ScrollView>
     </View>
