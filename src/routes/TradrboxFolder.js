@@ -131,7 +131,7 @@ function TradrboxFolderContent(props) {
               <TouchableOpacity
                 key={f.id}
                 onPress={() => {
-                  navigation.navigate('TradrboxFile');
+                  navigation.navigate('TradrboxFile', {id: f.id});
                 }}
                 style={props.classes.folderCard}>
                 <View style={styles.folderImageContainer}>
