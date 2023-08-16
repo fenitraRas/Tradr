@@ -75,6 +75,50 @@ function Navbar(props) {
 }
 
 function TradrboxFileContent(props) {
+  const files = [
+    {
+      id: 1,
+      title: 'Épisode 01 - Bien commencer le trading',
+      file_size: 18,
+      active: false,
+    },
+    {
+      id: 2,
+      title: 'Épisode 02 - Prendre le contrôle de son capital',
+      file_size: 174,
+      active: true,
+    },
+    {
+      id: 3,
+      title: 'Comment devenir membre Tradr ?',
+      file_size: 11,
+      active: false,
+    },
+    {
+      id: 4,
+      title: 'Épisode 01 - Bien commencer le trading',
+      file_size: 18,
+      active: false,
+    },
+    {
+      id: 5,
+      title: 'Épisode 02 - Prendre le contrôle de son capital',
+      file_size: 22,
+      active: true,
+    },
+    {
+      id: 6,
+      title: 'Prises de positions de nos traders',
+      file_size: 28,
+      active: true,
+    },
+    {
+      id: 7,
+      title: 'Épisode 01 - Bien commencer le trading',
+      file_size: 18,
+      active: false,
+    },
+  ];
   const [text, onChangeText] = React.useState('Rechercher');
   return (
     <View style={[props.classes.tradrboxContent, indexStyles.shadowProp]}>
@@ -88,105 +132,62 @@ function TradrboxFileContent(props) {
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.fileContainer}>
-          <View style={props.classes.fileCard}>
-            <View style={styles.fileCardTop}>
-              <Chat width={24} height={24} style={styles.fileCardTopImg} />
-              <Text style={props.classes.fileCardTopText}>
-                Épisode 01 - Bien commencer le trading
-              </Text>
-            </View>
-            <View style={props.classes.fileCardBottom}>
-              <TouchableOpacity style={styles.fileCardButton}>
-                <Text style={styles.fileCardButtonText}>Rejoindre</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={props.classes.fileCard}>
-            <View style={styles.fileCardTop}>
-              <PdfIcon width={24} height={24} style={styles.fileCardTopImg} />
-              <Text style={props.classes.fileCardTopText}>
-                Épisode 02 - Prendre le contrôle de son capital
-              </Text>
-            </View>
-            <View style={props.classes.fileCardBottom}>
-              <Text style={props.classes.fileCardText}>174 mo</Text>
-              <TouchableOpacity style={styles.fileCardDownloadButton}>
-                <Download width={15.09} height={13.33} />
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={props.classes.fileCard}>
-            <View style={styles.fileCardTop}>
-              <PdfIcon width={24} height={24} style={styles.fileCardTopImg} />
-              <Text style={props.classes.fileCardTopText}>
-                Comment devenir membre Tradr ?
-              </Text>
-            </View>
-            <View style={props.classes.fileCardBottom}>
-              <Text style={props.classes.fileCardText}>174 mo</Text>
-              <TouchableOpacity style={styles.fileCardDownloadButton}>
-                <Download width={15.09} height={13.33} />
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={props.classes.fileCard}>
-            <View style={styles.fileCardTop}>
-              <PdfIcon width={24} height={24} style={styles.fileCardTopImg} />
-              <Text style={props.classes.fileCardTopText}>
-                Épisode 02 - Prendre le contrôle de son capital
-              </Text>
-            </View>
-            <View style={props.classes.fileCardBottom}>
-              <Text style={props.classes.fileCardText}>174 mo</Text>
-              <TouchableOpacity style={styles.fileCardDownloadButton}>
-                <Download width={15.09} height={13.33} />
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={props.classes.fileCard}>
-            <View style={styles.fileCardTop}>
-              <PdfIcon width={24} height={24} style={styles.fileCardTopImg} />
-              <Text style={props.classes.fileCardTopText}>
-                Épisode 01 - Bien commencer le trading
-              </Text>
-            </View>
-            <View style={props.classes.fileCardBottom}>
-              <Text style={props.classes.fileCardText}>174 mo</Text>
-              <TouchableOpacity style={styles.fileCardDownloadButton}>
-                <Download width={15.09} height={13.33} />
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={props.classes.fileCard}>
-            <View style={styles.fileCardTop}>
-              <Chat width={24} height={24} style={styles.fileCardTopImg} />
-              <Text style={props.classes.fileCardTopText}>
-                Prises de positions de nos traders
-              </Text>
-            </View>
-            <View style={props.classes.fileCardBottom}>
-              <TouchableOpacity style={styles.fileCardButton}>
-                <Text style={styles.fileCardButtonText}>Rejoindre</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={props.classes.fileCard}>
-            <View style={styles.fileCardTop}>
-              <Chat width={24} height={24} style={styles.fileCardTopImg} />
-              <Text style={props.classes.fileCardTopText}>
-                Comment devenir membre Tradr ?
-              </Text>
-            </View>
-            <View style={props.classes.fileCardBottom}>
-              <TouchableOpacity style={styles.fileCardButton}>
-                <Text style={styles.fileCardButtonText}>Rejoindre</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+          {files.map(f => {
+            return (
+              <View style={props.classes.fileCard} key={f.id}>
+                <View style={styles.fileCardTop}>
+                  {f.active ? (
+                    <PdfIcon
+                      width={24}
+                      height={24}
+                      style={styles.fileCardTopImg}
+                    />
+                  ) : (
+                    <Chat
+                      width={24}
+                      height={24}
+                      style={styles.fileCardTopImg}
+                    />
+                  )}
+                  <Text style={props.classes.fileCardTopText}>{f.title}</Text>
+                </View>
+                {f.active ? (
+                  <View style={props.classes.fileCardBottom}>
+                    <Text style={props.classes.fileCardText}>
+                      {f.file_size} mo
+                    </Text>
+                    <TouchableOpacity
+                      style={styles.fileCardDownloadButton}
+                      onPress={() => download(f.id)}>
+                      <Download width={15.09} height={13.33} />
+                    </TouchableOpacity>
+                  </View>
+                ) : (
+                  <View style={props.classes.fileCardBottom}>
+                    <TouchableOpacity
+                      style={styles.fileCardButton}
+                      onPress={() => join(f.id)}>
+                      <Text style={styles.fileCardButtonText}>Rejoindre</Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+              </View>
+            );
+          })}
         </View>
       </ScrollView>
     </View>
   );
+}
+
+function join(id) {
+  alert('Active fichier ' + id);
+  return 0;
+}
+
+function download(id) {
+  alert('Download fichier ' + id);
+  return 0;
 }
 
 function TradrboxFileContainer(props) {
@@ -197,7 +198,9 @@ function TradrboxFileContainer(props) {
   );
 }
 
-function TradrboxFile() {
+function TradrboxFile({route}) {
+  const {id} = route.params;
+  alert(' selected folder: ' + id);
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
   const classes = {
     tradrboxContent: [

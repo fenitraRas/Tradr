@@ -37,7 +37,10 @@ function Navbar(props) {
   return (
     <View style={formStyles.navbarContainer}>
       <View style={formStyles.navbarIcon}>
-        <TouchableOpacity onPress={() => navigation.navigate('SummaryQuiz')}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('SummaryQuiz', {id: props.quizId})
+          }>
           <WhiteChevronLeft width={30} height={20} />
         </TouchableOpacity>
       </View>
@@ -83,7 +86,7 @@ function IntroductionQuizContent(props) {
         </Text>
         <TouchableOpacity
           style={styles.beginButton}
-          onPress={() => navigation.navigate('StepQuiz')}>
+          onPress={() => navigation.navigate('StepQuiz', {id: props.quizId})}>
           <Text style={styles.beginButtonText}>Commencer</Text>
         </TouchableOpacity>
       </View>
@@ -94,12 +97,13 @@ function IntroductionQuizContent(props) {
 function IntroductionQuizContainer(props) {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <IntroductionQuizContent classes={props.classes} />
+      <IntroductionQuizContent classes={props.classes} quizId={props.quizId} />
     </ScrollView>
   );
 }
 
-function IntroductionQuiz() {
+function IntroductionQuiz({route}) {
+  const {id} = route.params;
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
   const classes = {
     content: [styles.content, colorScheme === 'dark' && styles.contentDark],
@@ -141,11 +145,11 @@ function IntroductionQuiz() {
         />
       </View>
       <View style={styles.fixedNavbar}>
-        <Navbar title="Titre du quiz" />
+        <Navbar title="Titre du quiz" quizId={id} />
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false} style={classes.content}>
-        <IntroductionQuizContainer classes={classes} />
+        <IntroductionQuizContainer classes={classes} quizId={id} />
       </ScrollView>
     </SafeAreaView>
   );
