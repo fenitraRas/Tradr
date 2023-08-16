@@ -24,7 +24,6 @@ import React, {useRef, useState} from 'react';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import DotThreeVertical from '../assets/icons/dots-three-vertical.svg';
 import DotThreeVerticalLight from '../assets/icons/dots-three-vertical-light.svg';
-import Ellipse10 from '../assets/icons/ellipse10.svg';
 import Eyes from '../assets/icons/eyes.svg';
 import PlayButton from '../assets/icons/playButton.svg';
 import Video from 'react-native-video';

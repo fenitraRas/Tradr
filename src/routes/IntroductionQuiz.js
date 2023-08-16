@@ -56,8 +56,110 @@ function Navbar(props) {
   );
 }
 
+function getSelectedQuiz(list, id) {
+  return list.find(el => el.id === id);
+}
+
+function buttonByType(type) {
+  switch (type) {
+    case 'beginner':
+      return (
+        <View style={[styles.greenTopPersonCardContentRight]}>
+          <Text style={styles.bottomCardContentRightText}>Débutant</Text>
+        </View>
+      );
+      break;
+    case 'intermediate':
+      return (
+        <View style={[styles.orangeTopPersonCardContentRight]}>
+          <Text style={styles.bottomCardContentRightText}>Intermédiaire</Text>
+        </View>
+      );
+      break;
+    case 'confirmed':
+      return (
+        <View style={[styles.redTopPersonCardContentRight]}>
+          <Text style={styles.bottomCardContentRightText}>Confirmé</Text>
+        </View>
+      );
+      break;
+    default:
+      return (
+        <View style={[styles.greenTopPersonCardContentRight]}>
+          <Text style={styles.bottomCardContentRightText}>Débutant</Text>
+        </View>
+      );
+  }
+}
+
 function IntroductionQuizContent(props) {
   const navigation = useNavigation();
+  const quizs = [
+    {
+      id: 1,
+      title: 'QUIZ 1',
+      type: 'intermediate',
+      quiz_number: 20,
+      status: 'succeeded',
+      description:
+        'Desc 1 Sorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus',
+    },
+    {
+      id: 2,
+      title: 'QUIZ 2',
+      type: 'beginner',
+      quiz_number: 15,
+      status: 'succeeded',
+      description:
+        'Desc 2 Sorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, Sed dignissim, metus',
+    },
+    {
+      id: 3,
+      title: 'QUIZ 3',
+      type: 'confirmed',
+      quiz_number: 16,
+      status: 'succeeded',
+      description:
+        'Desc 3 Sorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. metus',
+    },
+    {
+      id: 4,
+      title: 'QUIZ 4',
+      type: 'confirmed',
+      quiz_number: 10,
+      status: 'failed',
+      description:
+        'Desc 4 Sorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus.',
+    },
+    {
+      id: 5,
+      title: 'QUIZ 5',
+      type: 'confirmed',
+      quiz_number: 20,
+      status: 'failed',
+      description:
+        'Desc 5 Sorem ipsum dolor sit amet. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus',
+    },
+    {
+      id: 6,
+      title: 'QUIZ 6',
+      type: 'intermediate',
+      quiz_number: 20,
+      status: 'to_redo',
+      description:
+        'Desc 6 Sorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, Sed dignissim, metus',
+    },
+    {
+      id: 7,
+      title: 'QUIZ 7',
+      type: 'beginner',
+      quiz_number: 15,
+      status: 'to_redo',
+      description:
+        'Desc 7 Sorem ipsum dolor Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus',
+    },
+  ];
+  const selectedQuiz = getSelectedQuiz(quizs, props.quizId);
   return (
     <View style={[styles.quizContent, styles.shadowProp]}>
       <View style={styles.quizTitleContainer}>
@@ -69,20 +171,16 @@ function IntroductionQuizContent(props) {
       <View style={[props.classes.descriptionContainer]}>
         <View style={props.classes.myQuizCardBottom}>
           <View style={styles.myQuizCardBottomLeft}>
-            <Text style={styles.myQuizCardBottomLeftNumber}>20</Text>
+            <Text style={styles.myQuizCardBottomLeftNumber}>
+              {selectedQuiz.quiz_number}
+            </Text>
             <Text style={styles.myQuizCardBottomLeftText}>Questions</Text>
           </View>
-          <View style={[styles.orangeTopPersonCardContentRight]}>
-            <Text style={styles.bottomCardContentRightText}>Intermédiaire</Text>
-          </View>
+          {buttonByType(selectedQuiz.type)}
         </View>
         <Text style={styles.descriptionTitle}>Description</Text>
         <Text style={props.classes.description}>
-          Sorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu
-          turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec
-          fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus
-          elit sed risus. Maecenas eget condimentum velit, sit amet feugiat
-          lectus.
+          {selectedQuiz.description}
         </Text>
         <TouchableOpacity
           style={styles.beginButton}
@@ -294,6 +392,7 @@ const styles = StyleSheet.create({
   },
   orangeTopPersonCardContentRight: {
     position: 'absolute',
+    paddingTop: 2,
     right: 15,
     top: 15,
     width: 105,
@@ -304,6 +403,42 @@ const styles = StyleSheet.create({
     elevation: 2,
     shadowColor: '#F8B940',
     shadowOffset: {width: 0, height: 4},
+    shadowOpacity: 0.6,
+    shadowRadius: 3,
+  },
+  greenTopPersonCardContentRight: {
+    position: 'absolute',
+    paddingTop: 2,
+    right: 15,
+    top: 15,
+    width: 77,
+    height: 21,
+    backgroundColor: '#7AC84A',
+    borderRadius: 4,
+    alignItems: 'center',
+    shadowColor: '#7AC84A',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.6,
+    shadowRadius: 3,
+  },
+  redTopPersonCardContentRight: {
+    position: 'absolute',
+    paddingTop: 2,
+    right: 15,
+    top: 15,
+    width: 75,
+    height: 21,
+    backgroundColor: '#FF4141',
+    borderRadius: 4,
+    alignItems: 'center',
+    shadowColor: '#FF4141',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
     shadowOpacity: 0.6,
     shadowRadius: 3,
   },
