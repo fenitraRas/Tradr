@@ -67,7 +67,7 @@ function ConnectToAppleButton({children}) {
     </View>
   );
 }
-function ConnectForm({classes, title}) {
+function ConnectForm(props) {
   const navigation = useNavigation();
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
   const [secureMdp, setSecureMdp] = useState(true);
@@ -75,7 +75,7 @@ function ConnectForm({classes, title}) {
   return (
     <View style={formStyles.formContainer}>
       <View style={[indexStyles.horizontalFlex, formStyles.titleContainer]}>
-        <Text style={classes.title}>{title}</Text>
+        <Text style={props.classes.title}>{props.title}</Text>
         <WavingHand width={18} height={18} />
       </View>
       <View style={formStyles.formContent}>
@@ -93,7 +93,7 @@ function ConnectForm({classes, title}) {
           />
         </View>
         <View style={formStyles.inputContainer}>
-          <View style={styles.inputIcon}>
+          <View style={props.classes.inputIcon}>
             <TextInput
               placeholder="Mot de passe"
               secureTextEntry={secureMdp}
@@ -101,8 +101,8 @@ function ConnectForm({classes, title}) {
               autoCapitalize="none"
               keyboardAppearance="dark"
               value="12345"
-              style={styles.inputStyle}
-              placeholderTextColor="Mot de passe"
+              style={props.classes.inputStyle}
+              placeholderTextColor={props.classes.placeholder}
             />
             <TouchableOpacity onPress={() => setSecureMdp(!secureMdp)}>
               {colorScheme === 'dark' ? (
@@ -125,7 +125,9 @@ function ConnectForm({classes, title}) {
         <TouchableOpacity
           onPress={() => navigation.navigate('ForgetPassword')}
           style={styles.forgetPassword}>
-          <Text style={classes.inscriptionTitle}>Mot de passe oublié ?</Text>
+          <Text style={props.classes.inscriptionTitle}>
+            Mot de passe oublié ?
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -144,6 +146,18 @@ function Connection() {
       styles.inscriptionText,
       colorScheme === 'dark' && styles.inscriptionTextDark,
     ],
+    inputStyle: [
+      styles.inputStyle,
+      colorScheme === 'dark' && styles.inputStyleDark,
+    ],
+    inputIcon: [
+      styles.inputIcon,
+      colorScheme === 'dark' && styles.inputIconDark,
+    ],
+    placeholder:
+      colorScheme === 'dark'
+        ? theme.colors.text.$placeholderDark
+        : theme.colors.text.$placeholderLight,
   };
   const navigation = useNavigation();
   const backgroundStyle = {
@@ -235,6 +249,9 @@ const styles = StyleSheet.create({
     color: theme.colors.text.$textLight,
     marginRight: 6,
   },
+  inputIconDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   inputIcon: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -252,6 +269,9 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     justifyContent: 'center',
     marginTop: 15,
+  },
+  inputStyleDark: {
+    color: theme.colors.text.$textDark,
   },
   inputStyle: {
     fontFamily: 'Montserrat',

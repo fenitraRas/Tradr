@@ -66,26 +66,26 @@ function ConnectToAppleButton({children}) {
     </View>
   );
 }
-function Form({classes, title}) {
+function Form(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
   const [secureMdp, setSecureMdp] = useState(true);
   const [secureMdp2, setSecureMdp2] = useState(true);
   return (
     <View style={formStyles.formContainer}>
       <View style={[indexStyles.horizontalFlex, formStyles.titleContainer]}>
-        <Text style={classes.title}>{title}</Text>
+        <Text style={props.classes.title}>{props.title}</Text>
         <PartyingFace width={18} height={18} style={formStyles.titleImg} />
       </View>
       <View style={formStyles.formContent}>
         <View style={styles.inputContainer}>
-          <View style={styles.inputIcon}>
+          <View style={props.classes.inputIcon}>
             <TextInput
               placeholder="Nouveau mot de passe"
               secureTextEntry={secureMdp}
               autoCompleteType="password"
               autoCapitalize="none"
               keyboardAppearance="dark"
-              style={styles.inputStyle}
+              style={props.classes.inputStyle}
             />
             <TouchableOpacity onPress={() => setSecureMdp(!secureMdp)}>
               {colorScheme === 'dark' ? (
@@ -97,14 +97,14 @@ function Form({classes, title}) {
           </View>
         </View>
         <View style={formStyles.inputContainer}>
-          <View style={styles.inputIcon}>
+          <View style={props.classes.inputIcon}>
             <TextInput
               placeholder="Confirmation mot de passe"
               secureTextEntry={secureMdp2}
               autoCompleteType="password"
               autoCapitalize="none"
               keyboardAppearance="dark"
-              style={styles.inputStyle}
+              style={props.classes.inputStyle}
             />
             <TouchableOpacity onPress={() => setSecureMdp2(!secureMdp2)}>
               {colorScheme === 'dark' ? (
@@ -135,6 +135,18 @@ function NewPassword() {
       colorScheme === 'dark' && styles.connectTextDark,
     ],
     title: [styles.title, colorScheme === 'dark' && styles.titleDark],
+    inputStyle: [
+      styles.inputStyle,
+      colorScheme === 'dark' && styles.inputStyleDark,
+    ],
+    inputIcon: [
+      styles.inputIcon,
+      colorScheme === 'dark' && styles.inputIconDark,
+    ],
+    placeholder:
+      colorScheme === 'dark'
+        ? theme.colors.text.$placeholderDark
+        : theme.colors.text.$placeholderLight,
   };
   const backgroundStyle = {
     backgroundColor: colorScheme === 'dark' ? Colors.darker : Colors.lighter,
@@ -220,6 +232,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 10,
   },
+  inputIconDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
   inputIcon: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -237,6 +252,9 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     justifyContent: 'center',
     marginTop: 15,
+  },
+  inputStyleDark: {
+    color: theme.colors.text.$textDark,
   },
   inputStyle: {
     fontFamily: 'Montserrat',
