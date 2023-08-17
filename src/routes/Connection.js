@@ -15,15 +15,18 @@ import {
   TouchableOpacity,
   View,
   useColorScheme,
+  TextInput,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import React, {useState} from 'react';
 
 import BackIcon from '../assets/icons/backIcon.svg';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import LogoApple from '../assets/icons/logoApple.svg';
+import Eye from '../assets/icons/eye.svg';
+import EyeDark from '../assets/icons/eyeDark.svg';
 import MyButton from '../Components/Button';
 import MyTextInput from '../Components/TextInput';
-import React from 'react';
 import TradrLogo from '../assets/icons/tradrLogo.svg';
 import WavingHand from '../assets/icons/wavingHand.svg';
 import WhiteTradrLogo from '../assets/icons/whiteTradrLogo.svg';
@@ -66,6 +69,8 @@ function ConnectToAppleButton({children}) {
 }
 function ConnectForm({classes, title}) {
   const navigation = useNavigation();
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const [secureMdp, setSecureMdp] = useState(true);
   const dispatch = useDispatch();
   return (
     <View style={formStyles.formContainer}>
@@ -88,15 +93,25 @@ function ConnectForm({classes, title}) {
           />
         </View>
         <View style={formStyles.inputContainer}>
-          <MyTextInput
-            placeholder="Mot de passe"
-            secureTextEntry
-            autoCompleteType="password"
-            autoCapitalize="none"
-            keyboardAppearance="dark"
-            editable={false}
-            value="12345"
-          />
+          <View style={styles.inputIcon}>
+            <TextInput
+              placeholder="Mot de passe"
+              secureTextEntry={secureMdp}
+              autoCompleteType="password"
+              autoCapitalize="none"
+              keyboardAppearance="dark"
+              value="12345"
+              style={styles.inputStyle}
+              placeholderTextColor="Mot de passe"
+            />
+            <TouchableOpacity onPress={() => setSecureMdp(!secureMdp)}>
+              {colorScheme === 'dark' ? (
+                <EyeDark width={22} height={14} />
+              ) : (
+                <Eye width={22} height={14} />
+              )}
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={formStyles.loginButtonContainer}>
           <MyButton
@@ -179,7 +194,6 @@ const styles = StyleSheet.create({
     padding: 0,
     width: 240,
     height: 52,
-    // marginTop: 137,
     marginTop: 207,
   },
   inscriptionTitleDark: {
@@ -220,6 +234,32 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     color: theme.colors.text.$textLight,
     marginRight: 6,
+  },
+  inputIcon: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    height: 49,
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
+    borderRadius: 10,
+    elevation: 8,
+    shadowColor: '#090d6d',
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    justifyContent: 'center',
+    marginTop: 15,
+  },
+  inputStyle: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontSize: 17,
+    lineHeight: 21,
+    color: theme.colors.text.$textLight,
+    width: '87%',
   },
 });
 
