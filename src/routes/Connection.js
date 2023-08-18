@@ -15,15 +15,18 @@ import {
   TouchableOpacity,
   View,
   useColorScheme,
+  TextInput,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import React, {useState} from 'react';
 
 import BackIcon from '../assets/icons/backIcon.svg';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import LogoApple from '../assets/icons/logoApple.svg';
+import Eye from '../assets/icons/eye.svg';
+import EyeDark from '../assets/icons/eyeDark.svg';
 import MyButton from '../Components/Button';
 import MyTextInput from '../Components/TextInput';
-import React from 'react';
 import TradrLogo from '../assets/icons/tradrLogo.svg';
 import WavingHand from '../assets/icons/wavingHand.svg';
 import WhiteTradrLogo from '../assets/icons/whiteTradrLogo.svg';
@@ -64,13 +67,15 @@ function ConnectToAppleButton({children}) {
     </View>
   );
 }
-function ConnectForm({classes, title}) {
+function ConnectForm(props) {
   const navigation = useNavigation();
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const [secureMdp, setSecureMdp] = useState(true);
   const dispatch = useDispatch();
   return (
     <View style={formStyles.formContainer}>
       <View style={[indexStyles.horizontalFlex, formStyles.titleContainer]}>
-        <Text style={classes.title}>{title}</Text>
+        <Text style={props.classes.title}>{props.title}</Text>
         <WavingHand width={18} height={18} />
       </View>
       <View style={formStyles.formContent}>
@@ -88,15 +93,25 @@ function ConnectForm({classes, title}) {
           />
         </View>
         <View style={formStyles.inputContainer}>
-          <MyTextInput
-            placeholder="Mot de passe"
-            secureTextEntry
-            autoCompleteType="password"
-            autoCapitalize="none"
-            keyboardAppearance="dark"
-            editable={false}
-            value="12345"
-          />
+          <View style={props.classes.inputIcon}>
+            <TextInput
+              placeholder="Mot de passe"
+              secureTextEntry={secureMdp}
+              autoCompleteType="password"
+              autoCapitalize="none"
+              keyboardAppearance="dark"
+              value="12345"
+              style={props.classes.inputStyle}
+              placeholderTextColor={props.classes.placeholder}
+            />
+            <TouchableOpacity onPress={() => setSecureMdp(!secureMdp)}>
+              {colorScheme === 'dark' ? (
+                <EyeDark width={22} height={14} />
+              ) : (
+                <Eye width={22} height={14} />
+              )}
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={formStyles.loginButtonContainer}>
           <MyButton
@@ -110,7 +125,9 @@ function ConnectForm({classes, title}) {
         <TouchableOpacity
           onPress={() => navigation.navigate('ForgetPassword')}
           style={styles.forgetPassword}>
-          <Text style={classes.inscriptionTitle}>Mot de passe oublié ?</Text>
+          <Text style={props.classes.inscriptionTitle}>
+            Mot de passe oublié ?
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -129,6 +146,18 @@ function Connection() {
       styles.inscriptionText,
       colorScheme === 'dark' && styles.inscriptionTextDark,
     ],
+    inputStyle: [
+      styles.inputStyle,
+      colorScheme === 'dark' && styles.inputStyleDark,
+    ],
+    inputIcon: [
+      styles.inputIcon,
+      colorScheme === 'dark' && styles.inputIconDark,
+    ],
+    placeholder:
+      colorScheme === 'dark'
+        ? theme.colors.text.$placeholderDark
+        : theme.colors.text.$placeholderLight,
   };
   const navigation = useNavigation();
   const backgroundStyle = {
@@ -179,7 +208,6 @@ const styles = StyleSheet.create({
     padding: 0,
     width: 240,
     height: 52,
-    // marginTop: 137,
     marginTop: 207,
   },
   inscriptionTitleDark: {
@@ -220,6 +248,38 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     color: theme.colors.text.$textLight,
     marginRight: 6,
+  },
+  inputIconDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
+  inputIcon: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    height: 49,
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
+    borderRadius: 10,
+    elevation: 8,
+    shadowColor: '#090d6d',
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    justifyContent: 'center',
+    marginTop: 15,
+  },
+  inputStyleDark: {
+    color: theme.colors.text.$textDark,
+  },
+  inputStyle: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontSize: 17,
+    lineHeight: 21,
+    color: theme.colors.text.$textLight,
+    width: '87%',
   },
 });
 

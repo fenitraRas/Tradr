@@ -87,6 +87,8 @@ function EditProfileTitle({classes, title}) {
 
 function EditProfileForm(props) {
   const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const [secureMdp, setSecureMdp] = useState(true);
+  const [secureMdp2, setSecureMdp2] = useState(true);
   return (
     <View style={[props.classes.informationCard, styles.cardInfoHeight]}>
       <View style={styles.informationCardContent}>
@@ -150,16 +152,15 @@ function EditProfileForm(props) {
           <View style={[props.classes.inputIcon, {marginTop: 6}]}>
             <TextInput
               placeholder="Nouveau mot de passe"
-              secureTextEntry={true}
+              secureTextEntry={secureMdp}
               autoCompleteType="password"
               autoCapitalize="none"
               keyboardAppearance="dark"
-              onChangeText={{}}
               value="mdp"
               style={props.classes.inputStyle}
               placeholderTextColor={props.classes.placeholder}
             />
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={() => setSecureMdp(!secureMdp)}>
               {colorScheme === 'dark' ? (
                 <EyeDark width={22} height={14} />
               ) : (
@@ -172,15 +173,14 @@ function EditProfileForm(props) {
           <View style={props.classes.inputIcon}>
             <TextInput
               placeholder="Confirmer mot de passe"
-              secureTextEntry={true}
+              secureTextEntry={secureMdp2}
               autoCompleteType="password"
               autoCapitalize="none"
               keyboardAppearance="dark"
-              onChangeText={{}}
               style={props.classes.inputStyle}
               placeholderTextColor={props.classes.placeholder}
             />
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={() => setSecureMdp2(!secureMdp2)}>
               {colorScheme === 'dark' ? (
                 <EyeDark width={22} height={14} />
               ) : (

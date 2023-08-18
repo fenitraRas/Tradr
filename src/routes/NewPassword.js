@@ -15,6 +15,7 @@ import {
   TouchableOpacity,
   View,
   useColorScheme,
+  TextInput,
 } from 'react-native';
 
 import BackIcon from '../assets/icons/backIcon.svg';
@@ -23,7 +24,9 @@ import LogoApple from '../assets/icons/logoApple.svg';
 import MyButton from '../Components/Button';
 import MyTextInput from '../Components/TextInput';
 import PartyingFace from '../assets/icons/partyingFace.svg';
-import React from 'react';
+import Eye from '../assets/icons/eye.svg';
+import EyeDark from '../assets/icons/eyeDark.svg';
+import React, {useState} from 'react';
 import TradrLogo from '../assets/icons/tradrLogo.svg';
 import WhiteTradrLogo from '../assets/icons/whiteTradrLogo.svg';
 import {formStyles} from '../assets/css/form';
@@ -63,31 +66,54 @@ function ConnectToAppleButton({children}) {
     </View>
   );
 }
-function Form({classes, title}) {
+function Form(props) {
+  const colorScheme = useSelector(state => state.themeReducer.colorScheme);
+  const [secureMdp, setSecureMdp] = useState(true);
+  const [secureMdp2, setSecureMdp2] = useState(true);
   return (
     <View style={formStyles.formContainer}>
       <View style={[indexStyles.horizontalFlex, formStyles.titleContainer]}>
-        <Text style={classes.title}>{title}</Text>
+        <Text style={props.classes.title}>{props.title}</Text>
         <PartyingFace width={18} height={18} style={formStyles.titleImg} />
       </View>
       <View style={formStyles.formContent}>
         <View style={styles.inputContainer}>
-          <MyTextInput
-            placeholder="Nouveau mot de passe"
-            secureTextEntry
-            autoCompleteType="password"
-            autoCapitalize="none"
-            keyboardAppearance="dark"
-          />
+          <View style={props.classes.inputIcon}>
+            <TextInput
+              placeholder="Nouveau mot de passe"
+              secureTextEntry={secureMdp}
+              autoCompleteType="password"
+              autoCapitalize="none"
+              keyboardAppearance="dark"
+              style={props.classes.inputStyle}
+            />
+            <TouchableOpacity onPress={() => setSecureMdp(!secureMdp)}>
+              {colorScheme === 'dark' ? (
+                <EyeDark width={22} height={14} />
+              ) : (
+                <Eye width={22} height={14} />
+              )}
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={formStyles.inputContainer}>
-          <MyTextInput
-            placeholder="Confirmation mot de passe"
-            secureTextEntry
-            autoCompleteType="password"
-            autoCapitalize="none"
-            keyboardAppearance="dark"
-          />
+          <View style={props.classes.inputIcon}>
+            <TextInput
+              placeholder="Confirmation mot de passe"
+              secureTextEntry={secureMdp2}
+              autoCompleteType="password"
+              autoCapitalize="none"
+              keyboardAppearance="dark"
+              style={props.classes.inputStyle}
+            />
+            <TouchableOpacity onPress={() => setSecureMdp2(!secureMdp2)}>
+              {colorScheme === 'dark' ? (
+                <EyeDark width={22} height={14} />
+              ) : (
+                <Eye width={22} height={14} />
+              )}
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={formStyles.loginButtonContainer}>
           <MyButton label="Confirmer" onPress={() => true} />
@@ -109,6 +135,18 @@ function NewPassword() {
       colorScheme === 'dark' && styles.connectTextDark,
     ],
     title: [styles.title, colorScheme === 'dark' && styles.titleDark],
+    inputStyle: [
+      styles.inputStyle,
+      colorScheme === 'dark' && styles.inputStyleDark,
+    ],
+    inputIcon: [
+      styles.inputIcon,
+      colorScheme === 'dark' && styles.inputIconDark,
+    ],
+    placeholder:
+      colorScheme === 'dark'
+        ? theme.colors.text.$placeholderDark
+        : theme.colors.text.$placeholderLight,
   };
   const backgroundStyle = {
     backgroundColor: colorScheme === 'dark' ? Colors.darker : Colors.lighter,
@@ -193,6 +231,38 @@ const styles = StyleSheet.create({
     height: 24,
     textAlign: 'center',
     marginTop: 10,
+  },
+  inputIconDark: {
+    backgroundColor: theme.colors.background.$backgroundDarkSecondaire,
+  },
+  inputIcon: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    height: 49,
+    backgroundColor: theme.colors.background.$backgroundLightSecondaire,
+    borderRadius: 10,
+    elevation: 8,
+    shadowColor: '#090d6d',
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    justifyContent: 'center',
+    marginTop: 15,
+  },
+  inputStyleDark: {
+    color: theme.colors.text.$textDark,
+  },
+  inputStyle: {
+    fontFamily: 'Montserrat',
+    fontStyle: 'normal',
+    fontSize: 17,
+    lineHeight: 21,
+    color: theme.colors.text.$textLight,
+    width: '87%',
   },
 });
 
