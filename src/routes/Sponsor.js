@@ -63,6 +63,35 @@ function Navbar(props) {
 }
 
 function SponsorContent(props) {
+  const contacts = [
+    {
+      id: 1,
+      name: 'Valberg',
+      first_name: 'Jean-mathieu',
+      at: '08 Mars.2023',
+    },
+    {
+      id: 2,
+      name: 'Detroit',
+      first_name: 'Émilia',
+      at: '02 Jan.2023',
+    },
+  ];
+
+  const invitations = [
+    {
+      id: 1,
+      name: 'Invitation 1',
+    },
+    {
+      id: 2,
+      name: 'Invitation 2',
+    },
+    {
+      id: 3,
+      name: 'Invitation 3',
+    },
+  ];
   return (
     <View style={[props.classes.sponsorContent, indexStyles.shadowProp]}>
       <View style={styles.sponsorTitleContainer}>
@@ -108,76 +137,62 @@ function SponsorContent(props) {
         </View>
       </View>
 
-      <Text style={props.classes.contactTitle}>
-        Mes contacts
-        <FoldedHands width={15} height={15} style={styles.contactTitleImg} />
-      </Text>
+      <View>
+        <Text style={props.classes.contactTitle}>
+          Mes contacts
+          <FoldedHands width={15} height={15} style={styles.contactTitleImg} />
+        </Text>
+      </View>
       <View style={props.classes.contactCard}>
         <View>
           <Text style={props.classes.contactSubtitle}>
             Mes contacts parrainés
           </Text>
-          <View style={props.classes.sponsorNameContainer}>
-            <Image
-              source={require('../assets/avatar.png')}
-              style={styles.avatar}
-            />
-            <View style={styles.sponsorLeftText}>
-              <Text style={props.classes.firstName}>Jean-mathieu</Text>
-              <Text style={props.classes.name}>Valberg</Text>
-            </View>
-            <View style={styles.sponsorRightText}>
-              <Text style={styles.dateLabel}>Date de parrainage</Text>
-              <Text style={props.classes.date}>08 Mar. 2023</Text>
-            </View>
-          </View>
-          <View style={props.classes.sponsorNameContainer}>
-            <Image
-              source={require('../assets/avatar.png')}
-              style={styles.avatar}
-            />
-            <View style={styles.sponsorLeftText}>
-              <Text style={props.classes.firstName}>Émilia</Text>
-              <Text style={props.classes.name}>Detroit</Text>
-            </View>
-            <View style={styles.sponsorRightText}>
-              <Text style={styles.dateLabel}>Date de parrainage</Text>
-              <Text style={props.classes.date}>02 Jan. 2023</Text>
-            </View>
-          </View>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            style={{maxHeight: 150, paddingBottom: 10}}>
+            {contacts.map(c => {
+              return (
+                <View key={c.id} style={props.classes.sponsorNameContainer}>
+                  <Image
+                    source={require('../assets/avatar.png')}
+                    style={styles.avatar}
+                  />
+                  <View style={styles.sponsorLeftText}>
+                    <Text style={props.classes.firstName}>{c.first_name}</Text>
+                    <Text style={props.classes.name}>{c.name}</Text>
+                  </View>
+                  <View style={styles.sponsorRightText}>
+                    <Text style={styles.dateLabel}>Date de parrainage</Text>
+                    <Text style={props.classes.date}>{c.at}</Text>
+                  </View>
+                </View>
+              );
+            })}
+          </ScrollView>
         </View>
 
         <View style={styles.invitationContainer}>
           <Text style={props.classes.contactSubtitle}>
             Mes invitations restantes
           </Text>
-          <View style={props.classes.sponsorNameContainer}>
-            <Image
-              source={require('../assets/person.png')}
-              style={styles.avatar}
-            />
-            <View style={styles.invitationLabelContainer}>
-              <Text style={styles.invitationLabel}>Invitation restante</Text>
-            </View>
-          </View>
-          <View style={props.classes.sponsorNameContainer}>
-            <Image
-              source={require('../assets/person.png')}
-              style={styles.avatar}
-            />
-            <View style={styles.invitationLabelContainer}>
-              <Text style={styles.invitationLabel}>Invitation restante</Text>
-            </View>
-          </View>
-          <View style={props.classes.sponsorNameContainer}>
-            <Image
-              source={require('../assets/person.png')}
-              style={styles.avatar}
-            />
-            <View style={styles.invitationLabelContainer}>
-              <Text style={styles.invitationLabel}>Invitation restante</Text>
-            </View>
-          </View>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            style={{maxHeight: 218, paddingBottom: 10}}>
+            {invitations.map(i => {
+              return (
+                <View key={i.id} style={props.classes.sponsorNameContainer}>
+                  <Image
+                    source={require('../assets/person.png')}
+                    style={styles.avatar}
+                  />
+                  <View style={styles.invitationLabelContainer}>
+                    <Text style={styles.invitationLabel}>{i.name}</Text>
+                  </View>
+                </View>
+              );
+            })}
+          </ScrollView>
         </View>
       </View>
     </View>
@@ -518,7 +533,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.component.$cardDark,
   },
   contactCard: {
-    height: 431,
+    height: 436,
     width: '100%',
     backgroundColor: theme.colors.component.$cardLight,
     borderRadius: 20,
@@ -553,7 +568,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   invitationContainer: {
-    marginTop: 5,
+    marginTop: 0,
   },
   invitationLabelContainer: {
     width: 138,
