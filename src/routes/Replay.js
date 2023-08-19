@@ -62,9 +62,39 @@ function Navbar(props) {
   );
 }
 
+function getReplaysByType(list, type) {
+  return list.filter(elm => elm.type === type);
+}
+
 function ReplayContent(props) {
   const navigation = useNavigation();
   const [isPlaying, setIsPlaying] = useState(false);
+  const replays = [
+    {
+      id: 1,
+      title: 'Live Trading 1',
+      type: 'view',
+      date: '24 novembre 2022',
+    },
+    {
+      id: 2,
+      title: 'Live Trading 2',
+      type: 'view',
+      date: '22 novembre 2022',
+    },
+    {
+      id: 2,
+      title: 'Live Trading 3',
+      type: 'archive',
+      date: '26 novembre 2022',
+    },
+    {
+      id: 2,
+      title: 'Live Trading 4',
+      type: 'archive',
+      date: '12 octobre 2022',
+    },
+  ];
   return (
     <View style={[props.classes.replayContent, indexStyles.shadowProp]}>
       <View style={styles.replayTitleContainer}>
@@ -107,34 +137,26 @@ function ReplayContent(props) {
         horizontal
         showsHorizontalScrollIndicator={false}
         style={styles.videoListContainer}>
-        <TouchableOpacity
-          style={props.classes.videoCard}
-          onPress={() => navigation.navigate('LiveReplay')}>
-          <Image
-            source={require('../assets/formationBg.jpg')}
-            style={styles.image}
-          />
-          <View style={styles.playButtonContainer}>
-            <View>
-              <PlayButton width={36} height={36} />
-            </View>
-          </View>
-          <Text style={props.classes.imgTitle}>Live Trading</Text>
-          <Text style={props.classes.imgDate}>24 Novembre 2022</Text>
-        </TouchableOpacity>
-        <View style={props.classes.videoCard}>
-          <Image
-            source={require('../assets/formationBg.jpg')}
-            style={styles.image}
-          />
-          <View style={styles.playButtonContainer}>
-            <View>
-              <PlayButton width={36} height={36} />
-            </View>
-          </View>
-          <Text style={props.classes.imgTitle}>Live Trading</Text>
-          <Text style={props.classes.imgDate}>24 Novembre 2022</Text>
-        </View>
+        {getReplaysByType(replays, 'view').map(e => {
+          return (
+            <TouchableOpacity
+              key={e.id}
+              style={props.classes.videoCard}
+              onPress={() => navigation.navigate('LiveReplay')}>
+              <Image
+                source={require('../assets/formationBg.jpg')}
+                style={styles.image}
+              />
+              <View style={styles.playButtonContainer}>
+                <View>
+                  <PlayButton width={36} height={36} />
+                </View>
+              </View>
+              <Text style={props.classes.imgTitle}>{e.title}</Text>
+              <Text style={props.classes.imgDate}>{e.date}</Text>
+            </TouchableOpacity>
+          );
+        })}
       </ScrollView>
 
       <Text style={[styles.replaySubtitleWithoutImg]}>Live Archivé</Text>
@@ -142,32 +164,23 @@ function ReplayContent(props) {
         horizontal
         showsHorizontalScrollIndicator={false}
         style={styles.videoListContainer}>
-        <View style={props.classes.videoCard}>
-          <Image
-            source={require('../assets/formationBg.jpg')}
-            style={styles.image}
-          />
-          <View style={styles.playButtonContainer}>
-            <View>
-              <PlayButton width={36} height={36} />
+        {getReplaysByType(replays, 'archive').map(e => {
+          return (
+            <View key={e.id} style={props.classes.videoCard}>
+              <Image
+                source={require('../assets/formationBg.jpg')}
+                style={styles.image}
+              />
+              <View style={styles.playButtonContainer}>
+                <View>
+                  <PlayButton width={36} height={36} />
+                </View>
+              </View>
+              <Text style={props.classes.imgTitle}>{e.title}</Text>
+              <Text style={props.classes.imgDate}>{e.date}</Text>
             </View>
-          </View>
-          <Text style={props.classes.imgTitle}>Live Trading</Text>
-          <Text style={props.classes.imgDate}>24 Novembre 2022</Text>
-        </View>
-        <View style={props.classes.videoCard}>
-          <Image
-            source={require('../assets/formationBg.jpg')}
-            style={styles.image}
-          />
-          <View style={styles.playButtonContainer}>
-            <View>
-              <PlayButton width={36} height={36} />
-            </View>
-          </View>
-          <Text style={props.classes.imgTitle}>Live Trading</Text>
-          <Text style={props.classes.imgDate}>24 Novembre 2022</Text>
-        </View>
+          );
+        })}
       </ScrollView>
     </View>
   );
