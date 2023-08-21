@@ -74,6 +74,20 @@ function Navbar(props) {
 
 function LiveReplayContent(props) {
   const [isPlaying, setIsPlaying] = useState(false);
+  const lives = [
+    {
+      id: 1,
+      title: 'Live Trading 1',
+      type: 'view',
+      date: '24 novembre 2022',
+    },
+    {
+      id: 2,
+      title: 'Live Trading 2',
+      type: 'view',
+      date: '22 novembre 2022',
+    },
+  ];
   return (
     <View style={[props.classes.replayContent, indexStyles.shadowProp]}>
       <View style={props.classes.lastLiveCard}>
@@ -108,32 +122,23 @@ function LiveReplayContent(props) {
         horizontal
         showsHorizontalScrollIndicator={false}
         style={styles.videoListContainer}>
-        <View style={props.classes.videoCard}>
-          <Image
-            source={require('../assets/formationBg.jpg')}
-            style={styles.image}
-          />
-          <View style={styles.playButtonContainer}>
-            <View>
-              <PlayButton width={36} height={36} />
+        {lives.map(e => {
+          return (
+            <View key={e.id} style={props.classes.videoCard}>
+              <Image
+                source={require('../assets/formationBg.jpg')}
+                style={styles.image}
+              />
+              <View style={styles.playButtonContainer}>
+                <View>
+                  <PlayButton width={36} height={36} />
+                </View>
+              </View>
+              <Text style={props.classes.imgTitle}>{e.title}</Text>
+              <Text style={props.classes.imgDate}>{e.date}</Text>
             </View>
-          </View>
-          <Text style={props.classes.imgTitle}>Live Trading</Text>
-          <Text style={props.classes.imgDate}>24 Novembre 2022</Text>
-        </View>
-        <View style={props.classes.videoCard}>
-          <Image
-            source={require('../assets/formationBg.jpg')}
-            style={styles.image}
-          />
-          <View style={styles.playButtonContainer}>
-            <View>
-              <PlayButton width={36} height={36} />
-            </View>
-          </View>
-          <Text style={props.classes.imgTitle}>Live Trading</Text>
-          <Text style={props.classes.imgDate}>24 Novembre 2022</Text>
-        </View>
+          );
+        })}
       </ScrollView>
     </View>
   );
